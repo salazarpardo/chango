@@ -4,7 +4,6 @@ import './posts_list.html';
 
 import './post_item.js';
 
-console.log(Posts.find({}));
 
 Template.postsList.onCreated(function () {
   Meteor.subscribe('posts.all');

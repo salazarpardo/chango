@@ -8,3 +8,7 @@ Meteor.publish('posts.all', function () {
     createdAt: false
   }});
 });
+
+Meteor.publish('post.single', function (postId) {
+  return Posts.find({ _id: postId });
+});
