@@ -1,11 +1,11 @@
 // Fill the DB with example data on startup
 
 import { Meteor } from 'meteor/meteor';
-import { Links } from '../../api/links/links.js';
+import { Posts } from '../../api/posts/posts.js';
 
 Meteor.startup(() => {
-  // if the Links collection is empty
-  if (Links.find().count() === 0) {
+  // if the Posts collection is empty
+  if (Posts.find().count() === 0) {
     const data = [
       {
         title: 'Do the Tutorial',
@@ -29,6 +29,6 @@ Meteor.startup(() => {
       },
     ];
 
-    data.forEach(link => Links.insert(link));
+    data.forEach(post => Posts.insert(post));
   }
 });

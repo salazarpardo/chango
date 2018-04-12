@@ -1,15 +1,15 @@
-// Methods related to links
+// Methods related to Posts
 
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
-import { Links } from './links.js';
+import { Posts } from './posts.js';
 
 Meteor.methods({
-  'links.insert'(title, url) {
+  'posts.insert'(title, url) {
     check(url, String);
     check(title, String);
 
-    return Links.insert({
+    return Posts.insert({
       url,
       title,
       createdAt: new Date(),

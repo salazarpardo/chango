@@ -1,26 +1,26 @@
-// Tests for the links publications
+// Tests for the posts publications
 //
 // https://guide.meteor.com/testing.html
 
 import { assert } from 'chai';
-import { Links } from '../links.js';
+import { posts } from '../posts.js';
 import { PublicationCollector } from 'meteor/johanbrook:publication-collector';
 import './publications.js';
 
-describe('links publications', function () {
+describe('posts publications', function () {
   beforeEach(function () {
-    Links.remove({});
-    Links.insert({
+    posts.remove({});
+    posts.insert({
       title: 'meteor homepage',
       url: 'https://www.meteor.com',
     });
   });
 
-  describe('links.all', function () {
-    it('sends all links', function (done) {
+  describe('posts.all', function () {
+    it('sends all posts', function (done) {
       const collector = new PublicationCollector();
-      collector.collect('links.all', (collections) => {
-        assert.equal(collections.links.length, 1);
+      collector.collect('posts.all', (collections) => {
+        assert.equal(collections.posts.length, 1);
         done();
       });
     });
