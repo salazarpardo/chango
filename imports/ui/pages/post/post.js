@@ -6,11 +6,12 @@ import './post.html';
 
 import '../../components/posts/post_item.js';
 import '../../components/comments/comment_item.js';
+import '../../components/comments/comment_submit.js';
 
 Template.post.onCreated(function() {
-  this.subscribe('comments');
   var postId = FlowRouter.getParam('_id');
   var self = this;
+  self.subscribe('comments', postId);
   self.autorun(function() {
     if ( postId !== undefined ) {
       self.subscribe('singlePost', postId);
