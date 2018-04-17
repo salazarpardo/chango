@@ -6,7 +6,12 @@
     </button>
     <div class="navbar-collapse collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            {{#if currentUser}}<li class="nav-item"><a class="nav-link" href="{{pathFor 'submit'}}">Submit</a></li>{{/if}}
+            {{#if currentUser}}
+              <li class="nav-item"><a class="nav-link" href="{{pathFor 'submit'}}">Submit</a></li>
+              <li class="nav-item dropdown">
+                {{> notifications}}
+              </li>
+            {{/if}}
             <li class="nav-item"><a class="nav-link" href="{{pathFor 'about'}}">About</a></li>
         </ul>
         <ul class="navbar-nav">

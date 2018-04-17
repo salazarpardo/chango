@@ -1,5 +1,6 @@
 import { Posts } from '/imports/api/posts/posts.js';
 import { Meteor } from 'meteor/meteor';
+
 import './posts_list.html';
 
 import './post_item.js';
@@ -12,6 +13,7 @@ Meteor.startup(function() {
 
 Template.postsList.onCreated(function () {
   Meteor.subscribe('posts');
+  Meteor.subscribe('notifications');
 });
 
 Template.postsList.helpers({
