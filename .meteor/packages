@@ -25,3 +25,9 @@ fourseven:scss
 seba:minifiers-autoprefixer
 alexwine:bootstrap-4
 ostrio:flow-router-extra
+sacha:spin
+session
+accounts-password
+chuikoff:accounts-ui-bootstrap-4
+check
+audit-argument-checks

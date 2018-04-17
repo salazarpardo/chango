@@ -3,12 +3,11 @@
 import { Meteor } from 'meteor/meteor';
 import { Posts } from '../posts.js';
 
-Meteor.publish('posts.all', function () {
-  return Posts.find({}, {fields: {
-    createdAt: false
-  }});
+Meteor.publish('posts', function (options) {
+  return Posts.find();
 });
 
-Meteor.publish('post.single', function (postId) {
-  return Posts.find({ _id: postId });
+Meteor.publish('singlePost', function(id) {
+  check(id, String);
+  return Posts.find(id);
 });

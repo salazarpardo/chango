@@ -4,14 +4,19 @@ import './posts_list.html';
 
 import './post_item.js';
 
+Meteor.startup(function() {
+  Tracker.autorun(function() {
+    console.log('There are ' + Posts.find().count() + ' posts');
+  });
+});
 
 Template.postsList.onCreated(function () {
-  Meteor.subscribe('posts.all');
+  Meteor.subscribe('posts');
 });
 
 Template.postsList.helpers({
   posts() {
-    return Posts.find({});
+    return Posts.find({}, {sort: {submitted: -1}});
   },
 });
 

@@ -1,0 +1,23 @@
+<template name="submit">
+  <h1>Submit</h1>
+  <p class="mb-4">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </p>
+  <form class="main form needs-validation" novalidate>
+    <div class="form-group">
+      <label class="control-label" for="url">URL</label>
+      <input name="url" id="url" type="text" value="" placeholder="Your URL" class="form-control {{errorClass 'url'}}"/>
+      <div class="invalid-feedback">{{errorMessage 'url'}}</div>
+      <small class="form-text text-muted">Escribe una URL valida</small>
+    </div>
+    <div class="form-group">
+      <label class="control-label" for="title">Title</label>
+      <div class="controls">
+          <input name="title" id="title" type="text" value="" placeholder="Name your post" class="form-control {{errorClass 'title'}}"/>
+          <div class="invalid-feedback">{{errorMessage 'title'}}</div>
+          <small class="form-text text-muted">Dale un titulo a tu entrada</small>
+      </div>
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+  </form>
+</template>

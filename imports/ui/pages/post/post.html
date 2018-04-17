@@ -1,0 +1,20 @@
+<template name="post">
+  {{#if Template.subscriptionsReady}}
+    {{#if post}}
+      {{#with post}}
+        {{> postItem}}
+
+        <ul class="comments list-unstyled mt-3">
+          {{#each comments}}
+            {{> commentItem}}
+          {{/each}}
+        </ul>
+      {{/with}}
+
+    {{else}}
+      {{> App_notFound}}
+    {{/if}}
+  {{else}}
+    {{> spinner}}
+  {{/if}}
+</template>

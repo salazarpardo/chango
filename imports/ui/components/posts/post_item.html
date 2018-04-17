@@ -1,7 +1,15 @@
 <template name="postItem">
   <div class="post">
     <div class="post-content">
-      <h3><a href="{{pathFor 'post/:id' id=_id}}">{{title}}</a><span>{{domain}}</span></h3>
+      {{#unless postId}}<a href="{{pathFor '/post/:_id' _id=_id}}" class="discuss btn btn-light">Read more</a>{{/unless}}
+      <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
+      <p>
+        <small class="text-muted">
+          {{#if author}}submitted by {{author}} {{/if}}
+          <a href="{{pathFor '/post/:_id' _id=_id}}">{{commentsCount}} comments</a>
+          {{#if ownPost}}<a href="{{pathFor '/post/:_id/edit' _id=_id}}">Edit</a>{{/if}}
+        </small>
+      </p>
     </div>
   </div>
 </template>
