@@ -1,8 +1,11 @@
 accounts-base@1.4.2
+accounts-facebook@1.3.1
+accounts-oauth@1.1.15
 accounts-password@1.5.1
+accounts-ui@1.3.0
+accounts-ui-unstyled@1.4.1
 alexwine:bootstrap-4@4.1.0
 allow-deny@1.1.0
-anti:i18n@0.4.3
 audit-argument-checks@1.0.7
 autoupdate@1.4.0
 babel-compiler@7.0.7
@@ -21,7 +24,6 @@ caching-compiler@1.1.11
 caching-html-compiler@1.1.2
 callback-hook@1.1.0
 check@1.3.1
-chuikoff:accounts-ui-bootstrap-4@0.0.1
 ddp@1.4.0
 ddp-client@2.3.2
 ddp-common@1.4.0
@@ -37,6 +39,8 @@ ecmascript-runtime-server@0.5.0
 ejson@1.1.0
 email@1.2.3
 es5-shim@4.7.3
+facebook-config-ui@1.0.1
+facebook-oauth@1.4.0
 fourseven:scss@4.5.4
 geojson-utils@1.0.10
 hot-code-push@1.0.4
@@ -48,6 +52,7 @@ johanbrook:publication-collector@1.1.0
 jquery@1.11.11
 kadira:blaze-layout@2.3.0
 launch-screen@1.1.1
+less@2.7.12
 livedata@1.0.18
 localstorage@1.2.0
 logging@1.1.20
@@ -67,6 +72,8 @@ mongo-dev-server@1.1.0
 mongo-id@1.0.7
 npm-bcrypt@0.9.3
 npm-mongo@2.2.34
+oauth@1.2.3
+oauth2@1.2.0
 observe-sequence@1.0.16
 ordered-dict@1.1.0
 ostrio:flow-router-extra@3.4.7

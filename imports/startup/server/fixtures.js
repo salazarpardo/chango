@@ -44,15 +44,6 @@ if (Posts.find().count() === 0) {
   });
 
   Posts.insert({
-    title: 'Meteor',
-    userId: tom._id,
-    author: tom.profile.name,
-    url: 'http://meteor.com',
-    submitted: new Date(now - 10 * 3600 * 1000),
-    commentsCount: 0
-  });
-
-  Posts.insert({
     title: 'The Meteor Book',
     userId: tom._id,
     author: tom.profile.name,
@@ -60,4 +51,15 @@ if (Posts.find().count() === 0) {
     submitted: new Date(now - 12 * 3600 * 1000),
     commentsCount: 0
   });
+
+  for (var i = 0; i < 10; i++) {
+    Posts.insert({
+      title: 'Test post #' + i,
+      author: sacha.profile.name,
+      userId: sacha._id,
+      url: 'http://google.com/?q=test-' + i,
+      submitted: new Date(now - i * 3600 * 1000),
+      commentsCount: 0
+    });
+  }
 }

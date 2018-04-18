@@ -28,6 +28,8 @@ ostrio:flow-router-extra
 sacha:spin
 session
 accounts-password
-chuikoff:accounts-ui-bootstrap-4
+accounts-facebook
+accounts-ui
 check
 audit-argument-checks
+facebook-config-ui
