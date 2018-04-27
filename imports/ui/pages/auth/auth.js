@@ -12,7 +12,7 @@ Template.signup.events({
         var firstname = event.target.firstname.value;
         var lastname = event.target.lastname.value;
 
-        var user = {'email':email,password:password,profile:{name:firstname +" "+lastname}};
+        var user = {'email':email,password:password,profile:{name:firstname + " " + lastname}};
 
         Accounts.createUser(user,function(err){
             if(!err) {

@@ -21,16 +21,20 @@ kadira:blaze-layout           # Layout manager for blaze (works well with FlowRo
 meteortesting:mocha               # A package for writing and running your meteor app and package tests with mocha
 johanbrook:publication-collector  # Test a Meteor publication by collecting its output
 
+ostrio:flow-router-extra
+session
+
 fourseven:scss
 seba:minifiers-autoprefixer
 alexwine:bootstrap-4
-ostrio:flow-router-extra
 sacha:spin
-session
-accounts-password
+
 accounts-ui
+accounts-password
+accounts-facebook
+facebook-config-ui
+
 check
 audit-argument-checks
 nourharidy:ssl
-accounts-facebook
-facebook-config-ui
+force-ssl
