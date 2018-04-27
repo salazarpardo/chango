@@ -1,0 +1,117 @@
+<template name="Auth_page">
+  <div class="page auth">
+    <nav>
+      <div class="nav-group">
+        <a href="#" class="js-menu nav-item">
+          <span class="icon-list-unordered"></span>
+        </a>
+      </div>
+    </nav>
+
+    <div class="content-scrollable">
+      <div class="wrapper-auth">
+        {{> atForm}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="override-atPwdFormBtn">
+  <button type="submit" class="btn btn-primary">
+    {{buttonText}}
+  </button>
+</template>
+
+<template name="override-atTextInput">
+  <div class="form-group {{#if isValidating}}validating{{/if}} {{#if hasError}}error{{/if}} {{#if hasSuccess}}has-success{{/if}} {{#if feedback}}has-feedback{{/if}}">
+    {{#if showLabels}}
+    <label class="control-label" for="at-field-{{_id}}">
+      {{displayName}} {{#unless required}}{{optionalText}}{{/unless}}
+    </label>
+     {{/if}}
+    <input type="{{type}}" id="at-field-{{_id}}" name="at-field-{{_id}}" placeholder="{{placeholder}}" autocapitalize="none" autocorrect="off" class="form-control">
+    {{#if hasIcon}}
+        <span class="{{iconClass}}"></span>
+    {{/if}}
+    {{#if hasError}}
+      <span>{{errorText}}</span>
+    {{/if}}
+  </div>
+</template>
+
+<template name="override-atSocial">
+  <button class="btn at-social-btn {{disabled}}" id="at-{{name}}" name="{{name}}">
+    <i class="{{iconClass}}"></i> {{buttonText}}
+  </button>
+</template>
+
+<template name="override-atTitle">
+  <h1 class="title-auth">{{title}}</h1>
+</template>
+
+<template name="override-atError">
+  <div class="list-errors">
+    {{#each error}}
+      <div class="list-item mb-3">{{errorText}}</div>
+    {{/each}}
+  </div>
+</template>
+
+<template name="override-atPwdForm">
+  <div class="at-pwd-form">
+    <form role="form" id="at-pwd-form" class="form needs-validation {{disabled}}" novalidate action="#" method="POST">
+      {{#each fields}}
+        {{> atInput}}
+      {{/each}}
+      {{#if showReCaptcha}}
+        {{> atReCaptcha}}
+      {{/if}}
+      {{> atPwdFormBtn}}
+      {{#if showForgotPasswordLink}}
+        {{> atPwdLink}}
+      {{/if}}
+    </form>
+  </div>
+</template>
+
+<template name="override-atForm">
+  {{#unless hide}}
+    <div class="at-form">
+      {{#if showTitle}}
+        {{> atTitle}}
+      {{/if}}
+      <div class="main">
+        {{#if showOauthServices}}
+          {{> atOauth}}
+        {{/if}}
+        {{#if showServicesSeparator}}
+          {{> atSep}}
+        {{/if}}
+        {{#if showError}}
+          {{> atError}}
+        {{/if}}
+        {{#if showResult}}
+          {{> atResult}}
+        {{/if}}
+        {{#if showMessage}}
+          {{> atMessage}}
+        {{/if}}
+        {{#if showPwdForm}}
+          {{> atPwdForm}}
+        {{/if}}
+        {{#if showTermsLink}}
+          {{> atTermsLink}}
+        {{/if}}
+        {{#if showSignInLink}}
+          {{> atSigninLink}}
+        {{/if}}
+        {{#if showSignUpLink}}
+          {{> atSignupLink}}
+        {{/if}}
+        {{#if showResendVerificationEmailLink}}
+          {{> atResendVerificationEmailLink}}
+        {{/if}}
+      </div>
+    </div>
+  {{/unless}}
+</template>

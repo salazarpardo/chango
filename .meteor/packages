@@ -29,7 +29,8 @@ seba:minifiers-autoprefixer
 alexwine:bootstrap-4
 sacha:spin
 
-accounts-ui
+useraccounts:core
+useraccounts:unstyled
 accounts-password
 accounts-facebook
 facebook-config-ui
@@ -38,3 +39,6 @@ check
 audit-argument-checks
 nourharidy:ssl
 force-ssl
+mealsunite:flow-routing-extra
+aldeed:template-extension
+service-configuration

@@ -14,6 +14,9 @@ import '../../ui/pages/post/post.js';
 import '../../ui/pages/not_found/not_found.js';
 import '../../ui/pages/access_denied/access_denied.js';
 
+// Import to override accounts templates
+import '../../ui/accounts/accounts-templates.js';
+
 // ******************* GLOBAL SETTINGS *****************************
 
 function redirectIfLoggedIn (ctx, redirect) {
@@ -41,11 +44,6 @@ Accounts.onLogin(function() {
   }
 });
 
-Tracker.autorun(function () {
-  if (!Meteor.userId()) {
-    FlowRouter.go('home');
-  }
-});
 
 // ************************* ROUTES ********************************
 
@@ -58,34 +56,34 @@ publicRoutes.route('/', {
   name: 'home',
   triggersEnter: [],
   action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'home' });
+    BlazeLayout.render('App_body', { top: 'header', main: 'home', errors: 'errors' });
   },
   triggersExit: []
 });
 
-publicRoutes.route('/signup', {
-  name: 'signup',
-  triggersEnter: [],
-  action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'signup' });
-  },
-  triggersExit: []
-});
-
-publicRoutes.route('/login', {
-  name: 'login',
-  triggersEnter: [],
-  action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'login' });
-  },
-  triggersExit: []
-});
+// publicRoutes.route('/signup', {
+//   name: 'signup',
+//   triggersEnter: [],
+//   action() {
+//     BlazeLayout.render('App_body', { top: 'header', main: 'signup' });
+//   },
+//   triggersExit: []
+// });
+//
+// publicRoutes.route('/login', {
+//   name: 'login',
+//   triggersEnter: [],
+//   action() {
+//     BlazeLayout.render('App_body', { top: 'header', main: 'login' });
+//   },
+//   triggersExit: []
+// });
 
 publicRoutes.route('/about', {
   name: 'about',
   triggersEnter: [],
   action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'about' });
+    BlazeLayout.render('App_body', { top: 'header', main: 'about', errors: 'errors' });
   },
   triggersExit: []
 });
@@ -94,7 +92,7 @@ publicRoutes.route('/post/:_id', {
   name: 'post',
   triggersEnter: [],
   action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'post' });
+    BlazeLayout.render('App_body', { top: 'header', main: 'post', errors: 'errors' });
   },
   triggersExit: []
 });
@@ -103,21 +101,21 @@ publicRoutes.route('/login', {
   name: 'login',
   triggersEnter: [],
   action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'accessDenied' });
+    BlazeLayout.render('App_body', { top: 'header', main: 'accessDenied', errors: 'errors' });
   },
   triggersExit: []
 });
 
 var privateRoutes = FlowRouter.group({
   name: 'private',
-  triggersEnter: [ checkLoggedIn ],
+  triggersEnter: [ AccountsTemplates.ensureSignedIn ],
 })
 
 privateRoutes.route('/submit', {
   name: 'submit',
   triggersEnter: [],
   action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'submit' });
+    BlazeLayout.render('App_body', { top: 'header', main: 'submit', errors: 'errors' });
   },
   triggersExit: []
 })
@@ -126,7 +124,7 @@ privateRoutes.route('/post/:_id/edit', {
   name: 'postEdit',
   triggersEnter: [],
   action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'postEdit' });
+    BlazeLayout.render('App_body', { top: 'header', main: 'postEdit', errors: 'errors' });
   },
   triggersExit: []
 });
@@ -134,6 +132,6 @@ privateRoutes.route('/post/:_id/edit', {
 FlowRouter.route('*', {
   name: 'notFound',
   action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'App_notFound' });
+    BlazeLayout.render('App_body', { top: 'header', main: 'App_notFound', errors: 'errors' });
   }
 });
