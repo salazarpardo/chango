@@ -11,10 +11,10 @@ import '../../components/comments/comment_submit.js';
 Template.post.onCreated(function() {
   var postId = FlowRouter.getParam('_id');
   var self = this;
-  self.subscribe('comments', postId);
   self.autorun(function() {
     if ( postId !== undefined ) {
       self.subscribe('singlePost', postId);
+      self.subscribe('comments', postId);
     }
   });
 });

@@ -1,18 +1,14 @@
 <template name="postsList">
-
-  <!-- <form class="info-post-add">
-    <div class="input-group mb-3">
-      <input type="text" name="title" placeholder="Title" class="form-control">
-      <input type="text" name="url" placeholder="Url" class="form-control">
-      <div class="input-group-append">
-        <button class="btn btn-outline-secondary" type="submit">Add new Post</button>
-      </div>
-    </div>
-  </form> -->
-
   <div class="posts">
     {{#each posts}}
       {{> postItem}}
     {{/each}}
   </div>
+  {{#if Template.subscriptionsReady}}
+    {{#if hasMorePosts}}
+      <a class="load-more" href="#">Load More</a>
+    {{/if}}
+  {{else}}
+    <div class="loading">{{>spinner}}</div>
+  {{/if}}
 </template>

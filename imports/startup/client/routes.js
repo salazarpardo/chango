@@ -52,32 +52,14 @@ var publicRoutes = FlowRouter.group({
   triggersEnter: [ redirectIfLoggedIn ],
 })
 
-publicRoutes.route('/', {
-  name: 'home',
+publicRoutes.route('/post/:_id', {
+  name: 'post',
   triggersEnter: [],
   action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'home', errors: 'errors' });
+    BlazeLayout.render('App_body', { top: 'header', main: 'post', errors: 'errors' });
   },
   triggersExit: []
 });
-
-// publicRoutes.route('/signup', {
-//   name: 'signup',
-//   triggersEnter: [],
-//   action() {
-//     BlazeLayout.render('App_body', { top: 'header', main: 'signup' });
-//   },
-//   triggersExit: []
-// });
-//
-// publicRoutes.route('/login', {
-//   name: 'login',
-//   triggersEnter: [],
-//   action() {
-//     BlazeLayout.render('App_body', { top: 'header', main: 'login' });
-//   },
-//   triggersExit: []
-// });
 
 publicRoutes.route('/about', {
   name: 'about',
@@ -88,20 +70,11 @@ publicRoutes.route('/about', {
   triggersExit: []
 });
 
-publicRoutes.route('/post/:_id', {
-  name: 'post',
+publicRoutes.route('/:postsLimit?', {
+  name: 'home',
   triggersEnter: [],
   action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'post', errors: 'errors' });
-  },
-  triggersExit: []
-});
-
-publicRoutes.route('/login', {
-  name: 'login',
-  triggersEnter: [],
-  action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'accessDenied', errors: 'errors' });
+    BlazeLayout.render('App_body', { top: 'header', main: 'home', errors: 'errors' });
   },
   triggersExit: []
 });

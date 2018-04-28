@@ -3,8 +3,10 @@
 import { Meteor } from 'meteor/meteor';
 import { Posts } from '../posts.js';
 
-Meteor.publish('posts', function (options) {
-  return Posts.find();
+Meteor.publish('posts', function(limit) {
+  check(limit, Number);
+  Meteor._sleepForMs(2000);
+  return Posts.find({}, {limit: limit});
 });
 
 Meteor.publish('singlePost', function(id) {

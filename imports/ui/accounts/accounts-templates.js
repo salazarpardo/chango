@@ -3,10 +3,13 @@ import { Template } from 'meteor/templating';
 
 import './accounts-templates.html';
 
-import FontAwesome from '@fortawesome/fontawesome/';
-import FontAwesomeBrands from '@fortawesome/fontawesome-free-brands/';
-import FontAwesomeRegular from '@fortawesome/fontawesome-free-regular/';
-import FontAwesomeSolid from '@fortawesome/fontawesome-free-solid/';
+import fontawesome from '@fortawesome/fontawesome/';
+// import FontAwesomeBrands from '@fortawesome/fontawesome-free-brands/';
+// import FontAwesomeRegular from '@fortawesome/fontawesome-free-regular/';
+// import FontAwesomeSolid from '@fortawesome/fontawesome-free-solid/';
+import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook'
+
+fontawesome.library.add(faFacebook)
 
 // We identified the templates that need to be overridden by looking at the available templates
 // here: https://github.com/meteor-useraccounts/unstyled/tree/master/lib
