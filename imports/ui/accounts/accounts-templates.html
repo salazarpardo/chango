@@ -50,9 +50,12 @@
 </template>
 
 <template name="override-atError">
-  <div class="list-errors">
+  <div class="errors">
     {{#each error}}
-      <div class="list-item mb-3">{{errorText}}</div>
+    <div class="alert alert-danger" role="alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {{errorText}}
+    </div>
     {{/each}}
   </div>
 </template>

@@ -10,6 +10,16 @@ AccountsTemplates.configure({
     defaultContentRegion: 'main',
     showForgotPasswordLink: true,
     showAddRemoveServices: true,
+    texts: {
+        socialIcons: {
+          facebook: "fab fa-facebook",
+        },
+        inputIcons: {
+          isValidating: "fas fa-spinner fa-spin",
+          hasSuccess: "fas fa-check",
+          hasError: "fas fa-times",
+        }
+    }
 });
 
 AccountsTemplates.configureRoute('signIn', {
