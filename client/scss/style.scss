@@ -62,17 +62,11 @@ body {
 }
 
 .post.instant {
-  -webkit-transition: none;
-  -moz-transition: none;
-  -o-transition: none;
   transition: none;
 }
 
 .post.animate {
-  -webkit-transition: all 300ms 0;
-  -moz-transition: all 300ms 0 ease-in;
-  -o-transition: all 300ms 0 ease-in;
-  transition: all 300ms 0 ease-in;
+  transition: top 300ms ease-in;
 }
 
 .post .upvote {
@@ -82,8 +76,7 @@ body {
 }
 
 .post .post-content {
-  float: left;
-  width: 100%;
+
 }
 
 .post .post-content h3 {
