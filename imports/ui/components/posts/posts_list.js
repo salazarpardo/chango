@@ -7,35 +7,36 @@ import './posts_list.html';
 import './post_item.js';
 
 Template.postsList.onCreated(function () {
-  Meteor.subscribe('notifications');
-  // var postsLimit = FlowRouter.getParam('postsLimit');
-  // var self = this;
-  // self.autorun(function() {
-  //   var limit = parseInt(postsLimit) || 5;
-  //   return self.subscribe('posts', {limit: limit});
-  // });
 
-
-// 1. Initialization
+  // 1. Initialization
 
   var instance = this;
 
- // initialize the reactive variables
- instance.loaded = new ReactiveVar(0);
- instance.limit = new ReactiveVar(5);
+  instance.subscribe('notifications');
 
- // 2. Autorun
+  // initialize the reactive variables
+  instance.loaded = new ReactiveVar(0);
+  instance.limit = new ReactiveVar(5);
+  instance.sortby = new ReactiveVar({submitted: -1, _id: -1});
+
+  // 2. Autorun
 
   // will re-run when the "limit" reactive variables changes
   instance.autorun(function () {
+    FlowRouter.watchPathChange();
+    if (FlowRouter.current().path == '/best') {
+      instance.sortby.set({votes: -1, submitted: -1, _id: -1});
 
-    // get the limit
+    } else {
+        instance.sortby.set({submitted: -1, _id: -1});
+    }
+    console.log(instance.sortby);
+    // get the limit and sort
     var limit = instance.limit.get();
-
-    console.log("Asking for "+limit+" posts…")
+    var sortby = instance.sortby.get();
 
     // subscribe to the posts publication
-    var subscription = instance.subscribe('posts', limit);
+    var subscription = instance.subscribe('posts', sortby, limit);
 
     // if subscription is ready, set limit to newLimit
     if (subscription.ready()) {
@@ -49,9 +50,59 @@ Template.postsList.onCreated(function () {
   // 3. Cursor
 
   instance.posts = function() {
-    return Posts.find({}, {limit: instance.loaded.get()});
+    return Posts.find({}, {sort: instance.sortby.get(), limit: instance.loaded.get()});
   }
 
+});
+
+Template.postsList.onRendered(function () {
+  this.find('.wrapper')._uihooks = {
+    insertElement: function (node, next) {
+      $(node)
+        .hide()
+        .insertBefore(next)
+        .fadeIn();
+    },
+    moveElement: function (node, next) {
+      var $node = $(node), $next = $(next);
+      var oldTop = $node.offset().top;
+      var height = $node.outerHeight(true);
+
+      // find all the elements between next and node
+      var $inBetween = $next.nextUntil(node);
+      if ($inBetween.length === 0)
+        $inBetween = $node.nextUntil(next);
+
+      // now put node in place
+      $node.insertBefore(next);
+
+      // measure new top
+      var newTop = $node.offset().top;
+
+      // move node *back* to where it was before
+      $node
+        .removeClass('animate')
+        .css('top', oldTop - newTop);
+
+      // push every other element down (or up) to put them back
+      $inBetween
+        .removeClass('animate')
+        .css('top', oldTop < newTop ? height : -1 * height)
+
+
+      // force a redraw
+      $node.offset();
+
+      // reset everything to 0, animated
+      $node.addClass('animate').css('top', 0);
+      $inBetween.addClass('animate').css('top', 0);
+    },
+    removeElement: function(node) {
+      $(node).fadeOut(function() {
+        $(this).remove();
+      });
+    }
+  }
 });
 
 Template.postsList.helpers({

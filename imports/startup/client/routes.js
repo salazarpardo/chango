@@ -70,7 +70,25 @@ publicRoutes.route('/about', {
   triggersExit: []
 });
 
-publicRoutes.route('/:postsLimit?', {
+publicRoutes.route('/new', {
+  name: 'new',
+  triggersEnter: [],
+  action() {
+    BlazeLayout.render('App_body', { top: 'header', main: 'home', errors: 'errors' });
+  },
+  triggersExit: []
+});
+
+publicRoutes.route('/best', {
+  name: 'best',
+  triggersEnter: [],
+  action() {
+    BlazeLayout.render('App_body', { top: 'header', main: 'home', errors: 'errors' });
+  },
+  triggersExit: []
+});
+
+publicRoutes.route('/', {
   name: 'home',
   triggersEnter: [],
   action() {

@@ -4,9 +4,6 @@ import { Template } from 'meteor/templating';
 import './accounts-templates.html';
 
 import fontawesome from '@fortawesome/fontawesome/';
-// import FontAwesomeBrands from '@fortawesome/fontawesome-free-brands/';
-// import FontAwesomeRegular from '@fortawesome/fontawesome-free-regular/';
-// import FontAwesomeSolid from '@fortawesome/fontawesome-free-solid/';
 import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook'
 
 fontawesome.library.add(faFacebook)

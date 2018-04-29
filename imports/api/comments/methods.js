@@ -21,7 +21,7 @@ Meteor.methods({
 
     comment = _.extend(commentAttributes, {
       userId: user._id,
-      author: user.profile.name,
+      author: user.username || user.emails[0].address || user.profile.name,
       submitted: new Date()
     });
 
