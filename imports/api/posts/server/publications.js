@@ -3,11 +3,18 @@
 import { Meteor } from 'meteor/meteor';
 import { Posts } from '../posts.js';
 
-Meteor.publish('posts', function (options) {
-  return Posts.find();
+Meteor.publish('posts', function(sort, limit) {
+  check(sort, Object);
+  check(limit, Number);
+  return Posts.find({}, {sort: sort, limit: limit});
 });
 
-Meteor.publish('singlePost', function(id) {
-  check(id, String);
-  return Posts.find(id);
+Meteor.publish('singlePost', function(slug) {
+  check(slug, String);
+  return Posts.find({slug: slug});
 });
+
+// Meteor.publish('singlePost', function(id) {
+//   check(id, String);
+//   return Posts.find(id);
+// });

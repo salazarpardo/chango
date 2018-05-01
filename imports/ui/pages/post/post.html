@@ -1,19 +1,22 @@
 <template name="post">
+  <div class="post-page page">
   {{#if Template.subscriptionsReady}}
     {{#if post}}
       {{#with post}}
+
         {{> postItem}}
 
-        <ul class="comments list-unstyled mt-3">
-          {{#each comments}}
-            {{> commentItem}}
-          {{/each}}
-        </ul>
-        
+
+          <ul class="comments list-unstyled mt-3">
+            {{#each comments}}
+              {{> commentItem}}
+            {{/each}}
+          </ul>
+
         {{#if currentUser}}
           {{> commentSubmit}}
         {{else}}
-          <p>Please log in to leave a comment.</p>
+          <p>Please <a href="{{ pathFor 'signin' }}">log in</a> to leave a comment.</p>
         {{/if}}
       {{/with}}
 
@@ -23,4 +26,5 @@
   {{else}}
     {{> spinner}}
   {{/if}}
+  </div>
 </template>

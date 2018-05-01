@@ -1,13 +1,5 @@
 <template name="Auth_page">
   <div class="page auth">
-    <nav>
-      <div class="nav-group">
-        <a href="#" class="js-menu nav-item">
-          <span class="icon-list-unordered"></span>
-        </a>
-      </div>
-    </nav>
-
     <div class="content-scrollable">
       <div class="wrapper-auth">
         {{> atForm}}
@@ -23,19 +15,15 @@
 </template>
 
 <template name="override-atTextInput">
-  <div class="form-group {{#if isValidating}}validating{{/if}} {{#if hasError}}error{{/if}} {{#if hasSuccess}}has-success{{/if}} {{#if feedback}}has-feedback{{/if}}">
-    {{#if showLabels}}
-    <label class="control-label" for="at-field-{{_id}}">
+  <div class="at-input form-group {{#if isValidating}}validating{{/if}} {{#if hasError}}error{{/if}} {{#if hasSuccess}}has-success{{/if}} {{#if feedback}}has-feedback{{/if}}">
+    <label class="control-label {{#unless showLabels}}sr-only{{/unless}}" for="at-field-{{_id}}">
       {{displayName}} {{#unless required}}{{optionalText}}{{/unless}}
     </label>
-     {{/if}}
     <input type="{{type}}" id="at-field-{{_id}}" name="at-field-{{_id}}" placeholder="{{placeholder}}" autocapitalize="none" autocorrect="off" class="form-control">
     {{#if hasIcon}}
-        <span class="{{iconClass}}"></span>
+        <span class="{{iconClass}} form-control-feedback"></span>
     {{/if}}
-    {{#if hasError}}
-      <span>{{errorText}}</span>
-    {{/if}}
+    <span class="help-block {{#unless hasError}}hide{{/unless}}">{{errorText}}</span>
   </div>
 </template>
 
@@ -50,9 +38,12 @@
 </template>
 
 <template name="override-atError">
-  <div class="list-errors">
+  <div class="errors">
     {{#each error}}
-      <div class="list-item mb-3">{{errorText}}</div>
+    <div class="alert alert-danger" role="alert">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      {{errorText}}
+    </div>
     {{/each}}
   </div>
 </template>

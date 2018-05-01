@@ -17,12 +17,14 @@ ecmascript@0.10.6             # Enable ECMAScript2015+ syntax in app code
 shell-server@0.3.1            # Server-side component of the `meteor shell` command
 
 kadira:blaze-layout           # Layout manager for blaze (works well with FlowRouter)
+ostrio:flow-router-extra        # Router
 
 meteortesting:mocha               # A package for writing and running your meteor app and package tests with mocha
 johanbrook:publication-collector  # Test a Meteor publication by collecting its output
 
-ostrio:flow-router-extra
 session
+check
+audit-argument-checks
 
 fourseven:scss
 seba:minifiers-autoprefixer
@@ -33,12 +35,10 @@ useraccounts:core
 useraccounts:unstyled
 accounts-password
 accounts-facebook
-facebook-config-ui
 
-check
-audit-argument-checks
-nourharidy:ssl
-force-ssl
 mealsunite:flow-routing-extra
 aldeed:template-extension
 service-configuration
+
+nourharidy:ssl
+force-ssl

@@ -1,25 +1,37 @@
 <template name="header">
   <div class="navbar navbar-light navbar-expand-lg" role="navigation">
-    <a class="navbar-brand" href="{{pathFor 'home'}}">Chango</a>
+    <a class="navbar-brand" href="{{pathFor 'home'}}"><i class="far fa-lightbulb"></i> Chango</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="navbar-collapse collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            {{#if currentUser}}
-              <li class="nav-item"><a class="nav-link" href="{{pathFor 'submit'}}">Submit</a></li>
-              <li class="nav-item dropdown">
-                {{> notifications}}
-              </li>
-            {{/if}}
-            <li class="nav-item"><a class="nav-link" href="{{pathFor 'about'}}">About</a></li>
+          <li class="nav-item {{activeRouteClass 'home' 'new'}}"><a class="nav-link" href="{{pathFor 'new'}}">New</a></li>
+          <li class="nav-item {{activeRouteClass 'best'}}"><a class="nav-link" href="{{pathFor 'best'}}">Best</a></li>
+          {{#if currentUser}}
+            <li class="nav-item {{activeRouteClass 'submit'}}"><a class="nav-link" href="{{pathFor 'submit'}}">Submit</a></li>
+            <li class="nav-item dropdown">
+              {{> notifications}}
+            </li>
+          {{/if}}
+          <li class="nav-item {{activeRouteClass 'about'}}"><a class="nav-link" href="{{pathFor 'about'}}">About</a></li>
         </ul>
         <ul class="navbar-nav">
             {{#if currentUser}}
               <li class="nav-item">
-                <button class="btn btn-secondary btn-logout">
-                  Logout
-                  {{currentUser.profile.name}}
+                <button class="btn btn-light btn-sm btn-logout">
+                  <em>
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                    <strong>
+                      {{#if currentUser.profile.name}}
+                        {{currentUser.profile.name}}
+                      {{else if currentUser.username}}
+                        {{currentUser.username}}
+                      {{else}}
+                          {{currentUser.emails[0].address}}
+                      {{/if}}
+                    </strong>
+                  </em>
                 </button>
               </li>
             {{else}}

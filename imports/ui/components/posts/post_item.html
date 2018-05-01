@@ -1,12 +1,14 @@
 <template name="postItem">
   <div class="post">
+    <a href="#" class="upvote btn btn-light {{upvotedClass}}"><i class="fas fa-arrow-up"></i></a>
     <div class="post-content">
-      {{#unless postId}}<a href="{{pathFor '/post/:_id' _id=_id}}" class="discuss btn btn-light">Read more</a>{{/unless}}
+      {{#unless postId}}<a href="{{pathFor '/post/:slug' slug=slug}}" class="discuss btn btn-light btn-sm">Read more</a>{{/unless}}
       <h3><a href="{{url}}">{{title}}</a><span>{{domain}}</span></h3>
       <p>
         <small class="text-muted">
+          {{pluralize votes "Vote"}},
           {{#if author}}submitted by {{author}} {{/if}}
-          <a href="{{pathFor '/post/:_id' _id=_id}}">{{commentsCount}} comments</a>
+          <a href="{{pathFor '/post/:slug' slug=slug}}">{{pluralize commentsCount "comment"}}</a>
           {{#if ownPost}}<a href="{{pathFor '/post/:_id/edit' _id=_id}}">Edit</a>{{/if}}
         </small>
       </p>
