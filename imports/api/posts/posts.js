@@ -15,5 +15,8 @@ validatePost = function (post) {
   if (!post.url)
     errors.url =  "Please fill in a URL";
 
+  if (!post.slug)
+    errors.slug =  "Please add a slug";
+
   return errors;
 }

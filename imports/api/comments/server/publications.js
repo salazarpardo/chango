@@ -3,7 +3,7 @@
 import { Meteor } from 'meteor/meteor';
 import { Comments } from '../comments.js';
 
-Meteor.publish('comments', function(postId) {
-  check(postId, String);
-  return Comments.find({postId: postId});
+Meteor.publish('comments', function(postSlug) {
+  check(postSlug, String);
+  return Comments.find({postSlug: postSlug});
 });

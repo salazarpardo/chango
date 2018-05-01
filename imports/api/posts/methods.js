@@ -28,14 +28,15 @@ Meteor.methods({
     check(Meteor.userId(), String);
     check(postAttributes, {
       title: String,
-      url: String
+      url: String,
+      slug: String
     });
 
-    var postWithSameLink = Posts.findOne({url: postAttributes.url});
-    if (postWithSameLink) {
+    var postWithSameURL = Posts.findOne({slug: postAttributes.slug});
+    if (postWithSameURL) {
       return {
         postExists: true,
-        _id: postWithSameLink._id
+        slug: postWithSameURL.slug
       }
     }
 
@@ -43,7 +44,7 @@ Meteor.methods({
     var user = Meteor.user();
     var post = _.extend(postAttributes, {
       userId: user._id,
-      author: user.username || user.emails[0].address || user.profile.name,
+      author: user.username || user.profile.name,
       submitted: new Date(),
       commentsCount: 0,
       upvoters: [],
@@ -53,7 +54,8 @@ Meteor.methods({
     var postId = Posts.insert(post);
 
     return {
-      _id: postId
+      _id: postId,
+      slug: postAttributes.slug
     };
   },
   'upvote'(postId) {

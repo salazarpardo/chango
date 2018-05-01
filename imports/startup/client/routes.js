@@ -52,7 +52,7 @@ var publicRoutes = FlowRouter.group({
   triggersEnter: [ redirectIfLoggedIn ],
 })
 
-publicRoutes.route('/post/:_id', {
+publicRoutes.route('/post/:slug', {
   name: 'post',
   triggersEnter: [],
   action() {

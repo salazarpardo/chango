@@ -20,6 +20,7 @@ if (Posts.find().count() === 0) {
 
   var telescopeId = Posts.insert({
     title: 'Introducing Telescope',
+    slug: 'introducing-telescope',
     userId: sacha._id,
     author: sacha.profile.name,
     url: 'http://sachagreif.com/introducing-telescope/',
@@ -31,6 +32,7 @@ if (Posts.find().count() === 0) {
 
   Comments.insert({
     postId: telescopeId,
+    postSlug: 'introducing-telescope',
     userId: tom._id,
     author: tom.profile.name,
     submitted: new Date(now - 5 * 3600 * 1000),
@@ -39,6 +41,7 @@ if (Posts.find().count() === 0) {
 
   Comments.insert({
     postId: telescopeId,
+    postSlug: 'introducing-telescope',
     userId: sacha._id,
     author: sacha.profile.name,
     submitted: new Date(now - 3 * 3600 * 1000),
@@ -47,6 +50,7 @@ if (Posts.find().count() === 0) {
 
   Posts.insert({
     title: 'Meteor',
+    slug: 'meteor',
     userId: tom._id,
     author: tom.profile.name,
     url: 'http://meteor.com',
@@ -58,6 +62,7 @@ if (Posts.find().count() === 0) {
 
   Posts.insert({
     title: 'The Meteor Book',
+    slug: 'meteor-book',
     userId: tom._id,
     author: tom.profile.name,
     url: 'http://themeteorbook.com',
@@ -70,6 +75,7 @@ if (Posts.find().count() === 0) {
   for (var i = 0; i < 10; i++) {
     Posts.insert({
       title: 'Test post #' + i,
+      slug: 'test-post-' + i,
       author: sacha.profile.name,
       userId: sacha._id,
       url: 'http://google.com/?q=test-' + i,

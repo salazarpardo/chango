@@ -1,4 +1,5 @@
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { Match } from 'meteor/check'
 
 import { Posts } from '/imports/api/posts/posts.js';
 import { Meteor } from 'meteor/meteor';
@@ -10,21 +11,39 @@ Template.submit.onCreated(function () {
 });
 
 Template.submit.helpers({
-  errorMessage: function(field) {
+  'currentUrl'() {
+    return window.location.origin;
+  },
+  'errorMessage'(field) {
     return Session.get('postSubmitErrors')[field];
   },
-  errorClass: function (field) {
+  'errorClass'(field) {
     return !!Session.get('postSubmitErrors')[field] ? 'is-invalid' : '';
   }
 });
 
 Template.submit.events({
+  'blur [name="title"]'() {
+    var form  = $("#add-post"),
+        title = form.find("[name='title']"),
+        slug  = form.find("[name='slug']");
+    var isValid = title[0].validity.valid;
+    console.log(title);
+    console.log(isValid);
+    if (isValid) {
+      var formatted = formatSlug(title.val())
+      slug.val(formatted);
+    } else {
+      slug.val("");
+    }
+  },
   'submit form'(e) {
     e.preventDefault();
 
     var post = {
       url: $(e.target).find('[name=url]').val(),
-      title: $(e.target).find('[name=title]').val()
+      title: $(e.target).find('[name=title]').val(),
+      slug: $(e.target).find('[name=slug]').val(),
     };
 
     var errors = validatePost(post);
@@ -33,13 +52,13 @@ Template.submit.events({
 
     Meteor.call('posts.insert', post, (error, result) => {
       if (error) {
-        console.log(e.target);
         return throwError(error.reason);
       }
       if (result.postExists) {
-        throwError('This link has already been posted');
+        throwError('There is a post with the same slug, please change it');
+      } else {
+        FlowRouter.go('post', {slug: result.slug});
       }
-      FlowRouter.go('post', {_id: result._id});
     });
 
   }
