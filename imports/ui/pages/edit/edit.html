@@ -1,20 +1,45 @@
 <template name="postEdit">
   <div class="edit page">
     {{#with post}}
-      <form class="main form">
-        <div class="form-group">
+      <form class="main form needs-validation" novalidate>
+        <!-- <div class="form-group">
          <label class="control-label" for="url">URL</label>
          <div class="controls">
              <input name="url" id="url" type="text" value="{{url}}" placeholder="Your URL" class="form-control {{errorClass 'url'}}"/>
              <div class="invalid-feedback">{{errorMessage 'url'}}</div>
          </div>
-       </div>
+       </div> -->
        <div class="form-group">
          <label class="control-label" for="title">Title</label>
          <div class="controls">
              <input name="title" id="title" type="text" value="{{title}}" placeholder="Name your post" class="form-control {{errorClass 'title'}}"/>
              <div class="invalid-feedback">{{errorMessage 'title'}}</div>
          </div>
+       </div>
+       <div class="form-group">
+           <label class="control-label" for="exampleInputDescription">Description</label>
+           <textarea name="description" rows="2" cols="50" type="text" value={{description}} class="form-control" id="exampleInputDescription" placeholder="Description"></textarea>
+       </div>
+       <div class="form-group">
+           <label class="control-label" for="exampleInputCategory">Category</label>
+           <select class="form-control custom-select" id="exampleInputCategory" name="category">
+              <option selected>{{category}}</option>
+               <option>Public space</option>
+               <option>Art</option>
+               <option>Environmental Activites</option>
+               <option>Community Event</option>
+               <option>Other</option>
+           </select>
+       </div>
+       <div class="form-group">
+           <label class="control-label" for="exampleInputAddress">Address</label>
+           <div class="map-container mb-1">
+               {{> googleMap name="modalMap" options=mapOptions}}
+           </div>
+           <div class="controls">
+             <input type="text" name="location" value="{{location}}" class="form-control hidden" id="exampleInputLocation" placeholder="Location" hidden>
+             <input type="text" name="address" value="{{address}}" class="form-control" id="exampleInputAddress" placeholder="Location">
+           </div>
        </div>
        <input type="submit" value="Submit" class="btn btn-primary submit"/>
        <hr/>

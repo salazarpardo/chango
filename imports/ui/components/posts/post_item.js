@@ -11,11 +11,11 @@ Template.postItem.helpers({
   ownPost() {
     return this.userId === Meteor.userId();
   },
-  domain() {
-    var a = document.createElement('a');
-    a.href = this.url;
-    return a.hostname;
-  },
+  // domain() {
+  //   var a = document.createElement('a');
+  //   a.href = this.url;
+  //   return a.hostname;
+  // },
   upvotedClass() {
     var userId = Meteor.userId();
     if (userId && !_.include(this.upvoters, userId)) {

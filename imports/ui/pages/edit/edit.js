@@ -3,32 +3,117 @@ import { Posts } from '/imports/api/posts/posts.js';
 
 import './edit.html';
 
-
 Template.postEdit.onCreated(function() {
-    var postId = FlowRouter.getParam('_id');
+    Session.set('postEditErrors', {});
+
+    var postSlug = FlowRouter.getParam('slug');
     var self = this;
-    console.log(postId);
     self.autorun(function() {
-      if ( postId !== undefined ) {
-        self.subscribe('singlePost', postId);
+      if ( postSlug !== undefined ) {
+        self.subscribe('singlePost', postSlug);
       }
     });
+
+    GoogleMaps.ready('modalMap', function(map) {
+          var icons = {
+              'Chango': new google.maps.MarkerImage('/markers/marker-chango.svg', null, null, null, new google.maps.Size(40, 40), new google.maps.Point(0, 0), new google.maps.Point(0, 0)),
+              'Usr': new google.maps.MarkerImage('/markers/marker-usr.svg', null, null, null, new google.maps.Size(40, 40), new google.maps.Point(0, 0), new google.maps.Point(0, 0))
+          }
+          var marker, oldLocation, newLocation;
+
+          var post = Posts.findOne({ slug: postSlug });
+          var postLocation = new google.maps.LatLng(post.location[0], post.location[1]);
+          // Create a marker for this document
+          marker = new google.maps.Marker({
+              draggable: true,
+              animation: google.maps.Animation.DROP,
+              position: postLocation,
+              map: map.instance,
+              icon: icons['Chango'],
+              shadow: icons['Shadow'],
+              optimized: false,
+              // We store the document _id on the marker in order
+              // to update the document within the 'dragend' event below.
+              id: document._id
+          });
+          var geocoder = new google.maps.Geocoder();
+
+          function codeLatLng() {
+              var input = $("#exampleInputLocation").val();
+              var latlngStr = input.split(',', 2);
+              var latlng = new google.maps.LatLng(latlngStr[0], latlngStr[1]);
+              geocoder.geocode({
+                  'location': latlng
+              }, function(results, status) {
+                  if (status == google.maps.GeocoderStatus.OK) {
+                      if (results[1]) {
+                          $("#exampleInputAddress").val(results[1].formatted_address);
+
+                      } else {
+                          window.alert('No results found');
+                      }
+                  } else {
+                      window.alert('Geocoder failed due to: ' + status);
+                  }
+              });
+          }
+
+          google.maps.event.addListener(map.instance, 'click', function(event) {
+              if (!marker) {
+                  marker = new google.maps.Marker({
+                      draggable: true,
+                      animation: google.maps.Animation.DROP,
+                      position: new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()),
+                      map: map.instance,
+                      icon: icons['Chango'],
+                      shadow: icons['Shadow']
+                  });
+              } else {
+                  marker.setPosition(event.latLng);
+              }
+
+              google.maps.event.addListener(marker, 'dragend', function(event) {
+                  newLocation = event.latLng.lat() + "," + event.latLng.lng();
+                  $("#exampleInputLocation").val(newLocation);
+                  codeLatLng();
+              });
+          });
+      });
+});
+
+Template.postEdit.onRendered(function () {
+  GoogleMaps.load({key: 'AIzaSyDKcZBwYBkYJx6-GJI1OZjPPOmA40R1fV4'});
 });
 
 Template.postEdit.helpers({
-  post() {
-    var postId = FlowRouter.getParam('_id');
-    console.log(postId);
-    if ( postId !== undefined ) {
-      return Posts.findOne({ _id: postId });
+  'post'() {
+    var postSlug = FlowRouter.getParam('slug');
+    if ( postSlug !== undefined ) {
+      return Posts.findOne({ slug: postSlug });
     }
   },
-  errorMessage(field) {
+  'errorMessage'(field) {
     return Session.get('postEditErrors')[field];
   },
-  errorClass (field) {
+  'errorClass'(field) {
     return !!Session.get('postEditErrors')[field] ? 'is-invalid' : '';
-  }
+  },
+  'mapOptions'() {
+    var postSlug = FlowRouter.getParam('slug');
+    // Make sure the maps API has loaded
+    if (GoogleMaps.loaded()) {
+      var bogota = new google.maps.LatLng(4.60063716865005, -74.08990859985352);
+      var post = Posts.findOne({ slug: postSlug });
+      var postLocation = new google.maps.LatLng(post.location[0], post.location[1]);
+
+      // Map initialization options
+      return {
+          center: postLocation || bogota,
+          zoom: 12,
+          mapTypeControl: false
+      };
+    }
+  },
 });
 
 Template.postEdit.events({
@@ -38,12 +123,15 @@ Template.postEdit.events({
     var currentPostId = this._id;
 
     var postProperties = {
-      url: $(e.target).find('[name=url]').val(),
-      title: $(e.target).find('[name=title]').val()
+      title: $(e.target).find('[name=title]').val(),
+      description: $(e.target).find('[name=description]').val(),
+      category: $(e.target).find('[name=category]').val(),
+      location: $(e.target).find('[name=location]').val().split(','),
+      address: $(e.target).find('[name=address]').val()
     }
 
     var errors = validatePost(postProperties);
-    if (errors.title || errors.url)
+    if (errors.title)
       return Session.set('postEditErrors', errors);
 
     Posts.update(currentPostId, {$set: postProperties}, function(error) {
@@ -51,7 +139,7 @@ Template.postEdit.events({
         // display the error to the user
         throwError(error.reason);
       } else {
-        FlowRouter.go('post', {_id: currentPostId});
+        FlowRouter.go('post', {slug: FlowRouter.getParam('slug')});
       }
     });
   },

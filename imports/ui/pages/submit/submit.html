@@ -6,12 +6,6 @@
     </p>
     <form class="main form needs-validation" novalidate id="add-post">
       <div class="form-group">
-        <label class="control-label" for="url">URL</label>
-        <input name="url" id="url" type="text" value="" placeholder="Your URL" class="form-control {{errorClass 'url'}}"/>
-        <div class="invalid-feedback">{{errorMessage 'url'}}</div>
-        <small class="form-text text-muted">Escribe una URL valida</small>
-      </div>
-      <div class="form-group">
         <label class="control-label" for="title">Title</label>
         <div class="controls">
             <input name="title" id="title" type="text" value="" placeholder="Name your post" class="form-control {{errorClass 'title'}}"/>
@@ -30,6 +24,31 @@
             <div class="invalid-feedback">{{errorMessage 'title'}}</div>
           </div>
         </div>
+      </div>
+      <div class="form-group">
+          <label class="control-label" for="exampleInputDescription">Description</label>
+          <textarea name="description" rows="2" cols="50" type="text" class="form-control" id="exampleInputDescription" placeholder="Description"></textarea>
+      </div>
+      <div class="form-group">
+          <label class="control-label" for="exampleInputCategory">Category</label>
+          <select class="form-control custom-select" id="exampleInputCategory" name="category">
+             <option selected>Select a project category</option>
+              <option>Public space</option>
+              <option>Art</option>
+              <option>Environmental Activites</option>
+              <option>Community Event</option>
+              <option>Other</option>
+          </select>
+      </div>
+      <div class="form-group">
+          <label class="control-label" for="exampleInputAddress">Address</label>
+          <div class="map-container mb-1">
+              {{> googleMap name="modalMap" options=mapOptions}}
+          </div>
+          <div class="controls">
+            <input type="text" name="location" class="form-control hidden" id="exampleInputLocation" placeholder="Location" hidden>
+            <input type="text" name="address" class="form-control" id="exampleInputAddress" placeholder="Location">
+          </div>
       </div>
       <input type="submit" value="Submit" class="btn btn-primary"/>
     </form>

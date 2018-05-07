@@ -6,6 +6,7 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import '../../ui/layouts/body/body.js';
 import '../../ui/components/header/header.js';
 import '../../ui/pages/home/home.js';
+import '../../ui/pages/map/map.js';
 import '../../ui/pages/auth/auth.js';
 import '../../ui/pages/about/about.js';
 import '../../ui/pages/submit/submit.js';
@@ -88,6 +89,15 @@ publicRoutes.route('/best', {
   triggersExit: []
 });
 
+publicRoutes.route('/map', {
+  name: 'map',
+  triggersEnter: [],
+  action() {
+    BlazeLayout.render('App_body', { top: 'header', main: 'map', errors: 'errors' });
+  },
+  triggersExit: []
+});
+
 publicRoutes.route('/', {
   name: 'home',
   triggersEnter: [],
@@ -111,7 +121,7 @@ privateRoutes.route('/submit', {
   triggersExit: []
 })
 
-privateRoutes.route('/post/:_id/edit', {
+privateRoutes.route('/post/:slug/edit', {
   name: 'postEdit',
   triggersEnter: [],
   action() {
