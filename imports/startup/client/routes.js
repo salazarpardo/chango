@@ -5,6 +5,7 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 // Import needed templates
 import '../../ui/layouts/body/body.js';
 import '../../ui/components/header/header.js';
+import '../../ui/components/hero/hero.js';
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/map/map.js';
 import '../../ui/pages/auth/auth.js';
@@ -102,7 +103,7 @@ publicRoutes.route('/', {
   name: 'home',
   triggersEnter: [],
   action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'home', errors: 'errors' });
+    BlazeLayout.render('App_body', { top: 'header', main: 'home', errors: 'errors', hero: 'hero' });
   },
   triggersExit: []
 });
