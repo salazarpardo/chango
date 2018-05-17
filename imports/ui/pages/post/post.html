@@ -1,11 +1,11 @@
 <template name="post">
-  <div class="post-page page">
+  <div class="single-post page">
   {{#if Template.subscriptionsReady}}
     {{#if post}}
       {{#with post}}
+        {{> googleMap name="exampleMap" options=exampleMapOptions}}
 
         {{> postItem}}
-
 
           <ul class="comments list-unstyled mt-3">
             {{#each comments}}

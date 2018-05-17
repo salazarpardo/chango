@@ -8,15 +8,16 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item {{activeRouteClass 'home' 'new'}}"><a class="nav-link" href="{{pathFor 'new'}}">New</a></li>
           <li class="nav-item {{activeRouteClass 'best'}}"><a class="nav-link" href="{{pathFor 'best'}}">Best</a></li>
+          <li class="nav-item {{activeRouteClass 'map'}}"><a class="nav-link" href="{{pathFor 'map'}}">Map</a></li>
+          <li class="nav-item {{activeRouteClass 'about'}}"><a class="nav-link" href="{{pathFor 'about'}}">About</a></li>
           {{#if currentUser}}
             <li class="nav-item {{activeRouteClass 'submit'}}"><a class="nav-link" href="{{pathFor 'submit'}}">Submit</a></li>
-            <li class="nav-item dropdown">
-              {{> notifications}}
-            </li>
           {{/if}}
-          <li class="nav-item {{activeRouteClass 'about'}}"><a class="nav-link" href="{{pathFor 'about'}}">About</a></li>
         </ul>
         <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <small>{{> notifications}}</small>
+          </li>
             {{#if currentUser}}
               <li class="nav-item">
                 <button class="btn btn-light btn-sm btn-logout">
