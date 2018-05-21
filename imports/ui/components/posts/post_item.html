@@ -1,14 +1,21 @@
 <template name="postItem">
   <div class="post">
-    <a href="#" class="upvote btn btn-light {{upvotedClass}}"><i class="fas fa-arrow-up"></i></a>
     <div class="post-content">
-      {{#unless postId}}<a href="{{pathFor '/post/:slug' slug=slug}}" class="discuss btn btn-light btn-sm">Read more</a>{{/unless}}
       <h3><a href="{{pathFor '/post/:slug' slug=slug}}">{{title}}</a></h3>
+      <p class="clearfix">
+        <small class="text-muted float-left">{{address}}</small>
+        <small class="text-muted float-right">
+          <!-- {{pluralize votes "voto"}},
+          {{pluralize commentsCount "comentario"}} -->
+          <a href="#" class="upvote btn btn-light {{upvotedClass}}">{{votes}} <i class="far fa-thumbs-up"></i> </a>
+          <a href="{{pathFor '/post/:slug' slug=slug}}" class="comment btn btn-light">{{commentsCount}} <i class="far fa-comment-alt"></i></a>
+          {{#if ownPost}}<a href="{{pathFor '/post/:slug/edit' slug=slug}}">Edit</a>{{/if}}
+        </small>
+      </p>
       <p>
         <small class="text-muted">
-          {{pluralize votes "Vote"}},
-          {{#if author}}submitted by {{author}} {{/if}}
-          <a href="{{pathFor '/post/:slug' slug=slug}}">{{pluralize commentsCount "comment"}}</a>
+          {{#if author}}por {{author}} {{/if}}
+
           {{#if ownPost}}<a href="{{pathFor '/post/:slug/edit' slug=slug}}">Edit</a>{{/if}}
         </small>
       </p>

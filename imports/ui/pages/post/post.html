@@ -1,30 +1,39 @@
 <template name="post">
   <div class="single-post page">
-  {{#if Template.subscriptionsReady}}
-    {{#if post}}
-      {{#with post}}
-        {{> googleMap name="exampleMap" options=exampleMapOptions}}
+    <div class="row justify-content-md-center mt-4">
 
-        {{> postItem}}
+        {{#if Template.subscriptionsReady}}
+          {{#if post}}
+            {{#with post}}
+              {{#if location}}
+                <div class="col col-md-8 col-lg-7">
+                  {{> googleMap name="exampleMap" options=exampleMapOptions}}
+                </div>
+              {{/if}}
+              <div class="col col-md-8 col-lg-7">
+                {{> postSingle }}
 
-          <ul class="comments list-unstyled mt-3">
-            {{#each comments}}
-              {{> commentItem}}
-            {{/each}}
-          </ul>
+                  <ul class="comments list-unstyled mt-3">
+                    {{#each comments}}
+                      {{> commentItem}}
+                    {{/each}}
+                  </ul>
 
-        {{#if currentUser}}
-          {{> commentSubmit}}
+                {{#if currentUser}}
+                  {{> commentSubmit}}
+                {{else}}
+                  <p>Please <a href="{{ pathFor 'signin' }}">log in</a> to leave a comment.</p>
+                {{/if}}
+              </div>
+            {{/with}}
+
+          {{else}}
+            {{> App_notFound}}
+          {{/if}}
         {{else}}
-          <p>Please <a href="{{ pathFor 'signin' }}">log in</a> to leave a comment.</p>
+          {{> spinner}}
         {{/if}}
-      {{/with}}
 
-    {{else}}
-      {{> App_notFound}}
-    {{/if}}
-  {{else}}
-    {{> spinner}}
-  {{/if}}
+    </div>
   </div>
 </template>

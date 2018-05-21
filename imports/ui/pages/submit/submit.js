@@ -165,11 +165,12 @@ Template.submit.events({
       address: $(e.target).find('[name=address]').val()
     };
 
-    console.log(post.location);
-
     var errors = validatePost(post);
-    if (errors.title)
+    if (errors.title) {
       return Session.set('postSubmitErrors', errors);
+    } else {
+        Session.set('postSubmitErrors', errors);
+    }
 
     Meteor.call('posts.insert', post, (error, result) => {
       if (error) {

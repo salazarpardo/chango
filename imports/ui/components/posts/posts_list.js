@@ -26,9 +26,10 @@ Template.postsList.onCreated(function () {
     FlowRouter.watchPathChange();
     if (FlowRouter.current().path == '/best') {
       instance.sortby.set({votes: -1, submitted: -1, _id: -1});
-
+    } else if (FlowRouter.current().path == '/map') {
+      instance.sortby.set({location: -1, submitted: -1, _id: -1});
     } else {
-        instance.sortby.set({submitted: -1, _id: -1});
+      instance.sortby.set({submitted: -1, _id: -1});
     }
     console.log(instance.sortby);
     // get the limit and sort

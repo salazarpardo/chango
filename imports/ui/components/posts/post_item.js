@@ -3,9 +3,9 @@ import { Comments } from '/imports/api/comments/comments.js';
 import './post_item.html';
 
 import fontawesome from '@fortawesome/fontawesome/';
-import faArrowUp from '@fortawesome/fontawesome-free-solid/faArrowUp'
+import faThumbsUp from '@fortawesome/fontawesome-free-regular/faThumbsUp'
 
-fontawesome.library.add(faArrowUp)
+fontawesome.library.add(faThumbsUp)
 
 Template.postItem.helpers({
   ownPost() {

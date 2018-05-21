@@ -4,7 +4,7 @@ import { Comments } from '/imports/api/comments/comments.js';
 
 import './post.html';
 
-import '../../components/posts/post_item.js';
+import '../../components/posts/post_single.js';
 import '../../components/comments/comment_item.js';
 import '../../components/comments/comment_submit.js';
 
@@ -21,6 +21,16 @@ Template.post.helpers({
     if ( postSlug !== undefined ) {
       return Comments.find({postSlug: postSlug });
     }
+  },
+  'location'() {
+    var postSlug = FlowRouter.getParam('slug');
+    var post = Posts.findOne({ slug: postSlug });
+    console.log(post);
+    var postLocation = new google.maps.LatLng(post.location[0], post.location[1]);
+    if (postLocation == "(0, NaN)") {
+      return false
+    }
+    return postLocation;
   },
   'exampleMapOptions'() {
     var postSlug = FlowRouter.getParam('slug');

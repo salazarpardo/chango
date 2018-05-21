@@ -1,17 +1,20 @@
 import { Meteor } from 'meteor/meteor';
 import { AccountsTemplates } from 'meteor/useraccounts:core';
+import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 
 AccountsTemplates.configure({
     defaultTemplate: '',
     defaultLayout: 'App_body',
     defaultLayoutRegions: {
         top: 'header',
-        errors: 'errors'
+        errors: 'errors',
+        footer: 'footer'
     },
     defaultContentRegion: 'main',
     showForgotPasswordLink: true,
     showAddRemoveServices: true,
     texts: {
+        sep: "O",
         socialIcons: {
           facebook: "fab fa-facebook",
         },
@@ -31,6 +34,13 @@ AccountsTemplates.configureRoute('signIn', {
 AccountsTemplates.configureRoute('signUp', {
   name: 'join',
   path: '/join',
+  redirect: function(){
+       var user = Meteor.user();
+       var next = FlowRouter.getQueryParam("next");
+       console.log(next);
+       if (user && next)
+         FlowRouter.go(next);
+   }
 });
 
 AccountsTemplates.configureRoute('forgotPwd');

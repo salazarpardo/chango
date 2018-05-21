@@ -1,0 +1,23 @@
+<template name="newsletter">
+  <div class="newsletter container mt-3">
+    <div class="row justify-content-md-center">
+      <div class="col-md-8 col-lg-5 text-center">
+        <h5 class="text-primary">Entérate de lo que esta pasando</h5>
+        <p>
+             Recibe en tu correo cada quincena las mejores ideas públicadas y proyectos de tu interés.
+        </p>
+        <form id="mailing-list" class="form-inline needs-validation" novalidate>
+          <div class="form-group {{errorClass 'email'}}">
+            <label hidden for="emailAddress">Email</label>
+            <input type="email" name="emailAddress" class="form-control form-control-sm {{errorClass 'email'}}" id="emailAddress" placeholder="tucorreo@dominio.com">
+            <button type="submit" class="btn btn-primary btn-sm">Suscríbete</button>
+            <div class="invalid-feedback text-center">{{errorMessage 'email'}}</div>
+          </div>
+          <div class="alert alert-success">
+            ¡Revisa tu buzón de entrada en los próximos dias!
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>

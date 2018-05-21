@@ -1,56 +1,60 @@
 <template name="submit">
   <div class="submit page">
-    <h1>Submit</h1>
-    <p class="mb-4">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </p>
-    <form class="main form needs-validation" novalidate id="add-post">
-      <div class="form-group">
-        <label class="control-label" for="title">Title</label>
-        <div class="controls">
-            <input name="title" id="title" type="text" value="" placeholder="Name your post" class="form-control {{errorClass 'title'}}"/>
-            <div class="invalid-feedback">{{errorMessage 'title'}}</div>
-            <small class="form-text text-muted">Dale un titulo a tu entrada</small>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="control-label sr-only" for="slug">Slug</label>
-        <div class="controls">
-          <div class="input-group mb-2 mr-sm-2">
-            <div class="input-group-prepend">
-              <div class="input-group-text"><small>{{currentUrl}}/posts/</small></div>
-            </div>
-            <input name="slug" id="slug" type="text" class="form-control"/>
-            <div class="invalid-feedback">{{errorMessage 'title'}}</div>
+    <div class="row justify-content-md-center">
+      <div class="col col-md-8 col-lg-7">
+          <div class="jumbotron bg-white text-center">
+            <img class="auth-icon mb-2" src="/img/chango-pink.svg" alt="Ingresa a Chango" width="56" />
+            <h1 class="form-title text-primary mb-3">Crear idea</h1>
+            <form class="form needs-validation" novalidate id="add-post">
+              <div class="form-group">
+                <label class="control-label" for="title">Title</label>
+                <div class="controls">
+                    <input name="title" id="title" type="text" value="" placeholder="Name your post" class="form-control {{errorClass 'title'}}"/>
+                    <div class="invalid-feedback">{{errorMessage 'title'}}</div>
+                    <small class="form-text text-muted">Dale un titulo a tu entrada</small>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label sr-only" for="slug">Slug</label>
+                <div class="controls">
+                  <div class="input-group mb-2 mr-sm-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><small>{{currentUrl}}/posts/</small></div>
+                    </div>
+                    <input name="slug" id="slug" type="text" class="form-control"/>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                  <label class="control-label" for="exampleInputDescription">Description</label>
+                  <textarea name="description" rows="2" cols="50" type="text" class="form-control" id="exampleInputDescription" placeholder="Description"></textarea>
+              </div>
+              <div class="form-group">
+                  <label class="control-label" for="exampleInputCategory">Category</label>
+                  <select class="form-control custom-select" id="exampleInputCategory" name="category">
+                     <option selected>Select a project category</option>
+                      <option>Public space</option>
+                      <option>Art</option>
+                      <option>Environmental Activites</option>
+                      <option>Community Event</option>
+                      <option>Other</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                  <label class="control-label" for="exampleInputAddress">Address</label>
+                  <div class="map-container mb-1">
+                      {{> googleMap name="modalMap" options=mapOptions}}
+                  </div>
+                  <div class="controls">
+                    <input type="text" name="location" class="form-control hidden" id="exampleInputLocation" placeholder="Location" hidden>
+                    <input type="text" name="address" class="form-control" id="exampleInputAddress" placeholder="Location">
+                  </div>
+              </div>
+              <input type="submit" value="Submit" class="btn btn-primary"/>
+            </form>
+
           </div>
         </div>
       </div>
-      <div class="form-group">
-          <label class="control-label" for="exampleInputDescription">Description</label>
-          <textarea name="description" rows="2" cols="50" type="text" class="form-control" id="exampleInputDescription" placeholder="Description"></textarea>
-      </div>
-      <div class="form-group">
-          <label class="control-label" for="exampleInputCategory">Category</label>
-          <select class="form-control custom-select" id="exampleInputCategory" name="category">
-             <option selected>Select a project category</option>
-              <option>Public space</option>
-              <option>Art</option>
-              <option>Environmental Activites</option>
-              <option>Community Event</option>
-              <option>Other</option>
-          </select>
-      </div>
-      <div class="form-group">
-          <label class="control-label" for="exampleInputAddress">Address</label>
-          <div class="map-container mb-1">
-              {{> googleMap name="modalMap" options=mapOptions}}
-          </div>
-          <div class="controls">
-            <input type="text" name="location" class="form-control hidden" id="exampleInputLocation" placeholder="Location" hidden>
-            <input type="text" name="address" class="form-control" id="exampleInputAddress" placeholder="Location">
-          </div>
-      </div>
-      <input type="submit" value="Submit" class="btn btn-primary"/>
-    </form>
-  </div>
+    </div>
 </template>

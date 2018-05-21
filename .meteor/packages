@@ -28,7 +28,6 @@ audit-argument-checks
 
 fourseven:scss
 seba:minifiers-autoprefixer
-alexwine:bootstrap-4
 sacha:spin
 
 useraccounts:core

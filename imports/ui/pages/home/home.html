@@ -1,5 +1,63 @@
 <template name="home">
-  <div class="list page">
-    {{> postsList}}
+  <div class="home page">
+    <section class="landing-area bg-success">
+      <div class="container">
+        <div class="row justify-content-lg-center">
+          <div class="col-9 col-md-5 col-lg-4">
+            <div class="jumbotron bg-white">
+              <h3 class="landing-area-title text-success">Encuentra ideas cerca de ti</h3>
+              <p>
+                ¡Alguien de tu barrio, colegio, o universidad puede necesitar tu apoyo para hacer realidad su idea!
+              </p>
+              <a class="btn btn-success" href="{{pathFor 'map'}}">Ver ideas cercanas</a>
+            </div>
+          </div>
+          <div class="col-3 d-none d-lg-block">
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="landing-area bg-info">
+      <div class="container">
+        <div class="row justify-content-lg-center">
+          <div class="col-3 d-none d-lg-block">
+          </div>
+          <div class="col-9 col-md-5 col-lg-4 offset-3 offset-md-7 offset-lg-0">
+            <div class="jumbotron bg-white">
+              <h3 class="landing-area-title text-info">El futuro lo propones tu</h3>
+              <p>
+                Entre todos ayudamos a alimentar las mejores ideas para que pasen a ser proyectos exitosos.
+              </p>
+              {{#if currentUser}}
+                <a class="btn btn-info" href="{{pathFor 'submit'}}">
+                  Sube tu idea
+                </a>
+              {{else}}
+                <a class="btn btn-info" href="{{pathFor 'join' query='next=submit'}}">
+                  Sube tu idea
+                </a>
+              {{/if}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="landing-area bg-primary">
+      <div class="container">
+        <div class="row justify-content-lg-center">
+          <div class="col-9 col-md-5 col-lg-4">
+            <div class="jumbotron bg-white">
+              <h3 class="landing-area-title text-primary">Las mejores ideas se vuelven reales</h3>
+              <p>
+                Si tu idea cuenta con el apoyo de tu comunidad o un grupo de amigos, ¡no esperes más y hazla real!
+              </p>
+              <a class="btn btn-primary" href="{{pathFor 'best'}}">Ver recientes</a>
+            </div>
+          </div>
+          <div class="col-3 d-none d-lg-block">
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 </template>

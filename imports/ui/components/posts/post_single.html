@@ -1,0 +1,28 @@
+<template name="postSingle">
+  <div class="post">
+    <div class="post-content">
+      <h3><a href="{{pathFor '/post/:slug' slug=slug}}">{{title}}</a></h3>
+      <p class="clearfix">
+        <small class="text-muted float-left"><em>{{category}}</em><br>{{address}} </small>
+        <small class="text-muted float-right">
+          <!-- {{pluralize votes "voto"}},
+          {{pluralize commentsCount "comentario"}} -->
+          <a href="#" class="upvote btn btn-light {{upvotedClass}}">{{votes}} <i class="far fa-thumbs-up"></i> </a>
+          <a href="#" class="comment btn btn-light">{{commentsCount}} <i class="far fa-comment-alt"></i></a>
+          {{#if ownPost}}<a href="{{pathFor '/post/:slug/edit' slug=slug}}">Edit</a>{{/if}}
+        </small>
+      </p>
+      <p class="text-muted mb-3">
+
+      </p>
+      <p class="post-description mb-3">
+        {{description}}
+      </p>
+      <p>
+        <small class="text-muted">
+          {{#if author}}Por {{author}}{{/if}}<br>Publicado {{submitted.toLocaleDateString}}
+        </small>
+      </p>
+    </div>
+  </div>
+</template>
