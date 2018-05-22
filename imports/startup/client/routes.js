@@ -54,10 +54,9 @@ Accounts.onLogin(function() {
 
 var publicRoutes = FlowRouter.group({
   name: 'public',
-  triggersEnter: [ redirectIfLoggedIn ],
 })
 
-publicRoutes.route('/post/:slug', {
+publicRoutes.route('/idea/:slug', {
   name: 'post',
   triggersEnter: [],
   action() {
@@ -66,7 +65,7 @@ publicRoutes.route('/post/:slug', {
   triggersExit: []
 });
 
-publicRoutes.route('/about', {
+publicRoutes.route('/acerca', {
   name: 'about',
   triggersEnter: [],
   action() {
@@ -75,25 +74,25 @@ publicRoutes.route('/about', {
   triggersExit: []
 });
 
-publicRoutes.route('/new', {
+publicRoutes.route('/recientes', {
   name: 'new',
   triggersEnter: [],
   action() {
     BlazeLayout.render('App_body', { top: 'header', main: 'posts', errors: 'errors', footer: 'footer' });
   },
-  triggersExit: []
+  title: "Recientes"
 });
 
-publicRoutes.route('/best', {
+publicRoutes.route('/populares', {
   name: 'best',
   triggersEnter: [],
   action() {
     BlazeLayout.render('App_body', { top: 'header', main: 'posts', errors: 'errors', footer: 'footer' });
   },
-  triggersExit: []
+  title: "Populares"
 });
 
-publicRoutes.route('/map', {
+publicRoutes.route('/cercanas', {
   name: 'map',
   triggersEnter: [],
   action() {
@@ -116,7 +115,7 @@ var privateRoutes = FlowRouter.group({
   triggersEnter: [ AccountsTemplates.ensureSignedIn ],
 })
 
-privateRoutes.route('/submit', {
+privateRoutes.route('/crear', {
   name: 'submit',
   triggersEnter: [],
   action() {
@@ -125,7 +124,7 @@ privateRoutes.route('/submit', {
   triggersExit: []
 })
 
-privateRoutes.route('/post/:slug/edit', {
+privateRoutes.route('/idea/:slug/editar', {
   name: 'postEdit',
   triggersEnter: [],
   action() {
@@ -140,3 +139,43 @@ FlowRouter.route('*', {
     BlazeLayout.render('App_body', { top: 'header', main: 'App_notFound', errors: 'errors', footer: 'footer' });
   }
 });
+
+previousPathsObj = {};
+exemptPaths = ['/place/']; // these are the paths that we don't want to remember the scroll position for.
+function thisIsAnExemptPath(path) {
+     var exemptPath = false;
+     _.forEach(exemptPaths, function (d) {
+         if (path.indexOf(d) >= 0) {
+             exemptPath = true;
+             return exemptPath;
+      }
+   });
+  return exemptPath;
+}
+function saveScrollPosition(context) {
+   var exemptPath = thisIsAnExemptPath(context.path);
+   if (!exemptPath) {
+       // add / update path
+       previousPathsObj[context.path] = $(window).scrollTop();
+   }
+}
+function jumpToPrevScrollPosition(context) {
+   var path = context.path;
+   var scrollPosition = 0;
+   if (!_.isUndefined(previousPathsObj[context.path])) {
+       scrollPosition = previousPathsObj[context.path];
+   }
+   if (scrollPosition === 0) {
+       // we can scroll right away since we don't need to wait for rendering
+       $('html, body').animate({scrollTop: scrollPosition}, 0);
+   } else {
+   // Now we need to wait a bit for blaze/react does rendering.
+   // We assume, there's subs-manager and we've previous page's data.
+   // Here 10 millis delay is a arbitrary value with some testing.
+   setTimeout(function () {
+      $('html, body').animate({scrollTop: scrollPosition}, 0);
+    }, 150);
+   }
+}
+FlowRouter.triggers.exit([saveScrollPosition]);
+FlowRouter.triggers.enter([jumpToPrevScrollPosition]);

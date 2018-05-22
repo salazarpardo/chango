@@ -2,12 +2,16 @@
   <div class="map page">
     <div class="row justify-content-md-center">
       <div class="col col-md-8 col-lg-7">
-        {{> googleMap name="exampleMap" options=exampleMapOptions}}
+        {{> googleMap name="exampleMap" options=exampleMapOptions }}
       </div>
     </div>
     <div class="row justify-content-md-center">
       <div class="col col-md-8 col-lg-7">
-        {{> postsList}}
+        <header class="clearfix mb-4 mt-4">
+          <h5 class="section-title text-primary float-left">Cerca de mí</h5>
+          <a class="btn text-primary btn-link btn-sm float-right" href="#"><em>Filtrar</em></a>
+        </header>
+        {{> postsList }}
       </div>
     </div>
   </div>

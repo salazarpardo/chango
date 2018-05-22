@@ -25,12 +25,13 @@ Template.post.helpers({
   'location'() {
     var postSlug = FlowRouter.getParam('slug');
     var post = Posts.findOne({ slug: postSlug });
-    console.log(post);
-    var postLocation = new google.maps.LatLng(post.location[0], post.location[1]);
-    if (postLocation == "(0, NaN)") {
-      return false
+    if (GoogleMaps.loaded()) {
+      var postLocation = new google.maps.LatLng(post.location[0], post.location[1]);
+      if (postLocation == "(0, NaN)") {
+        return false
+      }
+      return postLocation;
     }
-    return postLocation;
   },
   'exampleMapOptions'() {
     var postSlug = FlowRouter.getParam('slug');
@@ -43,7 +44,7 @@ Template.post.helpers({
       // Map initialization options
       return {
           center: postLocation || bogota,
-          zoom: 12,
+          zoom: 15,
           mapTypeControl: false
       };
     }

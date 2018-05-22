@@ -1,0 +1,20 @@
+.map-canvas {
+  min-height: rem-calc(300);
+  max-height: rem-calc(420);
+  position: relative;
+  border-radius: $border-radius;
+  box-shadow: 0 2px 5px rgba(0,0,0,.16);
+}
+
+.infowindow {
+  font-family: $font-family-base;
+  max-width: rem-calc(230);
+  h4 {
+    color: $primary;
+  }
+  .desc {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+  }
+}

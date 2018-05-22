@@ -1,10 +1,5 @@
 import { Notifications } from '/imports/api/notifications/notifications.js';
 
-import fontawesome from '@fortawesome/fontawesome/';
-import faBell from '@fortawesome/fontawesome-free-regular/faBell'
-
-fontawesome.library.add(faBell)
-
 import './notifications.html';
 
 Template.notifications.helpers({

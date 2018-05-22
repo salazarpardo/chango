@@ -1,0 +1,94 @@
+
+.jumbotron {
+  h2 {
+    font-size: rem-calc(60);
+    font-weight: 100;
+  }
+  .title-auth {
+    font-size: rem-calc(24);
+    @include media-breakpoint-up(md) {
+      font-size: rem-calc(32);
+    }
+  }
+  &.hero {
+    padding-top: rem-calc(80);
+    padding-bottom: rem-calc(58);
+    border-radius: 0;
+    color: $white;
+    margin-bottom: 0;
+    .hero-title {
+      line-height: 1;
+      letter-spacing: -1px;
+      @include media-breakpoint-up(xs) {
+        font-size: rem-calc(24);
+      }
+      @include media-breakpoint-up(s) {
+        font-size: rem-calc(32);
+      }
+      @include media-breakpoint-up(lg) {
+        font-size: rem-calc(56);
+        line-height: .9;
+      }
+    }
+    .hero-text {
+      font-size: rem-calc(16);
+      line-height: 1.25;
+      @include media-breakpoint-up(lg) {
+        font-size: rem-calc(20);
+      }
+    }
+    .btn {
+      box-shadow: 0 2px 3px rgba(#a47095, .8);
+      font-size: rem-calc(18);
+      @include media-breakpoint-up(lg) {
+        font-size: rem-calc(22);
+      }
+    }
+  }
+  &.bg-city {
+    background-image: url(/img/city.svg);
+    background-repeat: no-repeat;
+    background-size: 70%;
+    background-position: 155% rem-calc(80);
+    @include media-breakpoint-up(sm) {
+      background-image: none;
+    }
+  }
+  .city-image {
+    padding: 0;
+  }
+}
+
+.landing-area {
+    padding: rem-calc(32) 0 0;
+    &.bg-success {
+      background-image: url(/img/paris.jpg);
+      background-blend-mode: screen;
+    }
+    &.bg-info {
+      background-image: url(/img/paris.jpg);
+      background-blend-mode: screen;
+    }
+    &.bg-primary {
+      background-image: url(/img/paris.jpg);
+      background-blend-mode: screen;
+    }
+    .landing-area-title {
+      font-size: rem-calc(20);
+      @include media-breakpoint-up(md) {
+        font-size: rem-calc(24);
+      }
+    }
+    p {
+      font-size: rem-calc(14);
+      @include media-breakpoint-up(md) {
+        font-size: rem-calc(16);
+      }
+    }
+    .btn {
+      font-size: rem-calc(14);
+      @include media-breakpoint-up(md) {
+        font-size: rem-calc(16);
+      }
+    }
+}

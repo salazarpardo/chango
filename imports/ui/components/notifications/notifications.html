@@ -1,10 +1,9 @@
 <template name="notifications">
   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-    <i class="far fa-bell"></i> 
+    <i class="far fa-bell"></i>
     {{#if notificationCount}}
-      <span class="badge badge-inverse">{{notificationCount}}</span>
+      <span class="notifications-counter badge badge-pill">{{notificationCount}}</span>
     {{/if}}
-    <b class="caret"></b>
   </a>
   <div class="notification dropdown-menu">
     {{#if notificationCount}}
@@ -12,13 +11,13 @@
         {{> notificationItem}}
       {{/each}}
     {{else}}
-      <div class="dropdown-item"><span>No Notifications</span></div>
+      <div class="dropdown-item"><span>No hay notificaciones</span></div>
     {{/if}}
   </div>
 </template>
 
 <template name="notificationItem">
   <a class="dropdown-item" href="{{notificationPostPath}}">
-    <strong>{{commenterName}}</strong> commented on your post
+    <strong>{{commenterName}}</strong> comentó tu idea.
   </a>
 </template>

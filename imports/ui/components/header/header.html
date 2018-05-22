@@ -1,52 +1,58 @@
 <template name="header">
   <div class="navbar fixed-top navbar-dark navbar-expand-lg" role="navigation">
     <div class="container">
-      <a class="navbar-brand" href="{{pathFor 'home'}}"><img src="/img/chango.svg" alt="Chango" width="40" /></a>
-      <a class="navbar-brand mr-lg-4" href="{{pathFor 'home'}}">Chango</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span data-toggle="collapse" data-target="#navbarContent.show">
+        <a class="navbar-brand" href="{{pathFor 'home'}}"><img src="/img/chango.svg" alt="Chango" width="40" /></a>
+      </span>
+      <span data-toggle="collapse" data-target="#navbarContent.show">
+        <a class="navbar-brand mr-lg-4" href="{{pathFor 'home'}}">Chango</a>
+      </span>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="navbar-collapse collapse" id="navbarSupportedContent">
+      <div class="navbar-collapse collapse" id="navbarContent" data-toggle="collapse" data-target="#navbarContent.show">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item {{activeRouteClass 'new'}}"><a class="nav-link" href="{{pathFor 'new'}}">New</a></li>
-            <li class="nav-item {{activeRouteClass 'best'}}"><a class="nav-link" href="{{pathFor 'best'}}">Best</a></li>
-            <li class="nav-item {{activeRouteClass 'map'}}"><a class="nav-link" href="{{pathFor 'map'}}">Map</a></li>
-            <li class="nav-item {{activeRouteClass 'about'}}"><a class="nav-link" href="{{pathFor 'about'}}">About</a></li>
+            <li class="nav-item {{activeRouteClass 'new'}}"><a class="nav-link" href="{{pathFor 'new'}}">Recientes</a></li>
+            <li class="nav-item {{activeRouteClass 'best'}}"><a class="nav-link" href="{{pathFor 'best'}}">Populares</a></li>
+            <li class="nav-item {{activeRouteClass 'map'}}"><a class="nav-link" href="{{pathFor 'map'}}">Cercanas</a></li>
+            <li class="nav-item {{activeRouteClass 'about'}}"><a class="nav-link" href="{{pathFor 'about'}}">Acerca</a></li>
           </ul>
           <ul class="navbar-nav">
               {{#if currentUser}}
-                <li class="nav-item {{activeRouteClass 'submit'}}"><a class="btn btn-outline-light mr-2" href="{{pathFor 'submit'}}">Submit</a></li>
+                <li class="nav-item {{activeRouteClass 'submit'}}"><a class="btn btn-outline-light mr-2" href="{{pathFor 'submit'}}">Comparte tu idea</a></li>
                 <li class="nav-item dropdown">
                   {{> notifications}}
                 </li>
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="far fa-user-circle"></i> 
-                    {{#if currentUser.profile.name}}
-                      {{currentUser.profile.name}}
-                    {{else if currentUser.username}}
-                      {{currentUser.username}}
-                    {{else}}
-                        {{currentUser.emails[0].address}}
-                    {{/if}}
+                    <i class="far fa-user-circle"></i>
+                    <small>
+                      {{#if currentUser.profile.name}}
+                        {{currentUser.profile.name}}
+                      {{else if currentUser.username}}
+                        {{currentUser.username}}
+                      {{else}}
+                          {{currentUser.emails[0].address}}
+                      {{/if}}
+                    </small>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <button class="dropdown-item btn btn-light btn-sm btn-logout">
                       <em>
-                        <i class="fas fa-sign-out-alt"></i> Logout
+                        <i class="fas fa-sign-out-alt"></i> Salir
                       </em>
                     </button>
-                    <a class="dropdown-item" href="#">Another action</a>
+                    <!-- <a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="#">Something else here</a> -->
                   </div>
                 </li>
                 <li class="nav-item dropdown">
 
                 </li>
               {{else}}
-                <li class="nav-item {{activeRouteClass 'signin'}}"><a class="nav-link" href="{{pathFor 'signin'}}">Sign In</a></li>
-                <li class="nav-item {{activeRouteClass 'join'}}"><a class="btn btn-outline-light" href="{{pathFor 'join'}}">Join</a></li>
+                <li class="nav-item {{activeRouteClass 'signin'}}"><a class="nav-link" href="{{pathFor 'signin'}}">Ingresa</a></li>
+                <li class="nav-item {{activeRouteClass 'join'}}"><a class="btn btn-outline-light" href="{{pathFor 'join'}}">Crea tu cuenta</a></li>
               {{/if}}
           </ul>
       </div>

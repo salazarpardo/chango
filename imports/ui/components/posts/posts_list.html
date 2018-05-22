@@ -7,10 +7,13 @@
     </div>
     {{#if Template.subscriptionsReady}}
       {{#if hasMorePosts}}
-        <a class="load-more" href="#">Load More</a>
+        <a class="load-more" href="#">Más</a>
       {{/if}}
     {{else}}
-      <div class="loading">{{>spinner}}</div>
+      <div class="loading">
+        {{>skeleton}}
+        {{>skeleton}}
+      </div>
     {{/if}}
   </div>
 </template>
