@@ -9,32 +9,41 @@
 </template>
 
 <template name="override-atPwdFormBtn">
-  <button type="submit" class="btn btn-primary">
+  <button type="submit" class="btn btn-success btn-block mb-3">
     {{buttonText}}
   </button>
 </template>
 
 <template name="override-atTextInput">
-  <div class="at-input form-group {{#if isValidating}}validating{{/if}} {{#if hasError}}error{{/if}} {{#if hasSuccess}}has-success{{/if}} {{#if feedback}}has-feedback{{/if}}">
+  <div class="at-input form-group {{#if isValidating}}validating{{/if}} {{#if hasSuccess}}has-success{{/if}} {{#if feedback}}has-feedback{{/if}}">
     <label class="control-label {{#unless showLabels}}sr-only{{/unless}}" for="at-field-{{_id}}">
       {{displayName}} {{#unless required}}{{optionalText}}{{/unless}}
     </label>
-    <input type="{{type}}" id="at-field-{{_id}}" name="at-field-{{_id}}" placeholder="{{placeholder}}" autocapitalize="none" autocorrect="off" class="form-control">
+    <input type="{{type}}" id="at-field-{{_id}}" name="at-field-{{_id}}" placeholder="{{placeholder}}" autocapitalize="none" autocorrect="off" class="form-control {{#if hasError}}is-invalid{{/if}}">
     {{#if hasIcon}}
         <span class="{{iconClass}} form-control-feedback"></span>
     {{/if}}
-    <span class="help-block {{#unless hasError}}hide{{/unless}}">{{errorText}}</span>
+    <span class="invalid-feedback">{{errorText}}</span>
   </div>
 </template>
 
 <template name="override-atSocial">
-  <button class="btn at-social-btn {{disabled}}" id="at-{{name}}" name="{{name}}">
+  <button class="btn at-social-btn {{disabled}} btn-block mb-3" id="at-{{name}}" name="{{name}}">
     <i class="{{iconClass}}"></i> {{buttonText}}
   </button>
 </template>
 
+<template name="override-atSep">
+  <div class="at-sep">
+    <strong>• {{sepText}} •</strong>
+  </div>
+</template>
+
 <template name="override-atTitle">
-  <h1 class="title-auth">{{title}}</h1>
+  <header class="auth-header">
+    <img class="auth-icon mb-2" src="/img/chango-pink.svg" alt="Ingresa a Chango" width="56" />
+    <h1 class="form-title text-primary mb-3">{{title}}</h1>
+  </header>
 </template>
 
 <template name="override-atError">
@@ -67,42 +76,46 @@
 
 <template name="override-atForm">
   {{#unless hide}}
-    <div class="at-form">
-      {{#if showTitle}}
-        {{> atTitle}}
-      {{/if}}
-      <div class="main">
-        {{#if showOauthServices}}
-          {{> atOauth}}
-        {{/if}}
-        {{#if showServicesSeparator}}
-          {{> atSep}}
-        {{/if}}
-        {{#if showError}}
-          {{> atError}}
-        {{/if}}
-        {{#if showResult}}
-          {{> atResult}}
-        {{/if}}
-        {{#if showMessage}}
-          {{> atMessage}}
-        {{/if}}
-        {{#if showPwdForm}}
-          {{> atPwdForm}}
-        {{/if}}
-        {{#if showTermsLink}}
-          {{> atTermsLink}}
-        {{/if}}
-        {{#if showSignInLink}}
-          {{> atSigninLink}}
-        {{/if}}
-        {{#if showSignUpLink}}
-          {{> atSignupLink}}
-        {{/if}}
-        {{#if showResendVerificationEmailLink}}
-          {{> atResendVerificationEmailLink}}
-        {{/if}}
+  <div class="row justify-content-md-center">
+    <div class="col col-md-7 col-lg-6 col-xl-5">
+      <div class="at-form">
+        <div class="jumbotron auth bg-white text-center">
+          {{#if showTitle}}
+            {{> atTitle}}
+          {{/if}}
+          {{#if showOauthServices}}
+            {{> atOauth}}
+          {{/if}}
+          {{#if showServicesSeparator}}
+            {{> atSep}}
+          {{/if}}
+          {{#if showError}}
+            {{> atError}}
+          {{/if}}
+          {{#if showResult}}
+            {{> atResult}}
+          {{/if}}
+          {{#if showMessage}}
+            {{> atMessage}}
+          {{/if}}
+          {{#if showPwdForm}}
+            {{> atPwdForm}}
+          {{/if}}
+          {{#if showTermsLink}}
+            {{> atTermsLink}}
+          {{/if}}
+          {{#if showSignInLink}}
+            {{> atSigninLink}}
+          {{/if}}
+          {{#if showSignUpLink}}
+            {{> atSignupLink}}
+          {{/if}}
+          {{#if showResendVerificationEmailLink}}
+            {{> atResendVerificationEmailLink}}
+          {{/if}}
+        </div>
       </div>
     </div>
+  </div>
   {{/unless}}
 </template>

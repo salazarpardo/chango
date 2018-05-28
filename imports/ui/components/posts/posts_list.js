@@ -5,6 +5,7 @@ import { Meteor } from 'meteor/meteor';
 import './posts_list.html';
 
 import './post_item.js';
+import '../skeleton/skeleton.js';
 
 Template.postsList.onCreated(function () {
 
@@ -24,13 +25,13 @@ Template.postsList.onCreated(function () {
   // will re-run when the "limit" reactive variables changes
   instance.autorun(function () {
     FlowRouter.watchPathChange();
-    if (FlowRouter.current().path == '/best') {
+    if (FlowRouter.current().route.name == 'best') {
       instance.sortby.set({votes: -1, submitted: -1, _id: -1});
-
+    } else if (FlowRouter.current().route.name == 'map') {
+      instance.sortby.set({location: -1, submitted: -1, _id: -1});
     } else {
-        instance.sortby.set({submitted: -1, _id: -1});
+      instance.sortby.set({submitted: -1, _id: -1});
     }
-    console.log(instance.sortby);
     // get the limit and sort
     var limit = instance.limit.get();
     var sortby = instance.sortby.get();
@@ -40,7 +41,6 @@ Template.postsList.onCreated(function () {
 
     // if subscription is ready, set limit to newLimit
     if (subscription.ready()) {
-      console.log("> Received "+limit+" posts. \n\n")
       instance.loaded.set(limit);
     } else {
       console.log("> Subscription is not ready yet. \n\n");

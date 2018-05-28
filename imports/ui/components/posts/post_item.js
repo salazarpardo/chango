@@ -2,11 +2,6 @@ import { Comments } from '/imports/api/comments/comments.js';
 
 import './post_item.html';
 
-import fontawesome from '@fortawesome/fontawesome/';
-import faArrowUp from '@fortawesome/fontawesome-free-solid/faArrowUp'
-
-fontawesome.library.add(faArrowUp)
-
 Template.postItem.helpers({
   ownPost() {
     return this.userId === Meteor.userId();
@@ -19,7 +14,17 @@ Template.postItem.helpers({
   upvotedClass() {
     var userId = Meteor.userId();
     if (userId && !_.include(this.upvoters, userId)) {
-      return 'btn-primary upvotable';
+      return 'upvotable';
+    } else if (_.include(this.upvoters, userId)) {
+      return 'disabled upvoted';
+    } else {
+      return 'disabled';
+    }
+  },
+  commentClass() {
+    var userId = Meteor.userId();
+    if (userId) {
+      return 'commentable';
     } else {
       return 'disabled';
     }

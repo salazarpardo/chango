@@ -1,0 +1,120 @@
+<template name="skeleton">
+  <div class="post skeleton">
+    <div class="post-content">
+      <header class="clearfix">
+        <h3 class="post-title float-left">
+        </h3>
+
+        <small class="text-muted float-right">
+          <!-- {{pluralize votes "voto"}},
+          {{pluralize commentsCount "comentario"}} -->
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="comment btn btn-sm btn-link {{commentClass}}" href="{{pathFor '/idea/:slug' slug=slug}}"  title="Ingresa para votar">0 <i class="far fa-comment-alt"></i></a>
+            <a class="upvote btn btn-sm btn-link {{upvotedClass}}"  href="#" title="Ingresa para comentar">0 <i class="far fa-thumbs-up"></i> <i class="fas fa-thumbs-up d-none"></i> </a>
+          </div>
+        </small>
+      </header>
+      <p class="post-description mt-3 mb-3">
+      </p>
+      <small class="clearfix mb-0">
+        <small class="text-muted float-right">
+          <i class="far fa-user-circle"></i>
+        </small>
+        <small class="text-muted float-left">
+          <i class="far fa-calendar-alt"></i>
+        </small>
+      </small>
+    </div>
+  </div>
+  <div class="post skeleton">
+    <div class="post-content">
+      <header class="clearfix">
+        <h3 class="post-title float-left">
+        </h3>
+
+        <small class="text-muted float-right">
+          <!-- {{pluralize votes "voto"}},
+          {{pluralize commentsCount "comentario"}} -->
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="comment btn btn-sm btn-link {{commentClass}}" href="{{pathFor '/idea/:slug' slug=slug}}"  title="Ingresa para votar">0 <i class="far fa-comment-alt"></i></a>
+            <a class="upvote btn btn-sm btn-link {{upvotedClass}}"  href="#" title="Ingresa para comentar">0 <i class="far fa-thumbs-up"></i> <i class="fas fa-thumbs-up d-none"></i> </a>
+          </div>
+        </small>
+      </header>
+      <p class="post-description mt-3 mb-3">
+      </p>
+      <small class="clearfix mb-0">
+        <small class="text-muted float-right">
+          <i class="far fa-user-circle"></i>
+        </small>
+        <small class="text-muted float-left">
+          <i class="far fa-calendar-alt"></i>
+        </small>
+      </small>
+    </div>
+  </div>
+  <div class="post skeleton">
+    <div class="post-content">
+      <header class="clearfix">
+        <h3 class="post-title float-left">
+        </h3>
+
+        <small class="text-muted float-right">
+          <!-- {{pluralize votes "voto"}},
+          {{pluralize commentsCount "comentario"}} -->
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="comment btn btn-sm btn-link {{commentClass}}" href="{{pathFor '/idea/:slug' slug=slug}}"  title="Ingresa para votar">0 <i class="far fa-comment-alt"></i></a>
+            <a class="upvote btn btn-sm btn-link {{upvotedClass}}"  href="#" title="Ingresa para comentar">0 <i class="far fa-thumbs-up"></i> <i class="fas fa-thumbs-up d-none"></i> </a>
+          </div>
+        </small>
+      </header>
+      <p class="post-description mt-3 mb-3">
+      </p>
+      <small class="clearfix mb-0">
+        <small class="text-muted float-right">
+          <i class="far fa-user-circle"></i>
+        </small>
+        <small class="text-muted float-left">
+          <i class="far fa-calendar-alt"></i>
+        </small>
+      </small>
+    </div>
+  </div>
+</template>
+
+<template name="skeletonSingle">
+  <div class="map-canvas">
+
+  </div>
+  <div class="post skeleton mt-3">
+    <div class="post-content">
+      <h1 class="post-title text-primary"></h1>
+      <div class="row">
+        <div class="col-7">
+          <small class="text-muted"><em></em><br></small>
+        </div>
+        <div class="col-5">
+          <small class="text-muted float-right">
+            <!-- {{pluralize votes "voto"}},
+            {{pluralize commentsCount "comentario"}} -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <a href="#" class="comment btn btn-link {{commentClass}}">0 <i class="far fa-comment-alt"></i></a>
+              <a href="#" class="upvote btn btn-link {{upvotedClass}}">0 <i class="far fa-thumbs-up"></i> <i class="fas fa-thumbs-up d-none"></i> </a>
+            </div>
+          </small>
+        </div>
+      </div>
+      <p class="post-description mt-3 mb-3">
+
+      </p>
+      <p class="clearfix">
+        <small class="text-muted float-right">
+          <i class="far fa-user-circle"></i>
+        </small>
+        <small class="text-muted float-left">
+          <i class="far fa-calendar-alt"></i>
+        </small>
+      </p>
+    </div>
+  </div>
+</template>

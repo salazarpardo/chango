@@ -13,8 +13,3 @@ Meteor.publish('singlePost', function(slug) {
   check(slug, String);
   return Posts.find({slug: slug});
 });
-
-// Meteor.publish('singlePost', function(id) {
-//   check(id, String);
-//   return Posts.find(id);
-// });

@@ -1,50 +1,61 @@
 <template name="postEdit">
   <div class="edit page">
-    {{#with post}}
-      <form class="main form needs-validation" novalidate>
-        <!-- <div class="form-group">
-         <label class="control-label" for="url">URL</label>
-         <div class="controls">
-             <input name="url" id="url" type="text" value="{{url}}" placeholder="Your URL" class="form-control {{errorClass 'url'}}"/>
-             <div class="invalid-feedback">{{errorMessage 'url'}}</div>
-         </div>
-       </div> -->
-       <div class="form-group">
-         <label class="control-label" for="title">Title</label>
-         <div class="controls">
-             <input name="title" id="title" type="text" value="{{title}}" placeholder="Name your post" class="form-control {{errorClass 'title'}}"/>
-             <div class="invalid-feedback">{{errorMessage 'title'}}</div>
-         </div>
-       </div>
-       <div class="form-group">
-           <label class="control-label" for="exampleInputDescription">Description</label>
-           <textarea name="description" rows="2" cols="50" type="text" value={{description}} class="form-control" id="exampleInputDescription" placeholder="Description"></textarea>
-       </div>
-       <div class="form-group">
-           <label class="control-label" for="exampleInputCategory">Category</label>
-           <select class="form-control custom-select" id="exampleInputCategory" name="category">
-              <option selected>{{category}}</option>
-               <option>Public space</option>
-               <option>Art</option>
-               <option>Environmental Activites</option>
-               <option>Community Event</option>
-               <option>Other</option>
-           </select>
-       </div>
-       <div class="form-group">
-           <label class="control-label" for="exampleInputAddress">Address</label>
-           <div class="map-container mb-1">
-               {{> googleMap name="modalMap" options=mapOptions}}
-           </div>
-           <div class="controls">
-             <input type="text" name="location" value="{{location}}" class="form-control hidden" id="exampleInputLocation" placeholder="Location" hidden>
-             <input type="text" name="address" value="{{address}}" class="form-control" id="exampleInputAddress" placeholder="Location">
-           </div>
-       </div>
-       <input type="submit" value="Submit" class="btn btn-primary submit"/>
-       <hr/>
-       <a class="btn btn-danger delete" href="#">Delete post</a>
-      </form>
-    {{/with}}
+    <div class="row justify-content-md-center">
+      <div class="col col-md-8 col-lg-7">
+        {{#with post}}
+          <div class="jumbotron bg-white text-center clearfix">
+
+            <img class="auth-icon mb-2" src="/img/chango-pink.svg" alt="Ingresa a Chango" width="56" />
+            <h1 class="form-title text-primary mb-3">{{title}}</h1>
+            <form class="form needs-validation" novalidate>
+              <!-- <div class="form-group">
+               <label class="control-label" for="url">URL</label>
+               <div class="controls">
+                   <input name="url" id="url" type="text" value="{{url}}" placeholder="Your URL" class="form-control {{errorClass 'url'}}"/>
+                   <div class="invalid-feedback">{{errorMessage 'url'}}</div>
+               </div>
+             </div> -->
+             <div class="form-group">
+               <label class="control-label" for="title">Título</label>
+               <div class="controls">
+                   <input name="title" id="title" type="text" value="{{title}}" placeholder="Name your post" class="form-control {{errorClass 'title'}}"/>
+                   <div class="invalid-feedback">{{errorMessage 'title'}}</div>
+               </div>
+             </div>
+             <div class="form-group">
+                 <label class="control-label" for="exampleInputDescription">Descripción</label>
+                 <textarea name="description" rows="2" cols="50" type="text" value={{description}} class="form-control" id="exampleInputDescription" placeholder="Description"></textarea>
+             </div>
+             <div class="form-group">
+                 <label class="control-label" for="exampleInputCategory">Categoría</label>
+                 <select class="form-control custom-select" id="exampleInputCategory" name="category">
+                     <option value="">Selecciona una categoría para tu idea</option>
+                     <option selected>{{category}}</option>
+                     <option>Espacio público</option>
+                     <option>Arte y entretenimiento</option>
+                     <option>Actividades ambientales</option>
+                     <option>Evento comunitario</option>
+                     <option>Otro</option>
+                 </select>
+             </div>
+             <div class="form-group">
+                 <label class="control-label" for="exampleInputAddress">Ubicación</label>
+                 <div class="map-container mb-2">
+                     {{> googleMap name="modalMap" options=mapOptions}}
+                 </div>
+                 <div class="controls">
+                   <input type="text" name="location" value="{{location}}" class="form-control hidden" id="exampleInputLocation" placeholder="Location" hidden>
+                   <input type="text" name="address" value="{{address}}" class="form-control" id="exampleInputAddress" placeholder="Location">
+                 </div>
+             </div>
+             <input type="submit" value="Guardar cambios" class="btn btn-success submit btn-block"/>
+             <hr/>
+             <a class="btn btn-sm btn-danger delete float-right" href="#">Borrar</a>
+            </form>
+
+          </div>
+        {{/with}}
+      </div>
+    </div>
   </div>
 </template>

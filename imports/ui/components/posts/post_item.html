@@ -1,17 +1,33 @@
 <template name="postItem">
   <div class="post">
-    <a href="#" class="upvote btn btn-light {{upvotedClass}}"><i class="fas fa-arrow-up"></i></a>
     <div class="post-content">
-      {{#unless postId}}<a href="{{pathFor '/post/:slug' slug=slug}}" class="discuss btn btn-light btn-sm">Read more</a>{{/unless}}
-      <h3><a href="{{pathFor '/post/:slug' slug=slug}}">{{title}}</a></h3>
-      <p>
-        <small class="text-muted">
-          {{pluralize votes "Vote"}},
-          {{#if author}}submitted by {{author}} {{/if}}
-          <a href="{{pathFor '/post/:slug' slug=slug}}">{{pluralize commentsCount "comment"}}</a>
-          {{#if ownPost}}<a href="{{pathFor '/post/:slug/edit' slug=slug}}">Edit</a>{{/if}}
+      <header class="clearfix">
+        <h3 class="post-title float-left">
+          <a href="{{pathFor '/idea/:slug' slug=slug}}">{{title}}</a>
+        </h3>
+
+        <small class="text-muted float-right">
+          <!-- {{pluralize votes "voto"}},
+          {{pluralize commentsCount "comentario"}} -->
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <a class="comment btn btn-sm btn-link {{commentClass}}" href="{{pathFor '/idea/:slug' slug=slug}}"  title="Ingresa para votar">{{commentsCount}} <i class="far fa-comment-alt"></i></a>
+            <a class="upvote btn btn-sm btn-link {{upvotedClass}}"  href="#" title="Ingresa para comentar">{{votes}} <i class="far fa-thumbs-up"></i> <i class="fas fa-thumbs-up d-none"></i> </a>
+          </div>
         </small>
-      </p>
+      </header>
+      {{#if address}}
+        <p class="mb-1">
+          <small class="text-muted">{{address}}</small>
+        </p>
+      {{/if}}
+      <small class="clearfix mb-0">
+        <small class="text-muted float-right">
+          {{#if author}}<i class="far fa-user-circle"></i> {{author}} {{/if}}  {{#if ownPost}}<a href="{{pathFor '/idea/:slug/editar' slug=slug}}"><small> <i class="far fa-edit"></i> Editar</small></a>{{/if}}
+        </small>
+        <small class="text-muted float-left">
+          <i class="far fa-calendar-alt"></i> {{submitted.toLocaleDateString}}
+        </small>
+      </small>
     </div>
   </div>
 </template>

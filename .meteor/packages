@@ -28,7 +28,6 @@ audit-argument-checks
 
 fourseven:scss
 seba:minifiers-autoprefixer
-alexwine:bootstrap-4
 sacha:spin
 
 useraccounts:core
@@ -43,3 +42,6 @@ service-configuration
 nourharidy:ssl
 force-ssl
 dburles:google-maps
+meteorhacks:subs-manager
+okgrow:analytics
+email

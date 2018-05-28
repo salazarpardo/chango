@@ -1,8 +1,8 @@
 <template name="commentItem">
   <li>
-    <h4>
-      <span class="author">{{author}}</span>
-      <span class="date">on {{submittedText}}</span>
+    <h4 class="clearfix">
+      <span class="author float-left"><i class="far fa-user-circle"></i> {{author}}</span>
+      <span class="date float-right"><i class="far fa-calendar-alt"></i> {{submitted.toLocaleDateString}}</span>
     </h4>
     <p>{{body}}</p>
   </li>
