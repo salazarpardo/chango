@@ -11,10 +11,50 @@ AccountsTemplates.configure({
         footer: 'footer'
     },
     defaultContentRegion: 'main',
+    confirmPassword: false,
     showForgotPasswordLink: true,
-    showAddRemoveServices: true,
+    showAddRemoveServices: false,
+    // Client-side Validation
+    continuousValidation: false,
+    negativeFeedback: false,
+    negativeValidation: true,
+    positiveValidation: true,
+    positiveFeedback: true,
+    showValidating: true,
     texts: {
+        title: {
+          changePwd: "Cambiar contraseña",
+          forgotPwd: "¿Olvidaste tu contraseña?",
+          resetPwd: "Reestablece tu contraseña",
+          signIn: "Ingresa a tu cuenta",
+          signUp: "Crea tu cuenta",
+          verifyEmail: "Verifica tu correo electrónico",
+        },
         sep: "O",
+        requiredField: "Requerido",
+        pwdLink_pre: "",
+        pwdLink_link: "¿Olvidaste tu contraseña?",
+        pwdLink_suff: "",
+        resendVerificationEmailLink_pre: "¿No encuentras tu correo de verificación?",
+        resendVerificationEmailLink_link: "Enviar de nuevo",
+        resendVerificationEmailLink_suff: "",
+        signInLink_pre: "Si ya tienes una cuenta, ",
+        signInLink_link: "ingresa",
+        signInLink_suff: "",
+        signUpLink_pre: "Si aún no tienes una cuenta, ",
+        signUpLink_link: "regístrate",
+        signUpLink_suff: "",
+        button: {
+          signUp: "Crea tu cuenta",
+          signIn: "Ingresa a tu cuenta",
+          changePwd: "Cambia tu contraseña",
+          enrollAccount: "Conecta tu cuenta",
+          forgotPwd: "Recibir link para reestablecer contraseña",
+          resetPwd: "Reestablece tu contraseña",
+        },
+        socialSignUp: "Regístrate",
+        socialSignIn: "Ingresa",
+        socialWith: "con",
         socialIcons: {
           facebook: "fab fa-facebook",
         },
@@ -28,16 +68,16 @@ AccountsTemplates.configure({
 
 AccountsTemplates.configureRoute('signIn', {
   name: 'signin',
-  path: '/signin',
+  path: '/ingreso',
 });
 
 AccountsTemplates.configureRoute('signUp', {
   name: 'join',
-  path: '/join',
+  path: '/registro',
   redirect: function(){
        var user = Meteor.user();
        var next = FlowRouter.getQueryParam("next");
-       console.log(next);
+
        if (user && next)
          FlowRouter.go(next);
    }
@@ -59,18 +99,23 @@ if (Meteor.isServer) {
   });
 }
 
-var pwd = AccountsTemplates.removeField('password');
+// var pwd = AccountsTemplates.removeField('password');
 AccountsTemplates.removeField('email');
+AccountsTemplates.removeField('password');
 AccountsTemplates.addFields([
   {
       _id: 'username',
       type: 'text',
-      displayName: "username",
+      placeholder: {
+          default: "Ingresa tu usuario",
+          signUp: "Crea tu usuario"
+      },
+      displayName: "Usuario",
       required: true,
-      minLength: 5,
+      minLength: 4,
       func: function(value) {
         if (Meteor.isClient) {
-          console.log('Validating username...');
+          throwError('Validando nombre de usuario...', 'info');
           var self = this;
           Meteor.call('userExists', value, function (err, userExists){
             if(!userExists)
@@ -83,25 +128,40 @@ AccountsTemplates.addFields([
         }
         // Server
         return Meteor.call('userExists', value);
-      }
+      },
+      errStr: 'El nombre de usuario ya existe',
   },
   {
       _id: 'email',
       type: 'email',
+      placeholder: 'Ingresa tu correo electrónico',
       required: true,
-      displayName: "email",
+      displayName: "Correo electrónico",
       re: /.+@(.+){2,}\.(.+){2,}/,
-      errStr: 'Invalid email',
+      errStr: 'Correo eléctronico inválido',
   },
   {
       _id: 'username_and_email',
-      placeholder: 'Log in with username or email',
+      placeholder: 'Ingresa tu usuario o correo electrónico',
       type: 'text',
       required: true,
-      displayName: "Login",
+      displayName: "Usuario (o correo electrónico)",
   },
-  pwd
+  {
+      _id: 'password',
+      type: 'password',
+      placeholder: {
+          default: "••••",
+          signIn: "Ingresa tu contraseña",
+          signUp: "Seis caracteres mínimo"
+      },
+      displayName: "Contraseña",
+      required: true,
+      minLength: 6,
+  }
 ]);
+
+
 
 // AccountsTemplates.addField({
 //   _id: 'username',

@@ -10,6 +10,10 @@ import faThumbsUpSolid from '@fortawesome/fontawesome-free-solid/faThumbsUp'
 import faCommentAlt from '@fortawesome/fontawesome-free-regular/faCommentAlt'
 import faCalendarAlt from '@fortawesome/fontawesome-free-regular/faCalendarAlt'
 import faEdit from '@fortawesome/fontawesome-free-regular/faEdit'
+import faTimes from '@fortawesome/fontawesome-free-solid/faTimes'
+import faCheck from '@fortawesome/fontawesome-free-solid/faCheck'
+import faSpinner from '@fortawesome/fontawesome-free-solid/faSpinner'
+import faLocationArrow from '@fortawesome/fontawesome-free-solid/faLocationArrow'
 
 fontawesome.library.add(faLightbulb)
 fontawesome.library.add(faUserCircle)
@@ -21,3 +25,7 @@ fontawesome.library.add(faThumbsUpSolid)
 fontawesome.library.add(faCommentAlt)
 fontawesome.library.add(faCalendarAlt)
 fontawesome.library.add(faEdit)
+fontawesome.library.add(faTimes)
+fontawesome.library.add(faCheck)
+fontawesome.library.add(faSpinner)
+fontawesome.library.add(faLocationArrow)

@@ -13,6 +13,7 @@ import '../../ui/pages/posts/posts.js';
 import '../../ui/pages/map/map.js';
 import '../../ui/pages/auth/auth.js';
 import '../../ui/pages/about/about.js';
+import '../../ui/pages/contact/contact.js';
 import '../../ui/pages/submit/submit.js';
 import '../../ui/pages/edit/edit.js';
 import '../../ui/pages/post/post.js';
@@ -74,6 +75,15 @@ publicRoutes.route('/acerca', {
   triggersExit: []
 });
 
+publicRoutes.route('/contacto', {
+  name: 'contact',
+  triggersEnter: [],
+  action() {
+    BlazeLayout.render('App_body', { top: 'header', main: 'contact', errors: 'errors', footer: 'footer' });
+  },
+  triggersExit: []
+});
+
 publicRoutes.route('/recientes', {
   name: 'new',
   triggersEnter: [],
@@ -92,7 +102,7 @@ publicRoutes.route('/populares', {
   title: "Populares"
 });
 
-publicRoutes.route('/cercanas', {
+publicRoutes.route('/mapa', {
   name: 'map',
   triggersEnter: [],
   action() {
@@ -115,7 +125,7 @@ var privateRoutes = FlowRouter.group({
   triggersEnter: [ AccountsTemplates.ensureSignedIn ],
 })
 
-privateRoutes.route('/crear', {
+privateRoutes.route('/nueva', {
   name: 'submit',
   triggersEnter: [],
   action() {
@@ -174,7 +184,7 @@ function jumpToPrevScrollPosition(context) {
    // Here 10 millis delay is a arbitrary value with some testing.
    setTimeout(function () {
       $('html, body').animate({scrollTop: scrollPosition}, 0);
-    }, 150);
+    }, 100);
    }
 }
 FlowRouter.triggers.exit([saveScrollPosition]);

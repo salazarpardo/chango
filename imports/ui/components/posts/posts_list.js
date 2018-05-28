@@ -25,7 +25,6 @@ Template.postsList.onCreated(function () {
   // will re-run when the "limit" reactive variables changes
   instance.autorun(function () {
     FlowRouter.watchPathChange();
-    console.log(FlowRouter.current());
     if (FlowRouter.current().route.name == 'best') {
       instance.sortby.set({votes: -1, submitted: -1, _id: -1});
     } else if (FlowRouter.current().route.name == 'map') {

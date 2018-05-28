@@ -4,6 +4,8 @@ import { Comments } from '/imports/api/comments/comments.js';
 
 import './post.html';
 
+import {styles} from '/imports/startup/client/map_styles.js';
+
 import '../../components/posts/post_single.js';
 import '../../components/comments/comment_item.js';
 import '../../components/comments/comment_submit.js';
@@ -37,7 +39,7 @@ Template.post.helpers({
     var postSlug = FlowRouter.getParam('slug');
     // Make sure the maps API has loaded
     if (GoogleMaps.loaded()) {
-      var bogota = new google.maps.LatLng(4.60063716865005, -74.08990859985352);
+      var bogota = new google.maps.LatLng(4.710249429547743,-74.07099918512495);
       var post = Posts.findOne({ slug: postSlug });
       var postLocation = new google.maps.LatLng(post.location[0], post.location[1]);
 
@@ -45,7 +47,8 @@ Template.post.helpers({
       return {
           center: postLocation || bogota,
           zoom: 15,
-          mapTypeControl: false
+          mapTypeControl: false,
+          styles: styles
       };
     }
   }
@@ -86,7 +89,7 @@ Template.post.onCreated(function() {
               var direccion = place.address;
               var categoria = place.category;
               var descripcion = place.description;
-              var contentString = '<div class="infowindow open">' + '<h4>' + titulo + '</h4>' + '<p class="address">' + direccion + '</p><p class="desc">' + descripcion + '</p>' + '<a href="#detail" data-router="section">Ampliar</a></div>';
+              var contentString = '<div class="infowindow open">' + '<h4>' + titulo + '</h4>' + '<p class="text-muted address mb-2">' + direccion + '</p><p class="description">' + descripcion + '</p>' + '</div>';
 
               // Create a marker for this document
               var marker = new google.maps.Marker({

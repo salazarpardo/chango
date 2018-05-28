@@ -5,17 +5,21 @@
         <a class="navbar-brand" href="{{pathFor 'home'}}"><img src="/img/chango.svg" alt="Chango" width="40" /></a>
       </span>
       <span data-toggle="collapse" data-target="#navbarContent.show">
-        <a class="navbar-brand mr-lg-4" href="{{pathFor 'home'}}">Chango</a>
+        <a class="navbar-brand mr-lg-3" href="{{pathFor 'home'}}">Chango</a>
       </span>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+      <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <svg class="navbar-toggler-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="24">
+          <defs><style>.cls-1 {clip-path: url(#clip-navbar-toggle);} .cls-2 {fill: #fff;}</style><clipPath id="clip-navbar-toggle"><rect width="24" height="24"/></clipPath></defs>
+          <g id="navbar-toggle" class="cls-1"><rect id="bar-2" class="cls-2" width="24" height="4" rx="2" transform="translate(0 6)"/><rect id="bar-1" class="cls-2" width="24" height="4" rx="2" transform="translate(0 15)"/></g>
+        </svg>
       </button>
       <div class="navbar-collapse collapse" id="navbarContent" data-toggle="collapse" data-target="#navbarContent.show">
           <ul class="navbar-nav mr-auto">
+            <li class="nav-item {{activeRouteClass 'map'}}"><a class="nav-link" href="{{pathFor 'map'}}">Mapa</a></li>
             <li class="nav-item {{activeRouteClass 'new'}}"><a class="nav-link" href="{{pathFor 'new'}}">Recientes</a></li>
             <li class="nav-item {{activeRouteClass 'best'}}"><a class="nav-link" href="{{pathFor 'best'}}">Populares</a></li>
-            <li class="nav-item {{activeRouteClass 'map'}}"><a class="nav-link" href="{{pathFor 'map'}}">Cercanas</a></li>
             <li class="nav-item {{activeRouteClass 'about'}}"><a class="nav-link" href="{{pathFor 'about'}}">Acerca</a></li>
+            <li class="nav-item {{activeRouteClass 'contact'}}"><a class="nav-link" href="{{pathFor 'contact'}}">Contacto</a></li>
           </ul>
           <ul class="navbar-nav">
               {{#if currentUser}}

@@ -14,7 +14,7 @@ Template.App_body.helpers({
 });
 
 Template.App_body.onRendered(function() {
-  this.find('#main')._uihooks = {
+  this.find('#main, #page')._uihooks = {
     insertElement: function(node, next) {
       $(node)
         .hide()

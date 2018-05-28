@@ -10,6 +10,9 @@
       font-size: rem-calc(32);
     }
   }
+  &.auth {
+    box-shadow: 0 2px 5px rgba(0,0,0,.16);
+  }
   &.hero {
     padding-top: rem-calc(80);
     padding-bottom: rem-calc(58);
@@ -56,6 +59,9 @@
   }
   .city-image {
     padding: 0;
+    @include media-breakpoint-up(lg) {
+      padding: 0 rem-calc(15);
+    }
   }
 }
 

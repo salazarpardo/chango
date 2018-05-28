@@ -7,16 +7,24 @@
   &:not(section) {
     background: #fff;
     border-radius: rem-calc(3);
-    padding: rem-calc(10);
+    padding: rem-calc(16);
     margin-bottom: 1px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
   }
 }
-
+.single-post {
+  .comment-form,
+  .comments li,
+  .post {
+    padding: rem-calc(24);
+  }
+}
 body {
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6
+{
   -webkit-font-smoothing: antialiased;
   letter-spacing: -.5px
 }
@@ -24,14 +32,8 @@ h1, h2, h3, h4, h5, h6 {
 #__blaze-root {
   background-color: $washed-pink;
   box-shadow: rem-calc(0 80) $primary inset;
-  > section {
-    transition: .3s ease-in-out box-shadow;
-  }
-}
-
-section {
-  &.signin, &.join, &.atForgotPwd, &.about, &.new, &.best, &.map, &.submit, &.postEdit {
-      box-shadow: rem-calc(0 352) $primary inset;
+  > section:not(.home) {
+    box-shadow: rem-calc(0 352) $primary inset;
   }
 }
 
@@ -52,6 +54,9 @@ section {
   padding: rem-calc(24 24 10);
   &.navbar-dark {
     background-color: rgba($primary, .9);
+    .navbar-nav .active > .nav-link {
+      box-shadow: 0 2px 0 $white;
+    }
   }
   .btn-outline-light {
     &:hover {
@@ -100,11 +105,12 @@ section {
 }
 .form-control {
   border: none;
-  background: lighten($washed-pink, 1);
-  box-shadow: 0 -1px 1px #F7D2EA inset;
-  &::placeholder {
+  background: lighten($washed-pink, 2.2);
+  box-shadow: 0 1px 1px darken($washed-pink, 5) inset;
+  &::placeholder, &.not-chosen, &.custom-file-label {
       font-style: italic;
       -webkit-font-smoothing: antialiased;
+      color: $gray-600;
   }
   .newsletter & {
     max-width: 60%;
@@ -115,6 +121,12 @@ section {
 .form-group {
   text-align: left;
 }
+.invalid-feedback + .text-muted {
+    display: none;
+}
+.was-validated .form-control:invalid, .form-control.is-invalid, .was-validated .custom-select:invalid, .custom-select.is-invalid {
+  box-shadow: 0 0 0 1px darken($primary, 10) inset;
+}
 .form-title {
   line-height: 1;
   font-size: rem-calc(24);
@@ -124,6 +136,12 @@ section {
   @include media-breakpoint-up(md) {
     font-size: rem-calc(40);
   }
+}
+.custom-file-label::after {
+  background-color: darken($light, 2);
+  border-left-color: darken($light, 5);
+  color: $gray-600;
+  content: "Buscar";
 }
 .at-sep {
     -webkit-font-smoothing: antialiased;
@@ -179,13 +197,32 @@ section {
 .navbar-toggler {
   &:focus {
       text-decoration: none;
-      outline: 5px auto darken($primary, 10);
+      outline: 2px auto darken($primary, 10);
+  }
+  .navbar-dark & .navbar-toggler-icon {
+    #bar-1 {
+      transform: translate(4.828px, 2px) rotate(45deg);
+      transition: .3s linear;
+    }
+    #bar-2 {
+      transform: translate(2px, 18.97px) rotate(-45deg);
+      transition: .3s linear;
+    }
+  }
+  .navbar-dark &.collapsed .navbar-toggler-icon {
+    #bar-1 {
+      transform: translate(0px, 15px);
+    }
+    #bar-2 {
+      transform: translate(0px, 6px);
+    }
   }
 }
 
 .footer-text {
   font-family: $font-family-script;
   font-size: rem-calc(14);
+  -webkit-font-smoothing: antialiased;
 }
 .footer {
   text-align: center;

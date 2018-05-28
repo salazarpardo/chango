@@ -15,15 +15,15 @@
 </template>
 
 <template name="override-atTextInput">
-  <div class="at-input form-group {{#if isValidating}}validating{{/if}} {{#if hasError}}error{{/if}} {{#if hasSuccess}}has-success{{/if}} {{#if feedback}}has-feedback{{/if}}">
+  <div class="at-input form-group {{#if isValidating}}validating{{/if}} {{#if hasSuccess}}has-success{{/if}} {{#if feedback}}has-feedback{{/if}}">
     <label class="control-label {{#unless showLabels}}sr-only{{/unless}}" for="at-field-{{_id}}">
       {{displayName}} {{#unless required}}{{optionalText}}{{/unless}}
     </label>
-    <input type="{{type}}" id="at-field-{{_id}}" name="at-field-{{_id}}" placeholder="{{placeholder}}" autocapitalize="none" autocorrect="off" class="form-control">
+    <input type="{{type}}" id="at-field-{{_id}}" name="at-field-{{_id}}" placeholder="{{placeholder}}" autocapitalize="none" autocorrect="off" class="form-control {{#if hasError}}is-invalid{{/if}}">
     {{#if hasIcon}}
         <span class="{{iconClass}} form-control-feedback"></span>
     {{/if}}
-    <span class="help-block {{#unless hasError}}hide{{/unless}}">{{errorText}}</span>
+    <span class="invalid-feedback">{{errorText}}</span>
   </div>
 </template>
 
@@ -35,7 +35,7 @@
 
 <template name="override-atSep">
   <div class="at-sep">
-    <strong>- {{sepText}} -</strong>
+    <strong>• {{sepText}} •</strong>
   </div>
 </template>
 
@@ -79,7 +79,7 @@
   <div class="row justify-content-md-center">
     <div class="col col-md-7 col-lg-6 col-xl-5">
       <div class="at-form">
-        <div class="jumbotron bg-white text-center">
+        <div class="jumbotron auth bg-white text-center">
           {{#if showTitle}}
             {{> atTitle}}
           {{/if}}

@@ -2,20 +2,32 @@ import { Posts } from '/imports/api/posts/posts.js';
 
 import './map.html';
 
+import {styles} from '/imports/startup/client/map_styles.js';
+
 // import '../../components/hello/hello.js';
 // import '../../components/info/info.js';
 import '../../components/posts/posts_list.js';
 
 
 Template.map.helpers({
-  'exampleMapOptions'() {
+  'exampleMapOptions': function() {
     // Make sure the maps API has loaded
     if (GoogleMaps.loaded()) {
       // Map initialization options
+
+      var initialLocation;
+      var bogota = new google.maps.LatLng(4.710249429547743,-74.07099918512495);
+      if ((Session.get('lat') || Session.get('long')) == undefined) {
+        initialLocation = bogota;
+      } else {
+        initialLocation = new google.maps.LatLng(Session.get('lat'), Session.get('long'));
+      }
+
       return {
-          center: new google.maps.LatLng(4.64205602, -74.11377526),
-          zoom: 12,
-          mapTypeControl: false
+          center: initialLocation, //new google.maps.LatLng(4.64205602, -74.11377526),
+          zoom: 13,
+          mapTypeControl: false,
+          styles: styles
       };
     }
   }
@@ -26,124 +38,95 @@ Template.map.onRendered(function() {
 });
 
 Template.map.onCreated(function() {
-    // We can use the `ready` callback to interact with the map API once the map is ready.
+
+    var self = this;
+
+    self.that;
+    self.currentPlace = null;
+
+    var markers;
+    var bounds;
+
     GoogleMaps.ready('exampleMap', function(map) {
 
-        var icons = {
-            'Chango': new google.maps.MarkerImage('/markers/marker-chango.svg', null, null, null, new google.maps.Size(50, 50)),
-            'Usr': new google.maps.MarkerImage('/markers/marker-usr.svg', null, null, null, new google.maps.Size(50, 50))
+        self.icons = {
+          'Chango': new google.maps.MarkerImage('/markers/marker-chango.svg', null, null, null, new google.maps.Size(50, 50)),
+          'Usr': new google.maps.MarkerImage('/markers/marker-usr.svg', null, null, null, new google.maps.Size(50, 50))
         };
 
-        var infowindow = new google.maps.InfoWindow({
-            // content : contentString,
+        var that = self.that;
+        var currentPlace = self.currentPlace;
+
+        self.infowindow = new google.maps.InfoWindow({
             maxWidth: 300,
             minHeight: 100
         });
 
-        var initialLocation;
-        var bogota = new google.maps.LatLng(4.60063716865005, -74.08990859985352);
-        var browserSupportFlag = new Boolean();
-
-        if (navigator.geolocation) {
-            browserSupportFlag = true;
-            navigator.geolocation.getCurrentPosition(function(position) {
-                initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
-                var loc1 = new google.maps.Marker({
-                    position: initialLocation,
-                    map: map.instance,
-                    draggable: false,
-                    title: "Usted esta aqu\u00ed",
-                    icon: icons['Usr'],
-                    optimized: false,
-                    zIndex: 100
-                });
-
-                var contentStringDetail = '<div class="infowindow feature open">' + '<h4>Usted esta aquí</h4>' + '</div>';
-                /* var infowindowDetail = new google.maps.InfoWindow({
-                content : contentStringDetail
-                }); */
-                var currentPlace = null;
-                google.maps.event.addListener(loc1, 'click', function() {
-                    infowindow.open(map.instance, loc1);
-                    infowindow.setContent(contentStringDetail);
-                    if (currentPlace == loc1) {
-                        currentPlace = null;
-                        infowindow.close();
-                    } else {
-                        currentPlace = loc1;
-                    }
-                });
-                map.instance.setCenter(initialLocation);
-
-            }, function() {
-                handleNoGeolocation(browserSupportFlag);
-            });
-        } else {
-            browserSupportFlag = false;
-            handleNoGeolocation(browserSupportFlag);
-        };
-
-        function handleNoGeolocation(errorFlag) {
-            if (errorFlag == true) {
-                alert("El servicio de Localizaci\u00f3n no esta activo.");
-                initialLocation = bogota;
-            } else {
-                alert("Su navegador no soporta el servicio de Localizaci\u00f3n.");
-                initialLocation = bogota;
-            }
-            map.instance.setCenter(initialLocation);
-
-        };
-
-        var markers = {};
+        markers = [];
+        bounds = new google.maps.LatLngBounds();
 
         Posts.find().observe({
 
             added: function(document) {
                 var place = document;
-                var titulo = place.title;
-                var direccion = place.address;
-                var categoria = place.category;
-                var descripcion = place.description;
-                var contentString = '<div class="infowindow open">' + '<h4>' + titulo + '</h4>' + '<p class="address">' + direccion + '</p><p class="desc">' + descripcion + '</p>' + '<a href="#detail" data-router="section">Ampliar</a></div>';
+                var title = place.title;
+                var address = place.address;
+                var category = place.category;
+                var description = place.description;
+                var slug = place.slug;
+                var location = new google.maps.LatLng(document.location[0], document.location[1]);
+                var contentString = '<div class="infowindow open">' + '<h4>' + title + '</h4>' + '<p class="address text-muted mb-2">' + address + '</p><p class="description">' + description + '</p>' + '<a href="/idea/' + slug + '">Ampliar</a></div>';
 
                 // Create a marker for this document
                 var marker = new google.maps.Marker({
                     draggable: false,
                     animation: google.maps.Animation.DROP,
-                    position: new google.maps.LatLng(document.location[0], document.location[1]),
+                    position: location,
                     map: map.instance,
-                    icon: icons['Chango'],
-                    optimized: false,
+                    icon: self.icons['Chango'],
+                    // optimized: false,
                     // We store the document _id on the marker in order
                     // to update the document within the 'dragend' event below.
                     id: document._id
                 });
 
-                var currentPlace = null;
+                var markerClick = function() {
+                  if (that && that.id) {
+                    that.setZIndex();
+                  } else if (that) {
+                    that.setZIndex(100);
+                  }
+                  that = this;
+                  this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+                  self.infowindow.setContent(contentString);
+                  self.infowindow.open(map.instance, this);
+                  if (currentPlace == this) {
+                      currentPlace = null;
+                      self.infowindow.close();
+                  } else {
+                      currentPlace = this;
+                  }
+                };
 
-                google.maps.event.addListener(marker, 'click', function() {
-                    infowindow.setContent(contentString);
-                    infowindow.open(map.instance, this);
-                    if (currentPlace == marker) {
-                        currentPlace = null;
-                        infowindow.close();
-                    } else {
-                        currentPlace = marker;
-                    }
-                });
-                /*
-          google.maps.event.addListener(marker, 'click', function() {
-          infowindow.open(map.instance, marker);
-          if (currentPlace == marker) {
-            currentPlace = null;
-            infowindow.close();
-          } else {
-            currentPlace = marker;
-          }
-        });*/
+                self.infowindow.setContent(contentString);
+
+
+
+                google.maps.event.addListener(marker, 'click', markerClick, {passive:true} );
+
+                google.maps.event.addListener(marker, "mouseover", function() {
+                  marker.setZIndex(999); //hover
+                }, {passive:true});
+
+                google.maps.event.addListener(marker, "mouseout", function() {
+                  marker.setZIndex(undefined); //undo
+                }, {passive:true});
+
+                bounds.extend(location);
+
                 // Store this marker instance within the markers object.
                 markers[document._id] = marker;
+
             },
             changed: function(newDocument, oldDocument) {
                 var currentPlace = null;
@@ -153,26 +136,11 @@ Template.map.onCreated(function() {
                 var direccion = place.address;
                 var categoria = place.category;
                 var descripcion = place.description;
-                var contentString = '<div class="infowindow open">' + '<h4>' + titulo + '</h4>' + '<p class="address">' + direccion + '</p><p class="desc">' + descripcion + '</p>' + '<a href="#detail" data-router="section">Ampliar</a></div>';
-                var infowindow = new google.maps.InfoWindow({
-                    content: contentString,
-                    maxWidth: 300,
-                    minHeight: 100
-                });
+                var contentString = '<div class="infowindow open">' + '<h4>' + titulo + '</h4>' + '<p class="address text-muted mb-2">' + direccion + '</p><p class="description">' + descripcion + '</p>' + '<a href="/idea/' + slug + '">Ampliar</a></div>';
+                self.infowindow.setContent(contentString);
                 var marker = markers[newDocument._id];
-                /*
-                        google.maps.event.addListener(marker, 'position_changed', function() {
-                        infowindow.open(map.instance, marker);
-                        if (currentPlace == marker) {
-                          currentPlace = null;
-                          infowindow.close();
-                        } else {
-                          currentPlace = marker;
-                        }
-                      }); */
-                // Store this marker instance within the markers object.
 
-                console.log(newLatlng);
+                bounds.extend(newLatlng);
                 markers[newDocument._id].setPosition(newLatlng);
             },
             removed: function(oldDocument) {
@@ -187,5 +155,91 @@ Template.map.onCreated(function() {
                 delete markers[oldDocument._id];
             }
         });
+
+        map.instance.fitBounds(bounds);
     });
+});
+
+Template.map.events({
+  'click .geoloc': function(e) {
+    $('.geoloc').toggleClass('active');
+    $('.geoloc .svg-inline--fa').toggleClass('fa-location-arrow fa-spinner fa-spin');
+    var map = GoogleMaps.maps.exampleMap.instance;
+    var icons =  Template.instance().icons;
+    var infowindow = Template.instance().infowindow;
+    var that = Template.instance().that;
+    var currentPlace = Template.instance().currentPlace;
+    var initialLocation;
+    var browserSupportFlag = new Boolean();
+
+    function locationSuccess(position) {
+        Session.set('lat', position.coords.latitude);
+        Session.set('long', position.coords.longitude);
+        initialLocation = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+        var loc1 = new google.maps.Marker({
+            position: initialLocation,
+            map: map,
+            draggable: false,
+            title: "Usted esta aqu\u00ed",
+            icon: icons['Usr'],
+            optimized: false,
+            zIndex: 100,
+        });
+
+        var contentStringUser =
+          '<div class="infowindow feature open">' +
+            '<h4>Usted esta aquí</h4>' +
+          '</div>';
+
+        var markerClick = function() {
+          if (that) {
+            that.setZIndex();
+          }
+          that = this;
+          this.setZIndex(google.maps.Marker.MAX_ZINDEX + 1);
+          infowindow.setContent(contentStringUser);
+          infowindow.open(map.instance, this);
+          if (currentPlace == this) {
+              currentPlace = null;
+              infowindow.close();
+          } else {
+              currentPlace = this;
+          }
+        };
+
+        google.maps.event.addListener(loc1, 'click', markerClick, {passive: true});
+
+        map.setCenter(initialLocation);
+        map.setZoom(15)
+        $('.geoloc').toggleClass('active');
+        $('.geoloc .svg-inline--fa').toggleClass('fa-location-arrow fa-spinner fa-spin');
+
+    }
+
+    function locationError() {
+        handleNoGeolocation(browserSupportFlag);
+        $('.geoloc').toggleClass('active');
+        $('.geoloc .svg-inline--fa').toggleClass('fa-location-arrow fa-spinner fa-spin');
+    }
+
+    var locationOptions = {
+      maximumAge: 5 * 60 * 1000,
+    }
+
+    if (navigator.geolocation) {
+        browserSupportFlag = true;
+        navigator.geolocation.getCurrentPosition(locationSuccess, locationError, locationOptions);
+    } else {
+        browserSupportFlag = false;
+        handleNoGeolocation(browserSupportFlag);
+    };
+
+    function handleNoGeolocation(errorFlag) {
+        if (errorFlag == true) {
+            alert("El servicio de Localizaci\u00f3n no esta activo.");
+        } else {
+            alert("Su navegador no soporta el servicio de Localizaci\u00f3n.");
+        }
+    };
+  }
 });
