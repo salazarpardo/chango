@@ -15,15 +15,17 @@
 </template>
 
 <template name="override-atTextInput">
-  <div class="at-input form-group {{#if isValidating}}validating{{/if}} {{#if hasSuccess}}has-success{{/if}} {{#if feedback}}has-feedback{{/if}}">
+  <div class="at-input form-group {{#if isValidating}}validating{{/if}}  {{#if feedback}}has-feedback{{/if}}">
     <label class="control-label {{#unless showLabels}}sr-only{{/unless}}" for="at-field-{{_id}}">
       {{displayName}} {{#unless required}}{{optionalText}}{{/unless}}
     </label>
-    <input type="{{type}}" id="at-field-{{_id}}" name="at-field-{{_id}}" placeholder="{{placeholder}}" autocapitalize="none" autocorrect="off" class="form-control {{#if hasError}}is-invalid{{/if}}">
+    <input type="{{type}}" id="at-field-{{_id}}" name="at-field-{{_id}}" placeholder="{{placeholder}}" autocapitalize="none" autocorrect="off" class="form-control {{#if hasError}}is-invalid{{/if}} {{#if hasSuccess}}is-valid{{/if}}">
     {{#if hasIcon}}
-        <span class="{{iconClass}} form-control-feedback"></span>
+      <span class="valid-feedback mb-2"><i class="float-right {{iconClass}}"></i></span>
     {{/if}}
-    <span class="invalid-feedback">{{errorText}}</span>
+    {{#if hasError}}
+      <span class="invalid-feedback"><i class="{{iconClass}}"></i> {{errorText}}</span>
+    {{/if}}
   </div>
 </template>
 
@@ -54,6 +56,13 @@
       {{errorText}}
     </div>
     {{/each}}
+  </div>
+</template>
+
+<template name="override-atResult">
+  <div class="at-result alert alert-info" role="alert">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    {{result}}
   </div>
 </template>
 

@@ -22,11 +22,12 @@
     .hero-title {
       line-height: 1;
       letter-spacing: -1px;
+      text-shadow: 2px 2px rgba($primary, .8);
       @include media-breakpoint-up(xs) {
         font-size: rem-calc(24);
       }
       @include media-breakpoint-up(s) {
-        font-size: rem-calc(32);
+        font-size: rem-calc(30);
       }
       @include media-breakpoint-up(lg) {
         font-size: rem-calc(56);
@@ -36,6 +37,7 @@
     .hero-text {
       font-size: rem-calc(16);
       line-height: 1.25;
+      text-shadow: 1px 1px 1px rgba($primary, .8);
       @include media-breakpoint-up(lg) {
         font-size: rem-calc(20);
       }
@@ -51,8 +53,8 @@
   &.bg-city {
     background-image: url(/img/city.svg);
     background-repeat: no-repeat;
-    background-size: 70%;
-    background-position: 155% rem-calc(80);
+    background-size: 75%;
+    background-position: 200% rem-calc(80);
     @include media-breakpoint-up(sm) {
       background-image: none;
     }
@@ -63,21 +65,43 @@
       padding: 0 rem-calc(15);
     }
   }
+  .landing-area & {
+    background-color: rgba($white, .95);
+  }
 }
 
 .landing-area {
     padding: rem-calc(32) 0 0;
-    &.bg-success {
-      background-image: url(/img/paris.jpg);
-      background-blend-mode: screen;
+    background-color: #FFFCFE;
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    @include media-breakpoint-up(lg) {
+      background-size: 30%;
     }
-    &.bg-info {
-      background-image: url(/img/paris.jpg);
-      background-blend-mode: screen;
+    &.bg-first {
+      background-image: url(/img/city-find.svg);
+      background-position: 150% center;
+      @include media-breakpoint-up(lg) {
+        background-position: 75% center;
+      }
     }
-    &.bg-primary {
-      background-image: url(/img/paris.jpg);
-      background-blend-mode: screen;
+    &.bg-second {
+      background-image: url(/img/city-future.svg);
+      background-position: -50% center;
+      @include media-breakpoint-up(lg) {
+        background-position: 25% center;
+      }
+    }
+    &.bg-third {
+      background-image: url(/img/city-real.svg);
+      background-position: 150% center;
+      @include media-breakpoint-up(lg) {
+        background-position: 75% center;
+      }
+    }
+    .jumbotron {
+      background-color: transparent;
     }
     .landing-area-title {
       font-size: rem-calc(20);
@@ -95,6 +119,15 @@
       font-size: rem-calc(14);
       @include media-breakpoint-up(md) {
         font-size: rem-calc(16);
+      }
+      &.btn-success {
+        box-shadow: 0 2px 3px #1B7D60;
+      }
+      &.btn-info {
+        box-shadow: 0 2px 3px #008C99;
+      }
+      &.btn-primary {
+        box-shadow: 0 2px 3px #915079;
       }
     }
 }

@@ -110,8 +110,6 @@ Template.map.onCreated(function() {
 
                 self.infowindow.setContent(contentString);
 
-
-
                 google.maps.event.addListener(marker, 'click', markerClick, {passive:true} );
 
                 google.maps.event.addListener(marker, "mouseover", function() {
@@ -155,8 +153,9 @@ Template.map.onCreated(function() {
                 delete markers[oldDocument._id];
             }
         });
-
-        map.instance.fitBounds(bounds);
+        if (bounds.getCenter().lat.arguments !== null){
+            map.instance.fitBounds(bounds)
+        } 
     });
 });
 

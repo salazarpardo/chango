@@ -154,10 +154,10 @@ Template.submit.events({
 
     Meteor.call('posts.insert', post, (error, result) => {
       if (error) {
-        return throwError(error.reason);
+        return throwError(error.reason, 'alert-danger');
       }
       if (result.postExists) {
-        throwError('Existe una idea con la misma ruta. Intenta de nuevo después de cambiarla.');
+        throwError('Existe una idea con la misma ruta. Intenta de nuevo después de cambiarla.', 'alert-info');
       } else {
         analytics.track('posts.insert', post);
         FlowRouter.go('post', {slug: result.slug});

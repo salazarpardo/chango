@@ -15,6 +15,7 @@ import '../../ui/pages/auth/auth.js';
 import '../../ui/pages/about/about.js';
 import '../../ui/pages/contact/contact.js';
 import '../../ui/pages/submit/submit.js';
+import '../../ui/pages/profile/profile.js';
 import '../../ui/pages/edit/edit.js';
 import '../../ui/pages/post/post.js';
 import '../../ui/pages/not_found/not_found.js';
@@ -29,16 +30,6 @@ function redirectIfLoggedIn (ctx, redirect) {
   // if (Meteor.userId()) {
   //   //redirect('/submit')
   // }
-}
-
-function checkLoggedIn (ctx, redirect) {
-  if (!Meteor.loggingIn() && !Meteor.userId()) {
-     const route = FlowRouter.current();
-     if (route.route.name !== 'login') {
-       Session.set('redirectAfterLogin', route.path);
-     }
-     return FlowRouter.go('login');
-   }
 }
 
 Accounts.onLogin(function() {
@@ -111,6 +102,14 @@ publicRoutes.route('/mapa', {
   triggersExit: []
 });
 
+publicRoutes.route('/salir', {
+  name: 'logout',
+  action() {
+    Accounts.logout();
+    FlowRouter.redirect('/');
+  }
+});
+
 publicRoutes.route('/', {
   name: 'home',
   triggersEnter: [],
@@ -130,6 +129,15 @@ privateRoutes.route('/nueva', {
   triggersEnter: [],
   action() {
     BlazeLayout.render('App_body', { top: 'header', main: 'submit', errors: 'errors', footer: 'footer' });
+  },
+  triggersExit: []
+})
+
+privateRoutes.route('/perfil', {
+  name: 'profile',
+  triggersEnter: [],
+  action() {
+    BlazeLayout.render('App_body', { top: 'header', main: 'profile', errors: 'errors', footer: 'footer' });
   },
   triggersExit: []
 })

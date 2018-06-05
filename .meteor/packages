@@ -34,6 +34,7 @@ useraccounts:core
 useraccounts:unstyled
 accounts-password
 accounts-facebook
+email
 
 mealsunite:flow-routing-extra
 aldeed:template-extension
@@ -44,4 +45,3 @@ force-ssl
 dburles:google-maps
 meteorhacks:subs-manager
 okgrow:analytics
-email

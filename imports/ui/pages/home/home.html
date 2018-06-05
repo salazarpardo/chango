@@ -1,10 +1,10 @@
 <template name="home">
   <div class="home page">
-    <section class="landing-area bg-success">
+    <section class="landing-area bg-first">
       <div class="container">
         <div class="row justify-content-lg-center">
           <div class="col-9 col-md-5 col-lg-4">
-            <div class="jumbotron bg-white">
+            <div class="jumbotron">
               <h3 class="landing-area-title text-success">Encuentra ideas cerca de ti</h3>
               <p>
                 ¡Alguien de tu barrio, colegio, o universidad puede necesitar tu apoyo para hacer realidad su idea!
@@ -17,20 +17,20 @@
         </div>
       </div>
     </section>
-    <section class="landing-area bg-info">
+    <section class="landing-area bg-second text-right">
       <div class="container">
         <div class="row justify-content-lg-center">
           <div class="col-3 d-none d-lg-block">
           </div>
           <div class="col-9 col-md-5 col-lg-4 offset-3 offset-md-7 offset-lg-0">
-            <div class="jumbotron bg-white">
+            <div class="jumbotron">
               <h3 class="landing-area-title text-info">El futuro lo propones tu</h3>
               <p>
                 Entre todos ayudamos a alimentar las mejores ideas para que pasen a ser proyectos exitosos.
               </p>
               {{#if currentUser}}
                 <a class="btn btn-info btn-block" href="{{pathFor 'submit'}}">
-                  Sube tu idea
+                  Comparte tu idea
                 </a>
               {{else}}
                 <a class="btn btn-info btn-block" href="{{pathFor 'join' query='next=submit'}}">
@@ -42,11 +42,11 @@
         </div>
       </div>
     </section>
-    <section class="landing-area bg-primary">
+    <section class="landing-area bg-third">
       <div class="container">
         <div class="row justify-content-lg-center">
           <div class="col-9 col-md-5 col-lg-4">
-            <div class="jumbotron bg-white">
+            <div class="jumbotron">
               <h3 class="landing-area-title text-primary">Las mejores ideas se vuelven reales</h3>
               <p>
                 Si tu idea cuenta con el apoyo de tu comunidad o un grupo de amigos, ¡no esperes más y hazla real!
@@ -59,14 +59,16 @@
         </div>
       </div>
     </section>
-    <div class="container">
-      <div class="row justify-content-md-center">
-        <div class="col col-md-8 col-lg-7">
-          <header class="clearfix mb-4 mt-4">
-            <h5 class="section-title text-primary float-left"><a href="{{pathFor 'new'}}">Ideas recientes</a></h5>
-            <a class="btn text-primary btn-link btn-sm float-right" href="{{pathFor 'new'}}"><em>Ver</em></a>
-          </header>
-          {{> postsList }}
+    <div class="bg-white">
+      <div class="container">
+        <div class="row justify-content-md-center">
+          <div class="col col-md-8 col-lg-7">
+            <header class="clearfix mb-4 mt-4">
+              <h5 class="section-title text-muted float-left">Ideas recientes</h5>
+              <a class="btn text-primary btn-link btn-sm float-right" href="{{pathFor 'new'}}"><em>Ver más</em></a>
+            </header>
+            {{> postsList }}
+          </div>
         </div>
       </div>
     </div>

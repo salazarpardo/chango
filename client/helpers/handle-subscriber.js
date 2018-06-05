@@ -4,7 +4,7 @@ handleSubscriber = function( subscriber ) {
   Meteor.call( "handleSubscriber", subscriber, ( error, response ) => {
     if ( error ) {
       console.log(error);
-      return throwError(error.reason);
+      return throwError(error.reason, 'alert-danger');
     } else {
       console.log(response);
       if ( response.complete || response.unique_email_id ) {
@@ -13,7 +13,7 @@ handleSubscriber = function( subscriber ) {
             message            = subscriber.action === "subscribe" ? subscribeMessage : unsubscribeMessage;
          throwError(message, 'alert-success');
       } else {
-        throwError(response.message);
+        throwError(response.message, 'alert-info');
       }
     }
   });
@@ -26,15 +26,14 @@ validateEmail = function (email) {
   console.log(isEmailValid(email));
 
   if (!email.address)
-    errors.email = "Please provide an email address";
+    errors.email = "Por favor ingresa un correo electrónico";
 
   if (email.address && !isEmailValid(email))
-    errors.email = "Please provide a valid email address";
+    errors.email = "Por favor ingresa un correo electrónico válido";
 
   return errors;
 }
 
 isEmailValid = function(address) {
-  console.log(address.address);
   return /^[A-Z0-9'.1234z_%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(address.address);
 };

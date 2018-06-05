@@ -19,7 +19,8 @@
     padding: rem-calc(24);
   }
 }
-body {
+.home {
+  background-color: $primary;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -40,6 +41,7 @@ h1, h2, h3, h4, h5, h6,
 #main {
   position: relative;
   padding-top: rem-calc(100);
+  padding-bottom: rem-calc(50);
   .home & {
     padding-top: rem-calc(24);
   }
@@ -121,11 +123,19 @@ h1, h2, h3, h4, h5, h6,
 .form-group {
   text-align: left;
 }
+.valid-feedback {
+    top: rem-calc(-28);
+    position: relative;
+    right: rem-calc(8);
+}
 .invalid-feedback + .text-muted {
     display: none;
 }
 .was-validated .form-control:invalid, .form-control.is-invalid, .was-validated .custom-select:invalid, .custom-select.is-invalid {
   box-shadow: 0 0 0 1px darken($primary, 10) inset;
+}
+.was-validated .form-control:valid, .form-control.is-valid, .was-validated .custom-select:valid, .custom-select.is-valid {
+  box-shadow: 0 0 0 1px darken($success, 10) inset;
 }
 .form-title {
   line-height: 1;

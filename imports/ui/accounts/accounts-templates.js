@@ -12,5 +12,6 @@ Template['override-atTextInput'].replaces('atTextInput');
 Template['override-atTitle'].replaces('atTitle');
 Template['override-atSocial'].replaces('atSocial');
 Template['override-atError'].replaces('atError');
+Template['override-atResult'].replaces('atResult');
 Template['override-atForm'].replaces('atForm');
 Template['override-atSep'].replaces('atSep');
