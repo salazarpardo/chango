@@ -45,12 +45,17 @@ Template.map.onCreated(function() {
     self.currentPlace = null;
 
     var markers;
-    var bounds;
+    var bounds, center;
 
     GoogleMaps.ready('exampleMap', function(map) {
 
         self.icons = {
-          'Chango': new google.maps.MarkerImage('/markers/marker-chango.svg', null, null, null, new google.maps.Size(50, 50)),
+          0: new google.maps.MarkerImage('/markers/marker-chango.svg', null, null, null, new google.maps.Size(50, 50)),
+          1: new google.maps.MarkerImage('/markers/marker-chango-b.svg', null, null, null, new google.maps.Size(50, 50)),
+          2: new google.maps.MarkerImage('/markers/marker-chango-o.svg', null, null, null, new google.maps.Size(50, 50)),
+          3: new google.maps.MarkerImage('/markers/marker-chango-g.svg', null, null, null, new google.maps.Size(50, 50)),
+          4: new google.maps.MarkerImage('/markers/marker-chango-p.svg', null, null, null, new google.maps.Size(50, 50)),
+          5: new google.maps.MarkerImage('/markers/marker-chango-db.svg', null, null, null, new google.maps.Size(50, 50)),
           'Usr': new google.maps.MarkerImage('/markers/marker-usr.svg', null, null, null, new google.maps.Size(50, 50))
         };
 
@@ -63,7 +68,9 @@ Template.map.onCreated(function() {
         });
 
         markers = [];
+
         bounds = new google.maps.LatLngBounds();
+        center = new google.maps.LatLng();
 
         Posts.find().observe({
 
@@ -83,7 +90,7 @@ Template.map.onCreated(function() {
                     animation: google.maps.Animation.DROP,
                     position: location,
                     map: map.instance,
-                    icon: self.icons['Chango'],
+                    icon: self.icons[place.icon],
                     // optimized: false,
                     // We store the document _id on the marker in order
                     // to update the document within the 'dragend' event below.
@@ -110,8 +117,6 @@ Template.map.onCreated(function() {
 
                 self.infowindow.setContent(contentString);
 
-
-
                 google.maps.event.addListener(marker, 'click', markerClick, {passive:true} );
 
                 google.maps.event.addListener(marker, "mouseover", function() {
@@ -124,8 +129,11 @@ Template.map.onCreated(function() {
 
                 bounds.extend(location);
 
+                center = location;
+
                 // Store this marker instance within the markers object.
                 markers[document._id] = marker;
+                markers.length ++;
 
             },
             changed: function(newDocument, oldDocument) {
@@ -155,8 +163,12 @@ Template.map.onCreated(function() {
                 delete markers[oldDocument._id];
             }
         });
-
-        map.instance.fitBounds(bounds);
+        if (markers.length == 1){
+          map.instance.setCenter(center);
+        }
+        else if (markers.length >= 2){
+          map.instance.fitBounds(bounds);
+        }
     });
 });
 

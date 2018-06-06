@@ -140,7 +140,7 @@ Template.postEdit.events({
     Posts.update(currentPostId, {$set: postProperties}, function(error) {
       if (error) {
         // display the error to the user
-        throwError(error.reason);
+        throwError(error.reason, 'alert-danger');
       } else {
         FlowRouter.go('post', {slug: FlowRouter.getParam('slug')});
       }

@@ -69,8 +69,13 @@ Template.post.onCreated(function() {
   GoogleMaps.ready('exampleMap', function(map) {
 
       var icons = {
-          'Chango': new google.maps.MarkerImage('/markers/marker-chango.svg', null, null, null, new google.maps.Size(50, 50)),
-          'Usr': new google.maps.MarkerImage('/markers/marker-usr.svg', null, null, null, new google.maps.Size(50, 50))
+        0: new google.maps.MarkerImage('/markers/marker-chango.svg', null, null, null, new google.maps.Size(50, 50)),
+        1: new google.maps.MarkerImage('/markers/marker-chango-b.svg', null, null, null, new google.maps.Size(50, 50)),
+        2: new google.maps.MarkerImage('/markers/marker-chango-o.svg', null, null, null, new google.maps.Size(50, 50)),
+        3: new google.maps.MarkerImage('/markers/marker-chango-g.svg', null, null, null, new google.maps.Size(50, 50)),
+        4: new google.maps.MarkerImage('/markers/marker-chango-p.svg', null, null, null, new google.maps.Size(50, 50)),
+        5: new google.maps.MarkerImage('/markers/marker-chango-db.svg', null, null, null, new google.maps.Size(50, 50)),
+        'Usr': new google.maps.MarkerImage('/markers/marker-usr.svg', null, null, null, new google.maps.Size(50, 50))
       };
 
       var infowindow = new google.maps.InfoWindow({
@@ -97,7 +102,7 @@ Template.post.onCreated(function() {
                   animation: google.maps.Animation.DROP,
                   position: new google.maps.LatLng(document.location[0], document.location[1]),
                   map: map.instance,
-                  icon: icons['Chango'],
+                  icon: icons[place.icon],
                   optimized: false,
                   // We store the document _id on the marker in order
                   // to update the document within the 'dragend' event below.

@@ -54,4 +54,14 @@
   clear: both;
   margin-bottom: rem-calc(5);
   pointer-events: auto;
+  &[class^="alert"] {
+    .close {
+      color: inherit;
+    }
+  }
+  &.at-result {
+    animation: none;
+    width: 100%;
+    float: none;
+  }
 }

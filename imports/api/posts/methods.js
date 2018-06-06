@@ -33,7 +33,8 @@ Meteor.methods({
       location: [String],
       address: String,
       description: String,
-      category: String
+      category: String,
+      icon: Number
     });
 
     var postWithSameURL = Posts.findOne({slug: postAttributes.slug});

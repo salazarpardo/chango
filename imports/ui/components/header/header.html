@@ -36,16 +36,14 @@
                       {{else if currentUser.username}}
                         {{currentUser.username}}
                       {{else}}
-                          {{currentUser.emails[0].address}}
+                          {{currentUser.emails.[0].address}}
                       {{/if}}
                     </small>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <button class="dropdown-item btn btn-light btn-sm btn-logout">
-                      <em>
-                        <i class="fas fa-sign-out-alt"></i> Salir
-                      </em>
-                    </button>
+                    <a class="dropdown-item" href="{{pathFor 'profile'}}">Tu perfil</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{pathFor 'logout'}}">Salir</a>
                     <!-- <a class="dropdown-item" href="#">Another action</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Something else here</a> -->
@@ -55,7 +53,7 @@
 
                 </li>
               {{else}}
-                <li class="nav-item {{activeRouteClass 'signin'}}"><a class="nav-link" href="{{pathFor 'signin'}}">Ingresa</a></li>
+                <li class="nav-item {{activeRouteClass 'signin'}}"><a class="nav-link mr-2" href="{{pathFor 'signin'}}">Ingresa</a></li>
                 <li class="nav-item {{activeRouteClass 'join'}}"><a class="btn btn-outline-light" href="{{pathFor 'join'}}">Crea tu cuenta</a></li>
               {{/if}}
           </ul>
