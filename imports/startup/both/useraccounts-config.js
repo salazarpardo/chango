@@ -47,11 +47,11 @@ AccountsTemplates.configure({
           verifyEmail: "Verifica tu correo electrónico",
         },
         info: {
-            emailSent: "info.emailSent",
-            emailVerified: "info.emailVerified",
-            pwdChanged: "info.passwordChanged",
-            pwdReset: "info.passwordReset",
-            pwdSet: "info.passwordReset",
+            emailSent: "El correo ha sido enviado a tu cuenta",
+            emailVerified: "Tu correo electrónico ha sido verificado",
+            pwdChanged: "Tu contraseña ha cambiado",
+            pwdReset: "Has reestablecido tu contraseña",
+            pwdSet: "Has reestablecido tu contraseña",
             signUpVerifyEmail: "¡Tu cuenta ha sido creada! Por favor revisa tu correo y sigue las instrucciones.",
             verificationEmailSent: "Te hemos enviado un nuevo correo electrónico. Si el correo no aparece en tu bandeja de entrada, asegúrate de revisar tu carpeta de spam.",
         },
@@ -121,13 +121,27 @@ AccountsTemplates.configureRoute('signUp', {
    }
 });
 
-AccountsTemplates.configureRoute('forgotPwd');
+AccountsTemplates.configureRoute('forgotPwd', {
+  name: 'forgotPwd',
+  path: '/olvide',
+});
 
-AccountsTemplates.configureRoute('verifyEmail');
+AccountsTemplates.configureRoute('verifyEmail', {
+  name: 'verifyEmail',
+  path: '/verificar',
+});
 
 AccountsTemplates.configureRoute('resetPwd', {
   name: 'resetPwd',
-  path: '/reset-password',
+  path: '/reestablecer',
+  redirect: function(){
+       var user = Meteor.user();
+       var next = FlowRouter.getQueryParam("next");
+
+       if (user){
+         FlowRouter.go('/');
+       }
+   }
 });
 
 
@@ -202,9 +216,10 @@ AccountsTemplates.addFields([
       _id: 'password',
       type: 'password',
       placeholder: {
-          default: "••••",
+          default: "••••••",
           signIn: "Ingresa tu contraseña",
-          signUp: "Mínimo seis caracteres"
+          signUp: "Mínimo seis caracteres",
+          resetPwd: "Mínimo seis caracteres"
       },
       displayName: "Contraseña",
       required: true,

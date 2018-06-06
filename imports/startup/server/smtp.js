@@ -1,3 +1,6 @@
+import { SSR } from 'meteor/meteorhacks:ssr';
+SSR.compileTemplate('htmlEmail', Assets.getText('email.html'));
+
 Meteor.startup(function () {
 
   var username = 'postmaster@mail.heychango.com';
@@ -22,7 +25,25 @@ Accounts.emailTemplates.verifyEmail.subject = function (user) {
 };
 
 Accounts.emailTemplates.verifyEmail.html = function (user, url) {
-   return "Hola " + user.username + ",\n\n" +
-     " Por favor verifica tu correo electrónico haciendo click en el link a continuación:\n\n" +
-     url;
+  var emailData = {
+    user: user,
+    url: url,
+    message: 'Por favor verifica tu correo electrónico haciendo click en el link a continuación:',
+    action: 'Verificar mi correo electrónico',
+  };
+  return SSR.render('htmlEmail', emailData);
+};
+
+Accounts.emailTemplates.resetPassword.subject = function (user) {
+    return "Reestablece tu contraseña en Chango";
+};
+
+Accounts.emailTemplates.resetPassword.html = function (user, url) {
+  var emailData = {
+    user: user,
+    url: url,
+    message: 'Por favor reestablece tu contraseña haciendo click en el link a continuación:',
+    action: 'Reestablecer contraseña',
+  };
+  return SSR.render('htmlEmail', emailData);
 };

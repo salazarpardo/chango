@@ -10,16 +10,25 @@ import './submit.html';
 
 
 Template.submit.onCreated(function () {
+  Session.set('category', 0)
+  Session.set('marker', false)
   Session.set('postSubmitErrors', {});
   self = this;
   GoogleMaps.ready('modalMap', function(map) {
 
     self.icons = {
-        'Chango': new google.maps.MarkerImage('/markers/marker-chango.svg', null, null, null, new google.maps.Size(40, 40), new google.maps.Point(0, 0), new google.maps.Point(0, 0)),
-        'Usr': new google.maps.MarkerImage('/markers/marker-usr.svg', null, null, null, new google.maps.Size(40, 40), new google.maps.Point(0, 0), new google.maps.Point(0, 0))
+        0: new google.maps.MarkerImage('/markers/marker-chango.svg', null, null, null, new google.maps.Size(50, 50)),
+        1: new google.maps.MarkerImage('/markers/marker-chango-b.svg', null, null, null, new google.maps.Size(50, 50)),
+        2: new google.maps.MarkerImage('/markers/marker-chango-o.svg', null, null, null, new google.maps.Size(50, 50)),
+        3: new google.maps.MarkerImage('/markers/marker-chango-g.svg', null, null, null, new google.maps.Size(50, 50)),
+        4: new google.maps.MarkerImage('/markers/marker-chango-p.svg', null, null, null, new google.maps.Size(50, 50)),
+        5: new google.maps.MarkerImage('/markers/marker-chango-db.svg', null, null, null, new google.maps.Size(50, 50)),
+        'Usr': new google.maps.MarkerImage('/markers/marker-usr.svg', null, null, null, new google.maps.Size(50, 50))
     }
 
-    var marker, newLocation;
+    self.marker = "";
+
+    var newLocation;
 
     var geocoder = new google.maps.Geocoder();
 
@@ -42,20 +51,23 @@ Template.submit.onCreated(function () {
             }
         });
     }
+
     google.maps.event.addListener(map.instance, 'click', function(event) {
-        if (!marker) {
-            marker = new google.maps.Marker({
+
+        if (!self.marker) {
+            self.marker = new google.maps.Marker({
                 draggable: true,
                 animation: google.maps.Animation.DROP,
                 position: new google.maps.LatLng(event.latLng.lat(), event.latLng.lng()),
                 map: map.instance,
-                icon: self.icons['Chango']
+                icon: self.icons[Session.get('category')]
             });
         } else {
-            marker.setPosition(event.latLng);
+            self.marker.setPosition(event.latLng);
+            self.marker.setIcon(self.icons[Session.get('category')]);
         }
 
-        google.maps.event.addListener(marker, 'dragend', function(event) {
+        google.maps.event.addListener(self.marker, 'dragend', function(event) {
             newLocation = event.latLng.lat() + "," + event.latLng.lng();
             console.log(newLocation);
             $("#exampleInputLocation").val(newLocation);
@@ -142,6 +154,7 @@ Template.submit.events({
       category: $(e.target).find('[name=category]').val(),
       location: $(e.target).find('[name=location]').val().split(','),
       address: $(e.target).find('[name=address]').val(),
+      icon: Session.get('category'),
     };
 
     var errors = validatePost(post);
@@ -165,7 +178,14 @@ Template.submit.events({
     });
 
   },
-  'click .geoloc': function(e) {
+  'change [name="category"]'() {
+    var marker = Template.instance().marker;
+    Session.set('category', $("#exampleInputCategory").prop('selectedIndex'));
+    if (marker) {
+      marker.setIcon(self.icons[Session.get('category')]);
+    }
+  },
+  'click .geoloc'(e) {
     $('.geoloc').toggleClass('active');
     $('.geoloc .svg-inline--fa').toggleClass('fa-location-arrow fa-spinner fa-spin');
     var map = GoogleMaps.maps.modalMap.instance;
