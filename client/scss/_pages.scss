@@ -81,6 +81,9 @@
     padding: rem-calc(16);
     margin-bottom: 0;
   }
+  .dashboard & {
+    box-shadow: $box-shadow-sm;
+  }
 }
 
 .landing-area {

@@ -5,7 +5,7 @@
       <div class="col-sm-5 col-md-4 col-lg-3">
           <div class="jumbotron p-4 bg-white text-left mb-1">
             {{#with currentUser}}
-            <div class="text-primary float-right ml-1 mb-1"><i class="far fa-user-circle"></i></div>
+            <div class="text-primary float-right ml-1 mb-1"></div>
             <h6 class="text-primary">
               ¡Hola
               {{#if profile.name}}
@@ -27,10 +27,14 @@
             {{> notificationsWidget}}
           </div>
 
-          <div class="list-group mb-4">
-            <a href="{{pathFor 'profile'}}" class="list-group-item"><small>Ir a tu cuenta</small></a>
-            <a href="{{pathFor 'logout'}}" class="list-group-item"><small>Salir</small></a>
+          <div class="jumbotron bg-white p-2 mb-4">
+            <div class="user-account list-group">
+              <div class="list-group-item p-1 text-secondary"><i class="far fa-user-circle"></i> <small>Tu cuenta</small></div>
+              <a href="{{pathFor 'profile'}}" class="list-group-item  list-group-item-action p-1 text-secondary"><small>Ir a tu cuenta</small></a>
+              <a href="{{pathFor 'logout'}}" class="list-group-item list-group-item-action  p-1 text-secondary"><small>Salir</small></a>
+            </div>
           </div>
+
         </div>
         <div class="col-sm-7 col-md-8 col-lg-6">
           <h5 class="text-muted">Recientes</h5>

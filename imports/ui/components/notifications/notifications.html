@@ -31,7 +31,7 @@
           {{#if notificationCount}}
 
             <small class="text-primary">Notificaciones</small>
-            <span class="notifications-counter badge badge-pill float-right">{{notificationCount}}</span>
+            <span class="notifications-counter badge badge-pill float-right bg-primary">{{notificationCount}}</span>
 
           {{else}}
             <small class="text-muted">No hay notificaciones</small>
@@ -48,6 +48,6 @@
 
 <template name="notificationsWidgetItem">
   <a class="list-group-item list-group-item-action p-1" href="{{notificationPostPath}}">
-    <small><strong>{{commenterName}}</strong> comentó tu idea.</small>
+    <small class="text-secondary"><strong>{{commenterName}}</strong> comentó tu idea.</small>
   </a>
 </template>

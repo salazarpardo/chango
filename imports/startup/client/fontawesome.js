@@ -31,3 +31,8 @@ fontawesome.library.add(faTimes)
 fontawesome.library.add(faCheck)
 fontawesome.library.add(faSpinner)
 fontawesome.library.add(faLocationArrow)
+
+
+fontawesome.config = {
+  autoReplaceSvg: 'nest'
+}

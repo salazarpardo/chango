@@ -9,7 +9,7 @@
     border-radius: rem-calc(3);
     padding: rem-calc(16);
     margin-bottom: 1px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: $box-shadow-sm;
   }
 }
 .single-post {
@@ -107,11 +107,7 @@ h1, h2, h3, h4, h5, h6,
     }
   }
 }
-.list-group-item {
-  &:not(:first-child) {
-    box-shadow: 0 1px 0 #fdd9f3 inset;
-  }
-}
+
 .form-control {
   border: none;
   background: lighten($washed-pink, 2.2);
