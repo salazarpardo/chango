@@ -16,6 +16,9 @@
                 {{emails.[0].address}}!
               {{/if}}
             </h6>
+            <p class="text-secondary">
+              <small>Gracias por hacer parte de nuestra comunidad :)</small>
+            </p>
             <a class="btn btn-primary btn-sm btn-block" href="{{pathFor 'submit'}}">
               Comparte tu idea
             </a>
@@ -27,23 +30,10 @@
             {{> notificationsWidget}}
           </div>
 
-          <div class="jumbotron bg-white p-2 mb-4">
-            <div class="user-account list-group">
-              <div class="list-group-item p-1 text-secondary"><i class="far fa-user-circle"></i> <small>Tu cuenta</small></div>
-              <a href="{{pathFor 'profile'}}" class="list-group-item  list-group-item-action p-1 text-secondary"><small>Ir a tu cuenta</small></a>
-              <a href="{{pathFor 'logout'}}" class="list-group-item list-group-item-action  p-1 text-secondary"><small>Salir</small></a>
-            </div>
-          </div>
-
-        </div>
-        <div class="col-sm-7 col-md-8 col-lg-6">
-          <h5 class="text-muted">Recientes</h5>
-          {{>postsList}}
-
           {{#if commentsCount}}
-            <div class="jumbotron bg-white p-2 mt-3 mb-1">
+            <div class="jumbotron bg-white p-2 mb-1">
               <div class="user-comments list-group">
-                <div class="list-group-item p-1"><small class="text-muted"><i class="far fa-comment-alt"></i> Tus comentarios</small></div>
+                <div class="list-group-item p-1 text-muted"><i class="far fa-comment-alt"></i> <small>Tus comentarios recientes</small></div>
                   {{#each comments}}
                     {{> commentDashboardItem}}
                   {{/each}}
@@ -51,6 +41,25 @@
             </div>
           {{/if}}
 
+          <div class="jumbotron bg-white p-2 mb-4">
+            <div class="user-account list-group">
+              <div class="list-group-item p-1 text-muted"><i class="far fa-user-circle"></i> <small>Tu cuenta</small></div>
+              <a href="{{pathFor 'profile'}}" class="list-group-item  list-group-item-action p-1 text-secondary"><small>Ir a tu cuenta</small></a>
+              <a href="{{pathFor 'logout'}}" class="list-group-item list-group-item-action  p-1 text-secondary"><small>Salir</small></a>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-7 col-md-8 col-lg-6">
+          <h6 class="section-title text-secondary">Ideas recientes</h6>
+          {{>postsList postsReady=Template.subscriptionsReady posts=posts hasMorePosts=hasMorePosts}}
+          <br>
+          <h6 class="section-title text-secondary">Las más votadas</h6>
+          {{>postsList postsReady=Template.subscriptionsReady posts=bestPosts hasMorePosts=hasMorePosts}}
+          <br>
+          <h6 class="section-title text-secondary">Las más comentadas</h6>
+          {{>postsList postsReady=Template.subscriptionsReady posts=commentedPosts hasMorePosts=hasMorePosts}}
+          <br>
         </div>
       </div>
     </div>

@@ -1,13 +1,9 @@
-import { Posts } from '/imports/api/posts/posts.js';
-
-import './map.html';
+import './posts_map.html';
 
 import {styles} from '/imports/startup/client/map_styles.js';
 
-import '../../components/posts/posts_list.js';
 
-
-Template.map.helpers({
+Template.postsMap.helpers({
   'exampleMapOptions': function() {
     // Make sure the maps API has loaded
     if (GoogleMaps.loaded()) {
@@ -28,16 +24,20 @@ Template.map.helpers({
           styles: styles
       };
     }
-  }
+  },
 });
 
-Template.map.onRendered(function() {
+Template.postsMap.onRendered(function() {
   GoogleMaps.load({key: 'AIzaSyDKcZBwYBkYJx6-GJI1OZjPPOmA40R1fV4'});
 });
 
-Template.map.onCreated(function() {
+Template.postsMap.onCreated(function() {
+
+
 
     var self = this;
+
+    const cursor = self.data.posts;
 
     self.that;
     self.currentPlace = null;
@@ -70,7 +70,7 @@ Template.map.onCreated(function() {
         bounds = new google.maps.LatLngBounds();
         center = new google.maps.LatLng();
 
-        Posts.find().observe({
+        cursor.observe({
 
             added: function(document) {
                 var place = document;
@@ -170,7 +170,7 @@ Template.map.onCreated(function() {
     });
 });
 
-Template.map.events({
+Template.postsMap.events({
   'click .geoloc': function(e) {
     $('.geoloc').toggleClass('active');
     $('.geoloc .svg-inline--fa').toggleClass('fa-location-arrow fa-spinner fa-spin');

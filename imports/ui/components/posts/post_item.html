@@ -11,13 +11,13 @@
           {{pluralize commentsCount "comentario"}} -->
           <div class="btn-group" role="group" aria-label="Basic example">
             <a class="comment btn btn-sm btn-link {{commentClass}}" href="{{pathFor '/idea/:slug' slug=slug}}"  title="Ingresa para votar">{{commentsCount}} <i class="far fa-comment-alt"></i></a>
-            <a class="upvote btn btn-sm btn-link {{upvotedClass}}"  href="#" title="Ingresa para comentar">{{votes}} <i class="far fa-thumbs-up"></i> <i class="fas fa-thumbs-up d-none"></i> </a>
+            <a class="upvote btn btn-sm btn-link {{upvotedClass}}"  href="#" title="Ingresa para comentar">{{votes}} <i class="{{upvoteIconClass}}"></i> </a>
           </div>
         </small>
       </header>
       {{#if address}}
         <p class="mb-1">
-          <small class="text-muted">{{address}}</small>
+          <small class="text-secondary">{{address}}</small>
         </p>
       {{/if}}
       <small class="clearfix mb-0">

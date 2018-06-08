@@ -10,7 +10,7 @@ import '../../ui/components/hero/hero.js';
 import '../../ui/components/newsletter/newsletter.js';
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/posts/posts.js';
-import '../../ui/pages/map/map.js';
+// import '../../ui/pages/map/map.js';
 import '../../ui/pages/auth/auth.js';
 import '../../ui/pages/about/about.js';
 import '../../ui/pages/contact/contact.js';
@@ -98,8 +98,9 @@ publicRoutes.route('/mapa', {
   name: 'map',
   triggersEnter: [],
   action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'map', errors: 'errors', footer: 'footer' });
+    BlazeLayout.render('App_body', { top: 'header', main: 'posts', errors: 'errors', footer: 'footer' });
   },
+  title: "Mapa",
   triggersExit: []
 });
 
