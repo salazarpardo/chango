@@ -1,7 +1,7 @@
 <template name="postEdit">
   <div class="edit page">
     <div class="row justify-content-md-center">
-      <div class="col col-md-8 col-lg-7">
+      <div class="col col-md-9 col-lg-7">
         {{#with post}}
           <div class="jumbotron bg-white text-center clearfix">
 
@@ -48,13 +48,35 @@
                    <input type="text" name="address" value="{{address}}" class="form-control" id="exampleInputAddress" placeholder="Location">
                  </div>
              </div>
-             <input type="submit" value="Guardar cambios" class="btn btn-success submit btn-block"/>
-             <hr/>
-             <a class="btn btn-sm btn-danger delete float-right" href="#">Borrar</a>
+
+               <input type="submit" value="Guardar cambios" class="btn btn-success submit btn-block mb-2"/>
+               <button type="button" class="btn btn-danger btn-sm btn-block confirm float-left">Eliminar idea</button>
+
             </form>
 
           </div>
         {{/with}}
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="icon-box"><img class="auth-icon mb-3 mr-3" src="/img/chango-pink.svg" alt="Ingresa a Chango" /></div>
+          <h5 class="modal-title text-primary" id="confirmModalLabel">¿Estas seguro de eliminar {{title}}?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ¡No podrás deshacer esta acción!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary delete">Si, eliminar</button>
+        </div>
       </div>
     </div>
   </div>

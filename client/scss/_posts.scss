@@ -64,23 +64,23 @@
   }
 }
 
-.comments {
+.comments, .user-comments {
   list-style-type: none;
   margin: 0;
-  li {
-    h4 {
-      font-size: rem-calc(16);
-      margin: 0;
-      a {
-        font-size: rem-calc(12);
-      }
-    }
-    .date {
+  h4 {
+    font-size: rem-calc(14);
+    margin: 0;
+    color: $text-muted;
+    a {
       font-size: rem-calc(12);
-      font-weight: normal;
     }
-    p:last-child {
-     margin-bottom: 0;
-    }
+  }
+  .date {
+    font-size: rem-calc(11);
+    font-weight: normal;
+    color: $text-muted;
+  }
+  p:last-child {
+   margin-bottom: 0;
   }
 }

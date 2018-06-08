@@ -21,6 +21,7 @@ Template.post.helpers({
   'comments'() {
     var postSlug = FlowRouter.getParam('slug');
     if ( postSlug !== undefined ) {
+      console.log(Comments.find({postSlug: postSlug }));
       return Comments.find({postSlug: postSlug });
     }
   },

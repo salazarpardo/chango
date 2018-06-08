@@ -146,14 +146,21 @@ Template.postEdit.events({
       }
     });
   },
-
+  'click .confirm': function(e) {
+    e.preventDefault();
+    Session.set('currentPostId', this._id);
+    $('#confirmModal').modal('show');
+    // FlowRouter.go('home');
+  },
   'click .delete': function(e) {
     e.preventDefault();
+    var currentPostId = Session.get('currentPostId');;
+    Posts.remove(currentPostId);
+    $('#confirmModal')
+        .on('hidden.bs.modal', function() {
+          FlowRouter.go('dashboard');
+        })
+        .modal('hide');
 
-    if (confirm("Delete this post?")) {
-      var currentPostId = this._id;
-      Posts.remove(currentPostId);
-      FlowRouter.go('home');
-    }
   }
 });

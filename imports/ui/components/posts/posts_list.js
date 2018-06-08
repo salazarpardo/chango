@@ -13,8 +13,6 @@ Template.postsList.onCreated(function () {
 
   var instance = this;
 
-  instance.subscribe('notifications');
-
   // initialize the reactive variables
   instance.loaded = new ReactiveVar(0);
   instance.limit = new ReactiveVar(5);
@@ -117,22 +115,6 @@ Template.postsList.helpers({
 });
 
 Template.postsList.events({
-  'submit .info-post-add'(event) {
-    event.preventDefault();
-
-    const target = event.target;
-    const title = target.title;
-    const url = target.url;
-
-    Meteor.call('posts.insert', title.value, url.value, (error) => {
-      if (error) {
-        alert(error.error);
-      } else {
-        title.value = '';
-        url.value = '';
-      }
-    });
-  },
   'click .load-more': function (event, instance) {
     event.preventDefault();
 

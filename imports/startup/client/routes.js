@@ -18,6 +18,7 @@ import '../../ui/pages/submit/submit.js';
 import '../../ui/pages/profile/profile.js';
 import '../../ui/pages/edit/edit.js';
 import '../../ui/pages/post/post.js';
+import '../../ui/pages/dashboard/dashboard.js';
 import '../../ui/pages/not_found/not_found.js';
 import '../../ui/pages/access_denied/access_denied.js';
 
@@ -105,8 +106,14 @@ publicRoutes.route('/mapa', {
 publicRoutes.route('/salir', {
   name: 'logout',
   action() {
-    Accounts.logout();
-    FlowRouter.redirect('/');
+    Accounts.logout(function(){
+         var user = Meteor.user();
+
+         if (!user){
+           FlowRouter.go('signin')
+         }
+     }
+    );
   }
 });
 
@@ -138,6 +145,15 @@ privateRoutes.route('/perfil', {
   triggersEnter: [],
   action() {
     BlazeLayout.render('App_body', { top: 'header', main: 'profile', errors: 'errors', footer: 'footer' });
+  },
+  triggersExit: []
+})
+
+privateRoutes.route('/inicio', {
+  name: 'dashboard',
+  triggersEnter: [],
+  action() {
+    BlazeLayout.render('App_body', { top: 'header', main: 'dashboard', errors: 'errors', footer: 'footer' });
   },
   triggersExit: []
 })

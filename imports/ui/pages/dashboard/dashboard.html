@@ -1,0 +1,53 @@
+<template name="dashboard">
+  <div class="dashboard page">
+    <div class="row justify-content-md-center">
+
+      <div class="col-sm-5 col-md-4 col-lg-3">
+          <div class="jumbotron p-4 bg-white text-left mb-1">
+            {{#with currentUser}}
+            <div class="text-primary float-right ml-1 mb-1"><i class="far fa-user-circle"></i></div>
+            <h6 class="text-primary">
+              ¡Hola
+              {{#if profile.name}}
+                {{profile.name}}!
+              {{else if username}}
+                {{username}}!
+              {{else}}
+                {{emails.[0].address}}!
+              {{/if}}
+            </h6>
+            <a class="btn btn-primary btn-sm btn-block" href="{{pathFor 'submit'}}">
+              Comparte tu idea
+            </a>
+
+            {{/with}}
+          </div>
+
+          <div class="jumbotron bg-white p-2 mb-1">
+            {{> notificationsWidget}}
+          </div>
+
+          <div class="list-group mb-4">
+            <a href="{{pathFor 'profile'}}" class="list-group-item"><small>Ir a tu cuenta</small></a>
+            <a href="{{pathFor 'logout'}}" class="list-group-item"><small>Salir</small></a>
+          </div>
+        </div>
+        <div class="col-sm-7 col-md-8 col-lg-6">
+          <h5 class="text-muted">Recientes</h5>
+          {{>postsList}}
+
+          {{#if commentsCount}}
+            <div class="jumbotron bg-white p-2 mt-3 mb-1">
+              <div class="user-comments list-group">
+                <div class="list-group-item p-1"><small class="text-muted"><i class="far fa-comment-alt"></i> Tus comentarios</small></div>
+                  {{#each comments}}
+                    {{> commentDashboardItem}}
+                  {{/each}}
+              </div>
+            </div>
+          {{/if}}
+
+        </div>
+      </div>
+    </div>
+</template>

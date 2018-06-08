@@ -1,9 +1,18 @@
 <template name="commentItem">
   <li>
-    <h4 class="clearfix">
+    <h4 class="clearfix mb-2">
       <span class="author float-left"><i class="far fa-user-circle"></i> {{author}}</span>
       <span class="date float-right"><i class="far fa-calendar-alt"></i> {{submitted.toLocaleDateString}}</span>
     </h4>
     <p>{{body}}</p>
   </li>
+</template>
+
+<template name="commentDashboardItem">
+  <a class="list-group-item list-group-item-action p-1 pt-2" href="{{pathFor '/idea/:slug' slug=postSlug}}">
+    <div class="clearfix">
+      <small class="date float-right"><i class="far fa-calendar-alt"></i> {{submitted.toLocaleDateString}}</small>
+      {{body}}
+    </div>
+  </a>
 </template>

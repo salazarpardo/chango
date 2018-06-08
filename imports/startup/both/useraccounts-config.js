@@ -104,6 +104,13 @@ AccountsTemplates.configure({
 AccountsTemplates.configureRoute('signIn', {
   name: 'signin',
   path: '/ingreso',
+  redirect: function(){
+       var user = Meteor.user();
+
+       if (user){
+         FlowRouter.go('dashboard');
+       }
+   }
 });
 
 AccountsTemplates.configureRoute('signUp', {
@@ -129,6 +136,13 @@ AccountsTemplates.configureRoute('forgotPwd', {
 AccountsTemplates.configureRoute('verifyEmail', {
   name: 'verifyEmail',
   path: '/verificar',
+  redirect: function(){
+       var user = Meteor.user();
+
+       if (user){
+         FlowRouter.go('dashboard');
+       }
+   }
 });
 
 AccountsTemplates.configureRoute('resetPwd', {
@@ -136,10 +150,9 @@ AccountsTemplates.configureRoute('resetPwd', {
   path: '/reestablecer',
   redirect: function(){
        var user = Meteor.user();
-       var next = FlowRouter.getQueryParam("next");
 
        if (user){
-         FlowRouter.go('/');
+         FlowRouter.go('dashboard');
        }
    }
 });

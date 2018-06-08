@@ -4,8 +4,6 @@ import './map.html';
 
 import {styles} from '/imports/startup/client/map_styles.js';
 
-// import '../../components/hello/hello.js';
-// import '../../components/info/info.js';
 import '../../components/posts/posts_list.js';
 
 
@@ -24,7 +22,7 @@ Template.map.helpers({
       }
 
       return {
-          center: initialLocation, //new google.maps.LatLng(4.64205602, -74.11377526),
+          center: initialLocation,
           zoom: 13,
           mapTypeControl: false,
           styles: styles

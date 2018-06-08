@@ -33,8 +33,10 @@ h1, h2, h3, h4, h5, h6,
 #__blaze-root {
   background-color: $washed-pink;
   box-shadow: rem-calc(0 80) $primary inset;
-  > section:not(.home) {
-    box-shadow: rem-calc(0 352) $primary inset;
+  > section {
+    &:not(.home):not(.dashboard) {
+      box-shadow: rem-calc(0 352) $primary inset;
+    }
   }
 }
 
@@ -47,8 +49,8 @@ h1, h2, h3, h4, h5, h6,
   }
 }
 
-.page {
-
+.bg-washed {
+  background-color: $washed-pink;
 }
 
 .navbar {
@@ -105,6 +107,11 @@ h1, h2, h3, h4, h5, h6,
     }
   }
 }
+.list-group-item {
+  &:not(:first-child) {
+    box-shadow: 0 1px 0 #fdd9f3 inset;
+  }
+}
 .form-control {
   border: none;
   background: lighten($washed-pink, 2.2);
@@ -143,7 +150,7 @@ h1, h2, h3, h4, h5, h6,
   @include media-breakpoint-up(md) {
     font-size: rem-calc(32);
   }
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     font-size: rem-calc(40);
   }
 }

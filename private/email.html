@@ -2,8 +2,28 @@
   <head>
     <meta name="viewport" content="width=device-width" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Simple Transactional Email</title>
+    <title>Chango Transactional Email</title>
     <style>
+
+    /* -------------------------------------
+        FONTS
+    ------------------------------------- */
+
+    @media screen {
+      @font-face {
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 400;
+        src: local('Raleway'), local('Raleway-Regular'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptug8zYS_SKggPNyC0ISYttDfA.woff) format('woff');
+      }
+      @font-face {
+        font-family: 'Raleway';
+        font-style: normal;
+        font-weight: 900;
+        src: local('Raleway Black'), local('Raleway-Black'), url(https://fonts.gstatic.com/s/raleway/v12/1Ptrg8zYS_SKggPNwK4vWqZPBtqczVs.woff) format('woff');
+      }
+    }
+
       /* -------------------------------------
           GLOBAL RESETS
       ------------------------------------- */
@@ -13,7 +33,7 @@
         max-width: 100%; }
       body {
         background-color: #FFF7FC;
-        font-family: sans-serif;
+        font-family: 'Raleway', sans-serif;
         -webkit-font-smoothing: antialiased;
         font-size: 14px;
         line-height: 1.4;
@@ -27,7 +47,6 @@
         mso-table-rspace: 0pt;
         width: 100%; }
         table td {
-          font-family: sans-serif;
           font-size: 14px;
           vertical-align: top; }
       /* -------------------------------------
@@ -79,16 +98,18 @@
           color: #999999;
           font-size: 12px;
           text-align: center; }
+
       /* -------------------------------------
           TYPOGRAPHY
       ------------------------------------- */
+
       h1,
       h2,
       h3,
       h4 {
         color: #000000;
-        font-family: sans-serif;
-        font-weight: 400;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 900;
         line-height: 1.4;
         margin: 0;
         Margin-bottom: 30px; }
@@ -100,7 +121,6 @@
       p,
       ul,
       ol {
-        font-family: sans-serif;
         font-size: 14px;
         font-weight: normal;
         margin: 0;
@@ -250,7 +270,7 @@
       <tr>
         <td>&nbsp;</td>
         <td class="container">
-          <div class="content">
+          <div class="content" style="margin-top:10px;">
 
             <!-- START CENTERED WHITE CONTAINER -->
             <span class="preheader">{{preheader}}</span>
@@ -297,7 +317,7 @@
               <table border="0" cellpadding="0" cellspacing="0">
                 <tr>
                   <td class="content-block">
-                    <span class="apple-link">Chango, Carrera 14 # 89 - 25, Bogotá, Colombia</span>
+                    <span class="apple-link"><small>Chango, Carrera 14 # 89 - 25, Bogotá, Colombia</small></span>
                   </td>
                 </tr>
               </table>
