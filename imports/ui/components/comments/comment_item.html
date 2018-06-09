@@ -12,7 +12,7 @@
   <a class="list-group-item list-group-item-action p-1 pt-2 pb-2" href="{{pathFor '/idea/:slug' slug=postSlug}}">
     <div class="clearfix">
       <small class="date float-right"><i class="far fa-calendar-alt"></i> {{submitted.toLocaleDateString}}</small>
-      <small class="text-secondary">{{body}}</small>
+      <p class="user-comment text-secondary mb-0"><small>{{body}}</small></p>
     </div>
   </a>
 </template>

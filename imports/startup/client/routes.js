@@ -10,8 +10,6 @@ import '../../ui/components/hero/hero.js';
 import '../../ui/components/newsletter/newsletter.js';
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/posts/posts.js';
-// import '../../ui/pages/map/map.js';
-import '../../ui/pages/auth/auth.js';
 import '../../ui/pages/about/about.js';
 import '../../ui/pages/contact/contact.js';
 import '../../ui/pages/submit/submit.js';

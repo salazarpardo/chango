@@ -8,11 +8,27 @@
 }
 
 .infowindow {
+  position: relative;
   font-family: $font-family-base;
   max-width: rem-calc(230);
   h4 {
     color: $primary;
     font-size: rem-calc(18);
+    &.cat-1 {
+        color: $info;
+    }
+    &.cat-2 {
+        color: $warning;
+    }
+    &.cat-3 {
+        color: $success;
+    }
+    &.cat-4 {
+        color: $purple;
+    }
+    &.cat-5 {
+        color: $dark-blue;
+    }
   }
   .text-muted {
     font-size: rem-calc(12);

@@ -1,11 +1,12 @@
 <template name="postItem">
-  <div class="post">
+  <div class="post cat-{{icon}}">
     <div class="post-content">
       <header class="clearfix">
         <h3 class="post-title float-left">
           <a href="{{pathFor '/idea/:slug' slug=slug}}">{{title}}</a>
+           <br>
+           <small class="text-muted"><em>{{category}}</em></small>
         </h3>
-
         <small class="text-muted float-right">
           <!-- {{pluralize votes "voto"}},
           {{pluralize commentsCount "comentario"}} -->

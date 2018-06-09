@@ -17,7 +17,7 @@ createCommentNotification = function(comment) {
   if (comment.userId !== post.userId) {
     Notifications.insert({
       userId: post.userId,
-      postId: post._id,
+      postSlug: post.slug,
       commentId: comment._id,
       commenterName: comment.author,
       read: false

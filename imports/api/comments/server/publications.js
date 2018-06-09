@@ -8,6 +8,6 @@ Meteor.publish('comments', function(postSlug) {
   return Comments.find({postSlug: postSlug});
 });
 
-Meteor.publish('userComments', function(limit) {
-  return Comments.find({userId: this.userId}, {limit: limit});
+Meteor.publish('userComments', function(sort, limit) {
+  return Comments.find({userId: this.userId}, {sort: sort, limit: limit});
 });

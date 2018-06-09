@@ -6,10 +6,44 @@
 }
 
 .post {
+  position: relative;
   &:after,
   &:before {
     content: "";
     display: table;
+  }
+  &:before {
+    content: "";
+    position: absolute;
+    border: 1px solid $primary;
+    left: 0;
+    top: 0;
+    height: rem-calc(32);
+  }
+  &.cat-1 {
+    &:before {
+      border-color: $info;
+    }
+  }
+  &.cat-2 {
+    &:before {
+      border-color: $warning;
+    }
+  }
+  &.cat-3 {
+    &:before {
+      border-color: $success;
+    }
+  }
+  &.cat-4 {
+    &:before {
+      border-color: $purple;
+    }
+  }
+  &.cat-5 {
+    &:before {
+      border-color: $dark-blue;
+    }
   }
   &.after {
     clear: both;
@@ -37,6 +71,10 @@
       a {
         display: inline-block;
         margin-right: rem-calc(5);
+        color: $secondary;
+        &:hover {
+          color: $primary;
+        }
       }
       span {
         font-weight: normal;

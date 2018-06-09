@@ -102,7 +102,8 @@ Template.post.onCreated(function() {
       var direccion = place.address;
       var categoria = place.category;
       var descripcion = place.description;
-      var contentString = '<div class="infowindow open">' + '<h4>' + titulo + '</h4>' + '<p class="text-muted address mb-2">' + direccion + '</p><p class="description">' + descripcion + '</p>' + '</div>';
+      var icon = place.icon;
+      var contentString = '<div class="infowindow open">' + '<h4 class="mb-1 cat-' + icon + '">' + titulo + '</h4>' + '<p class="text-muted address mb-2">' + direccion + '</p>' + '</div>';
 
       // Create a marker for this document
       var marker = new google.maps.Marker({

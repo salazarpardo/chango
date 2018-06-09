@@ -77,8 +77,9 @@ Template.postsMap.onCreated(function() {
                 var category = place.category;
                 var description = place.description;
                 var slug = place.slug;
+                var icon = place.icon;
                 var location = new google.maps.LatLng(document.location[0], document.location[1]);
-                var contentString = '<div class="infowindow open">' + '<h4>' + title + '</h4>' + '<p class="address text-muted mb-2">' + address + '</p><p class="description">' + description + '</p>' + '<a href="/idea/' + slug + '">Ampliar</a></div>';
+                var contentString = '<div class="infowindow">' + '<h4 class="cat-' + icon + ' mb-1">' + title + '</h4>' + '<p class="category text-muted mb-2"><small><em>' + category + '</em></small></p>' + '<p class="description">' + description + '</p>' + '<p class="address text-muted mb-2">' + address + '</p>' + '<a href="/idea/' + slug + '"><em>Ampliar</em></a>' + '</div>';
 
                 // Create a marker for this document
                 var marker = new google.maps.Marker({
@@ -86,7 +87,7 @@ Template.postsMap.onCreated(function() {
                     animation: google.maps.Animation.DROP,
                     position: location,
                     map: map.instance,
-                    icon: self.icons[place.icon],
+                    icon: self.icons[icon],
                     // optimized: false,
                     // We store the document _id on the marker in order
                     // to update the document within the 'dragend' event below.

@@ -52,7 +52,7 @@ Template.dashboard.onCreated(function () {
     return Posts.find({}, {sort: {commentsCount: -1, votes: -1, submitted: -1, _id: -1}, limit: instance.loaded.get()});
   }
   instance.userComments = function() {
-    return Comments.find({userId: Meteor.userId()}, {limit: instance.loaded.get()});
+    return Comments.find({}, {sort: {submitted: -1}, limit: instance.loaded.get()});
   }
 
 });

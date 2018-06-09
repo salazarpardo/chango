@@ -15,7 +15,7 @@ Template.notifications.helpers({
 
 Template.notificationItem.helpers({
   notificationPostPath: function() {
-    return FlowRouter.path('postPage', {_id: this.postId});
+    return FlowRouter.path('post', {slug: this.postSlug});
   }
 });
 
@@ -31,7 +31,7 @@ Template.notificationsWidget.helpers({
   },
   notificationCount: function(){
     let notificationCount = Notifications.find({userId: Meteor.userId(), read: false}).count();
-    
+
     return notificationCount;
   },
   notificationIconClass: function(){
@@ -45,7 +45,7 @@ Template.notificationsWidget.helpers({
 
 Template.notificationsWidgetItem.helpers({
   notificationPostPath: function() {
-    return FlowRouter.path('postPage', {_id: this.postId});
+    return FlowRouter.path('post', {slug: this.postSlug});
   }
 });
 

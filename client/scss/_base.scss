@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5, h6,
   background-color: $washed-pink;
   box-shadow: rem-calc(0 80) $primary inset;
   > section {
-    &:not(.home):not(.dashboard) {
+    &:not(.home) {
       box-shadow: rem-calc(0 352) $primary inset;
     }
   }
