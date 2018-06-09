@@ -30,7 +30,6 @@
                  <label class="control-label" for="exampleInputCategory">Categoría</label>
                  <select class="form-control custom-select" id="exampleInputCategory" name="category">
                      <option value="">Selecciona una categoría para tu idea</option>
-                     <option selected>{{category}}</option>
                      <option>Espacio público</option>
                      <option>Arte y entretenimiento</option>
                      <option>Actividades ambientales</option>
@@ -48,10 +47,10 @@
                    <input type="text" name="address" value="{{address}}" class="form-control" id="exampleInputAddress" placeholder="Location">
                  </div>
              </div>
-
-               <input type="submit" value="Guardar cambios" class="btn btn-success submit btn-block mb-2"/>
-               <button type="button" class="btn btn-danger btn-sm btn-block confirm float-left">Eliminar idea</button>
-
+             <div class="btn-group d-flex" role="group">
+               <button type="button" class="btn btn-danger btn-block confirm mt-0">Eliminar idea</button>
+               <input type="submit" value="Guardar cambios" class="btn btn-success submit btn-block mt-0"/>
+             </div>
             </form>
 
           </div>

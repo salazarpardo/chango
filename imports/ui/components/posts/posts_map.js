@@ -33,8 +33,6 @@ Template.postsMap.onRendered(function() {
 
 Template.postsMap.onCreated(function() {
 
-
-
     var self = this;
 
     const cursor = self.data.posts;
@@ -42,7 +40,7 @@ Template.postsMap.onCreated(function() {
     self.that;
     self.currentPlace = null;
 
-    var markers;
+    self.markers;
     var bounds, center;
 
     GoogleMaps.ready('exampleMap', function(map) {
@@ -65,14 +63,14 @@ Template.postsMap.onCreated(function() {
             minHeight: 100
         });
 
-        markers = [];
+        self.markers = [];
 
         bounds = new google.maps.LatLngBounds();
         center = new google.maps.LatLng();
 
         cursor.observe({
 
-            added: function(document) {
+            addedAt: function(document) {
                 var place = document;
                 var title = place.title;
                 var address = place.address;
@@ -130,8 +128,8 @@ Template.postsMap.onCreated(function() {
                 center = location;
 
                 // Store this marker instance within the markers object.
-                markers[document._id] = marker;
-                markers.length ++;
+                self.markers[document._id] = marker;
+                self.markers.length ++;
 
             },
             changed: function(newDocument, oldDocument) {
@@ -144,27 +142,27 @@ Template.postsMap.onCreated(function() {
                 var descripcion = place.description;
                 var contentString = '<div class="infowindow open">' + '<h4>' + titulo + '</h4>' + '<p class="address text-muted mb-2">' + direccion + '</p><p class="description">' + descripcion + '</p>' + '<a href="/idea/' + slug + '">Ampliar</a></div>';
                 self.infowindow.setContent(contentString);
-                var marker = markers[newDocument._id];
+                var marker = self.markers[newDocument._id];
 
                 bounds.extend(newLatlng);
-                markers[newDocument._id].setPosition(newLatlng);
+                self.markers[newDocument._id].setPosition(newLatlng);
             },
             removed: function(oldDocument) {
                 // Remove the marker from the map
-                markers[oldDocument._id].setMap(null);
+                self.markers[oldDocument._id].setMap(null);
 
                 // Clear the event listener
                 google.maps.event.clearInstanceListeners(
-                    markers[oldDocument._id]);
+                    self.markers[oldDocument._id]);
 
                 // Remove the reference to this marker instance
-                delete markers[oldDocument._id];
+                delete self.markers[oldDocument._id];
             }
         });
-        if (markers.length == 1){
+        if (self.markers.length == 1){
           map.instance.setCenter(center);
         }
-        else if (markers.length >= 2){
+        else if (self.markers.length >= 2){
           map.instance.fitBounds(bounds);
         }
     });
@@ -198,7 +196,7 @@ Template.postsMap.events({
 
         var contentStringUser =
           '<div class="infowindow feature open">' +
-            '<h4>Usted esta aquí</h4>' +
+            '<h4>Estás aquí</h4>' +
           '</div>';
 
         var markerClick = function() {

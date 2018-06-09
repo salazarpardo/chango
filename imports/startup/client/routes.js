@@ -209,7 +209,7 @@ function jumpToPrevScrollPosition(context) {
    // Here 10 millis delay is a arbitrary value with some testing.
    setTimeout(function () {
       $('html, body').animate({scrollTop: scrollPosition}, 0);
-    }, 100);
+    }, 10);
    }
 }
 FlowRouter.triggers.exit([saveScrollPosition]);

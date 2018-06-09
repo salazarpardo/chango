@@ -2,6 +2,7 @@
 
 import { Mongo } from 'meteor/mongo';
 import { Permissions } from '../../startup/both/permissions.js';
+import { SubsManager } from 'meteor/meteorhacks:subs-manager';
 
 export const Posts = new Mongo.Collection('posts');
 
@@ -20,3 +21,5 @@ validatePost = function (post) {
 
   return errors;
 }
+
+export const subs = new SubsManager();

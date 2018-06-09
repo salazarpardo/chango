@@ -1,5 +1,6 @@
 import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { Posts } from '/imports/api/posts/posts.js';
+import { subs } from '/imports/api/posts/posts.js';
 import { Meteor } from 'meteor/meteor';
 
 import './posts.html';
@@ -35,13 +36,13 @@ Template.posts.onCreated(function () {
     var sortby = instance.sortby.get();
 
     // subscribe to the posts publication
-    var subscription = instance.subscribe('posts', sortby, limit);
+    var subscription = subs.subscribe('posts', sortby, limit);
 
     // if subscription is ready, set limit to newLimit
     if (subscription.ready()) {
       instance.loaded.set(limit);
     } else {
-      console.log("> Subscription is not ready yet. \n\n");
+      // console.log("> Subscription is not ready yet. \n\n");
     }
   });
 
@@ -52,7 +53,6 @@ Template.posts.onCreated(function () {
   }
 
 });
-
 
 Template.posts.helpers({
   map: function() {
