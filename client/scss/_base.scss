@@ -9,7 +9,7 @@
     border-radius: rem-calc(3);
     padding: rem-calc(16);
     margin-bottom: 1px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: $box-shadow-sm;
   }
 }
 .single-post {
@@ -26,15 +26,17 @@
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6
 {
-  -webkit-font-smoothing: antialiased;
+  @extend %smooth;
   letter-spacing: -.5px
 }
 
 #__blaze-root {
   background-color: $washed-pink;
   box-shadow: rem-calc(0 80) $primary inset;
-  > section:not(.home) {
-    box-shadow: rem-calc(0 352) $primary inset;
+  > section {
+    &:not(.home):not(.dashboard) {
+      box-shadow: rem-calc(0 352) $primary inset;
+    }
   }
 }
 
@@ -47,8 +49,8 @@ h1, h2, h3, h4, h5, h6,
   }
 }
 
-.page {
-
+.bg-washed {
+  background-color: $washed-pink;
 }
 
 .navbar {
@@ -73,7 +75,7 @@ h1, h2, h3, h4, h5, h6,
 .navbar-text, .navbar-brand {
   font-family: $font-family-script;
   font-size: rem-calc(20);
-  -webkit-font-smoothing: antialiased;
+  @extend %smooth;
   .navbar-dark & {
     color: $white;
   }
@@ -87,7 +89,7 @@ h1, h2, h3, h4, h5, h6,
   &:not(.btn-light) {
     &:not(.btn-link) {
       color: $white;
-      -webkit-font-smoothing: antialiased;
+      @extend %smooth;
     }
     &:not(.btn-outline-light) {
       &:not(.btn-link) {
@@ -96,7 +98,7 @@ h1, h2, h3, h4, h5, h6,
     }
   }
   &.btn-light {
-    color: $dark-teal;
+    color: $secondary;
     font-weight: $font-weight-normal;
   }
   &.btn-link {
@@ -105,13 +107,14 @@ h1, h2, h3, h4, h5, h6,
     }
   }
 }
+
 .form-control {
   border: none;
   background: lighten($washed-pink, 2.2);
   box-shadow: 0 1px 1px darken($washed-pink, 5) inset;
   &::placeholder, &.not-chosen, &.custom-file-label {
       font-style: italic;
-      -webkit-font-smoothing: antialiased;
+      @extend %smooth;
       color: $gray-600;
   }
   .newsletter & {
@@ -143,7 +146,7 @@ h1, h2, h3, h4, h5, h6,
   @include media-breakpoint-up(md) {
     font-size: rem-calc(32);
   }
-  @include media-breakpoint-up(md) {
+  @include media-breakpoint-up(lg) {
     font-size: rem-calc(40);
   }
 }
@@ -153,8 +156,8 @@ h1, h2, h3, h4, h5, h6,
   color: $gray-600;
   content: "Buscar";
 }
-.at-sep {
-    -webkit-font-smoothing: antialiased;
+strong, .at-sep {
+    @extend %smooth;
 }
 .control-label {
   font-style: italic;
@@ -232,7 +235,7 @@ h1, h2, h3, h4, h5, h6,
 .footer-text {
   font-family: $font-family-script;
   font-size: rem-calc(14);
-  -webkit-font-smoothing: antialiased;
+  @extend %smooth;
 }
 .footer {
   text-align: center;
@@ -254,7 +257,7 @@ $auth-icon-size: rem-calc(72);
   width: $auth-icon-size;
 }
 
-.section-title, .post-title, .post-title a, .infowindow h4 {
+.section-title, .post-title, .post-title a, .infowindow h4, .post-description {
   &:first-letter {
       text-transform:capitalize;
   }
@@ -272,7 +275,7 @@ $auth-icon-size: rem-calc(72);
 }
 
 .notifications-counter {
-  -webkit-font-smoothing: antialiased;
+  @extend %smooth;
   background-color: darken($primary, 20);
   color: $white;
 }

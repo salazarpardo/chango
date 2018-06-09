@@ -10,8 +10,7 @@ import './submit.html';
 
 
 Template.submit.onCreated(function () {
-  Session.set('category', 0)
-  Session.set('marker', false)
+  Session.set('category', 0);
   Session.set('postSubmitErrors', {});
   self = this;
   GoogleMaps.ready('modalMap', function(map) {

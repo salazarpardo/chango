@@ -21,6 +21,14 @@ Template.postSingle.helpers({
       return 'disabled';
     }
   },
+  upvoteIconClass() {
+    var userId = Meteor.userId();
+    if (userId && !_.include(this.upvoters, userId)) {
+      return 'far fa-thumbs-up';
+    } else {
+      return 'fas fa-thumbs-up';
+    }
+  },
   commentClass() {
     var userId = Meteor.userId();
     if (userId) {

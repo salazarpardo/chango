@@ -21,3 +21,33 @@
     <strong>{{commenterName}}</strong> comentó tu idea.
   </a>
 </template>
+
+<template name="notificationsWidget">
+  <div class="notifications list-group">
+    <div class="list-group-item p-1">
+        <div class="clearfix">
+
+          <i class="{{notificationIconClass}}"></i>
+          {{#if notificationCount}}
+
+            <small class="text-primary">Notificaciones</small>
+            <span class="notifications-counter badge badge-pill float-right bg-primary">{{notificationCount}}</span>
+
+          {{else}}
+            <small class="text-muted">No hay notificaciones</small>
+          {{/if}}
+        </div>
+    </div>
+    {{#if notificationCount}}
+      {{#each notifications}}
+        {{> notificationsWidgetItem}}
+      {{/each}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="notificationsWidgetItem">
+  <a class="list-group-item list-group-item-action p-1" href="{{notificationPostPath}}">
+    <small class="text-secondary"><strong>{{commenterName}}</strong> comentó tu idea.</small>
+  </a>
+</template>

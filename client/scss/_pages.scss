@@ -81,6 +81,9 @@
     padding: rem-calc(16);
     margin-bottom: 0;
   }
+  .dashboard & {
+    box-shadow: $box-shadow-sm;
+  }
 }
 
 .landing-area {
@@ -155,4 +158,9 @@
         box-shadow: 0 2px 3px #915079;
       }
     }
+}
+
+.geoloc {
+  position: relative;
+  z-index: 1;
 }

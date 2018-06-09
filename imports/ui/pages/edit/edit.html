@@ -1,7 +1,7 @@
 <template name="postEdit">
   <div class="edit page">
     <div class="row justify-content-md-center">
-      <div class="col col-md-8 col-lg-7">
+      <div class="col col-md-9 col-lg-7">
         {{#with post}}
           <div class="jumbotron bg-white text-center clearfix">
 
@@ -30,7 +30,6 @@
                  <label class="control-label" for="exampleInputCategory">Categoría</label>
                  <select class="form-control custom-select" id="exampleInputCategory" name="category">
                      <option value="">Selecciona una categoría para tu idea</option>
-                     <option selected>{{category}}</option>
                      <option>Espacio público</option>
                      <option>Arte y entretenimiento</option>
                      <option>Actividades ambientales</option>
@@ -48,13 +47,35 @@
                    <input type="text" name="address" value="{{address}}" class="form-control" id="exampleInputAddress" placeholder="Location">
                  </div>
              </div>
-             <input type="submit" value="Guardar cambios" class="btn btn-success submit btn-block"/>
-             <hr/>
-             <a class="btn btn-sm btn-danger delete float-right" href="#">Borrar</a>
+             <div class="btn-group d-flex" role="group">
+               <button type="button" class="btn btn-danger btn-block confirm mt-0">Eliminar idea</button>
+               <input type="submit" value="Guardar cambios" class="btn btn-success submit btn-block mt-0"/>
+             </div>
             </form>
 
           </div>
         {{/with}}
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="icon-box"><img class="auth-icon mb-3 mr-3" src="/img/chango-pink.svg" alt="Ingresa a Chango" /></div>
+          <h5 class="modal-title text-primary" id="confirmModalLabel">¿Estas seguro de eliminar {{title}}?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ¡No podrás deshacer esta acción!
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary delete">Si, eliminar</button>
+        </div>
       </div>
     </div>
   </div>

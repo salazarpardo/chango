@@ -17,3 +17,11 @@ Template.header.helpers({
     return active && 'active';
   },
 });
+
+
+Template.header.onCreated(function () {
+
+  var instance = this;
+
+  instance.subscribe('notifications');
+});

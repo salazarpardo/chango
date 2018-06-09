@@ -5,6 +5,7 @@ import faUserCircle from '@fortawesome/fontawesome-free-regular/faUserCircle'
 import faSignOutAlt from '@fortawesome/fontawesome-free-solid/faSignOutAlt'
 import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook'
 import faBell from '@fortawesome/fontawesome-free-regular/faBell'
+import faBellSolid from '@fortawesome/fontawesome-free-solid/faBell'
 import faThumbsUp from '@fortawesome/fontawesome-free-regular/faThumbsUp'
 import faThumbsUpSolid from '@fortawesome/fontawesome-free-solid/faThumbsUp'
 import faCommentAlt from '@fortawesome/fontawesome-free-regular/faCommentAlt'
@@ -20,6 +21,7 @@ fontawesome.library.add(faUserCircle)
 fontawesome.library.add(faSignOutAlt)
 fontawesome.library.add(faFacebook)
 fontawesome.library.add(faBell)
+fontawesome.library.add(faBellSolid)
 fontawesome.library.add(faThumbsUp)
 fontawesome.library.add(faThumbsUpSolid)
 fontawesome.library.add(faCommentAlt)
@@ -29,3 +31,8 @@ fontawesome.library.add(faTimes)
 fontawesome.library.add(faCheck)
 fontawesome.library.add(faSpinner)
 fontawesome.library.add(faLocationArrow)
+
+
+fontawesome.config = {
+  autoReplaceSvg: 'nest'
+}

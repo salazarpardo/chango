@@ -10,7 +10,7 @@ import '../../ui/components/hero/hero.js';
 import '../../ui/components/newsletter/newsletter.js';
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/posts/posts.js';
-import '../../ui/pages/map/map.js';
+// import '../../ui/pages/map/map.js';
 import '../../ui/pages/auth/auth.js';
 import '../../ui/pages/about/about.js';
 import '../../ui/pages/contact/contact.js';
@@ -18,6 +18,7 @@ import '../../ui/pages/submit/submit.js';
 import '../../ui/pages/profile/profile.js';
 import '../../ui/pages/edit/edit.js';
 import '../../ui/pages/post/post.js';
+import '../../ui/pages/dashboard/dashboard.js';
 import '../../ui/pages/not_found/not_found.js';
 import '../../ui/pages/access_denied/access_denied.js';
 
@@ -97,16 +98,23 @@ publicRoutes.route('/mapa', {
   name: 'map',
   triggersEnter: [],
   action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'map', errors: 'errors', footer: 'footer' });
+    BlazeLayout.render('App_body', { top: 'header', main: 'posts', errors: 'errors', footer: 'footer' });
   },
+  title: "Mapa",
   triggersExit: []
 });
 
 publicRoutes.route('/salir', {
   name: 'logout',
   action() {
-    Accounts.logout();
-    FlowRouter.redirect('/');
+    Accounts.logout(function(){
+         var user = Meteor.user();
+
+         if (!user){
+           FlowRouter.go('signin')
+         }
+     }
+    );
   }
 });
 
@@ -138,6 +146,15 @@ privateRoutes.route('/perfil', {
   triggersEnter: [],
   action() {
     BlazeLayout.render('App_body', { top: 'header', main: 'profile', errors: 'errors', footer: 'footer' });
+  },
+  triggersExit: []
+})
+
+privateRoutes.route('/inicio', {
+  name: 'dashboard',
+  triggersEnter: [],
+  action() {
+    BlazeLayout.render('App_body', { top: 'header', main: 'dashboard', errors: 'errors', footer: 'footer' });
   },
   triggersExit: []
 })
@@ -192,7 +209,7 @@ function jumpToPrevScrollPosition(context) {
    // Here 10 millis delay is a arbitrary value with some testing.
    setTimeout(function () {
       $('html, body').animate({scrollTop: scrollPosition}, 0);
-    }, 100);
+    }, 10);
    }
 }
 FlowRouter.triggers.exit([saveScrollPosition]);

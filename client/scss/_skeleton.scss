@@ -20,6 +20,11 @@
     width: 100%;
     height: 1em;
   }
+  .map-canvas {
+    background-image: linear-gradient(270deg, rgba($secondary, .1), rgba($secondary, .3));
+    background-size: 300%;
+    animation: skeleton 1.6s linear infinite;
+  }
   .posts & {
     .post-title {
       height: .7em;

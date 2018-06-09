@@ -1,15 +1,9 @@
-import { Posts } from '/imports/api/posts/posts.js';
-
-import './map.html';
+import './posts_map.html';
 
 import {styles} from '/imports/startup/client/map_styles.js';
 
-// import '../../components/hello/hello.js';
-// import '../../components/info/info.js';
-import '../../components/posts/posts_list.js';
 
-
-Template.map.helpers({
+Template.postsMap.helpers({
   'exampleMapOptions': function() {
     // Make sure the maps API has loaded
     if (GoogleMaps.loaded()) {
@@ -24,27 +18,29 @@ Template.map.helpers({
       }
 
       return {
-          center: initialLocation, //new google.maps.LatLng(4.64205602, -74.11377526),
+          center: initialLocation,
           zoom: 13,
           mapTypeControl: false,
           styles: styles
       };
     }
-  }
+  },
 });
 
-Template.map.onRendered(function() {
+Template.postsMap.onRendered(function() {
   GoogleMaps.load({key: 'AIzaSyDKcZBwYBkYJx6-GJI1OZjPPOmA40R1fV4'});
 });
 
-Template.map.onCreated(function() {
+Template.postsMap.onCreated(function() {
 
     var self = this;
+
+    const cursor = self.data.posts;
 
     self.that;
     self.currentPlace = null;
 
-    var markers;
+    self.markers;
     var bounds, center;
 
     GoogleMaps.ready('exampleMap', function(map) {
@@ -67,14 +63,14 @@ Template.map.onCreated(function() {
             minHeight: 100
         });
 
-        markers = [];
+        self.markers = [];
 
         bounds = new google.maps.LatLngBounds();
         center = new google.maps.LatLng();
 
-        Posts.find().observe({
+        cursor.observe({
 
-            added: function(document) {
+            addedAt: function(document) {
                 var place = document;
                 var title = place.title;
                 var address = place.address;
@@ -132,8 +128,8 @@ Template.map.onCreated(function() {
                 center = location;
 
                 // Store this marker instance within the markers object.
-                markers[document._id] = marker;
-                markers.length ++;
+                self.markers[document._id] = marker;
+                self.markers.length ++;
 
             },
             changed: function(newDocument, oldDocument) {
@@ -146,33 +142,33 @@ Template.map.onCreated(function() {
                 var descripcion = place.description;
                 var contentString = '<div class="infowindow open">' + '<h4>' + titulo + '</h4>' + '<p class="address text-muted mb-2">' + direccion + '</p><p class="description">' + descripcion + '</p>' + '<a href="/idea/' + slug + '">Ampliar</a></div>';
                 self.infowindow.setContent(contentString);
-                var marker = markers[newDocument._id];
+                var marker = self.markers[newDocument._id];
 
                 bounds.extend(newLatlng);
-                markers[newDocument._id].setPosition(newLatlng);
+                self.markers[newDocument._id].setPosition(newLatlng);
             },
             removed: function(oldDocument) {
                 // Remove the marker from the map
-                markers[oldDocument._id].setMap(null);
+                self.markers[oldDocument._id].setMap(null);
 
                 // Clear the event listener
                 google.maps.event.clearInstanceListeners(
-                    markers[oldDocument._id]);
+                    self.markers[oldDocument._id]);
 
                 // Remove the reference to this marker instance
-                delete markers[oldDocument._id];
+                delete self.markers[oldDocument._id];
             }
         });
-        if (markers.length == 1){
+        if (self.markers.length == 1){
           map.instance.setCenter(center);
         }
-        else if (markers.length >= 2){
+        else if (self.markers.length >= 2){
           map.instance.fitBounds(bounds);
         }
     });
 });
 
-Template.map.events({
+Template.postsMap.events({
   'click .geoloc': function(e) {
     $('.geoloc').toggleClass('active');
     $('.geoloc .svg-inline--fa').toggleClass('fa-location-arrow fa-spinner fa-spin');
@@ -200,7 +196,7 @@ Template.map.events({
 
         var contentStringUser =
           '<div class="infowindow feature open">' +
-            '<h4>Usted esta aquí</h4>' +
+            '<h4>Estás aquí</h4>' +
           '</div>';
 
         var markerClick = function() {
