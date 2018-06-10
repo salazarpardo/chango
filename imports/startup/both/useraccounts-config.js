@@ -4,7 +4,9 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { T9n } from 'meteor-accounts-t9n';
 
 T9n.map("es", {
-  "Minimum required length: 3": "Mínimo 3 caracteres",
+  // "Minimum required length: 3": "Mínimo 3 caracteres",
+  "Verify email link expired": "El enlace para verificar tu correo expiró.",
+  "Already verified": "Tu correo ya fue verificado"
 });
 
 T9n.setLanguage("es")
@@ -27,7 +29,7 @@ AccountsTemplates.configure({
     showAddRemoveServices: false,
     showForgotPasswordLink: true,
     showLabels: true,
-    showResendVerificationEmailLink: false,
+    showResendVerificationEmailLink: true,
 
     // Client-side Validation
     continuousValidation: false,
@@ -36,7 +38,7 @@ AccountsTemplates.configure({
     positiveValidation: true,
     positiveFeedback: true,
     showValidating: true,
-
+    privacyUrl: 'privacidad',
     texts: {
         title: {
           changePwd: "Cambiar contraseña",
@@ -44,7 +46,8 @@ AccountsTemplates.configure({
           resetPwd: "Reestablece tu contraseña",
           signIn: "Ingresa a tu cuenta",
           signUp: "Crea tu cuenta",
-          verifyEmail: "Verifica tu correo electrónico",
+          verifyEmail: "Verificando tu correo electrónico",
+          resendVerificationEmail: "Reenvía tu correo de verificación",
         },
         info: {
             emailSent: "El correo ha sido enviado a tu cuenta",
@@ -66,6 +69,7 @@ AccountsTemplates.configure({
             verifyEmailFirst: "Por favor verifica tu correo eléctronico primero. Revisa tu correo y sigue el enlace",
         },
         sep: "O",
+        minRequiredLength: "Caracteres requeridos (mínimo)",
         requiredField: "Requerido",
         pwdLink_pre: "",
         pwdLink_link: "¿Olvidaste tu contraseña?",
@@ -86,6 +90,7 @@ AccountsTemplates.configure({
           enrollAccount: "Conecta tu cuenta",
           forgotPwd: "Recibir enlace para reestablecer contraseña",
           resetPwd: "Reestablece tu contraseña",
+          resendVerificationEmail: "Enviar correo de nuevo",
         },
         socialSignUp: "Regístrate",
         socialSignIn: "Ingresa",
@@ -93,6 +98,8 @@ AccountsTemplates.configure({
         socialIcons: {
           facebook: "fab fa-facebook",
         },
+        termsPreamble: "Al crear tu cuenta aceptas estar de acuerdo con nuestra",
+        termsPrivacy: "política de privacidad",
         inputIcons: {
           isValidating: "fas fa-spinner fa-spin",
           hasSuccess: "fas fa-check",
@@ -177,6 +184,14 @@ if (Meteor.isServer){
                 return "El nombre de usuario ya existe."
             return false;
         },
+        "emailExists"(email){
+            check(email, String);
+            sleep(1000);
+            var emailAlreadyExist = Meteor.users.find({"emails.address": email}, {limit: 1}).count()>0;
+            if (emailAlreadyExist)
+                return "El correo electrónico ya existe."
+            return false;
+        },
     });
 }
 
@@ -216,6 +231,24 @@ AccountsTemplates.addFields([
       required: true,
       displayName: "Correo electrónico",
       re: /.+@(.+){2,}\.(.+){2,}/,
+      func: function(value){
+        if (Meteor.isClient) {
+            var self = this;
+            if ( AccountsTemplates.getState() == 'signUp') {
+              Meteor.call("emailExists", value, function(err, emailExists){
+                  self.setError(emailExists);
+                  self.setValidating(false);
+              });
+              return false;
+            } else {
+              self.setValidating(false);
+              return false;
+            }
+        }
+        // Server
+        var result = Meteor.call("emailExists", value);
+        return result;
+      },
       errStr: 'Correo eléctronico inválido',
   },
   {
@@ -229,7 +262,7 @@ AccountsTemplates.addFields([
       _id: 'password',
       type: 'password',
       placeholder: {
-          default: "••••••",
+          default: "Ingresa tu contraseña",
           signIn: "Ingresa tu contraseña",
           signUp: "Mínimo seis caracteres",
           resetPwd: "Mínimo seis caracteres"
