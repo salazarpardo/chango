@@ -15,3 +15,10 @@ Template['override-atError'].replaces('atError');
 Template['override-atResult'].replaces('atResult');
 Template['override-atForm'].replaces('atForm');
 Template['override-atSep'].replaces('atSep');
+
+
+Template.atError.onRendered(function() {
+  Meteor.setTimeout(function () {
+    $(".alert-dismissible").alert('close');
+  }, 5000);
+});
