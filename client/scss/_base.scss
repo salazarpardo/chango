@@ -112,6 +112,8 @@ h1, h2, h3, h4, h5, h6,
   border: none;
   background: lighten($washed-pink, 2.2);
   box-shadow: 0 1px 1px darken($washed-pink, 5) inset;
+  // -webkit-box-shadow: 0 1px 1px darken($washed-pink, 5) inset;
+  -webkit-appearance: none;
   &::placeholder, &.not-chosen, &.custom-file-label {
       font-style: italic;
       @extend %smooth;

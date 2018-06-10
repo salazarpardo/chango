@@ -4,9 +4,12 @@ import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
 import { T9n } from 'meteor-accounts-t9n';
 
 T9n.map("es", {
-  // "Minimum required length: 3": "Mínimo 3 caracteres",
-  "Verify email link expired": "El enlace para verificar tu correo expiró.",
-  "Already verified": "Tu correo ya fue verificado"
+  error: {
+    accounts: {
+      "Verify email link expired": "El enlace para verificar tu correo expiró.",
+      "Already verified": "Tu correo ya fue verificado",
+    }
+  }
 });
 
 T9n.setLanguage("es")

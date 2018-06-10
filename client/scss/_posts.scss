@@ -15,34 +15,35 @@
   &:before {
     content: "";
     position: absolute;
-    border: 1px solid $primary;
+    background-color: $primary;
     left: 0;
     top: 0;
     height: rem-calc(32);
+    width: 2px;
   }
   &.cat-1 {
     &:before {
-      border-color: $info;
+      background-color: $info;
     }
   }
   &.cat-2 {
     &:before {
-      border-color: $warning;
+      background-color: $warning;
     }
   }
   &.cat-3 {
     &:before {
-      border-color: $success;
+      background-color: $success;
     }
   }
   &.cat-4 {
     &:before {
-      border-color: $purple;
+      background-color: $purple;
     }
   }
   &.cat-5 {
     &:before {
-      border-color: $dark-blue;
+      background-color: $dark-blue;
     }
   }
   &.after {
