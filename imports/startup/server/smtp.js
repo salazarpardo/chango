@@ -3,8 +3,8 @@ SSR.compileTemplate('htmlEmail', Assets.getText('email.html'));
 
 Meteor.startup(function () {
 
-  var username = 'postmaster@mail.heychango.com';
-  var password = 'Ch4ng0';
+  var username = 'postmaster@heychango.com';
+  var password = 'Ch4ng02018';
   var server = 'smtp.mailgun.org';
   var port = '25';
 
