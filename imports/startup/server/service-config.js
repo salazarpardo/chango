@@ -1,12 +1,16 @@
 import { ServiceConfiguration } from 'meteor/service-configuration';
 
+var settings = Meteor.settings.private.facebook,
+    appId    = settings.appId,
+    secret   = settings.secret;
+
 ServiceConfiguration.configurations.upsert(
   { service: 'facebook' },
   {
     $set: {
-      appId: '346017765802145',
+      appId: appId,
       loginStyle: 'popup',
-      secret: '16326bd5e4fb1efcf12d297e825a90a7'
+      secret: secret
     }
   }
 );
