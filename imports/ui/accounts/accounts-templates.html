@@ -21,7 +21,7 @@
     </label>
     <input type="{{type}}" id="at-field-{{_id}}" name="at-field-{{_id}}" placeholder="{{placeholder}}" autocapitalize="none" autocorrect="off" class="form-control {{#if hasError}}is-invalid{{/if}} {{#if hasSuccess}}is-valid{{/if}}">
     {{#if hasIcon}}
-      <span class="valid-feedback mb-2"><i class="float-right {{iconClass}}"></i></span>
+      <span class="valid-feedback"><i class="float-right {{iconClass}}"></i></span>
     {{/if}}
     {{#if hasError}}
       <span class="invalid-feedback"><i class="{{iconClass}}"></i> {{errorText}}</span>
@@ -49,9 +49,9 @@
 </template>
 
 <template name="override-atError">
-  <div class="errors">
+  <div class="errors text-left">
     {{#each error}}
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
       <button type="button" class="close" data-dismiss="alert">&times;</button>
       {{errorText}}
     </div>
@@ -76,11 +76,11 @@
         {{> atReCaptcha}}
       {{/if}}
       {{> atPwdFormBtn}}
-      {{#if showForgotPasswordLink}}
-        {{> atPwdLink}}
-      {{/if}}
     </form>
   </div>
+  {{#if showForgotPasswordLink}}
+    <small>{{> atPwdLink}}</small>
+  {{/if}}
 </template>
 
 <template name="override-atForm">
@@ -111,16 +111,16 @@
             {{> atPwdForm}}
           {{/if}}
           {{#if showTermsLink}}
-            {{> atTermsLink}}
+            <small>{{> atTermsLink}}</small>
           {{/if}}
           {{#if showSignInLink}}
-            {{> atSigninLink}}
+            <small>{{> atSigninLink}}</small>
           {{/if}}
           {{#if showSignUpLink}}
-            {{> atSignupLink}}
+            <small>{{> atSignupLink}}</small>
           {{/if}}
           {{#if showResendVerificationEmailLink}}
-            {{> atResendVerificationEmailLink}}
+            <small>{{> atResendVerificationEmailLink}}</small>
           {{/if}}
         </div>
       </div>

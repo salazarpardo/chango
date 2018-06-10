@@ -11,6 +11,7 @@ import '../../ui/components/newsletter/newsletter.js';
 import '../../ui/pages/home/home.js';
 import '../../ui/pages/posts/posts.js';
 import '../../ui/pages/about/about.js';
+import '../../ui/pages/privacy/privacy.js';
 import '../../ui/pages/contact/contact.js';
 import '../../ui/pages/submit/submit.js';
 import '../../ui/pages/profile/profile.js';
@@ -102,18 +103,14 @@ publicRoutes.route('/mapa', {
   triggersExit: []
 });
 
-publicRoutes.route('/salir', {
-  name: 'logout',
+publicRoutes.route('/privacidad', {
+  name: 'privacy',
+  triggersEnter: [],
   action() {
-    Accounts.logout(function(){
-         var user = Meteor.user();
-
-         if (!user){
-           FlowRouter.go('signin')
-         }
-     }
-    );
-  }
+    BlazeLayout.render('App_body', { top: 'header', main: 'privacy', errors: 'errors', footer: 'footer' });
+  },
+  title: "Mapa",
+  triggersExit: []
 });
 
 publicRoutes.route('/', {
@@ -129,6 +126,15 @@ var privateRoutes = FlowRouter.group({
   name: 'private',
   triggersEnter: [ AccountsTemplates.ensureSignedIn ],
 })
+
+privateRoutes.route('/idea/:slug/editar', {
+  name: 'postEdit',
+  triggersEnter: [],
+  action() {
+    BlazeLayout.render('App_body', { top: 'header', main: 'postEdit', errors: 'errors', footer: 'footer' });
+  },
+  triggersExit: []
+});
 
 privateRoutes.route('/nueva', {
   name: 'submit',
@@ -157,13 +163,18 @@ privateRoutes.route('/inicio', {
   triggersExit: []
 })
 
-privateRoutes.route('/idea/:slug/editar', {
-  name: 'postEdit',
-  triggersEnter: [],
+privateRoutes.route('/salir', {
+  name: 'logout',
   action() {
-    BlazeLayout.render('App_body', { top: 'header', main: 'postEdit', errors: 'errors', footer: 'footer' });
-  },
-  triggersExit: []
+    Accounts.logout(function(){
+         var user = Meteor.user();
+
+         if (!user){
+           FlowRouter.go('signin')
+         }
+     }
+    );
+  }
 });
 
 FlowRouter.route('*', {
