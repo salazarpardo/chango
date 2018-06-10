@@ -1,0 +1,18 @@
+{
+  "ROOT_URL":"https://localhost:9000",
+  "public": {
+    "analyticsSettings": {
+      "Google Analytics" : {"trackingId": "UA-119782104-1"}
+    }
+  },
+  "private": {
+    "MailChimp": {
+      "apiKey": "13c7c78467bcc0587ad1132d80f27f28-us18",
+      "listId": "a250e496db"
+    },
+    "facebook": {
+      "appId": "346017765802145",
+      "secret": "16326bd5e4fb1efcf12d297e825a90a7"
+    }
+  }
+}

@@ -11,15 +11,15 @@ Posts.allow({
 
 Posts.deny({
   update: function(userId, post, fieldNames) {
-    // may only edit the following two fields:
-    return (_.without(fieldNames, 'url', 'title').length > 0);
+    // may only edit the following fields:
+    return (_.without(fieldNames, 'description', 'category', 'address', 'location', 'title', 'icon').length > 0);
   }
 });
 
 Posts.deny({
   update: function(userId, post, fieldNames, modifier) {
     var errors = validatePost(modifier.$set);
-    return errors.title || errors.url;
+    return errors.title;
   }
 });
 
@@ -28,8 +28,13 @@ Meteor.methods({
     check(Meteor.userId(), String);
     check(postAttributes, {
       title: String,
-      url: String,
-      slug: String
+      // url: String,
+      slug: String,
+      location: [String],
+      address: String,
+      description: String,
+      category: String,
+      icon: Number
     });
 
     var postWithSameURL = Posts.findOne({slug: postAttributes.slug});

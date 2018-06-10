@@ -1,15 +1,25 @@
 <template name="about">
   <div class="about page">
-    <h1>About Chango</h1>
-    <img class="img-fluid mb-5" src="https://placehold.it/800x360" alt="" />
-    <p class="mb-4">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-    <p class="mb-4">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
-    <p class="mb-4">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-    </p>
+    <div class="row justify-content-md-center">
+      <div class="col col-md-8 col-lg-7">
+        <h1 class="text-white mb-3">Acerca de Chango</h1>
+        <img class="img-fluid mb-4 shadow-sm" src="/img/default-img.png" alt="" />
+        <p class="mb-4">
+            Chango es una nueva aplicación para explorar, proponer y evaluar soluciones a problemáticas de la ciudad (inicialmente estamos solo en Bogotá). Es una invitación a los ciudadanos para que juntos encontremos areas a mejorar, propongamos soluciones y le demos prioridad a la realización de proyectos que cuenten con mayor respaldo dentro de los miembros de la comunidad.
+        </p>
+        <p class="mb-4">
+            Es muy fácil ser participe del cambio. Solo crea una cuenta y dinos de que se trata esa idea que esperas hacer realidad con el apoyo de nuestra comunidad, o explora en el mapa para encontrar iniciativas de otros miembros y apoyarlas con tu voto, o retroalimentar con un comentario.
+        </p>
+        {{#if currentUser}}
+        <p class="text-center">
+          <a href="{{pathFor 'submit' }}" class="btn btn-success">Comparte tu idea</a>
+        </p>
+        {{else}}
+        <p class="text-center">
+          <a href="{{pathFor 'join' }}" class="btn btn-success">Crea tu cuenta</a>
+        </p>
+        {{/if}}
+      </div>
+    </div>
   </div>
 </template>

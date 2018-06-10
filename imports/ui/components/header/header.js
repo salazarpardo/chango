@@ -4,13 +4,6 @@ import './header.html';
 
 import '../notifications/notifications.js';
 
-import fontawesome from '@fortawesome/fontawesome/';
-import faLightbulb from '@fortawesome/fontawesome-free-regular/faLightbulb'
-import faSignOutAlt from '@fortawesome/fontawesome-free-solid/faSignOutAlt'
-
-fontawesome.library.add(faLightbulb)
-fontawesome.library.add(faSignOutAlt)
-
 Template.header.helpers({
   activeRouteClass: function(/* route names */) {
     var args = Array.prototype.slice.call(arguments, 0);
@@ -25,8 +18,10 @@ Template.header.helpers({
   },
 });
 
-Template.header.events({
-    'click .btn-logout':function(){
-        Meteor.logout();
-    }
+
+Template.header.onCreated(function () {
+
+  var instance = this;
+
+  instance.subscribe('notifications');
 });

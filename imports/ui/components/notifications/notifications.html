@@ -1,10 +1,10 @@
 <template name="notifications">
   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-    Notifications
+    <i class="far fa-bell"></i>
     {{#if notificationCount}}
-      <span class="badge badge-inverse">{{notificationCount}}</span>
+      <span class="notifications-counter badge badge-pill">{{notificationCount}}</span>
     {{/if}}
-    <b class="caret"></b>
+    <small class="d-lg-none">Notificaciones</small>
   </a>
   <div class="notification dropdown-menu">
     {{#if notificationCount}}
@@ -12,13 +12,43 @@
         {{> notificationItem}}
       {{/each}}
     {{else}}
-      <div class="dropdown-item"><span>No Notifications</span></div>
+      <div class="dropdown-item"><span>No hay notificaciones</span></div>
     {{/if}}
   </div>
 </template>
 
 <template name="notificationItem">
   <a class="dropdown-item" href="{{notificationPostPath}}">
-    <strong>{{commenterName}}</strong> commented on your post
+    <strong>{{commenterName}}</strong> comentó tu idea.
+  </a>
+</template>
+
+<template name="notificationsWidget">
+  <div class="notifications list-group">
+    <div class="list-group-item p-1">
+        <div class="clearfix">
+
+          <i class="{{notificationIconClass}}"></i>
+          {{#if notificationCount}}
+
+            <small class="text-primary">Notificaciones</small>
+            <span class="notifications-counter badge badge-pill float-right bg-primary">{{notificationCount}}</span>
+
+          {{else}}
+            <small class="text-muted">No hay notificaciones</small>
+          {{/if}}
+        </div>
+    </div>
+    {{#if notificationCount}}
+      {{#each notifications}}
+        {{> notificationsWidgetItem}}
+      {{/each}}
+    {{/if}}
+  </div>
+</template>
+
+<template name="notificationsWidgetItem">
+  <a class="list-group-item list-group-item-action p-1" href="{{notificationPostPath}}">
+    <small class="text-secondary"><strong>{{commenterName}}</strong> comentó tu idea.</small>
   </a>
 </template>

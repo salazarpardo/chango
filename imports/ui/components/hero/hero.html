@@ -1,0 +1,26 @@
+<template name="hero">
+  <div class="jumbotron hero bg-primary bg-city">
+    <div class="container">
+      <div class="row justify-content-md-center">
+        <div class="col-sm-6 col-lg-5 city-image d-none d-sm-block">
+          <img src="/img/city.svg" alt="" class="fluid-img"/>
+        </div>
+        <div class="col-8 col-sm-6 col-md-4">
+          <h1 class="hero-title mt-lg-5">Todo inicia con una idea</h1>
+          <p class="hero-text">
+            Participa con tus ideas, construyamos juntos la ciudad que soñamos.
+          </p>
+          {{#if currentUser}}
+            <a class="btn btn-success btn-lg" href="{{pathFor 'submit'}}">
+              Comparte tu idea
+            </a>
+          {{else}}
+            <a class="btn btn-success btn-lg" href="{{pathFor 'join' query='next=submit'}}">
+              Comienza ahora
+            </a>
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

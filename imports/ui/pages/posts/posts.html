@@ -1,0 +1,20 @@
+<template name="posts">
+  <div class="list page">
+    {{#if map}}
+      {{> postsMap postsReady=Template.subscriptionsReady posts=posts}}
+    {{/if}}
+    <div class="row justify-content-md-center">
+      <div class="col col-md-8 col-lg-7">
+        <header class="clearfix mb-3 mt-3">
+          {{#if map}}
+            <h5 class="section-title text-secondary float-left">{{routeOption 'title'}}</h5>
+          {{else}}
+            <h5 class="section-title text-white float-left">{{routeOption 'title'}}</h5>
+          {{/if}}
+          <!-- <a class="btn text-primary btn-link btn-sm float-right" href="#"><em>Filtrar</em></a> -->
+        </header>
+        {{> postsList postsReady=Template.subscriptionsReady posts=posts hasMorePosts=hasMorePosts}}
+      </div>
+    </div>
+  </div>
+</template>

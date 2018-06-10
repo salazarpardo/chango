@@ -1,0 +1,29 @@
+<template name="profile">
+  <div class="submit page">
+    <div class="row justify-content-md-center">
+      <div class="col col-md-8 col-lg-6">
+          <div class="jumbotron bg-white text-center">
+            {{#with currentUser}}
+            <h2 class="text-primary"><i class="far fa-user-circle"></i></h2>
+            <h1 class="form-title text-primary mb-3">
+              {{#if profile.name}}
+                {{profile.name}}
+              {{else if username}}
+                {{username}}
+              {{else}}
+                {{emails.[0].address}}
+              {{/if}}
+            </h1>
+
+              {{#if emails.[0].address}}
+                <p>
+                  {{emails.[0].address}}
+                </p>
+              {{/if}}
+
+            {{/with}}
+          </div>
+        </div>
+      </div>
+    </div>
+</template>
