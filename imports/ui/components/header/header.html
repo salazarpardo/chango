@@ -26,6 +26,9 @@
       </button>
       <div class="navbar-collapse collapse" id="navbarContent" data-toggle="collapse" data-target="#navbarContent.show">
           <ul class="navbar-nav mr-auto">
+            {{#if currentUser}}
+            <li class="nav-item {{activeRouteClass 'dashboard'}}"><a class="nav-link d-md-inline-block" href="{{pathFor 'dashboard'}}">Inicio</a></li>
+            {{/if}}
             <li class="nav-item {{activeRouteClass 'map'}}"><a class="nav-link d-md-inline-block" href="{{pathFor 'map'}}">Mapa</a></li>
             <li class="nav-item {{activeRouteClass 'new'}}"><a class="nav-link d-md-inline-block" href="{{pathFor 'new'}}">Recientes</a></li>
             <li class="nav-item {{activeRouteClass 'best'}}"><a class="nav-link d-md-inline-block" href="{{pathFor 'best'}}">Populares</a></li>
@@ -54,12 +57,9 @@
                     </small>
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{pathFor 'profile'}}">Tu perfil</a>
+                    <a class="dropdown-item" href="{{pathFor 'profile'}}">Ajustes</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{pathFor 'logout'}}">Salir</a>
-                    <!-- <a class="dropdown-item" href="#">Another action</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a> -->
                   </div>
                 </li>
                 <li class="nav-item dropdown">

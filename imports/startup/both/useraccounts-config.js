@@ -24,12 +24,13 @@ AccountsTemplates.configure({
     },
     defaultContentRegion: 'main',
     confirmPassword: false,
+    enablePasswordChange: true,
     sendVerificationEmail: true,
     enforceEmailVerification: true,
     focusFirstInput: true,
 
     // Appearance
-    showAddRemoveServices: false,
+    showAddRemoveServices: true,
     showForgotPasswordLink: true,
     showLabels: true,
     showResendVerificationEmailLink: true,
@@ -51,6 +52,7 @@ AccountsTemplates.configure({
           signUp: "Crea tu cuenta",
           verifyEmail: "Verificando tu correo electrónico",
           resendVerificationEmail: "Reenvía tu correo de verificación",
+          enrollAccount: "Conecta tu cuenta",
         },
         info: {
             emailSent: "El correo ha sido enviado a tu cuenta",
@@ -141,6 +143,16 @@ AccountsTemplates.configureRoute('signUp', {
 AccountsTemplates.configureRoute('forgotPwd', {
   name: 'forgotPwd',
   path: '/olvide',
+});
+
+AccountsTemplates.configureRoute('resendVerificationEmail', {
+  name: 'resendVerificationEmail',
+  path: '/reenviar',
+});
+
+AccountsTemplates.configureRoute('changePwd', {
+  name: 'changePwd',
+  path: '/cambiar',
 });
 
 AccountsTemplates.configureRoute('verifyEmail', {
@@ -268,9 +280,25 @@ AccountsTemplates.addFields([
           default: "Ingresa tu contraseña",
           signIn: "Ingresa tu contraseña",
           signUp: "Mínimo seis caracteres",
-          resetPwd: "Mínimo seis caracteres"
+          resetPwd: "Mínimo seis caracteres",
+          changePwd: "Ingresa tu contraseña nueva",
       },
-      displayName: "Contraseña",
+      displayName: {
+        default: "Contraseña",
+        changePwd: "Contraseña nueva",
+      },
+      required: true,
+      minLength: 6,
+  },
+  {
+      _id: 'current_password',
+      type: 'password',
+      placeholder: {
+          default: "Ingresa tu contraseña actual",
+      },
+      displayName: {
+        default: "Contraseña actual",
+      },
       required: true,
       minLength: 6,
   }
