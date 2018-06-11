@@ -1,13 +1,11 @@
 <template name="App_notFound">
   <div class="not-found page" id="not-found">
     <div class="row justify-content-md-center">
-      <div class="col col-md-8 col-lg-7">
-        <div class="not-found-title text-center">
-          <h2 class="text-white">Changos...<br> <small>¡No encontramos la página que buscas!</small></h2>
-          <div class="not-found-image p-3 mb-5">
-            <img class="fluid-image" src="/img/chango.svg" alt="Pagina no encontrada" width="150" style="transform:rotate(180deg)"/>
-          </div>
-          <a href="{{ pathFor 'home'}}" class="btn btn-link">Ir al inicio</a>
+      <div class="col col-md-7 col-lg-5">
+        <div class="jumbotron bg-white text-center">
+          <img class="auth-icon mb-2" src="/img/chango-pink.svg" alt="Ingresa a Chango" width="56" style="transform:rotate(180deg)"/>
+          <h1 class="form-title text-primary mb-3">Changos...<br> <small>¡No encontramos la página que buscas!</small></h1>
+          <a href="{{ pathFor 'home'}}" class="btn btn-success btn-lg">Ir al inicio</a>
         </div>
 
       </div>

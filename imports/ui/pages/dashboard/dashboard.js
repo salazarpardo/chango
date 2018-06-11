@@ -67,11 +67,20 @@ Template.dashboard.helpers({
   'posts'() {
     return Template.instance().posts();
   },
+  'postsCount'() {
+    return Template.instance().posts().count();
+  },
   'bestPosts'() {
     return Template.instance().bestPosts();
   },
+  'bestPostsCount'() {
+    return Template.instance().bestPosts().count();
+  },
   'commentedPosts'() {
     return Template.instance().commentedPosts();
+  },
+  'commentedPostsCount'() {
+    return Template.instance().commentedPosts().count();
   },
   'hasMorePosts'() {
     return false;
