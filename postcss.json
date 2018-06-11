@@ -1,5 +1,3 @@
 {
-    "autoprefixer" : {
-      "cascade": false
-    }
+    "autoprefixer" : {}
 }
