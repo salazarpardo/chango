@@ -82,6 +82,7 @@
     background-color: transparent;
     padding: rem-calc(16);
     margin-bottom: 0;
+    box-shadow: none;
   }
 }
 
@@ -146,15 +147,6 @@
       font-size: rem-calc(14);
       @include media-breakpoint-up(md) {
         font-size: rem-calc(16);
-      }
-      &.btn-success {
-        box-shadow: 0 2px 3px #1B7D60;
-      }
-      &.btn-info {
-        box-shadow: 0 2px 3px #008C99;
-      }
-      &.btn-primary {
-        box-shadow: 0 2px 3px #915079;
       }
     }
 }
