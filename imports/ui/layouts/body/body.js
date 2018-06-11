@@ -13,7 +13,14 @@ Template.App_body.helpers({
   }
 });
 
+Template.App_body.onCreated(function() {
+  if (window.navigator.standalone == true) {
+    $('body').addClass('standalone');
+  }
+});
+
 Template.App_body.onRendered(function() {
+
   this.find('#main, #page')._uihooks = {
     insertElement: function(node, next) {
       $(node)
