@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5, h6,
   &.navbar-dark {
     background-color: rgba($primary, .9);
     .navbar-nav .active > .nav-link {
-      box-shadow: 0 2px 0 $white;
+      box-shadow: 0 -2px 0 $white inset;
     }
   }
   .btn-outline-light {
@@ -86,17 +86,19 @@ h1, h2, h3, h4, h5, h6,
   }
 }
 .btn {
-  text-shadow: 0 -1px 0 rgba($black,.25);
+  text-shadow: 0 -1px 0 rgba($black,.22);
   box-shadow: 0 -1px 0 rgba($black,.15) inset;
-  &:not(.btn-light) {
-    &:not(.btn-link) {
-      color: $white;
-      @extend %smooth;
-    }
-    &.btn-outline-light, &.btn-link  {
-      text-shadow: none;
-      box-shadow: none;
-    }
+  border-width: 0;
+  &:not(.btn-light):not(.btn-link) {
+    color: $white;
+    @extend %smooth;
+  }
+  &[class*="btn-outline-light"] {
+    border-width: 1px;
+  }
+  &.btn-link, &[class*="btn-outline-light"] {
+    text-shadow: none;
+    box-shadow: none;
   }
   &.btn-light {
     color: $secondary;
@@ -219,11 +221,11 @@ strong, .at-sep {
   .navbar-dark & .navbar-toggler-icon {
     #bar-1 {
       transform: translate(4.828px, 2px) rotate(45deg);
-      transition: .3s linear;
+      transition: .3s ease;
     }
     #bar-2 {
       transform: translate(2px, 18.97px) rotate(-45deg);
-      transition: .3s linear;
+      transition: .3s ease;
     }
   }
   .navbar-dark &.collapsed .navbar-toggler-icon {
