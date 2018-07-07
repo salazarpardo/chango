@@ -25,15 +25,18 @@ AccountsTemplates.configure({
     defaultContentRegion: 'main',
     confirmPassword: false,
     enablePasswordChange: true,
-    sendVerificationEmail: true,
-    enforceEmailVerification: true,
+    sendVerificationEmail: false,
+    enforceEmailVerification: false,
+    // sendVerificationEmail: true,
+    // enforceEmailVerification: true,
     focusFirstInput: true,
 
     // Appearance
-    showAddRemoveServices: true,
+    showAddRemoveServices: false,
     showForgotPasswordLink: true,
     showLabels: true,
-    showResendVerificationEmailLink: true,
+    // showResendVerificationEmailLink: true,
+    showResendVerificationEmailLink: false,
 
     // Client-side Validation
     continuousValidation: false,
