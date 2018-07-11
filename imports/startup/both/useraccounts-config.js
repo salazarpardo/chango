@@ -8,6 +8,7 @@ T9n.map("es", {
     accounts: {
       "Verify email link expired": "El enlace para verificar tu correo expiró.",
       "Already verified": "Tu correo ya fue verificado",
+      "Incorrect password": "Contraseña incorrecta",
     }
   }
 });
@@ -96,7 +97,7 @@ AccountsTemplates.configure({
           signIn: "Ingresa a tu cuenta",
           changePwd: "Cambia tu contraseña",
           enrollAccount: "Conecta tu cuenta",
-          forgotPwd: "Recibir enlace para reestablecer contraseña",
+          forgotPwd: "Recibir enlace",
           resetPwd: "Reestablece tu contraseña",
           resendVerificationEmail: "Enviar correo de nuevo",
         },
@@ -302,7 +303,6 @@ AccountsTemplates.addFields([
       displayName: {
         default: "Contraseña actual",
       },
-      required: true,
       minLength: 6,
   }
 ]);
