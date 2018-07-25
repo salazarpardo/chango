@@ -3,3 +3,4 @@
 import './routes.js';
 import './bootstrap.js';
 import './fontawesome.js';
+import './maps.js';
