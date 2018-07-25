@@ -134,7 +134,3 @@ Template.post.onCreated(function() {
   });
 
 });
-
-Template.post.onRendered(function() {
-  GoogleMaps.load({key: 'AIzaSyDKcZBwYBkYJx6-GJI1OZjPPOmA40R1fV4'});
-});

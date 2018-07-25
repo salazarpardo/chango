@@ -82,7 +82,6 @@ Template.submit.onCreated(function () {
 });
 
 Template.submit.onRendered(function () {
-  GoogleMaps.load({key: 'AIzaSyDKcZBwYBkYJx6-GJI1OZjPPOmA40R1fV4'});
 
   // Emulating placeholder behaviour on select dropdowns.
   if ($('select').length) {
