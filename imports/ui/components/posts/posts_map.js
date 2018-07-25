@@ -27,10 +27,6 @@ Template.postsMap.helpers({
   },
 });
 
-Template.postsMap.onRendered(function() {
-  GoogleMaps.load({key: 'AIzaSyDKcZBwYBkYJx6-GJI1OZjPPOmA40R1fV4'});
-});
-
 Template.postsMap.onCreated(function() {
 
     var self = this;
