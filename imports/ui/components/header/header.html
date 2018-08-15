@@ -39,12 +39,12 @@
           </ul>
           <ul class="navbar-nav">
               {{#if currentUser}}
-                <li class="nav-item {{activeRouteClass 'submit'}}"><a class="btn btn-outline-light d-block d-md-inline-block mt-2 mt-lg-0 mr-lg-2" href="{{pathFor 'submit'}}">Comparte tu idea</a></li>
+                <li class="nav-item {{activeRouteClass 'submit'}}"><a class="btn btn-outline-light d-block d-md-inline-block mt-2 mt-lg-0 mr-lg-2 mb-sm-3" href="{{pathFor 'submit'}}">Comparte tu idea</a></li>
                 <li class="nav-item dropdown">
                   {{> notifications}}
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="accountDropdown" role="button">
+                  <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="accountDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                     <i class="far fa-user-circle"></i>
                     <small>
                       {{#if currentUser.profile.name}}
@@ -61,9 +61,6 @@
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{pathFor 'logout'}}">Salir</a>
                   </div>
-                </li>
-                <li class="nav-item dropdown">
-
                 </li>
               {{else}}
                 <li class="nav-item {{activeRouteClass 'signin'}}"><a class="nav-link mr-2 mb-2 mb-lg-0" href="{{pathFor 'signin'}}">Ingresa</a></li>
