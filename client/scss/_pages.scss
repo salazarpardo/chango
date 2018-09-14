@@ -35,7 +35,7 @@
     .hero-title {
       line-height: 1;
       letter-spacing: -1px;
-      text-shadow: 2px 2px rgba($primary, .8);
+      text-shadow: 2px 2px rgba($primary, 0.8);
       @include media-breakpoint-up(xs) {
         font-size: rem-calc(24);
       }
@@ -44,22 +44,31 @@
       }
       @include media-breakpoint-up(lg) {
         font-size: rem-calc(56);
-        line-height: .9;
+        line-height: 0.9;
       }
     }
     .hero-text {
       font-size: rem-calc(16);
       line-height: 1.25;
-      text-shadow: 1px 1px 1px rgba($primary, .8);
+      text-shadow: 1px 1px 1px rgba($primary, 0.8);
       @include media-breakpoint-up(lg) {
         font-size: rem-calc(20);
       }
     }
     .btn {
-      box-shadow: 0 2px 3px rgba(#a47095, .8);
-      font-size: rem-calc(18);
-      @include media-breakpoint-up(lg) {
-        font-size: rem-calc(22);
+      box-shadow: 0 2px 3px rgba(#a47095, 0.8);
+      &:not(.btn-sm) {
+        font-size: rem-calc(18);
+        @include media-breakpoint-up(lg) {
+          font-size: rem-calc(22);
+        }
+      }
+    }
+    .form-group {
+      .btn,
+      .form-control {
+        width: 100%;
+        margin-top: rem-calc(6);
       }
     }
   }
@@ -87,68 +96,68 @@
 }
 
 .landing-area {
-    padding: rem-calc(50) 0;
-    background-color: $bone;
-    background-size: 60%;
-    background-position: center;
-    background-repeat: no-repeat;
+  padding: rem-calc(50) 0;
+  background-color: $bone;
+  background-size: 60%;
+  background-position: center;
+  background-repeat: no-repeat;
+  @include media-breakpoint-up(md) {
+    background-size: 45%;
+  }
+  @include media-breakpoint-up(lg) {
+    background-size: rem-calc(380);
+  }
+  @include media-breakpoint-up(xl) {
+    background-size: rem-calc(420);
+  }
+  &.bg-first {
+    background-image: url(/img/city-find.svg);
+    background-position: 150% center;
     @include media-breakpoint-up(md) {
-      background-size: 45%;
+      background-position: 80% center;
     }
     @include media-breakpoint-up(lg) {
-      background-size: rem-calc(380);
+      background-position: 70% center;
     }
-    @include media-breakpoint-up(xl) {
-      background-size: rem-calc(420);
+  }
+  &.bg-second {
+    background-image: url(/img/city-future.svg);
+    background-position: -50% center;
+    @include media-breakpoint-up(md) {
+      background-position: 20% center;
     }
-    &.bg-first {
-      background-image: url(/img/city-find.svg);
-      background-position: 150% center;
-      @include media-breakpoint-up(md) {
-        background-position: 80% center;
-      }
-      @include media-breakpoint-up(lg) {
-        background-position: 70% center;
-      }
+    @include media-breakpoint-up(lg) {
+      background-position: 30% center;
     }
-    &.bg-second {
-      background-image: url(/img/city-future.svg);
-      background-position: -50% center;
-      @include media-breakpoint-up(md) {
-        background-position: 20% center;
-      }
-      @include media-breakpoint-up(lg) {
-        background-position: 30% center;
-      }
+  }
+  &.bg-third {
+    background-image: url(/img/city-real.svg);
+    background-position: 150% center;
+    @include media-breakpoint-up(md) {
+      background-position: 80% center;
     }
-    &.bg-third {
-      background-image: url(/img/city-real.svg);
-      background-position: 150% center;
-      @include media-breakpoint-up(md) {
-        background-position: 80% center;
-      }
-      @include media-breakpoint-up(lg) {
-        background-position: 70% center;
-      }
+    @include media-breakpoint-up(lg) {
+      background-position: 70% center;
     }
-    .landing-area-title {
-      font-size: rem-calc(20);
-      @include media-breakpoint-up(md) {
-        font-size: rem-calc(24);
-      }
+  }
+  .landing-area-title {
+    font-size: rem-calc(20);
+    @include media-breakpoint-up(md) {
+      font-size: rem-calc(24);
     }
-    p {
-      font-size: rem-calc(14);
-      @include media-breakpoint-up(md) {
-        font-size: rem-calc(16);
-      }
+  }
+  p {
+    font-size: rem-calc(14);
+    @include media-breakpoint-up(md) {
+      font-size: rem-calc(16);
     }
-    .btn {
-      font-size: rem-calc(14);
-      @include media-breakpoint-up(md) {
-        font-size: rem-calc(16);
-      }
+  }
+  .btn {
+    font-size: rem-calc(14);
+    @include media-breakpoint-up(md) {
+      font-size: rem-calc(16);
     }
+  }
 }
 
 .geoloc {
@@ -157,8 +166,8 @@
 }
 
 .user-comment {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    width: 70%;
-    overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 70%;
+  overflow: hidden;
 }

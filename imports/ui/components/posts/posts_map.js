@@ -37,7 +37,6 @@ Template.postsMap.onCreated(function() {
 
   const cursor = self.data.posts;
 
-  self.that;
   self.currentPlace = null;
 
   self.markers;
@@ -230,11 +229,10 @@ Template.postsMap.onCreated(function() {
           '<a href="/idea/' +
           slug +
           '">Ampliar</a></div>';
-        self.infowindow.setContent(contentString);
         var marker = self.markers[newDocument._id];
 
         bounds.extend(newLatlng);
-        self.markers[newDocument._id].setPosition(newLatlng);
+        marker.setPosition(newLatlng);
       },
       removed: function(oldDocument) {
         // Remove the marker from the map
