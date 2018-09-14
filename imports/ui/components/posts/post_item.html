@@ -2,10 +2,10 @@
   <div class="post cat-{{icon}}">
     <div class="post-content">
       <header class="clearfix">
-        <h3 class="post-title float-left">
+        <h3 class="post-title">
           <a href="{{pathFor '/idea/:slug' slug=slug}}">{{title}}</a>
-           <small class="text-muted"><em>{{category}}</em></small>
         </h3>
+        <small class="post-category text-muted"><em>{{category}}</em></small>
       </header>
       {{#if address}}
         <p class="mb-1">
