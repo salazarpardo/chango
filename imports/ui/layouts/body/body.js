@@ -1,10 +1,10 @@
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
-import './body.html';
+import "./body.html";
 
-import { Errors } from '/client/helpers/errors.js';
+import { Errors } from "/client/helpers/errors.js";
 
-import '../../components/errors/errors.js';
+import "../../components/errors/errors.js";
 
 Template.App_body.helpers({
   routeClass: function() {
@@ -14,8 +14,15 @@ Template.App_body.helpers({
 });
 
 Template.App_body.onRendered(function() {
+  var self = this;
+  this.autorun(() => {
+    FlowRouter.watchPathChange();
+    document.title =
+      "Chango | " +
+      (FlowRouter.current().route.options.title || FlowRouter.getRouteName());
+  });
 
-  this.find('#main, #page')._uihooks = {
+  this.find("#main, #page")._uihooks = {
     insertElement: function(node, next) {
       $(node)
         .hide()
@@ -27,5 +34,5 @@ Template.App_body.onRendered(function() {
         $(this).remove();
       });
     }
-  }
+  };
 });

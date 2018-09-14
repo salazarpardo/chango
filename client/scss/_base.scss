@@ -18,7 +18,8 @@
     padding: rem-calc(24);
   }
 }
-.home {
+.home,
+.beta {
   background-color: $primary;
 }
 
@@ -52,7 +53,8 @@ h6,
   position: relative;
   padding-top: rem-calc(100);
   padding-bottom: rem-calc(50);
-  .home & {
+  .home &,
+  .beta & {
     padding-top: rem-calc(24);
   }
 }
@@ -220,11 +222,18 @@ strong,
   font-style: italic;
   font-size: rem-calc(12);
 }
-#mailing-list {
+
+.newsletter {
+  p {
+    font-size: rem-calc(14);
+  }
   .form-group {
     display: inline-block;
     margin: 0 auto;
   }
+}
+
+.form-inline {
   .alert {
     display: none;
   }
@@ -237,11 +246,6 @@ strong,
       animation: none;
       margin: 0 auto;
     }
-  }
-}
-.newsletter {
-  p {
-    font-size: rem-calc(14);
   }
 }
 
@@ -339,4 +343,11 @@ $auth-icon-size: rem-calc(72);
   @extend %smooth;
   background-color: darken($primary, 20);
   color: $white;
+}
+
+.input-group-text small {
+  font-size: rem-calc(10);
+  @include media-breakpoint-up(md) {
+    font-size: rem-calc(12);
+  }
 }

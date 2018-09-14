@@ -1,15 +1,14 @@
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
-import { Posts } from '/imports/api/posts/posts.js';
-import { subs } from '/imports/api/posts/posts.js';
-import { Meteor } from 'meteor/meteor';
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
+import { Posts } from "/imports/api/posts/posts.js";
+import { subs } from "/imports/api/posts/posts.js";
+import { Meteor } from "meteor/meteor";
 
-import './posts.html';
+import "./posts.html";
 
-import '../../components/posts/posts_list.js';
-import '../../components/posts/posts_map.js';
+import "../../components/posts/posts_list.js";
+import "../../components/posts/posts_map.js";
 
-Template.posts.onCreated(function () {
-
+Template.posts.onCreated(function() {
   // 1. Initialization
 
   var instance = this;
@@ -17,26 +16,26 @@ Template.posts.onCreated(function () {
   // initialize the reactive variables
   instance.loaded = new ReactiveVar(0);
   instance.limit = new ReactiveVar(5);
-  instance.sortby = new ReactiveVar({submitted: -1, _id: -1});
+  instance.sortby = new ReactiveVar({ submitted: -1, _id: -1 });
 
   // 2. Autorun
 
   // will re-run when the "limit" reactive variables changes
-  instance.autorun(function () {
+  instance.autorun(function() {
     FlowRouter.watchPathChange();
-    if (FlowRouter.current().route.name == 'best') {
-      instance.sortby.set({votes: -1, submitted: -1, _id: -1});
-    } else if (FlowRouter.current().route.name == 'map') {
-      instance.sortby.set({location: -1, submitted: -1, _id: -1});
+    if (FlowRouter.current().route.name == "best") {
+      instance.sortby.set({ votes: -1, submitted: -1, _id: -1 });
+    } else if (FlowRouter.current().route.name == "map") {
+      instance.sortby.set({ location: -1, submitted: -1, _id: -1 });
     } else {
-      instance.sortby.set({submitted: -1, _id: -1});
+      instance.sortby.set({ submitted: -1, _id: -1 });
     }
     // get the limit and sort
     var limit = instance.limit.get();
     var sortby = instance.sortby.get();
 
     // subscribe to the posts publication
-    var subscription = subs.subscribe('posts', sortby, limit);
+    var subscription = subs.subscribe("posts", sortby, limit);
 
     // if subscription is ready, set limit to newLimit
     if (subscription.ready()) {
@@ -49,15 +48,17 @@ Template.posts.onCreated(function () {
   // 3. Cursor
 
   instance.posts = function() {
-    return Posts.find({}, {sort: instance.sortby.get(), limit: instance.loaded.get()});
-  }
-
+    return Posts.find(
+      {},
+      { sort: instance.sortby.get(), limit: instance.loaded.get() }
+    );
+  };
 });
 
 Template.posts.helpers({
   map: function() {
     FlowRouter.watchPathChange();
-    if (FlowRouter.current().route.name == 'map') {
+    if (FlowRouter.current().route.name == "map") {
       return true;
     }
   },
@@ -65,10 +66,27 @@ Template.posts.helpers({
     FlowRouter.watchPathChange();
     return FlowRouter.current().route.options[optionName];
   },
-  posts: function () {
+  posts: function() {
     return Template.instance().posts();
   },
-  hasMorePosts: function () {
-    return Template.instance().posts().count() >= Template.instance().limit.get();
+  hasMorePosts: function() {
+    return (
+      Template.instance()
+        .posts()
+        .count() >= Template.instance().limit.get()
+    );
+  }
+});
+
+Template.posts.events({
+  "click .load-more": function(event, instance) {
+    event.preventDefault();
+
+    // get current value for limit, i.e. how many posts are currently displayed
+    var limit = instance.limit.get();
+
+    // increase limit by 5 and update it
+    limit += 5;
+    instance.limit.set(limit);
   }
 });

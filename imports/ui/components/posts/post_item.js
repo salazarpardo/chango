@@ -1,6 +1,6 @@
-import { Comments } from '/imports/api/comments/comments.js';
+import { Comments } from "/imports/api/comments/comments.js";
 
-import './post_item.html';
+import "./post_item.html";
 
 Template.postItem.helpers({
   ownPost() {
@@ -14,34 +14,34 @@ Template.postItem.helpers({
   upvotedClass() {
     var userId = Meteor.userId();
     if (userId && !_.include(this.upvoters, userId)) {
-      return 'upvotable';
+      return "upvotable";
     } else if (_.include(this.upvoters, userId)) {
-      return 'disabled upvoted';
+      return "disabled upvoted";
     } else {
-      return 'disabled';
+      return "disabled";
     }
   },
   upvoteIconClass() {
     var userId = Meteor.userId();
     if (userId && !_.include(this.upvoters, userId)) {
-      return 'far fa-thumbs-up';
+      return "far fa-thumbs-up";
     } else {
-      return 'fas fa-thumbs-up';
+      return "fas fa-thumbs-up";
     }
   },
   commentClass() {
     var userId = Meteor.userId();
     if (userId) {
-      return 'commentable';
+      return "commentable";
     } else {
-      return 'disabled';
+      return "disabled";
     }
   }
 });
 
 Template.postItem.events({
-  'click .upvotable': function(e) {
+  "click .upvotable": function(e) {
     e.preventDefault();
-    Meteor.call('upvote', this._id);
-  },
+    Meteor.call("upvote", this._id);
+  }
 });

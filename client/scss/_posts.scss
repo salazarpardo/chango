@@ -58,10 +58,16 @@
   &.animate {
     transition: top 300ms ease-in;
   }
+  .post-title {
+    font-size: rem-calc(32);
+    @include media-breakpoint-up(md) {
+      font-size: rem-calc(40);
+    }
+  }
   .post-content {
     h3 {
       margin: 0;
-      line-height: 1.4;
+      line-height: 1.15;
       font-size: rem-calc(18);
       @include media-breakpoint-up(md) {
         font-size: rem-calc(20);
@@ -86,6 +92,9 @@
       p {
         margin: 0;
       }
+      .text-muted {
+        font-size: rem-calc(12);
+      }
     }
   }
 }
@@ -101,12 +110,13 @@
   font-style: italic;
   &:hover {
     text-decoration: none;
-    transition: .3s ease-in-out;
+    transition: 0.3s ease-in-out;
     background: rgba($primary, 0.3);
   }
 }
 
-.comments, .user-comments {
+.comments,
+.user-comments {
   list-style-type: none;
   margin: 0;
   h4 {
@@ -123,6 +133,6 @@
     color: $text-muted;
   }
   p:last-child {
-   margin-bottom: 0;
+    margin-bottom: 0;
   }
 }
