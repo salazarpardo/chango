@@ -8,19 +8,22 @@ import "../../components/errors/errors.js";
 
 Template.App_body.helpers({
   routeClass: function() {
-    FlowRouter.watchPathChange();
-    return FlowRouter.current().route.name;
+    return FlowRouter.getRouteName();
   }
 });
 
 Template.App_body.onRendered(function() {
-  var self = this;
-  this.autorun(() => {
+  Session.set("documentTitle", "Chango");
+  this.autorun(function() {
+    var routeTitle = FlowRouter.current().route.options.title;
     FlowRouter.watchPathChange();
-    document.title =
-      "Chango | " +
-      (FlowRouter.current().route.options.title || FlowRouter.getRouteName());
+    if (routeTitle) {
+      Session.set("documentTitle", routeTitle + " | Chango");
+    }
+    document.title = Session.get("documentTitle");
   });
+
+  var self = this;
 
   this.find("#main, #page")._uihooks = {
     insertElement: function(node, next) {
