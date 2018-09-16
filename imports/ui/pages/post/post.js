@@ -56,24 +56,28 @@ Template.post.onCreated(function() {
   self.loaded = new ReactiveVar(0);
   self.limit = new ReactiveVar(3);
   self.sortby = new ReactiveVar({ submitted: -1, _id: -1 });
+  self.postSlug = () => FlowRouter.getParam("slug");
 
   // 2. Autorun
 
   // will re-run when the "limit" reactive variables changes
   self.autorun(() => {
     FlowRouter.watchPathChange();
-    self.postSlug = () => FlowRouter.getParam("slug");
 
     subs.subscribe("singlePost", self.postSlug());
-    subs.subscribe("comments", self.postSlug());
+    self.subscribe("comments", self.postSlug());
 
     self.post = function() {
       if (self.postSlug() !== undefined) {
         singlePost = Posts.findOne({ slug: self.postSlug() });
-        document.title = singlePost.title + " | Chango";
+        console.log(singlePost);
+
         return singlePost;
       }
     };
+    if (subs.ready()) {
+      Session.set("documentTitle", self.post().title + " | Chango");
+    }
 
     // get the limit and sort
     var limit = self.limit.get();

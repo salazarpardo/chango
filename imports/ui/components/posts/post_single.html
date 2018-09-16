@@ -19,15 +19,15 @@
         <div class="col-12">
           <div class="float-left" id="share">
             <!-- facebook -->
-            <a class="btn btn-sm btn-facebook" href="https://www.facebook.com/share.php?u={{postUrl}}&title={{post.title}}" target="blank"><i class="fab fa-facebook"></i></a>
+            <a class="btn btn-sm btn-facebook" href="https://www.facebook.com/sharer.php?u={{postUrl}}&p[title]={{title}}" target="_blank"><i class="fab fa-facebook"></i></a>
             <!-- twitter -->
-            <a class="btn btn-sm btn-twitter" href="https://twitter.com/intent/tweet?status={{post.title}}+{{postUrl}}" target="blank"><i class="fab fa-twitter"></i></a>
+            <a class="btn btn-sm btn-twitter" href="https://twitter.com/intent/tweet?url={{postUrl}}&text={{title}}" target="_blank"><i class="fab fa-twitter"></i></a>
             <!-- linkedin -->
-            <a class="btn btn-sm btn-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{postUrl}}&title={{post.title}}&summary={{post.title}}&source=Chango" target="blank"><i class="fab fa-linkedin"></i></a>
+            <a class="btn btn-sm btn-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{postUrl}}&title={{title}}&summary={{title}}&source=Chango" target="_blank"><i class="fab fa-linkedin"></i></a>
             <!-- email -->
-            <a class="btn btn-sm btn-email" href="mailto:?subject={{post.title}}&amp;body={{postUrl}}" target="_self" aria-label="Share by E-Mail"><i class="fas fa-envelope"></i></a>
+            <a class="btn btn-sm btn-email" href="mailto:?subject={{title}}&amp;body=Ver más en {{postUrl}}" target="_self" aria-label="Share by E-Mail"><i class="fas fa-envelope"></i></a>
             <!-- whatsapp -->
-            <a class="btn btn-sm btn-whatsapp" href="whatsapp://send?text={{post.title}}%20{{postUrl}}" target="_blank" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a class="btn btn-sm btn-whatsapp" href="https://wa.me/?text={{title}}%20{{postUrl}}" target="_blank" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
           </div>
           <small class="text-muted float-right">
             <!-- {{pluralize votes "voto"}},
