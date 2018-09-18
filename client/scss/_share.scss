@@ -1,150 +1,55 @@
-.btn-twitter {
-  background-color: #55acee;
-}
-
-.btn-twitter:hover {
-  background-color: #2795e9;
-}
-
-.btn-pinterest {
-  background-color: #bd081c;
-}
-
-.btn-pinterest:hover {
-  background-color: #8c0615;
-}
+$twitter-color: #55acee;
+$facebook-color: #3b5998;
+$email-color: $secondary;
+$linkedin-color: #0077b5;
+$whatsapp-color: #25d366;
 
 .btn-facebook {
-  background-color: #3b5998;
-}
-
-.btn-facebook:hover {
-  background-color: #2d4373;
-}
-
-.btn-tumblr {
-  background-color: #35465c;
-}
-
-.btn-tumblr:hover {
-  background-color: #222d3c;
-}
-
-.btn-reddit {
-  background-color: #5f99cf;
-}
-
-.btn-reddit:hover {
-  background-color: #3a80c1;
-}
-
-.btn-google {
-  background-color: #dd4b39;
-}
-
-.btn-google:hover {
-  background-color: #c23321;
-}
-
-.btn-linkedin {
-  background-color: #0077b5;
-}
-
-.btn-linkedin:hover {
-  background-color: #046293;
-}
-
-.btn-email {
-  background-color: #777;
-}
-
-.btn-email:hover {
-  background-color: #5e5e5e;
-}
-
-.btn-xing {
-  background-color: #1a7576;
-}
-
-.btn-xing:hover {
-  background-color: #114c4c;
-}
-
-.btn-whatsapp {
-  background-color: #25d366;
-}
-
-.btn-whatsapp:hover {
-  background-color: #1da851;
-}
-
-.btn-hackernews {
-  background-color: #ff6600;
-}
-.btn-hackernews:hover,
-.btn-hackernews:focus {
-  background-color: #fb6200;
-}
-
-.btn-vk {
-  background-color: #507299;
-}
-
-.btn-vk:hover {
-  background-color: #43648c;
-}
-
-.btn-facebook {
-  background-color: #3b5998;
-  border-color: #3b5998;
-}
-
-.btn-facebook:hover,
-.btn-facebook:active {
-  background-color: #2d4373;
-  border-color: #2d4373;
+  background-color: $facebook-color;
+  border-color: $facebook-color;
+  &:hover,
+  &:active {
+    background-color: darken($facebook-color, 15);
+    border-color: darken($facebook-color, 15);
+  }
 }
 
 .btn-twitter {
-  background-color: #55acee;
-  border-color: #55acee;
-}
-
-.btn-twitter:hover,
-.btn-twitter:active {
-  background-color: #2795e9;
-  border-color: #2795e9;
+  background-color: $twitter-color;
+  border-color: $twitter-color;
+  &:hover,
+  &:active {
+    background-color: darken($twitter-color, 15);
+    border-color: darken($twitter-color, 15);
+  }
 }
 
 .btn-email {
-  background-color: #777777;
-  border-color: #777777;
-}
-
-.btn-email:hover,
-.btn-email:active {
-  background-color: #5e5e5e;
-  border-color: #5e5e5e;
+  background-color: $email-color;
+  border-color: $email-color;
+  &:hover,
+  &:active {
+    background-color: darken($email-color, 15);
+    border-color: darken($email-color, 15);
+  }
 }
 
 .btn-linkedin {
-  background-color: #0077b5;
-  border-color: #0077b5;
-}
-
-.btn-linkedin:hover,
-.btn-linkedin:active {
-  background-color: #046293;
-  border-color: #046293;
+  background-color: $linkedin-color;
+  border-color: $linkedin-color;
+  &:hover,
+  &:active {
+    background-color: darken($linkedin-color, 15);
+    border-color: darken($linkedin-color, 15);
+  }
 }
 
 .btn-whatsapp {
-  background-color: #25d366;
-  border-color: #25d366;
-}
-
-.btn-whatsapp:hover,
-.btn-whatsapp:active {
-  background-color: #1da851;
-  border-color: #1da851;
+  background-color: $whatsapp-color;
+  border-color: $whatsapp-color;
+  &:hover,
+  &:active {
+    background-color: darken($whatsapp-color, 15);
+    border-color: darken($whatsapp-color, 15);
+  }
 }

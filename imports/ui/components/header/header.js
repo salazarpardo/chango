@@ -1,8 +1,8 @@
-import { FlowRouter } from 'meteor/ostrio:flow-router-extra';
+import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 
-import './header.html';
+import "./header.html";
 
-import '../notifications/notifications.js';
+import "../notifications/notifications.js";
 
 Template.header.helpers({
   activeRouteClass: function(/* route names */) {
@@ -11,17 +11,15 @@ Template.header.helpers({
 
     var active = _.any(args, function(name) {
       FlowRouter.watchPathChange();
-      return FlowRouter.current() && FlowRouter.current().route.name === name
+      return FlowRouter.current() && FlowRouter.current().route.name === name;
     });
 
-    return active && 'active';
-  },
+    return active && "active";
+  }
 });
 
-
-Template.header.onCreated(function () {
-
+Template.header.onCreated(function() {
   var instance = this;
 
-  instance.subscribe('notifications');
+  instance.subscribe("notifications");
 });

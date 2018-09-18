@@ -1,8 +1,8 @@
 // Fill the DB with example data on startup
 
-import { Meteor } from 'meteor/meteor';
-import { Posts } from '../../api/posts/posts.js';
-import { Comments } from '../../api/comments/comments.js';
+import { Meteor } from "meteor/meteor";
+import { Posts } from "../../api/posts/posts.js";
+import { Comments } from "../../api/comments/comments.js";
 
 // Fixture data
 if (Posts.find().count() === 0) {
@@ -10,20 +10,20 @@ if (Posts.find().count() === 0) {
 
   // create two users
   var tomId = Meteor.users.insert({
-    profile: { name: 'Tom Coleman' }
+    profile: { name: "Tom Coleman" }
   });
   var tom = Meteor.users.findOne(tomId);
   var sachaId = Meteor.users.insert({
-    profile: { name: 'Sacha Greif' }
+    profile: { name: "Sacha Greif" }
   });
   var sacha = Meteor.users.findOne(sachaId);
 
   var telescopeId = Posts.insert({
-    title: 'Introducing Telescope',
-    slug: 'introducing-telescope',
+    title: "Introducing Telescope",
+    slug: "introducing-telescope",
     userId: sacha._id,
     author: sacha.profile.name,
-    url: 'http://sachagreif.com/introducing-telescope/',
+    url: "http://sachagreif.com/introducing-telescope/",
     submitted: new Date(now - 7 * 3600 * 1000),
     commentsCount: 2,
     upvoters: [],
@@ -32,28 +32,28 @@ if (Posts.find().count() === 0) {
 
   Comments.insert({
     postId: telescopeId,
-    postSlug: 'introducing-telescope',
+    postSlug: "introducing-telescope",
     userId: tom._id,
     author: tom.profile.name,
     submitted: new Date(now - 5 * 3600 * 1000),
-    body: 'Interesting project Sacha, can I get involved?'
+    body: "Interesting project Sacha, can I get involved?"
   });
 
   Comments.insert({
     postId: telescopeId,
-    postSlug: 'introducing-telescope',
+    postSlug: "introducing-telescope",
     userId: sacha._id,
     author: sacha.profile.name,
     submitted: new Date(now - 3 * 3600 * 1000),
-    body: 'You sure can Tom!'
+    body: "You sure can Tom!"
   });
 
   Posts.insert({
-    title: 'Meteor',
-    slug: 'meteor',
+    title: "Meteor",
+    slug: "meteor",
     userId: tom._id,
     author: tom.profile.name,
-    url: 'http://meteor.com',
+    url: "http://meteor.com",
     submitted: new Date(now - 10 * 3600 * 1000),
     commentsCount: 0,
     upvoters: [],
@@ -61,11 +61,11 @@ if (Posts.find().count() === 0) {
   });
 
   Posts.insert({
-    title: 'The Meteor Book',
-    slug: 'meteor-book',
+    title: "The Meteor Book",
+    slug: "meteor-book",
     userId: tom._id,
     author: tom.profile.name,
-    url: 'http://themeteorbook.com',
+    url: "http://themeteorbook.com",
     submitted: new Date(now - 12 * 3600 * 1000),
     commentsCount: 0,
     upvoters: [],
@@ -74,11 +74,11 @@ if (Posts.find().count() === 0) {
 
   for (var i = 0; i < 10; i++) {
     Posts.insert({
-      title: 'Test post #' + i,
-      slug: 'test-post-' + i,
+      title: "Test post #" + i,
+      slug: "test-post-" + i,
       author: sacha.profile.name,
       userId: sacha._id,
-      url: 'http://google.com/?q=test-' + i,
+      url: "http://google.com/?q=test-" + i,
       submitted: new Date(now - i * 3600 * 1000 + 1),
       commentsCount: 0,
       upvoters: [],

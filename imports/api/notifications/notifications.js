@@ -1,14 +1,17 @@
 // Definition of the notifications collection
 
-import { Mongo } from 'meteor/mongo';
-import { Posts } from '/imports/api/posts/posts.js';
+import { Mongo } from "meteor/mongo";
+import { Posts } from "/imports/api/posts/posts.js";
 
-export const Notifications = new Mongo.Collection('notifications');
+export const Notifications = new Mongo.Collection("notifications");
 
 Notifications.allow({
   update: function(userId, doc, fieldNames) {
-    return ownsDocument(userId, doc) &&
-      fieldNames.length === 1 && fieldNames[0] === 'read';
+    return (
+      ownsDocument(userId, doc) &&
+      fieldNames.length === 1 &&
+      fieldNames[0] === "read"
+    );
   }
 });
 

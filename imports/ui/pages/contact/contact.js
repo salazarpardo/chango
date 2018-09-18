@@ -1,1 +1,1 @@
-import './contact.html';
+import "./contact.html";

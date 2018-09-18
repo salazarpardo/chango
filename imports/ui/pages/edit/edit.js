@@ -216,8 +216,10 @@ Template.postEdit.events({
     Posts.update(currentPostId, { $set: postProperties }, function(error) {
       if (error) {
         // display the error to the user
+        analytics.track("Error Editing Idea", postProperties);
         throwError(error.reason, "alert-danger");
       } else {
+        analytics.track("Edited Idea", postProperties);
         FlowRouter.go("post", { slug: FlowRouter.getParam("slug") });
       }
     });
@@ -232,13 +234,18 @@ Template.postEdit.events({
   "click .confirm": function(e) {
     e.preventDefault();
     Session.set("currentPostId", this._id);
+    analytics.track("Confirm Idea Deletion", {
+      eventName: "Delete Idea"
+    });
     $("#confirmModal").modal("show");
-    // FlowRouter.go('home');
   },
   "click .delete": function(e) {
     e.preventDefault();
     var currentPostId = Session.get("currentPostId");
     Posts.remove(currentPostId);
+    analytics.track("Deleted Idea", {
+      eventName: "Delete Idea"
+    });
     $("#confirmModal")
       .on("hidden.bs.modal", function() {
         FlowRouter.go("dashboard");

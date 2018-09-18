@@ -21,7 +21,7 @@ Template.postSingle.helpers({
   },
   upvoteIconClass() {
     var userId = Meteor.userId();
-    if (userId && !_.include(this.upvoters, userId)) {
+    if (!_.include(this.upvoters, userId)) {
       return "far fa-thumbs-up";
     } else {
       return "fas fa-thumbs-up";
@@ -41,5 +41,20 @@ Template.postSingle.events({
   "click .upvotable": function(e) {
     e.preventDefault();
     Meteor.call("upvote", this._id);
+  },
+  "click .comment.btn-logged-out ": function() {
+    analytics.track("Tried to Comment Idea", {
+      eventName: "Idea"
+    });
+  },
+  "click .upvote.btn-logged-out ": function() {
+    analytics.track("Tried to Vote Idea", {
+      eventName: "Idea"
+    });
+  },
+  "click #share .btn": function() {
+    analytics.track("Shared Idea", {
+      eventName: "Idea"
+    });
   }
 });

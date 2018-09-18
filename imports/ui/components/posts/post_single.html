@@ -33,8 +33,13 @@
             <!-- {{pluralize votes "voto"}},
             {{pluralize commentsCount "comentario"}} -->
             <div class="btn-group" role="group" aria-label="Basic example">
-              <a href="#comentarios" class="comment btn btn-link {{commentClass}}">{{commentsCount}} <i class="far fa-comment-alt"></i></a>
-              <a href="#" class="upvote btn btn-link {{upvotedClass}}">{{votes}} <i class="{{upvoteIconClass}}"></i> </a>
+              {{#if currentUser}}
+                <a href="#comentarios" class="comment btn btn-link {{commentClass}}" title="Comentar {{title}}">{{commentsCount}} <i class="far fa-comment-alt"></i></a>
+                <a href="#" class="upvote btn btn-link {{upvotedClass}}" title="Votar {{title}}">{{votes}} <i class="{{upvoteIconClass}}"></i> </a>
+              {{else}}
+                <a href="#" class="comment btn btn-link btn-logged-out" data-toggle="modal" data-target="#loginModal" title="Ingresa para comentar">{{commentsCount}} <i class="far fa-comment-alt"></i></a>
+                <a href="#" class="upvote btn btn-link btn-logged-out" data-toggle="modal" data-target="#loginModal" title="Ingresa para votar">{{votes}} <i class="{{upvoteIconClass}}"></i> </a>
+              {{/if}}
             </div>
           </small>
         </div>
