@@ -124,8 +124,11 @@ AccountsTemplates.configureRoute("signIn", {
   path: "/ingreso",
   redirect: function() {
     var user = Meteor.user();
+    var next = FlowRouter.getQueryParam("next");
 
-    if (user) {
+    if (user && next) {
+      FlowRouter.go(next);
+    } else {
       FlowRouter.go("dashboard");
     }
   }

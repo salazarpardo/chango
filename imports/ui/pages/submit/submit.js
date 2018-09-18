@@ -219,15 +219,17 @@ Template.submit.events({
 
     Meteor.call("posts.insert", post, (error, result) => {
       if (error) {
+        analytics.track("New Idea Error", post);
         return throwError(error.reason, "alert-danger");
       }
       if (result.postExists) {
+        analytics.track("Idea with same URL", post);
         throwError(
           "Existe una idea con la misma ruta. Intenta de nuevo después de cambiarla.",
           "alert-info"
         );
       } else {
-        analytics.track("posts.insert", post);
+        analytics.track("Added New Idea", post);
         FlowRouter.go("post", { slug: result.slug });
       }
     });

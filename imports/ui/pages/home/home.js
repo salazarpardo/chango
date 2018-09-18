@@ -1,12 +1,11 @@
-import { Posts } from '/imports/api/posts/posts.js';
-import { subs } from '/imports/api/posts/posts.js';
+import { Posts } from "/imports/api/posts/posts.js";
+import { subs } from "/imports/api/posts/posts.js";
 
-import './home.html';
+import "./home.html";
 
-import '../../components/posts/posts_list.js';
+import "../../components/posts/posts_list.js";
 
-Template.home.onCreated(function () {
-
+Template.home.onCreated(function() {
   // 1. Initialization
 
   var instance = this;
@@ -14,18 +13,18 @@ Template.home.onCreated(function () {
   // initialize the reactive variables
   instance.loaded = new ReactiveVar(0);
   instance.limit = new ReactiveVar(5);
-  instance.sortby = new ReactiveVar({submitted: -1, _id: -1});
+  instance.sortby = new ReactiveVar({ submitted: -1, _id: -1 });
 
   // 2. Autorun
 
   // will re-run when the "limit" reactive variables changes
-  instance.autorun(function () {
+  instance.autorun(function() {
     // get the limit and sort
     var limit = instance.limit.get();
     var sortby = instance.sortby.get();
 
     // subscribe to the posts publication
-    var subscription = subs.subscribe('posts', sortby, limit);
+    var subscription = subs.subscribe("posts", sortby, limit);
 
     // if subscription is ready, set limit to newLimit
     if (subscription.ready()) {
@@ -38,16 +37,18 @@ Template.home.onCreated(function () {
   // 3. Cursor
 
   instance.posts = function() {
-    return Posts.find({}, {sort: {submitted: -1, _id: -1}, limit: instance.loaded.get()});
-  }
-
+    return Posts.find(
+      {},
+      { sort: { submitted: -1, _id: -1 }, limit: instance.loaded.get() }
+    );
+  };
 });
 
 Template.home.helpers({
-  'posts'() {
+  posts() {
     return Template.instance().posts();
   },
-  'hasMorePosts'() {
+  hasMorePosts() {
     return false;
-  },
+  }
 });

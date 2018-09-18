@@ -1,1 +1,1 @@
-import './privacy.html';
+import "./privacy.html";

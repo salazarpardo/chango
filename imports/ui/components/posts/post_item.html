@@ -17,8 +17,13 @@
           <!-- {{pluralize votes "voto"}},
           {{pluralize commentsCount "comentario"}} -->
           <div class="btn-group" role="group" aria-label="Basic example">
-            <a class="comment btn btn-sm btn-link {{commentClass}}" href="{{pathFor '/idea/:slug' slug=slug}}"  title="Ingresa para votar">{{commentsCount}} <i class="far fa-comment-alt"></i></a>
-            <a class="upvote btn btn-sm btn-link {{upvotedClass}}"  href="#" title="Ingresa para comentar">{{votes}} <i class="{{upvoteIconClass}}"></i> </a>
+            {{#if currentUser}}
+              <a class="comment btn btn-sm btn-link {{commentClass}}" href="{{pathFor '/idea/:slug' slug=slug}}"  title="Comentar {{title}}">{{commentsCount}} <i class="far fa-comment-alt"></i></a>
+              <a class="upvote btn btn-sm btn-link {{upvotedClass}}"  href="#" title="Votar {{title}}">{{votes}} <i class="{{upvoteIconClass}}"></i> </a>
+            {{else}}
+              <a class="comment btn btn-sm btn-link btn-logged-out" data-toggle="modal" data-target="#loginModal" href="#"  title="Ingresa para comentar">{{commentsCount}} <i class="far fa-comment-alt"></i></a>
+              <a class="upvote btn btn-sm btn-link btn-logged-out" data-toggle="modal" data-target="#loginModal"  href="#" title="Ingresa para votar">{{votes}} <i class="{{upvoteIconClass}}"></i> </a>
+            {{/if}}
           </div>
         </small>
         <small class="text-muted float-left mt-1">
@@ -28,4 +33,5 @@
       </small>
     </div>
   </div>
+
 </template>

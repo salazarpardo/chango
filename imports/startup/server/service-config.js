@@ -1,15 +1,15 @@
-import { ServiceConfiguration } from 'meteor/service-configuration';
+import { ServiceConfiguration } from "meteor/service-configuration";
 
 var settings = Meteor.settings.private.facebook,
-    appId    = settings.appId,
-    secret   = settings.secret;
+  appId = settings.appId,
+  secret = settings.secret;
 
 ServiceConfiguration.configurations.upsert(
-  { service: 'facebook' },
+  { service: "facebook" },
   {
     $set: {
       appId: appId,
-      loginStyle: 'popup',
+      loginStyle: "popup",
       secret: secret
     }
   }

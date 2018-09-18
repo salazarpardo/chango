@@ -70,8 +70,6 @@ Template.post.onCreated(function() {
     self.post = function() {
       if (self.postSlug() !== undefined) {
         singlePost = Posts.findOne({ slug: self.postSlug() });
-        console.log(singlePost);
-
         return singlePost;
       }
     };

@@ -1,6 +1,6 @@
-import { Errors } from '/client/helpers/errors.js';
+import { Errors } from "/client/helpers/errors.js";
 
-import './errors.html';
+import "./errors.html";
 
 Template.errors.helpers({
   errors: function() {
@@ -10,8 +10,8 @@ Template.errors.helpers({
 
 Template.error.onRendered(function() {
   var error = this.data;
-  Meteor.setTimeout(function () {
-    $(".alert-dismissible").alert('close');
+  Meteor.setTimeout(function() {
+    $(".alert-dismissible").alert("close");
     Errors.remove(error._id);
   }, 5000);
 });

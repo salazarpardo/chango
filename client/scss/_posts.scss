@@ -64,6 +64,13 @@
       font-size: rem-calc(40);
     }
   }
+  .btn-logged-out {
+    color: $text-muted;
+    &:hover,
+    &:active {
+      color: $secondary;
+    }
+  }
   .post-content {
     h3 {
       margin: 0;
