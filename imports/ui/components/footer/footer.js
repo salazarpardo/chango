@@ -6,11 +6,9 @@ Template.footer.helpers({
   getQueryParams() {
     FlowRouter.watchPathChange();
     var currentPath = FlowRouter.current().path;
-    console.log(currentPath);
     var params = {
       next: currentPath
     };
-    console.log(params);
     return FlowRouter._qs.stringify(params);
   }
 });
