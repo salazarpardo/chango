@@ -92,7 +92,7 @@ publicRoutes.route("/contacto", {
   triggersExit: []
 });
 
-publicRoutes.route("/beta", {
+publicRoutes.route("/lista", {
   name: "beta",
   triggersEnter: [],
   action() {
@@ -106,7 +106,7 @@ publicRoutes.route("/beta", {
     });
   },
   triggersExit: [],
-  title: "Ingresa en el listado para hacer parte de nuestro Beta"
+  title: "¡Ingresa en el listado y únete al Chango!"
 });
 
 publicRoutes.route("/recientes", {

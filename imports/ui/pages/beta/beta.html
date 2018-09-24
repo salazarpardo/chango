@@ -9,7 +9,7 @@
               <p>
                 ¡Alguien de tu barrio, colegio, o universidad puede necesitar tu apoyo para hacer realidad su idea!
               </p>
-              <a class="btn btn-success btn-lg btn-block" href="{{pathFor 'map'}}">Ver ideas cercanas</a>
+              <!-- <a class="btn btn-success btn-lg btn-block" href="{{pathFor 'map'}}">Ver ideas cercanas</a> -->
             </div>
           </div>
           <div class="col-3 col-lg-4 d-none d-lg-block">
@@ -28,15 +28,7 @@
               <p>
                 Entre todos ayudamos a alimentar las mejores ideas para que pasen a ser proyectos exitosos.
               </p>
-              {{#if currentUser}}
-                <a class="btn btn-info btn-block" href="{{pathFor 'submit'}}">
-                  Comparte tu idea
-                </a>
-              {{else}}
-                <a class="btn btn-info btn-lg btn-block" href="{{pathFor 'join' query='next=submit'}}">
-                  Comparte tu idea
-                </a>
-              {{/if}}
+              <!-- <a class="btn btn-info btn-lg btn-block" href="{{pathFor 'join' query='next=submit'}}">Comparte tu idea</a> -->
             </div>
           </div>
         </div>
@@ -51,7 +43,7 @@
               <p>
                 Si tu idea cuenta con el apoyo de tu comunidad o un grupo de amigos, ¡no esperes más y hazla real!
               </p>
-              <a class="btn btn-primary btn-lg btn-block" href="{{pathFor 'best'}}">Ver ideas populares</a>
+              <!-- <a class="btn btn-primary btn-lg btn-block" href="{{pathFor 'best'}}">Ver ideas populares</a> -->
             </div>
           </div>
           <div class="col-3 col-lg-4 d-none d-lg-block">
