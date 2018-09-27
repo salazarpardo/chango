@@ -27,3 +27,22 @@ createCommentNotification = function(comment) {
     });
   }
 };
+
+createMentionNotification = function(post) {
+  if (post.mentions) {
+    post.mentions.forEach(function(element) {
+      var mention = element.value.substr(1);
+      var user = Meteor.users.findOne({ username: mention });
+      if (user && user._id !== post.userId) {
+        Notifications.insert({
+          userId: user._id,
+          postSlug: post.slug,
+          commentId: post._id,
+          commenterName: post.author,
+          read: false,
+          mention: true
+        });
+      }
+    });
+  }
+};

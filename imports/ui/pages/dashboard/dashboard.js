@@ -8,6 +8,7 @@ import "./dashboard.html";
 
 import "../../components/posts/posts_list.js";
 import "../../components/comments/comment_item.js";
+import "../../components/skeleton/skeleton.js";
 
 Template.dashboard.onCreated(function() {
   // 1. Initialization
@@ -18,7 +19,21 @@ Template.dashboard.onCreated(function() {
   // initialize the reactive variables
   instance.loaded = new ReactiveVar(0);
   instance.limit = new ReactiveVar(5);
-  instance.sortby = new ReactiveVar({ submitted: -1, _id: -1 });
+  instance.query = new ReactiveVar({});
+
+  instance.sortRecent = new ReactiveVar({ submitted: -1, _id: -1 });
+  instance.sortVoted = new ReactiveVar({
+    votes: -1,
+    commentsCount: -1,
+    submitted: -1,
+    _id: -1
+  });
+  instance.sortCommented = new ReactiveVar({
+    commentsCount: -1,
+    votes: -1,
+    submitted: -1,
+    _id: -1
+  });
 
   // 2. Autorun
 
@@ -26,32 +41,47 @@ Template.dashboard.onCreated(function() {
   instance.autorun(function() {
     // get the limit and sort
     var limit = instance.limit.get();
-    var sortby = instance.sortby.get();
+    var sortRecent = instance.sortRecent.get();
+    var sortVoted = instance.sortVoted.get();
+    var sortCommented = instance.sortCommented.get();
+    var query = instance.query.get();
 
     // subscribe to the posts publication
-    var subscription = subs.subscribe("posts", sortby, limit);
+
+    var recentSubscription = subs.subscribe("posts", sortRecent, limit, query);
+    var votedSubscription = subs.subscribe("posts", sortVoted, limit, query);
+    var commentedSubscription = subs.subscribe(
+      "posts",
+      sortCommented,
+      limit,
+      query
+    );
 
     // if subscription is ready, set limit to newLimit
-    if (subscription.ready()) {
+    if (instance.subscriptionsReady()) {
+      console.log("> Received " + limit + " posts. \n\n");
       instance.loaded.set(limit);
     } else {
-      // console.log("> Subscription is not ready yet. \n\n");
+      console.log("> Subscription is not ready yet. \n\n");
     }
   });
 
   // 3. Cursor
 
-  instance.posts = function() {
-    return Posts.find(
-      {},
-      { sort: { submitted: -1, _id: -1 }, limit: instance.loaded.get() }
-    );
-  };
-  instance.bestPosts = function() {
+  instance.recentPosts = function() {
     return Posts.find(
       {},
       {
-        sort: { votes: -1, submitted: -1, _id: -1 },
+        sort: instance.sortRecent.get(),
+        limit: instance.loaded.get()
+      }
+    );
+  };
+  instance.votedPosts = function() {
+    return Posts.find(
+      {},
+      {
+        sort: instance.sortVoted.get(),
         limit: instance.loaded.get()
       }
     );
@@ -60,7 +90,7 @@ Template.dashboard.onCreated(function() {
     return Posts.find(
       {},
       {
-        sort: { commentsCount: -1, votes: -1, submitted: -1, _id: -1 },
+        sort: instance.sortCommented.get(),
         limit: instance.loaded.get()
       }
     );
@@ -82,29 +112,17 @@ Template.dashboard.helpers({
       .userComments()
       .count();
   },
-  posts() {
-    return Template.instance().posts();
+  recentPosts() {
+    console.log(Template.instance().recentPosts());
+    return Template.instance().recentPosts();
   },
-  postsCount() {
-    return Template.instance()
-      .posts()
-      .count();
-  },
-  bestPosts() {
-    return Template.instance().bestPosts();
-  },
-  bestPostsCount() {
-    return Template.instance()
-      .bestPosts()
-      .count();
+  votedPosts() {
+    console.log(Template.instance().votedPosts());
+    return Template.instance().votedPosts();
   },
   commentedPosts() {
+    console.log(Template.instance().commentedPosts());
     return Template.instance().commentedPosts();
-  },
-  commentedPostsCount() {
-    return Template.instance()
-      .commentedPosts()
-      .count();
   },
   hasMorePosts() {
     return false;

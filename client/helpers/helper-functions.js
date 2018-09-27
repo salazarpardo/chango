@@ -1,6 +1,7 @@
 formatSlug = function(value) {
   var formatted = value
     .toLowerCase()
+    .trim()
     .normalize("NFD")
     .replace(/ /g, "-")
     .replace(/[-]+/g, "-")

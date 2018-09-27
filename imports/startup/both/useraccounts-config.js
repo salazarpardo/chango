@@ -8,7 +8,8 @@ T9n.map("es", {
     accounts: {
       "Verify email link expired": "El enlace para verificar tu correo expiró.",
       "Already verified": "Tu correo ya fue verificado",
-      "Incorrect password": "Contraseña incorrecta"
+      "Incorrect password": "Contraseña incorrecta",
+      "User not found": "Usuario no encontrado"
     }
   }
 });

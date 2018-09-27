@@ -28,7 +28,7 @@
         </small>
         <small class="text-muted float-left mt-1">
           <i class="far fa-calendar-alt"></i> {{submitted.toLocaleDateString}} <br>
-          {{#if author}}<i class="far fa-user-circle"></i> {{author}} {{/if}}  {{#if ownPost}}<a href="{{pathFor '/idea/:slug/editar' slug=slug}}"><small> <i class="far fa-edit"></i> Editar</small></a>{{/if}}
+          {{#if author}}<a href="{{pathFor '/u/:username/' username=author}}"><i class="far fa-user-circle"></i> {{author}}</a> {{/if}}  {{#if ownPost}}| <a href="{{pathFor '/idea/:slug/editar' slug=slug}}"><small> <i class="far fa-edit"></i> Editar</small></a>{{/if}}
         </small>
       </small>
     </div>

@@ -1,7 +1,7 @@
 <template name="dashboard">
   <div class="dashboard page">
     <div class="row justify-content-md-center">
-      <div class="col-md-12 col-lg-7 col-xl-5">
+      <div class="col-md-9 col-lg-7 col-xl-5">
         <div class="jumbotron bg-white text-center p-sm-4 p-md-5">
           {{#with currentUser}}
           <div class="row justify-content-md-center">
@@ -33,21 +33,33 @@
 
 
         <div class="col-sm-7 col-md-8 col-lg-6">
-          {{#if postsCount }}
-            <h6 class="section-title text-secondary">Ideas recientes</h6>
-            {{>postsList postsReady=Template.subscriptionsReady posts=posts hasMorePosts=hasMorePosts}}
+            <h6 class="section-title text-muted">Ideas recientes</h6>
+            {{#if Template.subscriptionsReady}}
+              {{>postsList postsReady=Template.subscriptionsReady posts=recentPosts hasMorePosts=hasMorePosts}}
+            {{else}}
+              <div class="loading">
+                {{>skeleton}}
+              </div>
+            {{/if}}
             <br>
-          {{/if}}
-          {{#if bestPostsCount }}
-            <h6 class="section-title text-secondary">Las más votadas</h6>
-            {{>postsList postsReady=Template.subscriptionsReady posts=bestPosts hasMorePosts=hasMorePosts}}
+            <h6 class="section-title text-muted">Las más votadas</h6>
+            {{#if Template.subscriptionsReady}}
+              {{>postsList postsReady=Template.subscriptionsReady posts=votedPosts hasMorePosts=hasMorePosts}}
+            {{else}}
+              <div class="loading">
+                {{>skeleton}}
+              </div>
+            {{/if}}
             <br>
-          {{/if}}
-          {{#if commentedPostsCount }}
-            <h6 class="section-title text-secondary">Las más comentadas</h6>
-            {{>postsList postsReady=Template.subscriptionsReady posts=commentedPosts hasMorePosts=hasMorePosts}}
+            <h6 class="section-title text-muted">Las más comentadas</h6>
+            {{#if Template.subscriptionsReady}}
+              {{>postsList postsReady=Template.subscriptionsReady posts=commentedPosts hasMorePosts=hasMorePosts}}
+            {{else}}
+              <div class="loading">
+                {{>skeleton}}
+              </div>
+            {{/if}}
             <br>
-          {{/if}}
         </div>
         <div class="col-sm-5 col-md-4 col-lg-3">
 

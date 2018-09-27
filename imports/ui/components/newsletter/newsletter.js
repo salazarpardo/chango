@@ -18,7 +18,6 @@ Template.newsletterForm.helpers({
 Template.newsletterForm.events({
   "submit form": function(event) {
     event.preventDefault();
-    console.log(event.target);
     var email = {
       address: $(event.target)
         .find("[name=emailAddress]")
@@ -36,8 +35,6 @@ Template.newsletterForm.events({
       email: email.address,
       action: "subscribe"
     });
-
-    console.log(subscriber);
 
     $(event.target).addClass("success");
   }

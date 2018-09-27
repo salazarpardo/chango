@@ -118,8 +118,8 @@ Template.postsMap.onCreated(function() {
         var slug = place.slug;
         var icon = place.icon;
         var location = new google.maps.LatLng(
-          document.location[0],
-          document.location[1]
+          place.location[0],
+          place.location[1]
         );
         var contentString =
           '<div class="infowindow">' +
@@ -209,26 +209,35 @@ Template.postsMap.onCreated(function() {
         var currentPlace = null;
         var place = newDocument;
         var newLatlng = new google.maps.LatLng(
-          place.position[0],
-          place.position[1]
+          place.location[0],
+          place.location[1]
         );
-        var titulo = place.title;
-        var direccion = place.address;
-        var categoria = place.category;
-        var descripcion = place.description;
+        var title = place.title;
+        var address = place.address;
+        var category = place.category;
+        var description = place.description;
+        var slug = place.slug;
+        var icon = place.icon;
         var contentString =
-          '<div class="infowindow open">' +
-          "<h4>" +
-          titulo +
+          '<div class="infowindow">' +
+          '<h4 class="cat-' +
+          icon +
+          ' mb-1">' +
+          title +
           "</h4>" +
+          '<p class="category text-muted mb-2"><small><em>' +
+          category +
+          "</em></small></p>" +
+          '<p class="description">' +
+          description +
+          "</p>" +
           '<p class="address text-muted mb-2">' +
-          direccion +
-          '</p><p class="description">' +
-          descripcion +
+          address +
           "</p>" +
           '<a href="/idea/' +
           slug +
-          '">Ampliar</a></div>';
+          '"><em>Ampliar</em></a>' +
+          "</div>";
         var marker = self.markers[newDocument._id];
 
         bounds.extend(newLatlng);

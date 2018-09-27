@@ -14,6 +14,7 @@ Template.home.onCreated(function() {
   instance.loaded = new ReactiveVar(0);
   instance.limit = new ReactiveVar(5);
   instance.sortby = new ReactiveVar({ submitted: -1, _id: -1 });
+  instance.query = new ReactiveVar({});
 
   // 2. Autorun
 
@@ -22,9 +23,10 @@ Template.home.onCreated(function() {
     // get the limit and sort
     var limit = instance.limit.get();
     var sortby = instance.sortby.get();
+    var query = instance.query.get();
 
     // subscribe to the posts publication
-    var subscription = subs.subscribe("posts", sortby, limit);
+    var subscription = subs.subscribe("posts", sortby, limit, query);
 
     // if subscription is ready, set limit to newLimit
     if (subscription.ready()) {

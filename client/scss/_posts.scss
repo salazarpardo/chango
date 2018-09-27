@@ -60,7 +60,7 @@
   }
   .post-title {
     font-size: rem-calc(32);
-    @include media-breakpoint-up(md) {
+    @include media-breakpoint-up(lg) {
       font-size: rem-calc(40);
     }
   }

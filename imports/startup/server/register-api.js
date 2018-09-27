@@ -9,3 +9,5 @@ import "../../api/comments/server/publications.js";
 import "../../api/notifications/server/publications.js";
 
 import "../../api/newsletter/server/methods.js";
+
+import "../../api/users/server/publications.js";
