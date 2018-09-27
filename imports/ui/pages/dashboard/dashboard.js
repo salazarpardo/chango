@@ -113,15 +113,12 @@ Template.dashboard.helpers({
       .count();
   },
   recentPosts() {
-    console.log(Template.instance().recentPosts());
     return Template.instance().recentPosts();
   },
   votedPosts() {
-    console.log(Template.instance().votedPosts());
     return Template.instance().votedPosts();
   },
   commentedPosts() {
-    console.log(Template.instance().commentedPosts());
     return Template.instance().commentedPosts();
   },
   hasMorePosts() {
