@@ -4,11 +4,16 @@
       <h1 class="post-title text-secondary">{{title}}</h1>
       <small class="text-muted"><em>{{category}}</em><br>{{address}}</small>
       <p class="post-description mt-3 mb-3">
-        {{description}}
+          {{#if text}}
+            {{{text}}}
+            {{else}}
+            {{description}}
+            {{/if}}
+
       </p>
       <p class="clearfix mb-0">
         <small class="text-muted float-right">
-          {{#if author}}<i class="far fa-user-circle"></i> {{author}} {{/if}}  {{#if ownPost}}<br> <a class="float-right mt-3" href="{{pathFor '/idea/:slug/editar' slug=slug}}"><small> <i class="far fa-edit"></i> Editar</small></a>{{/if}}
+          {{#if author}}<a href="{{pathFor '/u/:username/' username=author}}"><i class="far fa-user-circle"></i> {{author}}</a> {{/if}}  {{#if ownPost}}<br> <a class="float-right mt-3" href="{{pathFor '/idea/:slug/editar' slug=slug}}"><small> <i class="far fa-edit"></i> Editar</small></a>{{/if}}
         </small>
         <small class="text-muted float-left">
           <i class="far fa-calendar-alt"></i> {{submitted.toLocaleDateString}}

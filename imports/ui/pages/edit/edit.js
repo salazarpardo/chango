@@ -1,6 +1,14 @@
 import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { Posts } from "/imports/api/posts/posts.js";
 
+import * as linkify from "linkifyjs";
+import linkifyStr from "linkifyjs/string";
+import hashtag from "linkifyjs/plugins/hashtag"; // optional
+import mention from "linkifyjs/plugins/mention"; // optional
+
+hashtag(linkify);
+mention(linkify);
+
 import "./edit.html";
 
 import { styles } from "/imports/startup/client/map_styles.js";
@@ -130,7 +138,6 @@ Template.postEdit.onCreated(function() {
 
       google.maps.event.addListener(self.marker, "dragend", function(event) {
         newLocation = event.latLng.lat() + "," + event.latLng.lng();
-        console.log(newLocation);
         $("#exampleInputLocation").val(newLocation);
         codeLatLng();
       });
@@ -188,15 +195,28 @@ Template.postEdit.events({
   "submit form": function(e) {
     e.preventDefault();
 
+    var str = $(e.target)
+      .find("[name=description]")
+      .val();
+    var options = {
+      formatHref: {
+        hashtag: val => "/tag/" + val.substr(1),
+        mention: val => "/u" + val
+      }
+    };
+    var linkedText = linkifyStr(str, options);
+    var tags = linkify.find(str, "hashtag");
+    var mentions = linkify.find(str, "mention");
     var currentPostId = this._id;
 
     var postProperties = {
       title: $(e.target)
         .find("[name=title]")
         .val(),
-      description: $(e.target)
-        .find("[name=description]")
-        .val(),
+      description: str,
+      text: linkedText,
+      tags: tags,
+      mentions: mentions,
       category: $(e.target)
         .find("[name=category]")
         .val(),

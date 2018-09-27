@@ -6,6 +6,14 @@ import { Meteor } from "meteor/meteor";
 
 import { styles } from "/imports/startup/client/map_styles.js";
 
+import * as linkify from "linkifyjs";
+import linkifyStr from "linkifyjs/string";
+import hashtag from "linkifyjs/plugins/hashtag"; // optional
+import mention from "linkifyjs/plugins/mention"; // optional
+
+hashtag(linkify);
+mention(linkify);
+
 import "./submit.html";
 
 Template.submit.onCreated(function() {
@@ -112,7 +120,6 @@ Template.submit.onCreated(function() {
 
       google.maps.event.addListener(self.marker, "dragend", function(event) {
         newLocation = event.latLng.lat() + "," + event.latLng.lng();
-        console.log(newLocation);
         $("#exampleInputLocation").val(newLocation);
         codeLatLng();
       });
@@ -185,6 +192,18 @@ Template.submit.events({
   },
   "submit form"(e) {
     e.preventDefault();
+    var str = $(e.target)
+      .find("[name=description]")
+      .val();
+    var options = {
+      formatHref: {
+        hashtag: val => "/tag/" + val.substr(1),
+        mention: val => "/u" + val
+      }
+    };
+    var linkedText = linkifyStr(str, options);
+    var tags = linkify.find(str, "hashtag");
+    var mentions = linkify.find(str, "mention");
 
     var post = {
       title: $(e.target)
@@ -193,9 +212,10 @@ Template.submit.events({
       slug: $(e.target)
         .find("[name=slug]")
         .val(),
-      description: $(e.target)
-        .find("[name=description]")
-        .val(),
+      description: str,
+      text: linkedText,
+      tags: tags,
+      mentions: mentions,
       category: $(e.target)
         .find("[name=category]")
         .val(),
@@ -211,7 +231,6 @@ Template.submit.events({
 
     var errors = validatePost(post);
     if (errors.title || errors.description || errors.location) {
-      console.log(errors);
       return Session.set("postSubmitErrors", errors);
     } else {
       Session.set("postSubmitErrors", errors);

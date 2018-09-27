@@ -15,11 +15,15 @@ Posts.allow({
 
 Posts.deny({
   update: function(userId, post, fieldNames) {
+    createMentionNotification(post);
     // may only edit the following fields:
     return (
       _.without(
         fieldNames,
         "description",
+        "text",
+        "tags",
+        "mentions",
         "category",
         "address",
         "location",
@@ -47,7 +51,10 @@ Meteor.methods({
       location: [String],
       address: String,
       description: String,
+      text: String,
       category: String,
+      tags: [Object],
+      mentions: [Object],
       icon: Number
     });
 
@@ -71,6 +78,9 @@ Meteor.methods({
 
     var postId = Posts.insert(post);
 
+    // now create a notification, informing the user if there's been a mention
+    createMentionNotification(post);
+
     return {
       _id: postId,
       slug: postAttributes.slug
@@ -90,9 +100,6 @@ Meteor.methods({
         $inc: { votes: 1 }
       }
     );
-    analytics.track("Upvoted Idea", {
-      eventName: "Idea"
-    });
 
     if (!affected)
       throw new Meteor.Error("invalid", "You weren't able to upvote that post");

@@ -1,10 +1,10 @@
 <template name="posts">
   <div class="list page">
     {{#if map}}
-      {{> postsMap postsReady=Template.subscriptionsReady posts=posts}}
+      {{> postsMap postsReady=postsReady posts=posts}}
     {{/if}}
     <div class="row justify-content-md-center">
-      <div class="col col-md-8 col-lg-7">
+      <div class="col col-md-9 col-lg-7">
         <header class="clearfix mb-3 mt-3">
           {{#if map}}
             <h5 class="section-title text-secondary float-left">{{routeOption 'title'}}</h5>
@@ -13,7 +13,13 @@
           {{/if}}
           <!-- <a class="btn text-primary btn-link btn-sm float-right" href="#"><em>Filtrar</em></a> -->
         </header>
-        {{> postsList postsReady=Template.subscriptionsReady posts=posts hasMorePosts=hasMorePosts}}
+        {{#if postsReady}}
+          {{> postsList postsReady=postsReady posts=posts hasMorePosts=hasMorePosts}}
+        {{else}}
+          <div class="loading">
+            {{>skeleton}}
+          </div>
+        {{/if}}
       </div>
     </div>
   </div>

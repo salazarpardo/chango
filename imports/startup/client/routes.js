@@ -48,6 +48,20 @@ var publicRoutes = FlowRouter.group({
   name: "public"
 });
 
+publicRoutes.route("/u/:username", {
+  name: "user",
+  triggersEnter: [],
+  action() {
+    BlazeLayout.render("App_body", {
+      top: "header",
+      main: "profile",
+      errors: "errors",
+      footer: "footer"
+    });
+  },
+  triggersExit: []
+});
+
 publicRoutes.route("/idea/:slug", {
   name: "post",
   triggersEnter: [],
@@ -59,6 +73,21 @@ publicRoutes.route("/idea/:slug", {
       footer: "footer"
     });
   },
+  triggersExit: []
+});
+
+publicRoutes.route("/tag/:tag", {
+  name: "tag",
+  triggersEnter: [],
+  action() {
+    BlazeLayout.render("App_body", {
+      top: "header",
+      main: "posts",
+      errors: "errors",
+      footer: "footer"
+    });
+  },
+  title: "Ideas por tag",
   triggersExit: []
 });
 
@@ -92,7 +121,7 @@ publicRoutes.route("/contacto", {
   triggersExit: []
 });
 
-publicRoutes.route("/beta", {
+publicRoutes.route("/lista", {
   name: "beta",
   triggersEnter: [],
   action() {
@@ -106,7 +135,7 @@ publicRoutes.route("/beta", {
     });
   },
   triggersExit: [],
-  title: "Ingresa en el listado para hacer parte de nuestro Beta"
+  title: "¡Ingresa en el listado y únete al Chango!"
 });
 
 publicRoutes.route("/recientes", {

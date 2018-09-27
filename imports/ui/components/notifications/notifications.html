@@ -19,7 +19,12 @@
 
 <template name="notificationItem">
   <a class="dropdown-item" href="{{notificationPostPath}}">
-    <strong>{{commenterName}}</strong> comentó tu idea.
+    <strong>{{commenterName}}</strong>
+    {{#if mention }}
+    te etiquetó en su idea.
+    {{else}}
+    comentó tu idea.
+    {{/if}}
   </a>
 </template>
 
@@ -49,6 +54,14 @@
 
 <template name="notificationsWidgetItem">
   <a class="list-group-item list-group-item-action p-1" href="{{notificationPostPath}}">
-    <small class="text-secondary"><strong>{{commenterName}}</strong> comentó tu idea.</small>
+    <small class="text-secondary">
+      <strong>{{commenterName}}</strong>
+      {{#if mention }}
+      te etiquetó en su idea.
+      {{else}}
+      comentó tu idea.
+      {{/if}}
+
+    </small>
   </a>
 </template>

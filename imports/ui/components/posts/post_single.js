@@ -41,6 +41,9 @@ Template.postSingle.events({
   "click .upvotable": function(e) {
     e.preventDefault();
     Meteor.call("upvote", this._id);
+    analytics.track("Upvoted Idea", {
+      eventName: "Idea"
+    });
   },
   "click .comment.btn-logged-out ": function() {
     analytics.track("Tried to Comment Idea", {
@@ -48,7 +51,7 @@ Template.postSingle.events({
     });
   },
   "click .upvote.btn-logged-out ": function() {
-    analytics.track("Tried to Vote Idea", {
+    analytics.track("Tried to Upvote Idea", {
       eventName: "Idea"
     });
   },

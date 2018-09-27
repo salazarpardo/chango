@@ -22,7 +22,15 @@
 .beta {
   background-color: $primary;
 }
-
+.beta {
+  &.page {
+    margin-bottom: rem-calc(60);
+    box-shadow: $white 0 rem-calc(60);
+  }
+  .landing-area {
+    padding: rem-calc(72) 0;
+  }
+}
 h1,
 h2,
 h3,
@@ -61,6 +69,9 @@ h6,
 
 .bg-washed {
   background-color: $washed-pink;
+  &.jumbotron {
+    background-color: lighten($washed-pink, 2.5);
+  }
 }
 
 .navbar {
@@ -71,6 +82,9 @@ h6,
     .navbar-nav .active > .nav-link {
       box-shadow: 0 -2px 0 $white inset;
     }
+  }
+  &.fixed-top {
+    backface-visibility: hidden;
   }
   .btn-outline-light {
     &:hover {

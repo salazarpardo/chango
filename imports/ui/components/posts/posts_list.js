@@ -1,7 +1,6 @@
 import "./posts_list.html";
 
 import "./post_item.js";
-import "../skeleton/skeleton.js";
 
 Template.postsList.onRendered(function() {
   this.find(".wrapper")._uihooks = {
