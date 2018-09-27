@@ -10,7 +10,6 @@ import "../../components/skeleton/skeleton.js";
 
 Template.profile.helpers({
   user() {
-    console.log(Template.instance().user());
     return Template.instance().user();
   },
   posts() {
@@ -45,7 +44,6 @@ Template.profile.onCreated(function() {
   self.userQuery = new ReactiveVar();
 
   self.username = () => FlowRouter.getParam("username");
-  console.log(self.username());
   // 2. Autorun
 
   // will re-run when the "limit" reactive variables changes
@@ -78,7 +76,6 @@ Template.profile.onCreated(function() {
     var limit = self.limit.get();
     var sortby = self.sortby.get();
     var query = self.query.get();
-    console.log(query);
 
     // subscribe to the posts publication
     var subscription = subs.subscribe("posts", sortby, limit, query);
@@ -102,7 +99,6 @@ Template.profile.onCreated(function() {
           { "profile.name": self.userQuery.get() }
         ]
       });
-      console.log(singleUser);
       return singleUser;
     }
   };
