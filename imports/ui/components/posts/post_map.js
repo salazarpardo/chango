@@ -1,4 +1,5 @@
 import "./post_map.html";
+import "../../components/skeleton/skeleton.js";
 
 import { styles } from "/imports/startup/client/map_styles.js";
 
