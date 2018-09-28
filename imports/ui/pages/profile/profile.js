@@ -15,7 +15,7 @@ Template.profile.helpers({
   posts() {
     return Template.instance().posts();
   },
-  postReady() {
+  postsReady() {
     if (subs.ready()) {
       return true;
     }

@@ -13,13 +13,7 @@
           {{/if}}
           <!-- <a class="btn text-primary btn-link btn-sm float-right" href="#"><em>Filtrar</em></a> -->
         </header>
-        {{#if postsReady}}
-          {{> postsList postsReady=postsReady posts=posts hasMorePosts=hasMorePosts}}
-        {{else}}
-          <div class="loading">
-            {{>skeleton}}
-          </div>
-        {{/if}}
+        {{> postsList postsReady=postsReady posts=posts hasMorePosts=hasMorePosts}}
       </div>
     </div>
   </div>

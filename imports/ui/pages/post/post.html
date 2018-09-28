@@ -19,8 +19,8 @@
                     {{#if currentUser}}
                       {{> commentSubmit}}
                     {{else}}
-                    <small class="text-muted">Por favor <a href="{{ pathFor 'signin' }}">ingresa</a> o <a href="{{ pathFor 'join' }}">crea tu cuenta</a> para comentar.</small>
-                  {{/if}}
+                      <small class="text-muted">Por favor <a href="{{ pathFor 'signin' }}">ingresa</a> o <a href="{{ pathFor 'join' }}">crea tu cuenta</a> para comentar.</small>
+                    {{/if}}
                 </div>
               </div>
             {{/with}}
@@ -30,7 +30,7 @@
                   <h5 class="section-title text-muted float-left">Ideas recientes</h5>
                   <a class="btn text-primary btn-link btn-sm float-right" href="{{pathFor 'new'}}"><em>Ver más</em></a>
                 </header>
-                {{> postsList postsReady=Template.subscriptionsReady posts=posts hasMorePosts=hasMorePosts}}
+                {{> postsList postsReady=postReady posts=posts hasMorePosts=hasMorePosts}}
               </div>
             </div>
 
