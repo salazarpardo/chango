@@ -16,9 +16,19 @@ Template.App_body.onRendered(function() {
   Session.set("documentTitle", "Chango");
   this.autorun(function() {
     var routeTitle = FlowRouter.current().route.options.title;
+    var routeName = FlowRouter.current().route.options.name;
     FlowRouter.watchPathChange();
-    if (routeTitle) {
-      Session.set("documentTitle", routeTitle + " | Chango");
+    switch (routeName) {
+      case "signin":
+        Session.set("documentTitle", "Ingresa a tu cuenta | Chango");
+        break;
+      case "join":
+        Session.set("documentTitle", "Crea tu cuenta | Chango");
+        break;
+      case "post":
+        break;
+      default:
+        Session.set("documentTitle", routeTitle + " | Chango");
     }
     document.title = Session.get("documentTitle");
   });
