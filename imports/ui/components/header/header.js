@@ -15,6 +15,14 @@ Template.header.helpers({
     });
 
     return active && "active";
+  },
+  getQueryParams() {
+    FlowRouter.watchPathChange();
+    var currentPath = FlowRouter.current().path;
+    var params = {
+      next: currentPath
+    };
+    return FlowRouter._qs.stringify(params);
   }
 });
 

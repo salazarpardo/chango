@@ -253,6 +253,12 @@ Template.submit.events({
       }
     });
   },
+  'focus [name="description"]'(e) {
+    $(e.target).attr("rows", "8");
+  },
+  'blur [name="description"]'(e) {
+    $(e.target).attr("rows", "3");
+  },
   'change [name="category"]'() {
     var marker = Template.instance().marker;
     Session.set("category", $("#exampleInputCategory").prop("selectedIndex"));
