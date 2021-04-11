@@ -150,3 +150,13 @@
     margin-bottom: 0;
   }
 }
+
+.geoloc-text {
+  display: none;
+  color: transparent;
+  transition: 0.3s ease-in-out color;
+  .geoloc:hover & {
+    display: inline;
+    color: $secondary;
+  }
+}

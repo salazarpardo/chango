@@ -1,22 +1,41 @@
 <template name="posts">
   <div class="list page">
-    <header class="clearfix mb-3 mt-3 mt-md-0">
-      <h5 class="section-title text-white float-left">
-        {{routeOption 'title'}}
-      </h5>
-      <a class="btn-secondary text-primary btn-link btn-sm float-right" href="#"
-        ><em>Filtrar</em></a
-      >
-    </header>
     <div class="row justify-content-md-center">
-      <div class="col col-md-7 col-lg-8">
-        {{#if map}} {{> postsMap postsReady=Template.subscriptionsReady
-        posts=posts}} {{/if}}
+      {{#if map}}
+
+      <div class="col col-sm-12 col-lg-8">
+        <header class="clearfix mb-3 mt-3 mt-md-0">
+          <h5 class="section-title text-white float-left">
+            {{routeOption 'title'}}
+          </h5>
+          <a class="btn-light btn-sm float-right" href="#"><em>Filtrar</em></a>
+        </header>
+        {{> postsMap postsReady=Template.subscriptionsReady posts=posts}}
       </div>
-      <div class="col col-md-5 col-lg-4">
+
+      <div class="col col-12 col-lg-4">
         {{> postsList postsReady=Template.subscriptionsReady posts=posts
         hasMorePosts=hasMorePosts}}
       </div>
+
+      {{else}}
+
+      <div class="col col-md-8">
+        <header class="clearfix mb-3 mt-3 mt-md-0">
+          <h5 class="section-title text-white float-left">
+            {{routeOption 'title'}}
+          </h5>
+          <!-- <a
+            class="btn-secondary text-primary btn-link btn-sm float-right"
+            href="#"
+            ><em>Filtrar</em></a
+          > -->
+        </header>
+        {{> postsList postsReady=Template.subscriptionsReady posts=posts
+        hasMorePosts=hasMorePosts}}
+      </div>
+
+      {{/if}}
     </div>
   </div>
 </template>

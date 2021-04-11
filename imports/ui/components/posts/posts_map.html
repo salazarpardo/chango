@@ -1,7 +1,11 @@
 <template name="postsMap">
+  <button
+    class="position-absolute geoloc btn btn-light btn-sm float-right mt-2 ml-2"
+    type="button"
+  >
+    <i class="fas fa-location-arrow"></i>
+    <em class="geoloc-text">Cerca de mí</em>
+  </button>
   {{#if postsReady}} {{> googleMap name="exampleMap" options=exampleMapOptions
   }} {{/if}}
-  <button class="geoloc btn btn-light btn-sm float-right mt-3" type="button">
-    <i class="fas fa-location-arrow"></i> <em>Cerca de mí</em>
-  </button>
 </template>

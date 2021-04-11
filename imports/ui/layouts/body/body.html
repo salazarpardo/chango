@@ -1,14 +1,13 @@
 <template name="App_body">
   <section class="{{routeClass}}">
-    <div class="container">
-      {{> Template.dynamic template=top}}
-      {{> Template.dynamic template=errors}}
+    <div class="container-fluid">
+      {{> Template.dynamic template=top}} {{> Template.dynamic template=errors}}
     </div>
     {{> Template.dynamic template=hero}}
     <div id="page">
       {{> Template.dynamic template=page}}
     </div>
-    <div class="container" id="main">
+    <div class="container-fluid px-4" id="main">
       {{> Template.dynamic template=main}}
     </div>
     {{> Template.dynamic template=footer}}

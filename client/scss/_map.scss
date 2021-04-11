@@ -3,8 +3,13 @@
   max-height: rem-calc(420);
   position: relative;
   border-radius: $border-radius;
-  box-shadow: 0 2px 5px rgba(0,0,0,.16);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
   background-color: $white;
+  @include media-breakpoint-up(lg) {
+    max-height: rem-calc(760px);
+    min-height: 60vh;
+    margin-bottom: rem-calc(40);
+  }
 }
 
 .infowindow {
@@ -15,30 +20,30 @@
     color: $primary;
     font-size: rem-calc(18);
     &.cat-1 {
-        color: $info;
+      color: $info;
     }
     &.cat-2 {
-        color: $warning;
+      color: $warning;
     }
     &.cat-3 {
-        color: $success;
+      color: $success;
     }
     &.cat-4 {
-        color: $purple;
+      color: $purple;
     }
     &.cat-5 {
-        color: $dark-blue;
+      color: $dark-blue;
     }
   }
   .text-muted {
     font-size: rem-calc(12);
   }
   .description {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      margin-bottom: rem-calc(8);
-      font-size: rem-calc(14);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: rem-calc(8);
+    font-size: rem-calc(14);
   }
 }
 
@@ -59,22 +64,31 @@
 }
 
 /*style the p tag*/
-.gm-style .gm-style-iw #google-popup p{
+.gm-style .gm-style-iw #google-popup p {
   // padding: rem-calc(8);
 }
 
 .gm-style .gm-style-pbc + div > div > div > div > div > div:nth-child(2) {
-  background-color: rgba($primary, .2) !important;
+  background-color: rgba($primary, 0.2) !important;
 }
 
 /*style the arrow*/
-.gm-style > div > div > div > div > div > div > div > div > div:not(.infowindow) {
+.gm-style
+  > div
+  > div
+  > div
+  > div
+  > div
+  > div
+  > div
+  > div
+  > div:not(.infowindow) {
   // padding: 0;
   // margin: 0;
   // padding: 0;
   // top: 0;
   // font-size: 16px;
-  box-shadow: rgba($primary, .2) 0px 1px 6px !important;
+  box-shadow: rgba($primary, 0.2) 0px 1px 6px !important;
 }
 
 /*style the link*/
