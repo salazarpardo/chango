@@ -1,10 +1,7 @@
 <template name="postsMap">
-  <div class="row justify-content-md-center">
-    <div class="col col-md-8 col-lg-7">
-      {{#if postsReady}}
-        {{> googleMap name="exampleMap" options=exampleMapOptions }}
-      {{/if}}
-      <button class="geoloc btn btn-light btn-sm float-right mt-3" type="button"><i class="fas fa-location-arrow"></i> <em>Cerca de mí</em> </button>
-    </div>
-  </div>
+  {{#if postsReady}} {{> googleMap name="exampleMap" options=exampleMapOptions
+  }} {{/if}}
+  <button class="geoloc btn btn-light btn-sm float-right mt-3" type="button">
+    <i class="fas fa-location-arrow"></i> <em>Cerca de mí</em>
+  </button>
 </template>

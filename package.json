@@ -2,17 +2,19 @@
   "name": "chango-new",
   "private": true,
   "scripts": {
-    "start": "ROOT_URL='https://localhost:9000/' meteor run --settings settings-dev.json",
+    "start": "meteor run --settings settings-dev.json",
     "test": "meteor test --once --driver-package meteortesting:mocha"
   },
   "dependencies": {
-    "@babel/runtime": "^7.0.0-beta.49",
+    "@babel/runtime": "^7.1.2",
     "@fortawesome/fontawesome": "^1.1.5",
     "@fortawesome/fontawesome-free-brands": "^5.0.10",
     "@fortawesome/fontawesome-free-regular": "^5.0.10",
     "@fortawesome/fontawesome-free-solid": "^5.0.10",
-    "bootstrap": "^4.1.1",
-    "jquery": "^3.3.1",
+    "bcrypt": "^3.0.0",
+    "bootstrap": "^4.4.1",
+    "jquery": "^3.4.1",
+    "linkifyjs": "^2.1.7",
     "mailchimp-api-v3": "^1.10.0",
     "meteor-accounts-t9n": "^2.3.1",
     "meteor-node-stubs": "^0.4.1",
@@ -20,9 +22,5 @@
   },
   "devDependencies": {
     "chai": "^4.1.2"
-  },
-  "browserslist": [
-    "> .5% in CO",
-    "not dead"
-  ]
+  }
 }

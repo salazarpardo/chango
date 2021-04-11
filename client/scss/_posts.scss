@@ -1,7 +1,15 @@
 .posts {
+  border-radius: $border-radius;
+  overflow: hidden;
   .wrapper {
     background: $white;
-    border-radius: $border-radius;
+  }
+}
+
+.section-title {
+  color: $secondary;
+  @include media-breakpoint-up(md) {
+    color: $white;
   }
 }
 
@@ -17,7 +25,7 @@
     position: absolute;
     background-color: $primary;
     left: 0;
-    top: 0;
+    top: rem-calc(14);
     height: rem-calc(32);
     width: 2px;
   }
@@ -58,10 +66,23 @@
   &.animate {
     transition: top 300ms ease-in;
   }
+  .post-title {
+    font-size: rem-calc(32);
+    @include media-breakpoint-up(lg) {
+      font-size: rem-calc(40);
+    }
+  }
+  .btn-logged-out {
+    color: $text-muted;
+    &:hover,
+    &:active {
+      color: $secondary;
+    }
+  }
   .post-content {
     h3 {
       margin: 0;
-      line-height: 1.4;
+      line-height: 1.15;
       font-size: rem-calc(18);
       @include media-breakpoint-up(md) {
         font-size: rem-calc(20);
@@ -86,6 +107,9 @@
       p {
         margin: 0;
       }
+      .text-muted {
+        font-size: rem-calc(12);
+      }
     }
   }
 }
@@ -97,16 +121,16 @@
   text-align: center;
   height: rem-calc(60);
   line-height: rem-calc(60);
-  margin-bottom: rem-calc(10);
   font-style: italic;
   &:hover {
     text-decoration: none;
-    transition: .3s ease-in-out;
+    transition: 0.3s ease-in-out;
     background: rgba($primary, 0.3);
   }
 }
 
-.comments, .user-comments {
+.comments,
+.user-comments {
   list-style-type: none;
   margin: 0;
   h4 {
@@ -123,6 +147,6 @@
     color: $text-muted;
   }
   p:last-child {
-   margin-bottom: 0;
+    margin-bottom: 0;
   }
 }

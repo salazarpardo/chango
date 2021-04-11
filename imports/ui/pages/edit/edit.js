@@ -96,7 +96,7 @@ Template.postEdit.onCreated(function() {
 });
 
 Template.postEdit.onRendered(function () {
-  GoogleMaps.load({key: 'AIzaSyDKcZBwYBkYJx6-GJI1OZjPPOmA40R1fV4'});
+  GoogleMaps.load({key: 'AIzaSyClkB6KRN5G8AXQyv2rYXiVNEBYP1OeuQc'});
 });
 
 Template.postEdit.helpers({

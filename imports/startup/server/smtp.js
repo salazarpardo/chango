@@ -3,10 +3,11 @@ SSR.compileTemplate('htmlEmail', Assets.getText('email.html'));
 
 Meteor.startup(function () {
 
-  var username = 'postmaster@heychango.com';
-  var password = 'Ch4ng02018';
-  var server = 'smtp.mailgun.org';
-  var port = '25';
+  var credentials = Meteor.settings.private.mailgun,
+      username    = credentials.username,
+      password   = credentials.password,
+      server = 'smtp.mailgun.org',
+      port = '25';
 
     process.env.MAIL_URL = 'smtp://' +
     encodeURIComponent(username) + ':' +
