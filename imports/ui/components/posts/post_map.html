@@ -1,0 +1,9 @@
+<template name="postMap">
+  <div class="row justify-content-md-center">
+    <div class="col col-md-9 col-lg-7">
+      {{#with post}}
+        {{> googleMap name="exampleMap" options=exampleMapOptions }}
+      {{/with}}
+    </div>
+  </div>
+</template>
