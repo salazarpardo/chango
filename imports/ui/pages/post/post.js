@@ -2,6 +2,9 @@ import { FlowRouter } from "meteor/ostrio:flow-router-extra";
 import { Posts } from "/imports/api/posts/posts.js";
 import { subs } from "/imports/api/posts/posts.js";
 import { Comments } from "/imports/api/comments/comments.js";
+import { Meteor } from "meteor/meteor";
+
+var googleMapsApiKey = Meteor.settings.public.GoogleMaps;
 
 import "./post.html";
 
@@ -107,5 +110,5 @@ Template.post.onCreated(function() {
 });
 
 Template.post.onRendered(function() {
-  GoogleMaps.load({ key: "AIzaSyClkB6KRN5G8AXQyv2rYXiVNEBYP1OeuQc" });
+  GoogleMaps.load({ key: googleMapsApiKey });
 });

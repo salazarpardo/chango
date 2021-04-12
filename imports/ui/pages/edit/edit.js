@@ -6,6 +6,10 @@ import linkifyStr from "linkifyjs/string";
 import hashtag from "linkifyjs/plugins/hashtag"; // optional
 import mention from "linkifyjs/plugins/mention"; // optional
 
+import { Meteor } from "meteor/meteor";
+
+var googleMapsApiKey = Meteor.settings.public.GoogleMaps;
+
 hashtag(linkify);
 mention(linkify);
 
@@ -150,7 +154,7 @@ Template.postEdit.onCreated(function() {
 });
 
 Template.postEdit.onRendered(function() {
-  GoogleMaps.load({ key: "AIzaSyClkB6KRN5G8AXQyv2rYXiVNEBYP1OeuQc" });
+  GoogleMaps.load({ key: googleMapsApiKey });
 });
 
 Template.postEdit.helpers({
