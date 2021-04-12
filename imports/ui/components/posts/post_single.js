@@ -1,47 +1,63 @@
-import { Comments } from '/imports/api/comments/comments.js';
+import { Comments } from "/imports/api/comments/comments.js";
 
-import './post_single.html';
+import "./post_single.html";
 
 Template.postSingle.helpers({
   ownPost() {
     return this.userId === Meteor.userId();
   },
-  // domain() {
-  //   var a = document.createElement('a');
-  //   a.href = this.url;
-  //   return a.hostname;
-  // },
+  postUrl() {
+    return window.location.href;
+  },
   upvotedClass() {
     var userId = Meteor.userId();
     if (userId && !_.include(this.upvoters, userId)) {
-      return 'upvotable';
+      return "upvotable";
     } else if (_.include(this.upvoters, userId)) {
-      return 'disabled upvoted';
+      return "disabled upvoted";
     } else {
-      return 'disabled';
+      return "disabled";
     }
   },
   upvoteIconClass() {
     var userId = Meteor.userId();
-    if (userId && !_.include(this.upvoters, userId)) {
-      return 'far fa-thumbs-up';
+    if (!_.include(this.upvoters, userId)) {
+      return "far fa-thumbs-up";
     } else {
-      return 'fas fa-thumbs-up';
+      return "fas fa-thumbs-up";
     }
   },
   commentClass() {
     var userId = Meteor.userId();
     if (userId) {
-      return 'commentable';
+      return "commentable";
     } else {
-      return 'disabled';
+      return "disabled";
     }
   }
 });
 
 Template.postSingle.events({
-  'click .upvotable': function(e) {
+  "click .upvotable": function(e) {
     e.preventDefault();
-    Meteor.call('upvote', this._id);
+    Meteor.call("upvote", this._id);
+    analytics.track("Upvoted Idea", {
+      eventName: "Idea"
+    });
   },
+  "click .comment.btn-logged-out ": function() {
+    analytics.track("Tried to Comment Idea", {
+      eventName: "Idea"
+    });
+  },
+  "click .upvote.btn-logged-out ": function() {
+    analytics.track("Tried to Upvote Idea", {
+      eventName: "Idea"
+    });
+  },
+  "click #share .btn": function() {
+    analytics.track("Shared Idea", {
+      eventName: "Idea"
+    });
+  }
 });

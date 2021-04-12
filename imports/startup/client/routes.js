@@ -47,6 +47,21 @@ var publicRoutes = FlowRouter.group({
   name: "public"
 });
 
+publicRoutes.route("/u/:username", {
+  name: "user",
+  triggersEnter: [],
+  action() {
+    BlazeLayout.render("App_body", {
+      top: "header",
+      main: "profile",
+      errors: "errors",
+      footer: "footer"
+    });
+  },
+  triggersExit: [],
+  title: "Perfil de Usuario"
+});
+
 publicRoutes.route("/idea/:slug", {
   name: "post",
   triggersEnter: [],
@@ -58,6 +73,22 @@ publicRoutes.route("/idea/:slug", {
       footer: "footer"
     });
   },
+  triggersExit: [],
+  title: "Idea"
+});
+
+publicRoutes.route("/tag/:tag", {
+  name: "tag",
+  triggersEnter: [],
+  action() {
+    BlazeLayout.render("App_body", {
+      top: "header",
+      main: "posts",
+      errors: "errors",
+      footer: "footer"
+    });
+  },
+  title: "Ideas por tag",
   triggersExit: []
 });
 
@@ -72,6 +103,7 @@ publicRoutes.route("/acerca", {
       footer: "footer"
     });
   },
+  title: "Acerca de Chango",
   triggersExit: []
 });
 
@@ -86,7 +118,25 @@ publicRoutes.route("/contacto", {
       footer: "footer"
     });
   },
+  title: "Contáctanos",
   triggersExit: []
+});
+
+publicRoutes.route("/lista", {
+  name: "beta",
+  triggersEnter: [],
+  action() {
+    BlazeLayout.render("App_body", {
+      top: "headerLite",
+      main: "newsletter",
+      page: "beta",
+      errors: "errors",
+      hero: "heroBeta",
+      footer: "footer"
+    });
+  },
+  triggersExit: [],
+  title: "¡Ingresa en el listado y únete al Chango!"
 });
 
 publicRoutes.route("/recientes", {
@@ -143,7 +193,7 @@ publicRoutes.route("/privacidad", {
       footer: "footer"
     });
   },
-  title: "Mapa",
+  title: "Politica de privacidad",
   triggersExit: []
 });
 
@@ -160,6 +210,7 @@ publicRoutes.route("/", {
       footer: "footer"
     });
   },
+  title: "Comparte tus ideas para una mejor ciudad",
   triggersExit: []
 });
 
@@ -179,6 +230,7 @@ privateRoutes.route("/idea/:slug/editar", {
       footer: "footer"
     });
   },
+  title: "Editar idea",
   triggersExit: []
 });
 
@@ -193,6 +245,7 @@ privateRoutes.route("/nueva", {
       footer: "footer"
     });
   },
+  title: "Nueva idea",
   triggersExit: []
 });
 
@@ -207,6 +260,7 @@ privateRoutes.route("/perfil", {
       footer: "footer"
     });
   },
+  title: "Perfil de usuario",
   triggersExit: []
 });
 
@@ -221,6 +275,7 @@ privateRoutes.route("/inicio", {
       footer: "footer"
     });
   },
+  title: "Dashboard",
   triggersExit: []
 });
 
@@ -234,7 +289,8 @@ privateRoutes.route("/salir", {
         FlowRouter.go("signin");
       }
     });
-  }
+  },
+  title: "Regresa pronto"
 });
 
 FlowRouter.route("*", {
@@ -246,7 +302,8 @@ FlowRouter.route("*", {
       errors: "errors",
       footer: "footer"
     });
-  }
+  },
+  title: "No hemos encontrado la página que buscas"
 });
 
 previousPathsObj = {};

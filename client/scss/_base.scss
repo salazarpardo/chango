@@ -5,7 +5,7 @@
 .post {
   &:not(section) {
     background: #fff;
-    border-radius: rem-calc(3);
+    border-radius: $border-radius;
     padding: rem-calc(16);
     margin-bottom: 1px;
     box-shadow: $box-shadow-sm;
@@ -53,6 +53,9 @@ h6,
   > section {
     &:not(.home):not(.privacy) {
       box-shadow: rem-calc(0 352) $primary inset;
+      &.user {
+        box-shadow: rem-calc(0 240) $primary inset;
+      }
     }
   }
 }
@@ -86,6 +89,9 @@ h6,
     .navbar-toggler {
       color: transparent;
     }
+  }
+  &.fixed-top {
+    backface-visibility: hidden;
   }
   &.fixed-top {
     backface-visibility: hidden;

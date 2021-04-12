@@ -1,18 +1,18 @@
 <template name="postsList">
   <div class="posts">
-    <div class="wrapper">
-      {{#each posts}}
-        {{> postItem}}
-      {{/each}}
-    </div>
-    {{#if postsReady}}
+      <div class="wrapper">
+        {{#if postsReady}}
+          {{#each posts}}
+            {{> postItem}}
+          {{/each}}
+        {{else}}
+          <div class="loading">
+            {{>skeleton}}
+          </div>
+        {{/if}}
+      </div>
       {{#if hasMorePosts}}
         <a class="load-more" href="#">Más</a>
       {{/if}}
-    {{else}}
-      <div class="loading">
-        {{>skeleton}}
-      </div>
-    {{/if}}
   </div>
 </template>

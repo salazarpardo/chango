@@ -1,1 +1,1 @@
-import './skeleton.html';
+import "./skeleton.html";

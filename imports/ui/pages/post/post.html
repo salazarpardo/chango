@@ -4,11 +4,7 @@
           {{#if post}}
             {{#with post}}
               {{#if location}}
-              <div class="row justify-content-md-center">
-                <div class="col col-md-9 col-lg-7">
-                  {{> googleMap name="exampleMap" options=exampleMapOptions}}
-                </div>
-              </div>
+                {{> postMap post=post}}
               {{/if}}
               <div class="row justify-content-md-center">
                 <div class="col col-md-9 col-lg-7">
@@ -20,14 +16,23 @@
                       {{/each}}
                     </ul>
 
-                  {{#if currentUser}}
-                    {{> commentSubmit}}
-                  {{else}}
-                    <small class="text-muted">Por favor <a href="{{ pathFor 'signin' }}">ingresa</a> o <a href="{{ pathFor 'join' }}">crea tu cuenta</a> para comentar.</small>
-                  {{/if}}
+                    {{#if currentUser}}
+                      {{> commentSubmit}}
+                    {{else}}
+                      <small class="text-muted">Por favor <a href="{{ pathFor 'signin' }}">ingresa</a> o <a href="{{ pathFor 'join' }}">crea tu cuenta</a> para comentar.</small>
+                    {{/if}}
                 </div>
               </div>
             {{/with}}
+            <div class="row justify-content-md-center">
+              <div class="col col-md-9 col-lg-7">
+                <header class="clearfix mb-4 mt-5">
+                  <h5 class="section-title text-muted float-left">Ideas recientes</h5>
+                  <a class="btn text-primary btn-link btn-sm float-right" href="{{pathFor 'new'}}"><em>Ver más</em></a>
+                </header>
+                {{> postsList postsReady=postReady posts=posts hasMorePosts=hasMorePosts}}
+              </div>
+            </div>
 
           {{else}}
             {{> App_notFound}}

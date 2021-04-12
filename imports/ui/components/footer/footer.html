@@ -1,4 +1,25 @@
 <template name="footer">
+  <!-- Modal -->
+  <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="icon-box"><img class="auth-icon mr-3" src="/img/chango-pink.svg" alt="Ingresa a Chango" /></div>
+          <h4 class="modal-title text-primary" id="loginModalLabel">¡Vuélvete Chango!</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <a href="{{pathFor 'join' query=getQueryParams}}">Inicia sesión</a> o <a href="{{pathFor 'signin' query=getQueryParams}}">crea tu cuenta</a> para votar o comentar esta idea, y comparte tus ideas para mejorar la ciudad.
+        </div>
+        <div class="modal-footer">
+          <a href="{{pathFor 'join' query=getQueryParams}}" class="btn btn-primary">Inicia sesión</a>
+          <a href="{{pathFor 'signin' query=getQueryParams}}" class="btn btn-success">Crea tu cuenta</a>
+        </div>
+      </div>
+    </div>
+  </div>
   <footer class="footer bg-white">
     <div class="container mt-4">
       <p>

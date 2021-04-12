@@ -26,7 +26,7 @@
         </div>
         {{/with}}
         <div class="row justify-content-md-center">
-          <div class="col-sm-12 col-md-6">
+          <div class="col-sm-12 col-md-4">
             {{#if bestPostsCount }}
             <h6 class="section-title text-md-secondary">
               Las más votadas
@@ -36,7 +36,7 @@
             <br />
             {{/if}}
           </div>
-          <div class="col-sm-12 col-md-6">
+          <div class="col-sm-12 col-md-4">
             {{#if postsCount }}
             <h6 class="section-title text-md-secondary">Ideas recientes</h6>
             {{>postsList postsReady=Template.subscriptionsReady posts=posts
@@ -44,17 +44,9 @@
             <br />
             {{/if}}
           </div>
-          <div class="col-sm-12 col-md-6">
-            {{#if bestPostsCount }}
-            <h6 class="section-title text-secondary">Las más votadas</h6>
-            {{>postsList postsReady=Template.subscriptionsReady posts=bestPosts
-            hasMorePosts=hasMorePosts}}
-            <br />
-            {{/if}}
-          </div>
-          <div class="col-sm-12 col-md-6">
+          <div class="col-sm-12 col-md-4">
             {{#if commentedPostsCount }}
-            <h6 class="section-title text-secondary">Las más comentadas</h6>
+            <h6 class="section-title text-md-secondary">Las más comentadas</h6>
             {{>postsList postsReady=Template.subscriptionsReady
             posts=commentedPosts hasMorePosts=hasMorePosts}}
             <br />

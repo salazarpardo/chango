@@ -1,1 +1,3 @@
-import './hero.html';
+import "./hero.html";
+
+import "../newsletter/newsletter.js";

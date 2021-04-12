@@ -1,29 +1,70 @@
 <template name="profile">
-  <div class="submit page">
-    <div class="row justify-content-md-center">
-      <div class="col col-md-8 col-lg-6 col-xl-5">
-          <div class="jumbotron bg-white text-center">
-            {{#with currentUser}}
-            <h1 class="text-primary"><i class="far fa-user-circle"></i></h1>
-            <h1 class="form-title text-primary mb-3">
-              {{#if profile.name}}
-                {{profile.name}}
-              {{else if username}}
-                {{username}}
-              {{else}}
-                {{emails.[0].address}}
-              {{/if}}
-            </h1>
+  <div class="profile page">
 
-              {{#if emails.[0].address}}
-                <p>
-                  {{emails.[0].address}}
-                </p>
-              {{/if}}
-              <a class="btn btn-success" href="{{pathFor 'changePwd'}}">Cambia tu contraseña</a>
-            {{/with}}
-          </div>
-        </div>
-      </div>
+          {{#if postsReady}}
+            {{#if user}}
+              {{#with user}}
+                <div class="row justify-content-md-center">
+                  <div class="col col-md-9 col-lg-7 col-xl-5">
+                    <div class="jumbotron bg-white text-center">
+                      <h2 class="text-primary display-2"><i class="far fa-user-circle"></i></h2>
+                      <h1 class="form-title text-primary mb-3">
+                        {{#if profile.name}}
+                          {{profile.name}}
+                        {{else if username}}
+                          {{username}}
+                        {{else}}
+                          {{emails.[0].address}}
+                        {{/if}}
+                      </h1>
+                      {{#unless isPublic}}
+                        <p>
+                          {{emails.[0].address}}
+                        </p>
+                        <a class="btn btn-secondary btn-sm" href="{{pathFor 'changePwd'}}">Cambia tu contraseña</a>
+                      {{/unless}}
+                    </div>
+                  </div>
+                </div>
+              {{/with}}
+              <div class="row justify-content-md-center">
+                <div class="col col-md-9 col-lg-7 col-xl-5">
+                  {{#if posts.count}}
+                    <header class="clearfix mb-4 mt-4">
+                      <h5 class="section-title text-muted float-left">Ideas recientes</h5>
+                    </header>
+                    {{> postsList postsReady=postsReady posts=posts hasMorePosts=hasMorePosts}}
+                  {{else}}
+                    <div class="jumbotron bg-washed p-sm-4">
+                      <img class="auth-icon mb-4 mr-4 float-left" src="/img/chango-pink.svg" alt="Ingresa a Chango" width="56" />
+                      <h5 class="text-primary">
+                        ¿No has compartido tu primera idea aún?
+                      </h5>
+                      <p class="text-secondary">
+                        Mejora tu comunidad aportando tus mejores ideas :D
+                      </p>
+                      <a class="btn btn-success btn-block" href="{{pathFor 'submit'}}">
+                        Comparte tu idea
+                      </a>
+                    </div>
+                  {{/if}}
+                </div>
+              </div>
+            {{else}}
+              {{> App_notFound}}
+            {{/if}}
+          {{else}}
+            <div class="row justify-content-md-center">
+              <div class="col col-md-9 col-lg-7">
+                {{> skeletonUser }}
+                <header class="clearfix mb-4 mt-4">
+                  <h5 class="section-title text-muted float-left">Ideas recientes</h5>
+                </header>
+                {{> skeleton}}
+              </div>
+            </div>
+          {{/if}}
+
+
     </div>
 </template>

@@ -1,41 +1,41 @@
-import './newsletter.html';
+import "./newsletter.html";
 
-import '/client/helpers/handle-subscriber.js';
+import "/client/helpers/handle-subscriber.js";
 
-Template.newsletter.onCreated(function() {
-  Session.set('newsletterErrors', {});
+Template.newsletterForm.onCreated(function() {
+  Session.set("newsletterErrors", {});
 });
 
-Template.newsletter.helpers({
+Template.newsletterForm.helpers({
   errorMessage: function(field) {
-    return Session.get('newsletterErrors')[field];
+    return Session.get("newsletterErrors")[field];
   },
-  errorClass: function (field) {
-    return !!Session.get('newsletterErrors')[field] ? 'is-invalid' : '';
+  errorClass: function(field) {
+    return !!Session.get("newsletterErrors")[field] ? "is-invalid" : "";
   }
 });
 
-Template.newsletter.events({
-  'submit form': function( event ) {
+Template.newsletterForm.events({
+  "submit form": function(event) {
     event.preventDefault();
-        console.log(event.target);
     var email = {
-      address: $(event.target).find('[name=emailAddress]').val()
+      address: $(event.target)
+        .find("[name=emailAddress]")
+        .val()
     };
 
     var errors = validateEmail(email);
-    if (errors.email){
-      return Session.set('newsletterErrors', errors);
+    if (errors.email) {
+      return Session.set("newsletterErrors", errors);
     } else {
-      Session.set('newsletterErrors', errors);
+      Session.set("newsletterErrors", errors);
     }
 
-    handleSubscriber({
+    var subscriber = handleSubscriber({
       email: email.address,
-      action: 'subscribe'
+      action: "subscribe"
     });
 
-    $(event.target).addClass('success');
-
+    $(event.target).addClass("success");
   }
 });
