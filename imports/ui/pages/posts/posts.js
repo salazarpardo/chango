@@ -25,10 +25,8 @@ Template.posts.onCreated(function() {
     FlowRouter.watchPathChange();
     if (FlowRouter.current().route.name == "best") {
       instance.sortby.set({ votes: -1, submitted: -1, _id: -1 });
-    } else if (FlowRouter.current().route.name == "map") {
-      instance.sortby.set({ location: -1, submitted: -1, _id: -1 });
     } else {
-      instance.sortby.set({ submitted: -1, _id: -1 });
+      instance.sortby.set({ location: -1, submitted: -1, _id: -1 });
     }
     // get the limit and sort
     var limit = instance.limit.get();
@@ -41,7 +39,7 @@ Template.posts.onCreated(function() {
     if (subscription.ready()) {
       instance.loaded.set(limit);
     } else {
-      // console.log("> Subscription is not ready yet. \n\n");
+      console.log("> Subscription is not ready yet. \n\n");
     }
   });
 
@@ -58,10 +56,6 @@ Template.posts.onCreated(function() {
 Template.posts.helpers({
   map: function() {
     return true;
-    // FlowRouter.watchPathChange();
-    // if (FlowRouter.current().route.name == 'map') {
-    //   return true;
-    // }
   },
   routeOption: function(optionName) {
     FlowRouter.watchPathChange();
@@ -69,6 +63,9 @@ Template.posts.helpers({
   },
   posts: function() {
     return Template.instance().posts();
+  },
+  limit: function() {
+    return Template.instance().limit;
   },
   hasMorePosts: function() {
     return (

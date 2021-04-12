@@ -1,29 +1,69 @@
 <template name="dashboard">
   <div class="dashboard page">
     <div class="row justify-content-md-center">
-      <div class="col-sm-12 col-md-5 col-lg-4 col-xl-2">
+      <div class="col-sm-12 col-md-7 col-lg-8 col-xl-9">
+        {{#with currentUser}}
         <div class="jumbotron bg-white p-sm-4">
-          {{#with currentUser}}
-          <div class="row justify-content-md-center">
-            <div class="col-12">
-              <h5 class="text-primary">
+          <div class="row">
+            <div class="col">
+              <h4 class="text-primary">
                 ¡Hola {{#if profile.name}} {{profile.name}}! {{else if
                 username}} {{username}}! {{else}} {{emails.[0].address}}!
                 {{/if}}
-              </h5>
-              <p class="text-secondary">
+              </h4>
+              <p class="text-secondary mb-0">
                 Gracias por hacer parte de nuestra comunidad. 😊
               </p>
-              <div class="text-right">
-                <a class="btn btn-success" href="{{pathFor 'submit'}}">
-                  Comparte tu idea
-                </a>
-              </div>
             </div>
           </div>
-
-          {{/with}}
-          <hr />
+          <div class="row">
+            <div class="col text-right">
+              <a class="btn btn-success" href="{{pathFor 'submit'}}">
+                Comparte tu idea
+              </a>
+            </div>
+          </div>
+        </div>
+        {{/with}}
+        <div class="row justify-content-md-center">
+          <div class="col-sm-12 col-md-6">
+            {{#if bestPostsCount }}
+            <h6 class="section-title text-md-secondary">
+              Las más votadas
+            </h6>
+            {{>postsList postsReady=Template.subscriptionsReady posts=bestPosts
+            hasMorePosts=hasMorePosts}}
+            <br />
+            {{/if}}
+          </div>
+          <div class="col-sm-12 col-md-6">
+            {{#if postsCount }}
+            <h6 class="section-title text-md-secondary">Ideas recientes</h6>
+            {{>postsList postsReady=Template.subscriptionsReady posts=posts
+            hasMorePosts=hasMorePosts}}
+            <br />
+            {{/if}}
+          </div>
+          <div class="col-sm-12 col-md-6">
+            {{#if bestPostsCount }}
+            <h6 class="section-title text-secondary">Las más votadas</h6>
+            {{>postsList postsReady=Template.subscriptionsReady posts=bestPosts
+            hasMorePosts=hasMorePosts}}
+            <br />
+            {{/if}}
+          </div>
+          <div class="col-sm-12 col-md-6">
+            {{#if commentedPostsCount }}
+            <h6 class="section-title text-secondary">Las más comentadas</h6>
+            {{>postsList postsReady=Template.subscriptionsReady
+            posts=commentedPosts hasMorePosts=hasMorePosts}}
+            <br />
+            {{/if}}
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-5 col-lg-4 col-xl-3">
+        <div class="jumbotron bg-white p-sm-4">
           {{> notificationsWidget}}
           <hr />
           {{#if commentsCount}}
@@ -53,46 +93,6 @@
             >
           </div>
         </div>
-      </div>
-      <div class="col-sm-12 col-md-7 col-lg-8 col-xl-5">
-        {{#if bestPostsCount }}
-        <h6 class="section-title text-md-secondary">
-          Las más votadas
-        </h6>
-        {{>postsList postsReady=Template.subscriptionsReady posts=bestPosts
-        hasMorePosts=hasMorePosts}}
-        <br />
-        {{/if}}
-      </div>
-      <div
-        class="col-sm-12 col-md-7 col-lg-8 offset-md-5 offset-lg-4 col-xl-5 offset-xl-0"
-      >
-        {{#if postsCount }}
-        <h6 class="section-title text-md-secondary">Ideas recientes</h6>
-        {{>postsList postsReady=Template.subscriptionsReady posts=posts
-        hasMorePosts=hasMorePosts}}
-        <br />
-        {{/if}}
-      </div>
-      <div
-        class="col-sm-12 col-md-7 col-lg-8 col-xl-5 offset-md-5 offset-lg-4 offset-xl-2"
-      >
-        {{#if bestPostsCount }}
-        <h6 class="section-title text-secondary">Las más votadas</h6>
-        {{>postsList postsReady=Template.subscriptionsReady posts=bestPosts
-        hasMorePosts=hasMorePosts}}
-        <br />
-        {{/if}}
-      </div>
-      <div
-        class="col-sm-12 col-md-7 col-lg-8 col-xl-5 offset-md-5 offset-lg-4 offset-xl-0"
-      >
-        {{#if commentedPostsCount }}
-        <h6 class="section-title text-secondary">Las más comentadas</h6>
-        {{>postsList postsReady=Template.subscriptionsReady posts=commentedPosts
-        hasMorePosts=hasMorePosts}}
-        <br />
-        {{/if}}
       </div>
     </div>
   </div>

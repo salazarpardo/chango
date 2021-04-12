@@ -60,10 +60,10 @@ Template.postsList.events({
     event.preventDefault();
 
     // get current value for limit, i.e. how many posts are currently displayed
-    var limit = instance.limit.get();
+    var limit = this.limit.get();
 
     // increase limit by 5 and update it
     limit += 5;
-    instance.limit.set(limit);
+    this.limit.set(limit);
   }
 });
