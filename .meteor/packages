@@ -33,7 +33,6 @@ useraccounts:core
 useraccounts:unstyled
 accounts-facebook@1.3.2
 accounts-password@1.5.1
-email@1.2.3
 
 mealsunite:flow-routing-extra
 aldeed:template-extension
@@ -46,3 +45,4 @@ meteorhacks:subs-manager
 okgrow:analytics
 underscore@1.0.10
 meteorhacks:ssr
+email

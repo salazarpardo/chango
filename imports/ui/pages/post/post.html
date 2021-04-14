@@ -1,49 +1,45 @@
 <template name="post">
   <div class="single-post page">
-        {{#if postReady}}
-          {{#if post}}
-            {{#with post}}
-              {{#if location}}
-                {{> postMap post=post}}
-              {{/if}}
-              <div class="row justify-content-md-center">
-                <div class="col col-md-9 col-lg-7">
-                  {{> postSingle }}
+    {{#if postReady}} {{#if post}} {{#with post}}
+    <div class="row justify-content-md-center">
+      <div class="col col-sm-12 col-md-6 col-lg-7">
+        {{#if location}}
+        <div class="sticky-map sticky-top pt-8">{{> postMap post=post}}</div>
+        {{/if}}
+      </div>
+      <div class="col col-12 col-md-6 col-lg-5">
+        {{> postSingle }}
 
-                    <ul id="comentarios" class="comments list-group mt-3">
-                      {{#each comments}}
-                        {{> commentItem}}
-                      {{/each}}
-                    </ul>
+        <ul id="comentarios" class="comments list-group mt-3">
+          {{#each comments}} {{> commentItem}} {{/each}}
+        </ul>
 
-                    {{#if currentUser}}
-                      {{> commentSubmit}}
-                    {{else}}
-                      <small class="text-muted">Por favor <a href="{{ pathFor 'signin' }}">ingresa</a> o <a href="{{ pathFor 'join' }}">crea tu cuenta</a> para comentar.</small>
-                    {{/if}}
-                </div>
-              </div>
-            {{/with}}
-            <div class="row justify-content-md-center">
-              <div class="col col-md-9 col-lg-7">
-                <header class="clearfix mb-4 mt-5">
-                  <h5 class="section-title text-muted float-left">Ideas recientes</h5>
-                  <a class="btn text-primary btn-link btn-sm float-right" href="{{pathFor 'new'}}"><em>Ver más</em></a>
-                </header>
-                {{> postsList postsReady=postReady posts=posts hasMorePosts=hasMorePosts}}
-              </div>
-            </div>
-
-          {{else}}
-            {{> App_notFound}}
-          {{/if}}
-        {{else}}
-          <div class="row justify-content-md-center">
-            <div class="col col-md-9 col-lg-7">
-              {{> skeletonSingle }}
-            </div>
-          </div>
+        {{#if currentUser}} {{> commentSubmit}} {{else}}
+        <small class="text-muted"
+          >Por favor <a href="{{ pathFor 'signin' }}">ingresa</a> o
+          <a href="{{ pathFor 'join' }}">crea tu cuenta</a> para
+          comentar.</small
+        >
         {{/if}}
 
+        <header class="clearfix mb-4 mt-5">
+          <h5 class="section-title text-muted float-left">Ideas recientes</h5>
+          <a
+            class="btn text-primary btn-link btn-sm float-right"
+            href="{{pathFor 'new'}}"
+            ><em>Ver más</em></a
+          >
+        </header>
+        {{> postsList postsReady=postReady posts=posts
+        hasMorePosts=hasMorePosts}}
+      </div>
+    </div>
+    {{/with}} {{else}} {{> App_notFound}} {{/if}} {{else}}
+    <div class="row justify-content-md-center">
+      <div class="col col-md-9 col-lg-7">
+        {{> skeletonSingle }}
+      </div>
+    </div>
+    {{/if}}
   </div>
 </template>

@@ -31,12 +31,14 @@ Template.posts.onCreated(function() {
         submitted: -1,
         _id: -1
       });
+      instance.query.set({});
     } else if (FlowRouter.current().route.name == "tag") {
       var tag = "#" + FlowRouter.getParam("tag");
       if (tag !== undefined) {
         instance.query.set({ "tags.value": tag });
       }
     } else {
+      instance.query.set({});
       instance.sortby.set({ submitted: -1, _id: -1 });
     }
     // get the limit and sort
@@ -72,6 +74,10 @@ Template.posts.helpers({
   routeOption: function(optionName) {
     FlowRouter.watchPathChange();
     return FlowRouter.current().route.options[optionName];
+  },
+  tag: function() {
+    var query = Template.instance().query.get();
+    return query["tags.value"];
   },
   posts: function() {
     return Template.instance().posts();

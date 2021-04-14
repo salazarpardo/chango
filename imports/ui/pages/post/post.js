@@ -4,8 +4,6 @@ import { subs } from "/imports/api/posts/posts.js";
 import { Comments } from "/imports/api/comments/comments.js";
 import { Meteor } from "meteor/meteor";
 
-var googleMapsApiKey = Meteor.settings.public.GoogleMaps;
-
 import "./post.html";
 
 import "../../components/posts/post_single.js";
@@ -107,8 +105,4 @@ Template.post.onCreated(function() {
       limit: self.loaded.get()
     });
   };
-});
-
-Template.post.onRendered(function() {
-  GoogleMaps.load({ key: googleMapsApiKey });
 });

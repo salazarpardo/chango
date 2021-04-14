@@ -3,8 +3,6 @@ import { Meteor } from "meteor/meteor";
 
 import { styles } from "/imports/startup/client/map_styles.js";
 
-var googleMapsApiKey = Meteor.settings.public.GoogleMaps;
-
 Template.postsMap.helpers({
   exampleMapOptions: function() {
     // Make sure the maps API has loaded
@@ -33,10 +31,6 @@ Template.postsMap.helpers({
       };
     }
   }
-});
-
-Template.postsMap.onRendered(function() {
-  GoogleMaps.load({ key: googleMapsApiKey });
 });
 
 Template.postsMap.onCreated(function() {

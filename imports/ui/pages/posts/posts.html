@@ -3,18 +3,18 @@
     {{#if map}}
     <header class="clearfix mb-3 mt-3 mt-md-0">
       <h5 class="section-title text-white float-left">
-        {{routeOption 'title'}}
+        Ideas {{routeOption 'title'}}{{#if tag}}: {{tag}} {{/if}}
       </h5>
       <!-- <a class="btn-light btn-sm float-right" href="#"><em>Filtrar</em></a> -->
     </header>
     <div class="row justify-content-md-center">
-      <div class="col col-sm-12 col-lg-8 col-xl-9">
+      <div class="col col-sm-12 col-md-8 col-xl-9">
         <div class="sticky-map sticky-top pt-8">
           {{> postsMap postsReady=Template.subscriptionsReady posts=posts}}
         </div>
       </div>
 
-      <div class="col col-12 col-lg-4 col-xl-3">
+      <div class="col col-12 col-md-4 col-xl-3">
         {{> postsList postsReady=Template.subscriptionsReady posts=posts
         hasMorePosts=hasMorePosts limit=limit}}
       </div>

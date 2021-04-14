@@ -11,6 +11,9 @@
     box-shadow: $box-shadow-sm;
   }
 }
+.posts .post {
+  border-radius: 0;
+}
 .single-post {
   .comment-form,
   .comments li,
@@ -48,7 +51,7 @@ h6,
 }
 
 #__blaze-root {
-  background-color: $washed-pink;
+  background-color: $bone;
   box-shadow: rem-calc(0 80) $primary inset;
   > section {
     &:not(.home):not(.privacy) {
@@ -103,11 +106,15 @@ h6,
   }
 }
 
-.sticky-map.sticky-top {
-  top: rem-calc(80);
+.list-group-item {
+  border: none;
 }
 
 .navbar .navbar-inner {
+}
+.dropdown-menu {
+  font-size: rem-calc(14);
+  overflow: hidden;
 }
 
 .navbar-text,
@@ -125,6 +132,7 @@ h6,
   }
 }
 .navbar-nav {
+  font-size: rem-calc(14);
   @include media-breakpoint-down(md) {
     .dropdown-toggle:after {
       content: none;

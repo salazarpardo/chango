@@ -1,23 +1,29 @@
 <template name="hero">
   <div class="jumbotron hero bg-primary bg-city">
-    <div class="container">
-      <div class="row justify-content-md-center">
+    <div class="container-fluid">
+      <div class="row justify-content-md-center align-items-center">
         <div class="col-sm-6 col-lg-5 city-image d-none d-sm-block">
-          <img src="/img/city.svg" alt="" class="img-fluid"/>
+          <img src="/img/city.svg" alt="" class="img-fluid" />
         </div>
-        <div class="col-8 col-sm-6 col-md-4">
+        <div class="col-9 col-sm-6 col-md-4 col-xl-3">
           <h1 class="hero-title mt-lg-5">Todo inicia con una idea</h1>
           <p class="hero-text">
             Participa con tus ideas, construyamos juntos la ciudad que soñamos.
           </p>
           {{#if currentUser}}
-            <a class="btn btn-success btn-lg" href="{{pathFor 'submit'}}">
-              Comparte tu idea
-            </a>
+          <a
+            class="btn btn-success btn-lg btn-block"
+            href="{{pathFor 'submit'}}"
+          >
+            Comparte tu idea
+          </a>
           {{else}}
-            <a class="btn btn-success btn-lg" href="{{pathFor 'join' query='next=submit'}}">
-              Comienza ahora
-            </a>
+          <a
+            class="btn btn-success btn-lg btn-block"
+            href="{{pathFor 'join' query='next=submit'}}"
+          >
+            Comienza ahora
+          </a>
           {{/if}}
         </div>
       </div>
@@ -30,7 +36,7 @@
     <div class="container">
       <div class="row justify-content-md-center">
         <div class="col-sm-6 col-lg-5 city-image d-none d-sm-block">
-          <img src="/img/city.svg" alt="" class="img-fluid"/>
+          <img src="/img/city.svg" alt="" class="img-fluid" />
         </div>
         <div class="col-8 col-sm-6 col-md-4">
           <h1 class="hero-title mt-lg-5">Todo inicia con una idea</h1>

@@ -88,7 +88,8 @@ publicRoutes.route("/tag/:tag", {
       footer: "footer"
     });
   },
-  title: "Ideas por tag",
+
+  title: "Por tag",
   triggersExit: []
 });
 
@@ -275,7 +276,7 @@ privateRoutes.route("/inicio", {
       footer: "footer"
     });
   },
-  title: "Dashboard",
+  title: "Inicio",
   triggersExit: []
 });
 

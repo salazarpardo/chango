@@ -11,6 +11,7 @@
     "@fortawesome/fontawesome-free-brands": "^5.0.10",
     "@fortawesome/fontawesome-free-regular": "^5.0.10",
     "@fortawesome/fontawesome-free-solid": "^5.0.10",
+    "@mapbox/node-pre-gyp": "^1.0.3",
     "bcrypt": "^3.0.0",
     "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",

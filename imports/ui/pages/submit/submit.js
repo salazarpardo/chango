@@ -14,8 +14,6 @@ import mention from "linkifyjs/plugins/mention"; // optional
 hashtag(linkify);
 mention(linkify);
 
-var googleMapsApiKey = Meteor.settings.public.GoogleMaps;
-
 import "./submit.html";
 
 Template.submit.onCreated(function() {
@@ -134,8 +132,6 @@ Template.submit.onCreated(function() {
 });
 
 Template.submit.onRendered(function() {
-  GoogleMaps.load({ key: googleMapsApiKey });
-
   // Emulating placeholder behaviour on select dropdowns.
   if ($("select").length) {
     $.each($("select"), function(i, val) {

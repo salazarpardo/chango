@@ -1,49 +1,103 @@
 <template name="postSingle">
-  <div class="post cat-{{icon}} mt-3">
+  <div class="post cat-{{icon}}">
     <div class="post-content">
       <h1 class="post-title text-secondary">{{title}}</h1>
-      <small class="text-muted"><em>{{category}}</em><br>{{address}}</small>
+      <small class="text-muted"><em>{{category}}</em><br />{{address}}</small>
       <p class="post-description mt-3 mb-3">
-          {{#if text}}
-            {{{text}}}
-            {{else}}
-            {{description}}
-            {{/if}}
-
+        {{#if text}} {{{text}}} {{else}} {{description}} {{/if}}
       </p>
       <p class="clearfix mb-0">
         <small class="text-muted float-right">
-          {{#if author}}<a href="{{pathFor '/u/:username/' username=author}}"><i class="far fa-user-circle"></i> {{author}}</a> {{/if}}  {{#if ownPost}}<br> <a class="float-right mt-3" href="{{pathFor '/idea/:slug/editar' slug=slug}}"><small> <i class="far fa-edit"></i> Editar</small></a>{{/if}}
+          {{#if author}}<a href="{{pathFor '/u/:username/' username=author}}"
+            ><i class="far fa-user-circle"></i> {{author}}</a
+          >
+          {{/if}} {{#if ownPost}}<br />
+          <a
+            class="float-right mt-3"
+            href="{{pathFor '/idea/:slug/editar' slug=slug}}"
+            ><small> <i class="far fa-edit"></i> Editar</small></a
+          >{{/if}}
         </small>
         <small class="text-muted float-left">
           <i class="far fa-calendar-alt"></i> {{submitted.toLocaleDateString}}
         </small>
       </p>
-      <hr>
+      <hr />
       <div class="row">
         <div class="col-12">
           <div class="float-left" id="share">
             <!-- facebook -->
-            <a class="btn btn-sm btn-facebook" href="https://www.facebook.com/sharer.php?u={{postUrl}}&p[title]={{title}}" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a
+              class="btn btn-sm btn-facebook"
+              href="https://www.facebook.com/sharer.php?u={{postUrl}}&p[title]={{title}}"
+              target="_blank"
+              ><i class="fab fa-facebook"></i
+            ></a>
             <!-- twitter -->
-            <a class="btn btn-sm btn-twitter" href="https://twitter.com/intent/tweet?url={{postUrl}}&text={{title}}" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a
+              class="btn btn-sm btn-twitter"
+              href="https://twitter.com/intent/tweet?url={{postUrl}}&text={{title}}"
+              target="_blank"
+              ><i class="fab fa-twitter"></i
+            ></a>
             <!-- linkedin -->
-            <a class="btn btn-sm btn-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&url={{postUrl}}&title={{title}}&summary={{title}}&source=Chango" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a
+              class="btn btn-sm btn-linkedin"
+              href="https://www.linkedin.com/shareArticle?mini=true&url={{postUrl}}&title={{title}}&summary={{title}}&source=Chango"
+              target="_blank"
+              ><i class="fab fa-linkedin"></i
+            ></a>
             <!-- email -->
-            <a class="btn btn-sm btn-email" href="mailto:?subject={{title}}&amp;body=Ver más en {{postUrl}}" target="_self" aria-label="Share by E-Mail"><i class="fas fa-envelope"></i></a>
+            <a
+              class="btn btn-sm btn-email"
+              href="mailto:?subject={{title}}&amp;body=Ver más en {{postUrl}}"
+              target="_self"
+              aria-label="Share by E-Mail"
+              ><i class="fas fa-envelope"></i
+            ></a>
             <!-- whatsapp -->
-            <a class="btn btn-sm btn-whatsapp" href="https://wa.me/?text={{title}}%20{{postUrl}}" target="_blank" aria-label="Share on WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a
+              class="btn btn-sm btn-whatsapp"
+              href="https://wa.me/?text={{title}}%20{{postUrl}}"
+              target="_blank"
+              aria-label="Share on WhatsApp"
+              ><i class="fab fa-whatsapp"></i
+            ></a>
           </div>
           <small class="text-muted float-right">
             <!-- {{pluralize votes "voto"}},
             {{pluralize commentsCount "comentario"}} -->
             <div class="btn-group" role="group" aria-label="Basic example">
               {{#if currentUser}}
-                <a href="#comentarios" class="comment btn btn-link {{commentClass}}" title="Comentar {{title}}">{{commentsCount}} <i class="far fa-comment-alt"></i></a>
-                <a href="#" class="upvote btn btn-link {{upvotedClass}}" title="Votar {{title}}">{{votes}} <i class="{{upvoteIconClass}}"></i> </a>
+              <a
+                href="#comentarios"
+                class="comment btn btn-link {{commentClass}}"
+                title="Comentar {{title}}"
+                >{{commentsCount}} <i class="far fa-comment-alt"></i
+              ></a>
+              <a
+                href="#"
+                class="upvote btn btn-link {{upvotedClass}}"
+                title="Votar {{title}}"
+                >{{votes}} <i class="{{upvoteIconClass}}"></i>
+              </a>
               {{else}}
-                <a href="#" class="comment btn btn-link btn-logged-out" data-toggle="modal" data-target="#loginModal" title="Ingresa para comentar">{{commentsCount}} <i class="far fa-comment-alt"></i></a>
-                <a href="#" class="upvote btn btn-link btn-logged-out" data-toggle="modal" data-target="#loginModal" title="Ingresa para votar">{{votes}} <i class="{{upvoteIconClass}}"></i> </a>
+              <a
+                href="#"
+                class="comment btn btn-link btn-logged-out"
+                data-toggle="modal"
+                data-target="#loginModal"
+                title="Ingresa para comentar"
+                >{{commentsCount}} <i class="far fa-comment-alt"></i
+              ></a>
+              <a
+                href="#"
+                class="upvote btn btn-link btn-logged-out"
+                data-toggle="modal"
+                data-target="#loginModal"
+                title="Ingresa para votar"
+                >{{votes}} <i class="{{upvoteIconClass}}"></i>
+              </a>
               {{/if}}
             </div>
           </small>

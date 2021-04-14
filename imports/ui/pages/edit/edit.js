@@ -8,8 +8,6 @@ import mention from "linkifyjs/plugins/mention"; // optional
 
 import { Meteor } from "meteor/meteor";
 
-var googleMapsApiKey = Meteor.settings.public.GoogleMaps;
-
 hashtag(linkify);
 mention(linkify);
 
@@ -151,10 +149,6 @@ Template.postEdit.onCreated(function() {
       codeLatLng();
     });
   });
-});
-
-Template.postEdit.onRendered(function() {
-  GoogleMaps.load({ key: googleMapsApiKey });
 });
 
 Template.postEdit.helpers({

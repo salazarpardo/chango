@@ -5,7 +5,7 @@
   border-radius: $border-radius;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16);
   background-color: $white;
-  @include media-breakpoint-up(lg) {
+  @include media-breakpoint-up(md) {
     max-height: rem-calc(760px);
     min-height: 80vh;
     margin-bottom: rem-calc(40);
@@ -95,4 +95,9 @@
 .gm-style div div div div div div div div a {
   // color: #f1f1f1;
   // font-weight: bold;
+}
+
+.sticky-map.sticky-top {
+  top: rem-calc(80);
+  margin-bottom: rem-calc(32);
 }
