@@ -15,22 +15,42 @@
 </template>
 
 <template name="override-atTextInput">
-  <div class="at-input form-group {{#if isValidating}}validating{{/if}}  {{#if feedback}}has-feedback{{/if}}">
-    <label class="control-label {{#unless showLabels}}sr-only{{/unless}}" for="at-field-{{_id}}">
+  <div
+    class="at-input form-group {{#if isValidating}}validating{{/if}}  {{#if feedback}}has-feedback{{/if}}"
+  >
+    <label
+      class="control-label {{#unless showLabels}}sr-only{{/unless}}"
+      for="at-field-{{_id}}"
+    >
       {{displayName}} {{#unless required}}{{optionalText}}{{/unless}}
     </label>
-    <input type="{{type}}" id="at-field-{{_id}}" name="at-field-{{_id}}" placeholder="{{placeholder}}" autocapitalize="none" autocorrect="off" class="form-control {{#if hasError}}is-invalid{{/if}} {{#if hasSuccess}}is-valid{{/if}}">
+    <input
+      type="{{type}}"
+      id="at-field-{{_id}}"
+      name="at-field-{{_id}}"
+      placeholder="{{placeholder}}"
+      autocapitalize="none"
+      autocorrect="off"
+      class="form-control {{#if hasError}}is-invalid{{/if}} {{#if hasSuccess}}is-valid{{/if}}"
+    />
     {{#if hasIcon}}
-      <span class="valid-feedback"><i class="float-right {{iconClass}}"></i></span>
-    {{/if}}
-    {{#if hasError}}
-      <span class="invalid-feedback"><i class="{{iconClass}}"></i> {{errorText}}</span>
+    <span class="valid-feedback"
+      ><i class="float-right {{iconClass}}"></i
+    ></span>
+    {{/if}} {{#if hasError}}
+    <span class="invalid-feedback"
+      ><i class="{{iconClass}}"></i> {{errorText}}</span
+    >
     {{/if}}
   </div>
 </template>
 
 <template name="override-atSocial">
-  <button class="btn at-social-btn {{disabled}} btn-block mb-3" id="at-{{name}}" name="{{name}}">
+  <button
+    class="btn at-social-btn {{disabled}} btn-block mb-3"
+    id="at-{{name}}"
+    name="{{name}}"
+  >
     <i class="{{iconClass}}"></i> {{buttonText}}
   </button>
 </template>
@@ -43,7 +63,12 @@
 
 <template name="override-atTitle">
   <header class="auth-header">
-    <img class="auth-icon mb-2" src="/img/chango-pink.svg" alt="Ingresa a Chango" width="56" />
+    <img
+      class="auth-icon mb-2"
+      src="/img/chango-pink.svg"
+      alt="Ingresa a Chango"
+      width="56"
+    />
     <h1 class="form-title text-primary mb-3">{{title}}</h1>
   </header>
 </template>
@@ -68,59 +93,41 @@
 
 <template name="override-atPwdForm">
   <div class="at-pwd-form">
-    <form role="form" id="at-pwd-form" class="form needs-validation {{disabled}}" novalidate action="#" method="POST">
-      {{#each fields}}
-        {{> atInput}}
-      {{/each}}
-      {{#if showReCaptcha}}
-        {{> atReCaptcha}}
-      {{/if}}
-      {{> atPwdFormBtn}}
+    <form
+      role="form"
+      id="at-pwd-form"
+      class="form needs-validation {{disabled}}"
+      novalidate
+      action="#"
+      method="POST"
+    >
+      {{#each fields}} {{> atInput}} {{/each}} {{#if showReCaptcha}} {{>
+      atReCaptcha}} {{/if}} {{> atPwdFormBtn}}
     </form>
   </div>
   {{#if showForgotPasswordLink}}
-    <small>{{> atPwdLink}}</small>
+  <small>{{> atPwdLink}}</small>
   {{/if}}
 </template>
 
 <template name="override-atForm">
   {{#unless hide}}
   <div class="row justify-content-md-center">
-    <div class="col col-md-7 col-lg-6 col-xl-5">
+    <div class="col col-md-7 col-lg-6 col-xl-4">
       <div class="at-form">
         <div class="jumbotron auth bg-white text-center">
-          {{#if showTitle}}
-            {{> atTitle}}
-          {{/if}}
-          {{#if showOauthServices}}
-            {{> atOauth}}
-          {{/if}}
-          {{#if showServicesSeparator}}
-            {{> atSep}}
-          {{/if}}
-          {{#if showError}}
-            {{> atError}}
-          {{/if}}
-          {{#if showResult}}
-            {{> atResult}}
-          {{/if}}
-          {{#if showMessage}}
-            {{> atMessage}}
-          {{/if}}
-          {{#if showPwdForm}}
-            {{> atPwdForm}}
-          {{/if}}
-          {{#if showTermsLink}}
-            <small>{{> atTermsLink}}</small>
-          {{/if}}
-          {{#if showSignInLink}}
-            <small>{{> atSigninLink}}</small>
-          {{/if}}
-          {{#if showSignUpLink}}
-            <small>{{> atSignupLink}}</small>
-          {{/if}}
-          {{#if showResendVerificationEmailLink}}
-            <small>{{> atResendVerificationEmailLink}}</small>
+          {{#if showTitle}} {{> atTitle}} {{/if}} {{#if showOauthServices}} {{>
+          atOauth}} {{/if}} {{#if showServicesSeparator}} {{> atSep}} {{/if}}
+          {{#if showError}} {{> atError}} {{/if}} {{#if showResult}} {{>
+          atResult}} {{/if}} {{#if showMessage}} {{> atMessage}} {{/if}} {{#if
+          showPwdForm}} {{> atPwdForm}} {{/if}} {{#if showTermsLink}}
+          <small>{{> atTermsLink}}</small>
+          {{/if}} {{#if showSignInLink}}
+          <small>{{> atSigninLink}}</small>
+          {{/if}} {{#if showSignUpLink}}
+          <small>{{> atSignupLink}}</small>
+          {{/if}} {{#if showResendVerificationEmailLink}}
+          <small>{{> atResendVerificationEmailLink}}</small>
           {{/if}}
         </div>
       </div>
