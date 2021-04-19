@@ -1,5 +1,4 @@
 import "./posts_map.html";
-import { Meteor } from "meteor/meteor";
 
 import { styles } from "/imports/startup/client/map_styles.js";
 
@@ -205,6 +204,12 @@ Template.postsMap.onCreated(function() {
         // Store this marker instance within the markers object.
         self.markers[document._id] = marker;
         self.markers.length++;
+
+        if (self.markers.length == 1) {
+          map.instance.setCenter(center);
+        } else if (self.markers.length >= 2) {
+          map.instance.fitBounds(bounds);
+        }
       },
       changed: function(newDocument, oldDocument) {
         var currentPlace = null;
@@ -255,11 +260,6 @@ Template.postsMap.onCreated(function() {
         delete self.markers[oldDocument._id];
       }
     });
-    if (self.markers.length == 1) {
-      map.instance.setCenter(center);
-    } else if (self.markers.length >= 2) {
-      map.instance.fitBounds(bounds);
-    }
   });
 });
 

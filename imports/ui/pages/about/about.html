@@ -1,24 +1,36 @@
 <template name="about">
   <div class="about page">
     <div class="row justify-content-md-center">
-      <div class="col col-md-9 col-lg-7">
+      <div class="col col-md-9 col-lg-6 col-xl-5">
         <h1 class="text-white mb-3">Acerca de Chango</h1>
-        <img class="img-fluid mb-4 shadow-sm" src="/img/default-img.png" alt="" />
-        <p class="mb-4">
-            Chango es una nueva aplicación para explorar, proponer y evaluar soluciones a problemáticas de la ciudad (inicialmente estamos solo en Bogotá). Es una invitación a los ciudadanos para que juntos encontremos areas a mejorar, propongamos soluciones y le demos prioridad a la realización de proyectos que cuenten con mayor respaldo dentro de los miembros de la comunidad.
-        </p>
-        <p class="mb-4">
-            Es muy fácil ser participe del cambio. Solo crea una cuenta y dinos de que se trata esa idea que esperas hacer realidad con el apoyo de nuestra comunidad, o explora en el mapa para encontrar iniciativas de otros miembros y apoyarlas con tu voto, o retroalimentar con un comentario.
-        </p>
-        {{#if currentUser}}
-        <p class="text-center">
-          <a href="{{pathFor 'submit' }}" class="btn btn-success">Comparte tu idea</a>
-        </p>
-        {{else}}
-        <p class="text-center">
-          <a href="{{pathFor 'join' }}" class="btn btn-success">Crea tu cuenta</a>
-        </p>
-        {{/if}}
+        <div class="jumbotron bg-white p-4">
+          <p class="mb-4">
+            <strong>Chango</strong> es una nueva aplicación que te invita a
+            explorar, proponer y evaluar soluciones a problemáticas de tu ciudad
+            para que juntos priorizemos los proyectos de acuerdo al respaldo que
+            reciben dentro de nuestra comunidad.
+          </p>
+          <p class="mb-4">
+            <strong>Es muy fácil participar del cambio</strong>. Solo tienes que
+            crear una cuenta y contarnos de que se trata esa idea que quieres
+            hacer realidad o proyecto en el que estás trabajando. También puedes
+            explorar el mapa para encontrar iniciativas de otros miembros y
+            apoyarlas con tu voto, o dejar un comentario.
+          </p>
+          {{#if currentUser}}
+          <p class="text-center">
+            <a href="{{pathFor 'submit' }}" class="btn btn-success"
+              >Comparte tu idea</a
+            >
+          </p>
+          {{else}}
+          <p class="text-center">
+            <a href="{{pathFor 'join' }}" class="btn btn-success"
+              >Crea tu cuenta</a
+            >
+          </p>
+          {{/if}}
+        </div>
       </div>
     </div>
   </div>

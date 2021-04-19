@@ -10,13 +10,13 @@
     <div class="row justify-content-md-center">
       <div class="col col-sm-12 col-md-8 col-xl-9">
         <div class="sticky-map sticky-top pt-8">
-          {{> postsMap postsReady=Template.subscriptionsReady posts=posts}}
+          {{> postsMap postsReady=ready posts=posts}}
         </div>
       </div>
 
       <div class="col col-12 col-md-4 col-xl-3">
-        {{> postsList postsReady=Template.subscriptionsReady posts=posts
-        hasMorePosts=hasMorePosts limit=limit}}
+        {{> postsList postsReady=ready posts=posts limit=limit
+        hasMorePosts=hasMorePosts}}
       </div>
     </div>
     {{else}}
@@ -27,8 +27,7 @@
             {{routeOption 'title'}}
           </h5>
         </header>
-        {{> postsList postsReady=Template.subscriptionsReady posts=posts
-        hasMorePosts=hasMorePosts}}
+        {{> postsList postsReady=ready posts=posts hasMorePosts=hasMorePosts}}
       </div>
     </div>
     {{/if}}

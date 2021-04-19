@@ -13,6 +13,8 @@ Template.posts.onCreated(function() {
 
   var instance = this;
 
+  instance.ready = new ReactiveVar(false);
+
   // initialize the reactive variables
   instance.loaded = new ReactiveVar(0);
   instance.limit = new ReactiveVar(5);
@@ -22,9 +24,16 @@ Template.posts.onCreated(function() {
   // 2. Autorun
 
   // will re-run when the "limit" reactive variables changes
+
   instance.autorun(function() {
-    FlowRouter.watchPathChange();
-    if (FlowRouter.current().route.name == "best") {
+    var route = FlowRouter.getRouteName();
+
+    if (route === "tag") {
+      var tag = "#" + FlowRouter.getParam("tag");
+      if (tag !== undefined) {
+        instance.query.set({ "tags.value": tag });
+      }
+    } else if (route === "best") {
       instance.sortby.set({
         votes: -1,
         commentsCount: -1,
@@ -32,39 +41,37 @@ Template.posts.onCreated(function() {
         _id: -1
       });
       instance.query.set({});
-    } else if (FlowRouter.current().route.name == "tag") {
-      var tag = "#" + FlowRouter.getParam("tag");
-      if (tag !== undefined) {
-        instance.query.set({ "tags.value": tag });
-      }
     } else {
-      instance.query.set({});
       instance.sortby.set({ submitted: -1, _id: -1 });
+      instance.query.set({});
     }
     // get the limit and sort
     var limit = instance.limit.get();
     var sortby = instance.sortby.get();
     var query = instance.query.get();
 
+    var posts = subs.subscribe("posts", sortby, limit, query);
+
     // subscribe to the posts publication
-    var subscription = subs.subscribe("posts", sortby, limit, query);
+
+    // var newPosts = subs.subscribe("posts", sortby, limit, query);
 
     // if subscription is ready, set limit to newLimit
-    if (subscription.ready()) {
+    if (subs.ready()) {
       instance.loaded.set(limit);
+      instance.ready.set(true);
+      // 3. Cursor
     } else {
-      console.log("> Subscription is not ready yet. \n\n");
+      console.log("Subscription is not ready yet.");
     }
+
+    instance.posts = function() {
+      return Posts.find(instance.query.get(), {
+        sort: instance.sortby.get(),
+        limit: instance.loaded.get()
+      });
+    };
   });
-
-  // 3. Cursor
-
-  instance.posts = function() {
-    return Posts.find(instance.query.get(), {
-      sort: instance.sortby.get(),
-      limit: instance.loaded.get()
-    });
-  };
 });
 
 Template.posts.helpers({
@@ -78,6 +85,9 @@ Template.posts.helpers({
   tag: function() {
     var query = Template.instance().query.get();
     return query["tags.value"];
+  },
+  ready: function() {
+    return Template.instance().ready.get();
   },
   posts: function() {
     return Template.instance().posts();

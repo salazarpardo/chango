@@ -45,7 +45,7 @@ $green: #32e3ae !default;
 $teal: #20c997 !default;
 $cyan: #00d2e6 !default;
 $washed-pink: #ffeff9;
-$bone: #FFFCFF;
+$bone: #fffafd;
 $dark-teal: #466c6e;
 $dark-blue: #007bff;
 $border-pink: #fdd9f3;
@@ -246,9 +246,9 @@ $border-radius-sm: 1rem !default;
 
 $rounded-pill: 50rem !default;
 
-$box-shadow-sm: 0 1px 1px rgba($black, 0.15) !default;
-$box-shadow: 0 0.5rem 1rem rgba($black, 0.15) !default;
-$box-shadow-lg: 0 1rem 3rem rgba($black, 0.175) !default;
+$box-shadow-sm: 0 1px 1px rgba($black, 0.075) !default;
+$box-shadow: 0 0.5rem 1rem rgba($black, 0.075) !default;
+$box-shadow-lg: 0 1rem 3rem rgba($black, 0.075) !default;
 
 $component-active-color: $white !default;
 $component-active-bg: theme-color("primary") !default;
