@@ -59,7 +59,8 @@ publicRoutes.route("/u/:username", {
       footer: "footer"
     });
   },
-  triggersExit: []
+  triggersExit: [],
+  title: "Perfil de Usuario"
 });
 
 publicRoutes.route("/idea/:slug", {
@@ -73,7 +74,8 @@ publicRoutes.route("/idea/:slug", {
       footer: "footer"
     });
   },
-  triggersExit: []
+  triggersExit: [],
+  title: "Idea"
 });
 
 publicRoutes.route("/tag/:tag", {

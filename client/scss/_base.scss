@@ -53,6 +53,9 @@ h6,
   > section {
     &:not(.home):not(.privacy) {
       box-shadow: rem-calc(0 352) $primary inset;
+      &.user {
+        box-shadow: rem-calc(0 240) $primary inset;
+      }
     }
   }
 }
