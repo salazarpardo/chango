@@ -50,6 +50,10 @@ h6,
   letter-spacing: -0.5px;
 }
 
+.btn {
+  @extend %smooth;
+}
+
 #__blaze-root {
   background-color: $bone;
   box-shadow: rem-calc(0 80) $primary inset;
@@ -109,8 +113,6 @@ h6,
   border: none;
 }
 
-.navbar .navbar-inner {
-}
 .dropdown-menu {
   font-size: rem-calc(14);
   overflow: hidden;
@@ -161,15 +163,18 @@ h6,
   }
 }
 .btn {
-  text-shadow: 0 -1px 0 rgba($black, 0.22);
-  box-shadow: 0 -1px 0 rgba($black, 0.15) inset;
-  border-width: 0;
-  &:not(.btn-light):not(.btn-link) {
+  box-shadow: none;
+  &:not(.btn-lg) {
     color: $white;
     @extend %smooth;
   }
   &[class*="btn-outline-light"] {
     border-width: 1px;
+  }
+  &.btn-lg {
+    &:hover{
+      color: #fff;
+    } 
   }
   &.btn-link,
   &[class*="btn-outline-light"] {

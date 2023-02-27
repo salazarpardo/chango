@@ -2,24 +2,24 @@
   <div class="jumbotron hero bg-primary bg-city">
     <div class="container-fluid">
       <div class="row justify-content-md-center align-items-center">
-        <div class="col-sm-6 col-xl-5 city-image d-none d-sm-block">
+        <div class="col-sm-5 col-xl-4 city-image d-none d-sm-block">
           <img src="/img/city.svg" alt="" class="img-fluid" />
         </div>
-        <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+        <div class="col-12 col-sm-5 col-md-4 col-xl-4">
           <h1 class="hero-title mt-lg-5">Todo inicia con una idea</h1>
           <p class="hero-text">
             Participa con tus ideas, construyamos juntos la ciudad que soñamos.
           </p>
           {{#if currentUser}}
           <a
-            class="btn btn-success btn-lg btn-block"
+            class="btn btn-success btn-lg mb-5"
             href="{{pathFor 'submit'}}"
           >
             Comparte tu idea
           </a>
           {{else}}
           <a
-            class="btn btn-success btn-lg btn-block mb-5"
+            class="btn btn-success btn-lg mb-5"
             href="{{pathFor 'join' query='next=submit'}}"
           >
             Comienza ahora

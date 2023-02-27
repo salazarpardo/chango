@@ -58,9 +58,8 @@
       }
     }
     .btn {
-      box-shadow: 0 2px 3px rgba(#a47095, 0.8);
-      background-color: rgba($success, 0.9);
       &:not(.btn-sm) {
+        box-shadow: 0 1px 0 #1c7d60;
         font-size: rem-calc(16);
         @include media-breakpoint-up(lg) {
           font-size: rem-calc(20);
@@ -77,10 +76,10 @@
   }
   &.bg-city {
     background-image: url(/img/city.svg);
-    background-repeat: no-repeat;
-    background-size: 90%;
-    background-position: center bottom;
-    padding-bottom: 70%;
+    background-repeat: no-repeat;    
+    background-size: 100%;
+    background-position: center 85%;
+    padding-bottom: 110%;
     @include media-breakpoint-up(sm) {
       padding-bottom: rem-calc(50);
       background-image: none;
@@ -108,6 +107,8 @@
   background-position: center;
   background-repeat: no-repeat;
   background-blend-mode: multiply;
+  align-items: center;
+  display: flex;
   @include media-breakpoint-up(sm) {
     background-size: 45%;
     padding: rem-calc(120) 0;

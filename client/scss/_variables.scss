@@ -34,16 +34,16 @@ $grays: map-merge(
   $grays
 );
 
-$blue: #007bff !default;
+$blue: #00ACBC !default;
 $indigo: #6610f2 !default;
 $purple: #9e88f7 !default;
-$pink: #f788cf !default;
+$pink: #E277BC !default;
 $red: #dc3545 !default;
 $orange: #ffaa00 !default;
 $yellow: #ffc107 !default;
-$green: #32e3ae !default;
+$green: #25A780 !default;
 $teal: #20c997 !default;
-$cyan: #00d2e6 !default;
+$cyan: #00B1C1 !default;
 $washed-pink: #ffeff9;
 $bone: #fffafd;
 $dark-teal: #466c6e;
@@ -273,7 +273,7 @@ $embed-responsive-aspect-ratios: join(
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
-$font-family-sans-serif: "Raleway", -apple-system, BlinkMacSystemFont,
+$font-family-sans-serif: "Epilogue", -apple-system, BlinkMacSystemFont,
   "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
   "Segoe UI Emoji", "Segoe UI Symbol" !default;
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
