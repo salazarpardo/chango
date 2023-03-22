@@ -9,9 +9,6 @@
 .section-title {
   color: $secondary;
   text-transform: lowercase;
-  @include media-breakpoint-up(md) {
-    color: $white;
-  }
 }
 
 .post {
