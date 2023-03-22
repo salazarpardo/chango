@@ -36,22 +36,22 @@
       letter-spacing: -1px;
       text-shadow: 2px 2px rgba($primary, 0.8);
       @include media-breakpoint-up(xs) {
-        font-size: rem-calc(24);
+        font-size: rem-calc(32);
       }
       @include media-breakpoint-up(s) {
-        font-size: rem-calc(30);
+        font-size: rem-calc(40);
       }
       @include media-breakpoint-up(lg) {
         font-size: rem-calc(48);
         line-height: 0.9;
       }
       @include media-breakpoint-up(xl) {
-        font-size: rem-calc(52);
+        font-size: rem-calc(56);
       }
     }
     .hero-text {
       font-size: rem-calc(16);
-      line-height: 1.25;
+      line-height: 1.325;
       text-shadow: 1px 1px 1px rgba($primary, 0.8);
       @include media-breakpoint-up(lg) {
         font-size: rem-calc(20);
@@ -76,7 +76,7 @@
   }
   &.bg-city {
     background-image: url(/img/city.svg);
-    background-repeat: no-repeat;    
+    background-repeat: no-repeat;
     background-size: 100%;
     background-position: center 85%;
     padding-bottom: 110%;
@@ -88,6 +88,9 @@
   }
   .city-image {
     padding: 0;
+    img {
+      width: 100%;
+    }
     @include media-breakpoint-up(lg) {
       padding: 0 rem-calc(15);
     }
@@ -128,7 +131,7 @@
     padding-top: 75%;
     @include media-breakpoint-up(sm) {
       padding-top: rem-calc(80);
-      background-position: 80% center;
+      background-position: 90% center;
     }
     @include media-breakpoint-up(lg) {
       background-position: 75% center;
@@ -140,7 +143,7 @@
     padding-top: 75%;
     @include media-breakpoint-up(sm) {
       padding-top: rem-calc(80);
-      background-position: 20% center;
+      background-position: 10% center;
     }
     @include media-breakpoint-up(lg) {
       background-position: 25% center;
@@ -153,20 +156,20 @@
     padding-top: 75%;
     @include media-breakpoint-up(sm) {
       padding-top: rem-calc(80);
-      background-position: 80% center;
+      background-position: 90% center;
     }
     @include media-breakpoint-up(lg) {
       background-position: 75% center;
     }
   }
   .landing-area-title {
-    font-size: rem-calc(20);
+    font-size: rem-calc(28);
     @include media-breakpoint-up(md) {
-      font-size: rem-calc(24);
+      font-size: rem-calc(32);
     }
   }
   p,
-  .btn {
+  p + .btn {
     font-size: rem-calc(14);
     @include media-breakpoint-up(md) {
       font-size: rem-calc(16);
@@ -184,4 +187,11 @@
   text-overflow: ellipsis;
   max-width: 70%;
   overflow: hidden;
+}
+
+.page {
+  &.terms,
+  &.privacy {
+    padding-top: rem-calc(40);
+  }
 }

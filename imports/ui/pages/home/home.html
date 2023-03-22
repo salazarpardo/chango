@@ -12,10 +12,8 @@
                 ¡Alguien de tu barrio, colegio, o universidad necesita tu apoyo
                 para hacer realidad su idea!
               </p>
-              <a
-                class="btn btn-outline-success btn-lg btn-block"
-                href="{{pathFor 'map'}}"
-                >Ver ideas cercanas</a
+              <a class="btn btn-outline-success btn-lg" href="{{pathFor 'map'}}"
+                >Descubre ideas en el mapa</a
               >
             </div>
           </div>
@@ -37,14 +35,14 @@
               </p>
               {{#if currentUser}}
               <a
-                class="btn btn-outline-info btn-lg btn-block"
+                class="btn btn-outline-info btn-lg"
                 href="{{pathFor 'submit'}}"
               >
                 Comparte tu idea
               </a>
               {{else}}
               <a
-                class="btn btn-outline-info btn-lg btn-block"
+                class="btn btn-outline-info btn-lg"
                 href="{{pathFor 'join' query='next=submit'}}"
               >
                 Comparte tu idea
@@ -69,7 +67,7 @@
                 amigos, ¡no esperes más y hazla real!
               </p>
               <a
-                class="btn btn-outline-primary btn-lg btn-block"
+                class="btn btn-outline-primary btn-lg"
                 href="{{pathFor 'best'}}"
                 >Ver ideas populares</a
               >

@@ -1,10 +1,14 @@
+body {
+  color: $darker-blue;
+}
+
 .comment-form,
 .comments li,
 .grid-block,
 .main,
 .post {
   &:not(section) {
-    background: #fff;
+    background: $white;
     border-radius: $border-radius;
     padding: rem-calc(16);
     margin-bottom: 1px;
@@ -58,7 +62,7 @@ h6,
   background-color: $bone;
   box-shadow: rem-calc(0 80) $primary inset;
   > section {
-    &:not(.home):not(.privacy) {
+    &:not(.home):not(.privacy):not(.terms) {
       box-shadow: rem-calc(0 352) $primary inset;
       &.user {
         box-shadow: rem-calc(0 240) $primary inset;
@@ -87,13 +91,31 @@ h6,
 .navbar {
   margin-bottom: rem-calc(10);
   padding: rem-calc(24 16 10);
+
+  .nav-item.last {
+    order: 1;
+    .btn {
+      width: 100%;
+    }
+    @include media-breakpoint-up(lg) {
+      order: 0;
+    }
+  }
+
   &.navbar-dark {
     background-color: rgba($primary, 0.9);
     .navbar-nav .active > .nav-link {
       box-shadow: 0 -2px 0 $white inset;
+      color: $white;
     }
     .navbar-toggler {
       color: transparent;
+    }
+    .navbar-nav .nav-link {
+      color: #fdd9f3;
+      &:hover {
+        color: $white;
+      }
     }
   }
   &.fixed-top {
@@ -104,6 +126,7 @@ h6,
   }
   .btn-outline-light {
     &:hover {
+      color: $white;
       background-color: darken($primary, 10);
     }
   }
@@ -164,17 +187,26 @@ h6,
 }
 .btn {
   box-shadow: none;
-  &:not(.btn-lg) {
+  &.btn-primary {
     color: $white;
+  }
+  &.btn-secondary {
+    background-color: $white;
+    color: $secondary;
+  }
+  &.btn-sm {
     @extend %smooth;
+    &:not(.btn-link):not(.geoloc) {
+      color: $white;
+    }
   }
   &[class*="btn-outline-light"] {
     border-width: 1px;
   }
   &.btn-lg {
-    &:hover{
-      color: #fff;
-    } 
+    &:hover {
+      color: $white;
+    }
   }
   &.btn-link,
   &[class*="btn-outline-light"] {
@@ -193,6 +225,9 @@ h6,
       text-decoration: none;
     }
   }
+  .svg-inline--fa {
+    vertical-align: middle;
+  }
 }
 
 .form-control {
@@ -208,10 +243,19 @@ h6,
     @extend %smooth;
     color: $gray-600;
   }
+
   .newsletter & {
-    max-width: 60%;
-    display: inline-block;
+    display: block;
+    width: 100%;
     background-color: $white;
+    margin-bottom: rem-calc(8);
+
+    @include media-breakpoint-up(sm) {
+      max-width: 60%;
+      display: inline-block;
+      margin-bottom: 0;
+      margin-right: rem-calc(8);
+    }
   }
 }
 .form-group {
@@ -268,8 +312,16 @@ strong,
     font-size: rem-calc(14);
   }
   .form-group {
-    display: inline-block;
-    margin: 0 auto;
+    width: 100%;
+    @include media-breakpoint-up(md) {
+      // width: 80%;
+    }
+  }
+  .btn {
+    width: 100%;
+    @include media-breakpoint-up(md) {
+      width: auto;
+    }
   }
 }
 

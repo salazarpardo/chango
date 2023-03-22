@@ -1,42 +1,37 @@
 <template name="dashboard">
   <div class="dashboard page">
     <div class="row justify-content-md-center">
-      <div class="col-sm-12 col-md-9 col-xl-9">
+      <div class="col-sm-12 col-md-12 col-xl-9">
         {{#with currentUser}}
-        <div class="jumbotron bg-white p-sm-4">
-          <div class="row">
-            <div class="col">
+        <div class="jumbotron bg-white p-4">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="col p-0">
               <h4 class="text-primary">
                 ¡Hola {{#if profile.name}} {{profile.name}}! {{else if
                 username}} {{username}}! {{else}} {{emails.[0].address}}!
                 {{/if}}
               </h4>
-              <p class="text-secondary mb-0">
+              <p class="text-secondary">
                 Gracias por hacer parte de nuestra comunidad. 😊
               </p>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col text-right">
               <a class="btn btn-success" href="{{pathFor 'submit'}}">
                 Comparte tu idea
               </a>
             </div>
+            <img src="/img/city.svg" alt="City Illustration" width="320" />
           </div>
         </div>
         {{/with}}
-        <div class="row justify-content-lg-center">
-          <div class="col-sm-12 col-md-6 col-lg-4">
+        <div class="row justify-content-lg-center mb-4">
+          <div class="col-sm-12 col-md-4 col-lg-4">
             {{#if bestPostsCount }}
-            <h6 class="section-title text-white">
-              Las más votadas
-            </h6>
+            <h6 class="section-title text-white">Las más votadas</h6>
             {{>postsList postsReady=Template.subscriptionsReady posts=bestPosts
             hasMorePosts=hasMorePosts}}
             <br />
             {{/if}}
           </div>
-          <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="col-sm-12 col-md-4 col-lg-4">
             {{#if postsCount }}
             <h6 class="section-title text-md-secondary">Ideas recientes</h6>
             {{>postsList postsReady=Template.subscriptionsReady posts=posts
@@ -44,7 +39,7 @@
             <br />
             {{/if}}
           </div>
-          <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="col-sm-12 col-md-4 col-lg-4">
             {{#if commentedPostsCount }}
             <h6 class="section-title text-lg-secondary">Las más comentadas</h6>
             {{>postsList postsReady=Template.subscriptionsReady
@@ -54,14 +49,13 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-12 col-md-3 col-xl-3">
+      <div class="col-sm-12 col-md-9 col-lg-6 col-xl-3">
         <div class="jumbotron bg-white p-2">
-          {{> notificationsWidget}}
+          {{> notificationsWidget}} {{#if commentsCount}}
           <hr />
-          {{#if commentsCount}}
           <div class="user-comments list-group">
             <div class="list-group-item p-1 text-muted">
-              <i class="far fa-comment-alt"></i>
+              <i class="far fa-message"></i>
               <small>Tus comentarios recientes</small>
             </div>
             {{#each comments}} {{> commentDashboardItem}} {{/each}}
@@ -75,12 +69,12 @@
             </div>
             <a
               href="{{pathFor 'profile'}}"
-              class="list-group-item  list-group-item-action p-1 text-secondary"
+              class="list-group-item list-group-item-action p-1 text-secondary"
               ><small>Ajustes</small></a
             >
             <a
               href="{{pathFor 'logout'}}"
-              class="list-group-item list-group-item-action  p-1 text-secondary"
+              class="list-group-item list-group-item-action p-1 text-secondary"
               ><small>Salir</small></a
             >
           </div>

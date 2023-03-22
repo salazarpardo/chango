@@ -34,30 +34,30 @@ Template.postSingle.helpers({
     } else {
       return "disabled";
     }
-  }
+  },
 });
 
 Template.postSingle.events({
-  "click .upvotable": function(e) {
+  "click .upvotable": function (e) {
     e.preventDefault();
     Meteor.call("upvote", this._id);
     analytics.track("Upvoted Idea", {
-      eventName: "Idea"
+      eventName: "Idea",
     });
   },
-  "click .comment.btn-logged-out ": function() {
+  "click .comment.btn-logged-out ": function () {
     analytics.track("Tried to Comment Idea", {
-      eventName: "Idea"
+      eventName: "Idea",
     });
   },
-  "click .upvote.btn-logged-out ": function() {
+  "click .upvote.btn-logged-out ": function () {
     analytics.track("Tried to Upvote Idea", {
-      eventName: "Idea"
+      eventName: "Idea",
     });
   },
-  "click #share .btn": function() {
+  "click #share .btn": function () {
     analytics.track("Shared Idea", {
-      eventName: "Idea"
+      eventName: "Idea",
     });
-  }
+  },
 });

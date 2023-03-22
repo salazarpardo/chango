@@ -74,7 +74,7 @@
         </svg>
       </button>
       <div
-        class="navbar-collapse collapse"
+        class="navbar-collapse collapse py-4 py-lg-0"
         id="navbarContent"
         data-toggle="collapse"
         data-target="#navbarContent.show"
@@ -113,16 +113,14 @@
         </ul>
         <ul class="navbar-nav">
           {{#if currentUser}}
-          <li class="nav-item {{activeRouteClass 'submit'}}">
+          <li class="nav-item {{activeRouteClass 'submit'}} last">
             <a
               class="btn btn-outline-light btn-sm d-md-inline-block mt-2 mt-lg-0 mr-lg-2"
               href="{{pathFor 'submit'}}"
               >Comparte tu idea</a
             >
           </li>
-          <li class="nav-item dropdown">
-            {{> notifications}}
-          </li>
+          <li class="nav-item dropdown">{{> notifications}}</li>
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle"

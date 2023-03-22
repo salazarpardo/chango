@@ -1,10 +1,10 @@
 <template name="newsletter">
-  <div class="newsletter container mt-3">
+  <div class="newsletter container mt-4 mb-4">
     <div class="row justify-content-md-center">
-      <div class="col-md-8 col-lg-5 col-xl-4 text-center">
-        <h5 class="text-white">Entérate de lo que esta pasando</h5>
+      <div class="col-md-8 col-lg-6 col-xl-6">
+        <h5 class="text-white">Entérate de todo lo que esta pasando</h5>
         <p class="text-white">
-             Recibe en tu correo cada quincena las mejores ideas públicadas y proyectos de tu interés.
+          Recibe en tu correo las mejores ideas y proyectos de tu interés.
         </p>
         {{> newsletterForm size='sm'}}
       </div>
@@ -16,8 +16,16 @@
   <form id="mailing-list" class="form-inline needs-validation" novalidate>
     <div class="form-group {{errorClass 'email'}}">
       <label hidden for="emailAddress">Email</label>
-      <input type="email" name="emailAddress" class="form-control form-control-{{size}} {{errorClass 'email'}}" id="emailAddress" placeholder="tucorreo@dominio.com">
-      <button type="submit" class="btn btn-success btn-{{size}}">Suscríbete</button>
+      <input
+        type="email"
+        name="emailAddress"
+        class="form-control form-control-{{size}} {{errorClass 'email'}}"
+        id="emailAddress"
+        placeholder="tucorreo@dominio.com"
+      />
+      <button type="submit" class="btn btn-success btn-{{size}}">
+        Suscríbete
+      </button>
       <div class="invalid-feedback text-center">{{errorMessage 'email'}}</div>
     </div>
     <!-- <div class="alert alert-success">

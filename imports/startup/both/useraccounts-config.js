@@ -9,9 +9,9 @@ T9n.map("es", {
       "Verify email link expired": "El enlace para verificar tu correo expiró.",
       "Already verified": "Tu correo ya fue verificado",
       "Incorrect password": "Contraseña incorrecta",
-      "User not found": "Usuario no encontrado"
-    }
-  }
+      "User not found": "Usuario no encontrado",
+    },
+  },
 });
 
 T9n.setLanguage("es");
@@ -22,7 +22,7 @@ AccountsTemplates.configure({
   defaultLayoutRegions: {
     top: "header",
     errors: "errors",
-    footer: "footer"
+    footer: "footer",
   },
   defaultContentRegion: "main",
   confirmPassword: false,
@@ -44,7 +44,12 @@ AccountsTemplates.configure({
   positiveValidation: true,
   positiveFeedback: true,
   showValidating: true,
+
+  // Privacy Policy and Terms of Use
   privacyUrl: "privacidad",
+  termsUrl: "terminos",
+
+  // Texts
   texts: {
     title: {
       changePwd: "Cambiar contraseña",
@@ -54,7 +59,7 @@ AccountsTemplates.configure({
       signUp: "Crea tu cuenta",
       verifyEmail: "Verificando tu correo electrónico",
       resendVerificationEmail: "Reenvía tu correo de verificación",
-      enrollAccount: "Conecta tu cuenta"
+      enrollAccount: "Conecta tu cuenta",
     },
     info: {
       emailSent: "El correo ha sido enviado a tu cuenta",
@@ -65,7 +70,7 @@ AccountsTemplates.configure({
       signUpVerifyEmail:
         "¡Tu cuenta ha sido creada! Por favor revisa tu correo y sigue las instrucciones.",
       verificationEmailSent:
-        "Te hemos enviado un nuevo correo electrónico. Si el correo no aparece en tu bandeja de entrada, asegúrate de revisar tu carpeta de spam."
+        "Te hemos enviado un nuevo correo electrónico. Si el correo no aparece en tu bandeja de entrada, asegúrate de revisar tu carpeta de spam.",
     },
     errors: {
       accountsCreationDisabled: "La creación de cuentas esta deshabilitada",
@@ -77,7 +82,7 @@ AccountsTemplates.configure({
       pwdMismatch: "error.pwdsDontMatch",
       validationErrors: "Errores de validación",
       verifyEmailFirst:
-        "Por favor verifica tu correo eléctronico primero. Revisa tu correo y sigue el enlace"
+        "Por favor verifica tu correo eléctronico primero. Revisa tu correo y sigue el enlace",
     },
     sep: "O",
     minRequiredLength: "Caracteres requeridos (mínimo)",
@@ -102,28 +107,32 @@ AccountsTemplates.configure({
       enrollAccount: "Conecta tu cuenta",
       forgotPwd: "Recibir enlace",
       resetPwd: "Reestablece tu contraseña",
-      resendVerificationEmail: "Enviar correo de nuevo"
+      resendVerificationEmail: "Enviar correo de nuevo",
     },
     socialSignUp: "Regístrate",
     socialSignIn: "Ingresa",
     socialWith: "con",
     socialIcons: {
-      facebook: "fab fa-facebook"
+      facebook: "fab fa-facebook",
+      google: "fab fa-google",
     },
     termsPreamble: "Al crear tu cuenta aceptas estar de acuerdo con nuestra",
     termsPrivacy: "política de privacidad",
+    termsAnd: "y",
+    termsTerms: "términos y condiciones.",
+
     inputIcons: {
       isValidating: "fas fa-spinner fa-spin",
       hasSuccess: "fas fa-check",
-      hasError: "fas fa-times"
-    }
-  }
+      hasError: "fas fa-times",
+    },
+  },
 });
 
 AccountsTemplates.configureRoute("signIn", {
   name: "signin",
   path: "/ingreso",
-  redirect: function() {
+  redirect: function () {
     var user = Meteor.user();
     var next = FlowRouter.getQueryParam("next");
 
@@ -132,13 +141,13 @@ AccountsTemplates.configureRoute("signIn", {
     } else {
       FlowRouter.go("dashboard");
     }
-  }
+  },
 });
 
 AccountsTemplates.configureRoute("signUp", {
   name: "join",
   path: "/registro",
-  redirect: function() {
+  redirect: function () {
     var user = Meteor.user();
     var next = FlowRouter.getQueryParam("next");
 
@@ -147,46 +156,46 @@ AccountsTemplates.configureRoute("signUp", {
     } else {
       FlowRouter.go("new");
     }
-  }
+  },
 });
 
 AccountsTemplates.configureRoute("forgotPwd", {
   name: "forgotPwd",
-  path: "/olvide"
+  path: "/olvide",
 });
 
 AccountsTemplates.configureRoute("resendVerificationEmail", {
   name: "resendVerificationEmail",
-  path: "/reenviar"
+  path: "/reenviar",
 });
 
 AccountsTemplates.configureRoute("changePwd", {
   name: "changePwd",
-  path: "/cambiar"
+  path: "/cambiar",
 });
 
 AccountsTemplates.configureRoute("verifyEmail", {
   name: "verifyEmail",
   path: "/verificar",
-  redirect: function() {
+  redirect: function () {
     var user = Meteor.user();
 
     if (user) {
       FlowRouter.go("dashboard");
     }
-  }
+  },
 });
 
 AccountsTemplates.configureRoute("resetPwd", {
   name: "resetPwd",
   path: "/reestablecer",
-  redirect: function() {
+  redirect: function () {
     var user = Meteor.user();
 
     if (user) {
       FlowRouter.go("dashboard");
     }
-  }
+  },
 });
 
 if (Meteor.isServer) {
@@ -215,7 +224,7 @@ if (Meteor.isServer) {
         0;
       if (emailAlreadyExist) return "El correo electrónico ya existe.";
       return false;
-    }
+    },
   });
 }
 
@@ -228,15 +237,15 @@ AccountsTemplates.addFields([
     type: "text",
     placeholder: {
       default: "Ingresa tu nombre de usuario",
-      signUp: "Elige tu nombre de usuario"
+      signUp: "Elige tu nombre de usuario",
     },
     displayName: "Usuario",
     required: true,
     minLength: 3,
-    func: function(value) {
+    func: function (value) {
       if (Meteor.isClient) {
         var self = this;
-        Meteor.call("userExists", value, function(err, userExists) {
+        Meteor.call("userExists", value, function (err, userExists) {
           self.setError(userExists);
           self.setValidating(false);
         });
@@ -246,7 +255,7 @@ AccountsTemplates.addFields([
       var result = Meteor.call("userExists", value);
       return result;
     },
-    errStr: "El nombre de usuario ya existe"
+    errStr: "El nombre de usuario ya existe",
   },
   {
     _id: "email",
@@ -255,11 +264,11 @@ AccountsTemplates.addFields([
     required: true,
     displayName: "Correo electrónico",
     re: /.+@(.+){2,}\.(.+){2,}/,
-    func: function(value) {
+    func: function (value) {
       if (Meteor.isClient) {
         var self = this;
         if (AccountsTemplates.getState() == "signUp") {
-          Meteor.call("emailExists", value, function(err, emailExists) {
+          Meteor.call("emailExists", value, function (err, emailExists) {
             self.setError(emailExists);
             self.setValidating(false);
           });
@@ -273,14 +282,14 @@ AccountsTemplates.addFields([
       var result = Meteor.call("emailExists", value);
       return result;
     },
-    errStr: "Correo eléctronico inválido"
+    errStr: "Correo eléctronico inválido",
   },
   {
     _id: "username_and_email",
     placeholder: "Ingresa tu usuario o correo electrónico",
     type: "text",
     required: true,
-    displayName: "Usuario (o correo electrónico)"
+    displayName: "Usuario (o correo electrónico)",
   },
   {
     _id: "password",
@@ -290,24 +299,24 @@ AccountsTemplates.addFields([
       signIn: "Ingresa tu contraseña",
       signUp: "Mínimo seis caracteres",
       resetPwd: "Mínimo seis caracteres",
-      changePwd: "Ingresa tu contraseña nueva"
+      changePwd: "Ingresa tu contraseña nueva",
     },
     displayName: {
       default: "Contraseña",
-      changePwd: "Contraseña nueva"
+      changePwd: "Contraseña nueva",
     },
     required: true,
-    minLength: 6
+    minLength: 6,
   },
   {
     _id: "current_password",
     type: "password",
     placeholder: {
-      default: "Ingresa tu contraseña actual"
+      default: "Ingresa tu contraseña actual",
     },
     displayName: {
-      default: "Contraseña actual"
+      default: "Contraseña actual",
     },
-    minLength: 6
-  }
+    minLength: 6,
+  },
 ]);

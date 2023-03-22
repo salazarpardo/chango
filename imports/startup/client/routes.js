@@ -12,6 +12,7 @@ import "../../ui/pages/home/home.js";
 import "../../ui/pages/posts/posts.js";
 import "../../ui/pages/about/about.js";
 import "../../ui/pages/privacy/privacy.js";
+import "../../ui/pages/terms/terms.js";
 import "../../ui/pages/contact/contact.js";
 import "../../ui/pages/submit/submit.js";
 import "../../ui/pages/profile/profile.js";
@@ -32,7 +33,7 @@ function redirectIfLoggedIn(ctx, redirect) {
   // }
 }
 
-Accounts.onLogin(function() {
+Accounts.onLogin(function () {
   const redirect = Session.get("redirectAfterLogin");
   if (redirect != null) {
     if (redirect !== "/login") {
@@ -44,7 +45,7 @@ Accounts.onLogin(function() {
 // ************************* ROUTES ********************************
 
 var publicRoutes = FlowRouter.group({
-  name: "public"
+  name: "public",
 });
 
 publicRoutes.route("/u/:username", {
@@ -55,11 +56,11 @@ publicRoutes.route("/u/:username", {
       top: "header",
       main: "profile",
       errors: "errors",
-      footer: "footer"
+      footer: "footer",
     });
   },
   triggersExit: [],
-  title: "Perfil de Usuario"
+  title: "Perfil de Usuario",
 });
 
 publicRoutes.route("/idea/:slug", {
@@ -70,11 +71,11 @@ publicRoutes.route("/idea/:slug", {
       top: "header",
       main: "post",
       errors: "errors",
-      footer: "footer"
+      footer: "footer",
     });
   },
   triggersExit: [],
-  title: "Idea"
+  title: "Idea",
 });
 
 publicRoutes.route("/tag/:tag", {
@@ -85,12 +86,12 @@ publicRoutes.route("/tag/:tag", {
       top: "header",
       main: "posts",
       errors: "errors",
-      footer: "footer"
+      footer: "footer",
     });
   },
 
   title: "Por tag",
-  triggersExit: []
+  triggersExit: [],
 });
 
 publicRoutes.route("/acerca", {
@@ -101,11 +102,11 @@ publicRoutes.route("/acerca", {
       top: "header",
       main: "about",
       errors: "errors",
-      footer: "footer"
+      footer: "footer",
     });
   },
   title: "Acerca de Chango",
-  triggersExit: []
+  triggersExit: [],
 });
 
 publicRoutes.route("/contacto", {
@@ -116,11 +117,11 @@ publicRoutes.route("/contacto", {
       top: "header",
       main: "contact",
       errors: "errors",
-      footer: "footer"
+      footer: "footer",
     });
   },
   title: "Contáctanos",
-  triggersExit: []
+  triggersExit: [],
 });
 
 publicRoutes.route("/lista", {
@@ -133,11 +134,11 @@ publicRoutes.route("/lista", {
       page: "beta",
       errors: "errors",
       hero: "heroBeta",
-      footer: "footer"
+      footer: "footer",
     });
   },
   triggersExit: [],
-  title: "¡Ingresa en el listado y únete al Chango!"
+  title: "¡Ingresa en el listado y únete al Chango!",
 });
 
 publicRoutes.route("/recientes", {
@@ -148,10 +149,10 @@ publicRoutes.route("/recientes", {
       top: "header",
       main: "posts",
       errors: "errors",
-      footer: "footer"
+      footer: "footer",
     });
   },
-  title: "Recientes"
+  title: "Recientes",
 });
 
 publicRoutes.route("/populares", {
@@ -162,10 +163,10 @@ publicRoutes.route("/populares", {
       top: "header",
       main: "posts",
       errors: "errors",
-      footer: "footer"
+      footer: "footer",
     });
   },
-  title: "Populares"
+  title: "Populares",
 });
 
 publicRoutes.route("/mapa", {
@@ -176,11 +177,11 @@ publicRoutes.route("/mapa", {
       top: "header",
       main: "posts",
       errors: "errors",
-      footer: "footer"
+      footer: "footer",
     });
   },
   title: "Mapa",
-  triggersExit: []
+  triggersExit: [],
 });
 
 publicRoutes.route("/privacidad", {
@@ -191,11 +192,26 @@ publicRoutes.route("/privacidad", {
       top: "header",
       main: "privacy",
       errors: "errors",
-      footer: "footer"
+      footer: "footer",
     });
   },
   title: "Politica de privacidad",
-  triggersExit: []
+  triggersExit: [],
+});
+
+publicRoutes.route("/terminos", {
+  name: "terms",
+  triggersEnter: [],
+  action() {
+    BlazeLayout.render("App_body", {
+      top: "header",
+      main: "terms",
+      errors: "errors",
+      footer: "footer",
+    });
+  },
+  title: "Términos y condiciones",
+  triggersExit: [],
 });
 
 publicRoutes.route("/", {
@@ -208,16 +224,16 @@ publicRoutes.route("/", {
       main: "newsletter",
       errors: "errors",
       hero: "hero",
-      footer: "footer"
+      footer: "footer",
     });
   },
   title: "Comparte tus ideas para una mejor ciudad",
-  triggersExit: []
+  triggersExit: [],
 });
 
 var privateRoutes = FlowRouter.group({
   name: "private",
-  triggersEnter: [AccountsTemplates.ensureSignedIn]
+  triggersEnter: [AccountsTemplates.ensureSignedIn],
 });
 
 privateRoutes.route("/idea/:slug/editar", {
@@ -228,11 +244,11 @@ privateRoutes.route("/idea/:slug/editar", {
       top: "header",
       main: "postEdit",
       errors: "errors",
-      footer: "footer"
+      footer: "footer",
     });
   },
   title: "Editar idea",
-  triggersExit: []
+  triggersExit: [],
 });
 
 privateRoutes.route("/nueva", {
@@ -243,11 +259,11 @@ privateRoutes.route("/nueva", {
       top: "header",
       main: "submit",
       errors: "errors",
-      footer: "footer"
+      footer: "footer",
     });
   },
   title: "Nueva idea",
-  triggersExit: []
+  triggersExit: [],
 });
 
 privateRoutes.route("/perfil", {
@@ -258,11 +274,11 @@ privateRoutes.route("/perfil", {
       top: "header",
       main: "profile",
       errors: "errors",
-      footer: "footer"
+      footer: "footer",
     });
   },
   title: "Perfil de usuario",
-  triggersExit: []
+  triggersExit: [],
 });
 
 privateRoutes.route("/inicio", {
@@ -273,17 +289,17 @@ privateRoutes.route("/inicio", {
       top: "header",
       main: "dashboard",
       errors: "errors",
-      footer: "footer"
+      footer: "footer",
     });
   },
   title: "Inicio",
-  triggersExit: []
+  triggersExit: [],
 });
 
 privateRoutes.route("/salir", {
   name: "logout",
   action() {
-    Accounts.logout(function() {
+    Accounts.logout(function () {
       var user = Meteor.user();
 
       if (!user) {
@@ -291,7 +307,7 @@ privateRoutes.route("/salir", {
       }
     });
   },
-  title: "Regresa pronto"
+  title: "Regresa pronto",
 });
 
 FlowRouter.route("*", {
@@ -301,17 +317,17 @@ FlowRouter.route("*", {
       top: "header",
       main: "App_notFound",
       errors: "errors",
-      footer: "footer"
+      footer: "footer",
     });
   },
-  title: "No hemos encontrado la página que buscas"
+  title: "No hemos encontrado la página que buscas",
 });
 
 previousPathsObj = {};
 exemptPaths = ["/place/"]; // these are the paths that we don't want to remember the scroll position for.
 function thisIsAnExemptPath(path) {
   var exemptPath = false;
-  _.forEach(exemptPaths, function(d) {
+  _.forEach(exemptPaths, function (d) {
     if (path.indexOf(d) >= 0) {
       exemptPath = true;
       return exemptPath;
@@ -339,7 +355,7 @@ function jumpToPrevScrollPosition(context) {
     // Now we need to wait a bit for blaze/react does rendering.
     // We assume, there's subs-manager and we've previous page's data.
     // Here 10 millis delay is a arbitrary value with some testing.
-    setTimeout(function() {
+    setTimeout(function () {
       $("html, body").animate({ scrollTop: scrollPosition }, 0);
     }, 10);
   }

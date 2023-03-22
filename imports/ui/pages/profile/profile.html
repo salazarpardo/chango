@@ -5,12 +5,7 @@
       <div class="col col-md-9 col-lg-7 col-xl-5">
         <div class="jumbotron bg-white text-center">
           <h2 class="text-primary display-2">
-            <img
-              class="img-fluid mb-4 p-4 border border-primary rounded-circle"
-              src="/img/chango-pink.svg"
-              alt="Chango avatar"
-              width="120"
-            />
+            <i class="far fa-user-circle"></i>
           </h2>
 
           <h1 class="form-title text-primary mb-3">
@@ -18,9 +13,7 @@
             {{username}} {{else}} {{emails.[0].address}} {{/if}}
           </h1>
           {{#unless isPublic}}
-          <p>
-            {{emails.[0].address}}
-          </p>
+          <p>{{emails.[0].address}}</p>
           <a class="btn btn-secondary" href="{{pathFor 'changePwd'}}"
             >Cambia tu contraseña</a
           >
@@ -44,9 +37,7 @@
             alt="Ingresa a Chango"
             width="56"
           />
-          <h5 class="text-primary">
-            ¿No has compartido tu primera idea aún?
-          </h5>
+          <h5 class="text-primary">¿No has compartido tu primera idea aún?</h5>
           <p class="text-secondary">
             Mejora tu comunidad aportando tus mejores ideas :D
           </p>

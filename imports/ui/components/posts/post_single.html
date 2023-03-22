@@ -1,5 +1,5 @@
 <template name="postSingle">
-  <div class="post cat-{{icon}}">
+  <div class="post single-post cat-{{icon}}">
     <div class="post-content">
       <h1 class="post-title text-secondary">{{title}}</h1>
       <small class="text-muted"><em>{{category}}</em><br />{{address}}</small>
@@ -19,7 +19,7 @@
           >{{/if}}
         </small>
         <small class="text-muted float-left">
-          <i class="far fa-calendar-alt"></i> {{submitted.toLocaleDateString}}
+          <i class="far fa-calendar"></i> {{submitted.toLocaleDateString}}
         </small>
       </p>
       <hr />
@@ -73,7 +73,7 @@
                 href="#comentarios"
                 class="comment btn btn-link {{commentClass}}"
                 title="Comentar {{title}}"
-                >{{commentsCount}} <i class="far fa-comment-alt"></i
+                >{{commentsCount}} <i class="far fa-message"></i
               ></a>
               <a
                 href="#"
@@ -88,7 +88,7 @@
                 data-toggle="modal"
                 data-target="#loginModal"
                 title="Ingresa para comentar"
-                >{{commentsCount}} <i class="far fa-comment-alt"></i
+                >{{commentsCount}} <i class="far fa-message"></i
               ></a>
               <a
                 href="#"
