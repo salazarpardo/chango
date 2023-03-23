@@ -2,61 +2,124 @@
   <div class="submit page">
     <div class="row justify-content-md-center">
       <div class="col col-md-9 col-lg-7">
-          <div class="jumbotron bg-white text-center">
-            <img class="auth-icon mb-2" src="/img/chango-pink.svg" alt="Ingresa a Chango" width="56" />
-            <h1 class="form-title text-primary mb-3">Comparte tu idea</h1>
-            <form class="form needs-validation" novalidate id="add-post">
-              <div class="form-group">
-                <label class="control-label" for="title">Título</label>
-                <div class="controls">
-                    <input name="title" id="title" type="text" value="" placeholder="ej: Siembra de arboles nativos" class="form-control {{errorClass 'title'}}"/>
-                    <div class="invalid-feedback">{{errorMessage 'title'}}</div>
-                    <small class="form-text text-muted">Dale un titulo a tu idea</small>
-                </div>
+        <div class="jumbotron bg-white text-center">
+          <img
+            class="auth-icon mb-4"
+            src="/img/chango-pink.svg"
+            alt="Ingresa a Chango"
+            width="56"
+          />
+          <h1 class="form-title text-primary mb-3">Comparte tu idea</h1>
+          <form class="form needs-validation" novalidate id="add-post">
+            <div class="form-group">
+              <label class="control-label" for="title">Título</label>
+              <div class="controls">
+                <input
+                  name="title"
+                  id="title"
+                  type="text"
+                  value=""
+                  placeholder="ej: Siembra de arboles nativos"
+                  class="form-control {{errorClass 'title'}}"
+                />
+                <div class="invalid-feedback">{{errorMessage 'title'}}</div>
+                <small class="form-text text-muted"
+                  >Dale un titulo a tu idea</small
+                >
               </div>
-              <div class="form-group">
-                <label class="control-label sr-only" for="slug">Slug</label>
-                <div class="controls">
-                  <div class="input-group mb-2 mr-sm-2">
-                    <div class="input-group-prepend">
-                      <div class="input-group-text"><small>{{currentUrl}}/idea/</small></div>
+            </div>
+            <div class="form-group">
+              <label class="control-label sr-only" for="slug">Slug</label>
+              <div class="controls">
+                <div class="input-group mb-2 mr-sm-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text">
+                      <small>{{currentUrl}}/idea/</small>
                     </div>
-                    <input name="slug" id="slug" type="text" class="form-control"/>
                   </div>
+                  <input
+                    name="slug"
+                    id="slug"
+                    type="text"
+                    class="form-control"
+                  />
                 </div>
               </div>
-              <div class="form-group">
-                  <label class="control-label" for="exampleInputDescription">Descripción</label>
-                  <textarea name="description" rows="2" cols="50" type="text" class="form-control {{errorClass 'description'}}" id="exampleInputDescription" placeholder="Describe tu idea en detalle"></textarea>
-                  <div class="invalid-feedback">{{errorMessage 'description'}}</div>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="exampleInputDescription"
+                >Descripción</label
+              >
+              <textarea
+                name="description"
+                rows="2"
+                cols="50"
+                type="text"
+                class="form-control {{errorClass 'description'}}"
+                id="exampleInputDescription"
+                placeholder="Describe tu idea en detalle"
+              ></textarea>
+              <div class="invalid-feedback">{{errorMessage 'description'}}</div>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="exampleInputCategory"
+                >Categoría</label
+              >
+              <select
+                class="form-control custom-select"
+                id="exampleInputCategory"
+                name="category"
+              >
+                <option value="" selected>
+                  Selecciona una categoría para tu idea
+                </option>
+                <option>Espacio público</option>
+                <option>Arte y entretenimiento</option>
+                <option>Actividades ambientales</option>
+                <option>Evento comunitario</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="exampleInputAddress"
+                >Ubicación</label
+              >
+              <button
+                class="geoloc btn btn-light btn-sm float-right mb-2"
+                type="button"
+              >
+                <i class="fas fa-location-arrow"></i> <em>Cerca de mí</em>
+              </button>
+              <div class="map-container mb-2">
+                {{> googleMap name="modalMap" options=mapOptions}}
               </div>
-              <div class="form-group">
-                  <label class="control-label" for="exampleInputCategory">Categoría</label>
-                  <select class="form-control custom-select" id="exampleInputCategory" name="category">
-                      <option value="" selected>Selecciona una categoría para tu idea</option>
-                      <option>Espacio público</option>
-                      <option>Arte y entretenimiento</option>
-                      <option>Actividades ambientales</option>
-                      <option>Evento comunitario</option>
-                      <option>Otro</option>
-                  </select>
+              <div class="controls">
+                <input
+                  type="text"
+                  name="location"
+                  class="form-control hidden"
+                  id="exampleInputLocation"
+                  placeholder="Location"
+                  hidden
+                />
+                <input
+                  type="text"
+                  name="address"
+                  class="form-control {{errorClass 'location'}}"
+                  id="exampleInputAddress"
+                  placeholder="Ubicación de tu idea"
+                />
+                <div class="invalid-feedback">{{errorMessage 'location'}}</div>
               </div>
-              <div class="form-group">
-                  <label class="control-label" for="exampleInputAddress">Ubicación</label> <button class="geoloc btn btn-light btn-sm float-right mb-2" type="button"><i class="fas fa-location-arrow"></i> <em>Cerca de mí</em> </button>
-                  <div class="map-container mb-2">
-                      {{> googleMap name="modalMap" options=mapOptions}}
-                  </div>
-                  <div class="controls">
-                    <input type="text" name="location" class="form-control hidden" id="exampleInputLocation" placeholder="Location" hidden>
-                    <input type="text" name="address" class="form-control {{errorClass 'location'}}" id="exampleInputAddress" placeholder="Ubicación de tu idea">
-                    <div class="invalid-feedback">{{errorMessage 'location'}}</div>
-                  </div>
-              </div>
-              <input type="submit" value="Compartir idea" class="btn btn-success btn-block"/>
-            </form>
-
-          </div>
+            </div>
+            <input
+              type="submit"
+              value="Compartir idea"
+              class="btn btn-success btn-block"
+            />
+          </form>
         </div>
       </div>
     </div>
+  </div>
 </template>

@@ -3,15 +3,28 @@
     <div class="row justify-content-md-center">
       <div class="col col-md-7 col-lg-5">
         <div class="jumbotron bg-white text-center">
-          <img class="auth-icon mb-2" src="/img/chango-pink.svg" alt="Ingresa a Chango" width="56" style="transform:rotate(180deg)"/>
-          <h1 class="form-title text-primary mb-3">Changos...<br> <small>¡No encontramos la página que buscas!</small></h1>
+          <img
+            class="auth-icon mb-4"
+            src="/img/chango-pink.svg"
+            alt="Ingresa a Chango"
+            width="56"
+            style="transform: rotate(180deg)"
+          />
+          <h1 class="form-title text-primary mb-3">404<br /></h1>
+          <p class="mb-4">
+            <strong>Changos...</strong><br />
+            ¡No encontramos la página que buscas!
+          </p>
           {{#if currentUser}}
-            <a href="{{ pathFor 'dashboard'}}" class="btn btn-success btn-lg">Ir al inicio</a>
+          <a href="{{ pathFor 'dashboard'}}" class="btn btn-success btn-lg"
+            >Ir al inicio</a
+          >
           {{else}}
-            <a href="{{ pathFor 'home'}}" class="btn btn-success btn-lg">Ir al inicio</a>
+          <a href="{{ pathFor 'home'}}" class="btn btn-success btn-lg"
+            >Ir al inicio</a
+          >
           {{/if}}
         </div>
-
       </div>
     </div>
   </div>

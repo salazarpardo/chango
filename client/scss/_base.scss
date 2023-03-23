@@ -62,7 +62,7 @@ h6,
   background-color: $bone;
   box-shadow: rem-calc(0 80) $primary inset;
   > section {
-    &:not(.home):not(.privacy):not(.terms) {
+    &:not(.home) {
       box-shadow: rem-calc(0 352) $primary inset;
       &.user {
         box-shadow: rem-calc(0 240) $primary inset;
@@ -224,6 +224,27 @@ h6,
     &:active {
       text-decoration: none;
     }
+  }
+  &.at-social-btn {
+    i {
+      font-size: rem-calc(18);
+      margin-right: rem-calc(8);
+    }
+    &#at-facebook:hover,
+    &#at-google:hover {
+      color: $dark-teal;
+      border-color: $dark-teal;
+    }
+  }
+  &#at-facebook {
+    background-color: $white;
+    color: $facebook;
+    border-color: $facebook;
+  }
+  &#at-google {
+    background-color: $white;
+    color: $google;
+    border-color: $google;
   }
   .svg-inline--fa {
     vertical-align: middle;
@@ -441,5 +462,15 @@ $auth-icon-size: rem-calc(72);
   font-size: rem-calc(10);
   @include media-breakpoint-up(md) {
     font-size: rem-calc(12);
+  }
+}
+
+.at-sep {
+  font-size: rem-calc(14);
+  margin: rem-calc(16) 0;
+  color: $dark-teal;
+  strong {
+    font-weight: 400;
+    text-transform: lowercase;
   }
 }

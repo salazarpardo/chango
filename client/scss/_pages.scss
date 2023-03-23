@@ -194,4 +194,20 @@
   &.privacy {
     padding-top: rem-calc(40);
   }
+  &.about,
+  &.contact {
+    p {
+      line-height: 2;
+      @include media-breakpoint-up(md) {
+        font-size: rem-calc(20);
+      }
+    }
+  }
+}
+
+.page-title {
+  margin-bottom: rem-calc(160);
+  @include media-breakpoint-up(md) {
+    margin-bottom: rem-calc(200);
+  }
 }
