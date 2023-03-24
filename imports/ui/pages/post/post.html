@@ -22,13 +22,14 @@
         >
         {{/if}}
 
-        <header class="clearfix mb-4 mt-5">
-          <h5 class="section-title text-muted float-left">Ideas recientes</h5>
-          <a
-            class="btn text-primary btn-link btn-sm float-right"
-            href="{{pathFor 'new'}}"
-            ><em>Ver más</em></a
-          >
+        <header
+          class="d-flex align-items-center justify-content-between mb-1 mt-5"
+        >
+          <h6 class="section-title text-muted mb-0">Ideas recientes</h6>
+
+          <a class="btn text-primary btn-link btn-sm" href="{{pathFor 'new'}}"
+            >Ver más <i class="fas fa-angle-right ml-1"></i
+          ></a>
         </header>
         {{> postsList postsReady=postReady posts=posts
         hasMorePosts=hasMorePosts}}
@@ -36,9 +37,7 @@
     </div>
     {{/with}} {{else}} {{> App_notFound}} {{/if}} {{else}}
     <div class="row justify-content-md-center">
-      <div class="col col-md-9 col-lg-7">
-        {{> skeletonSingle }}
-      </div>
+      <div class="col col-md-9 col-lg-7">{{> skeletonSingle }}</div>
     </div>
     {{/if}}
   </div>

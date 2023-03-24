@@ -4,8 +4,10 @@
       <div class="col-sm-12 col-md-12 col-xl-9">
         {{#with currentUser}}
         <div class="jumbotron bg-white p-4">
-          <div class="d-flex justify-content-between align-items-center">
-            <div class="col p-0">
+          <div
+            class="d-flex flex-column flex-md-row justify-content-between align-items-center"
+          >
+            <div class="col p-0 order-2 order-md-1">
               <h4 class="text-primary">
                 ¡Hola {{#if profile.name}} {{profile.name}}! {{else if
                 username}} {{username}}! {{else}} {{emails.[0].address}}!
@@ -18,7 +20,12 @@
                 Comparte tu idea
               </a>
             </div>
-            <img src="/img/city.svg" alt="City Illustration" width="320" />
+            <img
+              src="/img/city.svg"
+              class="img-fluid order-1 order-md-2 mb-4 mb-md-2"
+              alt="City Illustration"
+              width="320"
+            />
           </div>
         </div>
         {{/with}}

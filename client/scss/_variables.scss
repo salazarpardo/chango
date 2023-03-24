@@ -250,7 +250,7 @@ $border-radius-sm: 1rem !default;
 
 $rounded-pill: 50rem !default;
 
-$box-shadow-sm: 0 1px 1px rgba($black, 0.075) !default;
+$box-shadow-sm: 0 1px 2px rgba($black, 0.075) !default;
 $box-shadow: 0 0.5rem 1rem rgba($black, 0.075) !default;
 $box-shadow-lg: 0 1rem 3rem rgba($black, 0.075) !default;
 
@@ -803,7 +803,7 @@ $dropdown-spacer: 0.125rem !default;
 $dropdown-font-size: $font-size-base !default;
 $dropdown-color: $body-color !default;
 $dropdown-bg: $white !default;
-$dropdown-border-color: rgba($black, 0.15) !default;
+$dropdown-border-color: none !default;
 $dropdown-border-radius: $border-radius !default;
 $dropdown-border-width: $border-width !default;
 $dropdown-inner-border-radius: subtract(
@@ -812,7 +812,7 @@ $dropdown-inner-border-radius: subtract(
 ) !default;
 $dropdown-divider-bg: $gray-200 !default;
 $dropdown-divider-margin-y: $nav-divider-margin-y !default;
-$dropdown-box-shadow: 0 0.5rem 1rem rgba($black, 0.175) !default;
+$dropdown-box-shadow: 0 1px 5px rgba($black, 0.15) !default;
 
 $dropdown-link-color: $gray-900 !default;
 $dropdown-link-hover-color: darken($gray-900, 5%) !default;

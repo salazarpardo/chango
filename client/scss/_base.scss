@@ -10,14 +10,13 @@ body {
   &:not(section) {
     background: $white;
     border-radius: $border-radius;
-    padding: rem-calc(16);
-    margin-bottom: 1px;
+    padding: rem-calc(12) rem-calc(16) rem-calc(8);
+    margin-bottom: rem-calc(12);
     box-shadow: $box-shadow-sm;
+    overflow: hidden;
   }
 }
-.posts .post {
-  border-radius: 0;
-}
+
 .single-post {
   .comment-form,
   .comments li,
@@ -196,9 +195,6 @@ h6,
   }
   &.btn-sm {
     @extend %smooth;
-    &:not(.btn-link):not(.geoloc) {
-      color: $white;
-    }
   }
   &[class*="btn-outline-light"] {
     border-width: 1px;
@@ -365,6 +361,7 @@ strong,
 .dropdown-menu {
   left: auto;
   right: 0;
+  box-shadow: $dropdown-box-shadow;
   span {
     display: block;
     padding: rem-calc(3 20);
@@ -472,5 +469,18 @@ $auth-icon-size: rem-calc(72);
   strong {
     font-weight: 400;
     text-transform: lowercase;
+  }
+}
+
+.text-muted {
+  .btn-link {
+    color: $dark-teal;
+  }
+}
+
+.list-group-item {
+  font-size: rem-calc(14);
+  i {
+    margin-right: rem-calc(4);
   }
 }

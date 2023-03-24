@@ -9,8 +9,10 @@
                 Encuentra ideas cerca de ti
               </h3>
               <p>
-                ¡Alguien de tu barrio, colegio, o universidad necesita tu apoyo
-                para hacer realidad su idea!
+                Encuentra ideas innovadoras en un mapa interactivo y vota por
+                las propuestas que te gusten. Apoya a personas de tu comunidad
+                que buscan hacer cambios positivos en tu barrio, colegio o
+                universidad.
               </p>
               <a class="btn btn-outline-success btn-lg" href="{{pathFor 'map'}}"
                 >Descubre ideas en el mapa</a
@@ -27,11 +29,12 @@
           <div class="col-12 col-sm-5 col-lg-4 col-xl-3 order-2">
             <div class="jumbotron">
               <h3 class="landing-area-title text-info">
-                El futuro lo propones tu
+                Comparte ideas para mejorar tu ciudad
               </h3>
               <p>
-                Entre todos ayudamos a alimentar las mejores ideas para que
-                pasen a ser proyectos exitosos.
+                Recibe votos y comentarios de la comunidad. Juntos, podemos
+                convertir las mejores propuestas en proyectos exitosos que hagan
+                la diferencia.
               </p>
               {{#if currentUser}}
               <a
@@ -60,16 +63,17 @@
           <div class="col-12 col-sm-5 col-lg-4 col-xl-3">
             <div class="jumbotron">
               <h3 class="landing-area-title text-primary">
-                Las mejores ideas se vuelven reales
+                Convierte tus ideas en realidad
               </h3>
               <p>
-                Si tu idea cuenta con el apoyo de tu comunidad o grupo de
-                amigos, ¡no esperes más y hazla real!
+                Si tienes una idea innovadora que pueda mejorar tu ciudad y
+                cuenta con el respaldo de tus amigos o vecinos, ¡no esperes más
+                y hazla realidad!
               </p>
               <a
                 class="btn btn-outline-primary btn-lg"
                 href="{{pathFor 'best'}}"
-                >Ver ideas populares</a
+                >Descubre ideas populares</a
               >
             </div>
           </div>
@@ -80,16 +84,16 @@
     <section class="landing-area">
       <div class="container-fluid">
         <div class="row justify-content-sm-center">
-          <div class="col col-md-9 col-lg-7 col-xl-5">
-            <header class="clearfix mb-4 mt-4">
-              <h5 class="section-title text-muted float-left">
-                Ideas recientes
-              </h5>
+          <div class="col col-md-9 col-lg-7 col-xl-4">
+            <header
+              class="d-flex align-items-center justify-content-between mb-1 mt-5"
+            >
+              <h5 class="section-title text-muted">Ideas recientes</h5>
               <a
-                class="btn text-primary btn-link btn-sm float-right"
+                class="btn text-primary btn-link btn-sm"
                 href="{{pathFor 'new'}}"
-                ><em>Ver más</em></a
-              >
+                >Ver más <i class="fas fa-angle-right ml-1"></i
+              ></a>
             </header>
             {{> postsList postsReady=Template.subscriptionsReady posts=posts
             hasMorePosts=hasMorePosts}}

@@ -2,18 +2,34 @@
   <div class="post cat-{{icon}}">
     <div class="post-content">
       <header class="clearfix">
+        {{#if author}}
+        <small class="text-muted d-flex align-items-center">
+          <a
+            class="user-link btn-link"
+            href="{{pathFor '/u/:username/' username=author}}"
+            ><i class="user-icon far fa-user-circle mr-1"></i> {{author}}
+          </a>
+          <span class="calendar-text ml-3">
+            <i class="far fa-calendar mr-1"></i>
+            {{submitted.toLocaleDateString}}
+          </span>
+        </small>
+        {{/if}}
+
+        <span class="badge p-0 mb-2">{{category}}</span>
+
         <h3 class="post-title">
           <a href="{{pathFor '/idea/:slug' slug=slug}}">{{title}}</a>
         </h3>
-        <small class="post-category text-muted"><em>{{category}}</em></small>
       </header>
       {{#if address}}
-      <p class="mb-1">
+      <p class="mb-0">
         <small class="text-secondary">{{address}}</small>
       </p>
+      <hr class="my-2" />
       {{/if}}
-      <small class="clearfix mb-0">
-        <small class="text-muted float-right mt-2">
+      <div class="d-flex justify-content-between align-items-end mb-0">
+        <small class="text-muted">
           <!-- {{pluralize votes "voto"}},
           {{pluralize commentsCount "comentario"}} -->
           <div class="btn-group" role="group" aria-label="Basic example">
@@ -50,18 +66,57 @@
             {{/if}}
           </div>
         </small>
-        <small class="text-muted float-left mt-1">
-          <i class="far fa-calendar"></i> {{submitted.toLocaleDateString}}
-          <br />
-          {{#if author}}<a href="{{pathFor '/u/:username/' username=author}}"
-            ><i class="far fa-user-circle"></i> {{author}}</a
+
+        <div class="btn-group dropup">
+          <button
+            class="btn btn-light btn-sm dropdown-toggle"
+            type="button"
+            id="dropdownMenuButton"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-boundary="window"
           >
-          {{/if}} {{#if ownPost}}|
-          <a href="{{pathFor '/idea/:slug/editar' slug=slug}}"
-            ><small> <i class="far fa-edit"></i> Editar</small></a
-          >{{/if}}
-        </small>
-      </small>
+            <i class="fas fa-ellipsis"></i>
+          </button>
+
+          <div
+            class="dropdown-menu dropdown-menu-right"
+            aria-labelledby="dropdownMenuButton"
+          >
+            {{#if ownPost}}<a
+              class="dropdown-item"
+              href="{{pathFor '/idea/:slug/editar' slug=slug}}"
+            >
+              <i class="far fa-edit mr-2"></i> Editar
+            </a>
+            <div class="dropdown-divider"></div>
+            {{/if}}
+            <!-- facebook -->
+            <a
+              class="dropdown-item btn-facebook"
+              href="https://www.facebook.com/sharer.php?u={{urlFor '/idea/:slug' slug=slug}}&p[title]=Mira esta idea en Chango: {{title}}"
+              target="_blank"
+              ><i class="fab fa-facebook mr-2"></i> Compartir en Facebook</a
+            >
+            <!-- twitter -->
+            <a
+              class="dropdown-item btn-twitter"
+              href="https://twitter.com/intent/tweet?url={{urlFor '/idea/:slug' slug=slug}}&text=Mira esta idea en Chango: {{title}}"
+              target="_blank"
+              ><i class="fab fa-twitter mr-2"></i> Compartir en Twitter</a
+            >
+            <!-- whatsapp -->
+            <a
+              class="dropdown-item btn-whatsapp"
+              href="https://wa.me/?text=Mira esta idea en Chango: {{title}}%20{{urlFor '/idea/:slug' slug=slug}}"
+              target="_blank"
+              aria-label="Share on WhatsApp"
+              ><i class="fab fa-whatsapp mr-2"></i> Compartir en WhatsApp</a
+            >
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>

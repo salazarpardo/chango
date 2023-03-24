@@ -5,51 +5,78 @@ $linkedin-color: #0077b5;
 $whatsapp-color: #25d366;
 
 .btn-facebook {
-  background-color: $facebook-color;
-  border-color: $facebook-color;
-  &:hover,
-  &:active {
-    background-color: darken($facebook-color, 15);
-    border-color: darken($facebook-color, 15);
+  &.btn {
+    background-color: $facebook-color;
+    border-color: $facebook-color;
+    &:hover,
+    &:active {
+      background-color: darken($facebook-color, 15);
+      border-color: darken($facebook-color, 15);
+    }
+  }
+  &.dropdown-item i {
+    color: $facebook-color;
   }
 }
 
 .btn-twitter {
-  background-color: $twitter-color;
-  border-color: $twitter-color;
-  &:hover,
-  &:active {
-    background-color: darken($twitter-color, 15);
-    border-color: darken($twitter-color, 15);
+  &.btn {
+    background-color: $twitter-color;
+    border-color: $twitter-color;
+    &:hover,
+    &:active {
+      background-color: darken($twitter-color, 15);
+      border-color: darken($twitter-color, 15);
+    }
+  }
+  &.dropdown-item i {
+    color: $twitter-color;
   }
 }
 
 .btn-email {
-  background-color: $email-color;
-  border-color: $email-color;
-  &:hover,
-  &:active {
-    background-color: darken($email-color, 15);
-    border-color: darken($email-color, 15);
+  &.btn {
+    background-color: $email-color;
+    border-color: $email-color;
+    &:hover,
+    &:active {
+      background-color: darken($email-color, 15);
+      border-color: darken($email-color, 15);
+    }
+  }
+  &.dropdown-item {
+    i {
+      color: $email-color;
+    }
   }
 }
 
 .btn-linkedin {
-  background-color: $linkedin-color;
-  border-color: $linkedin-color;
-  &:hover,
-  &:active {
-    background-color: darken($linkedin-color, 15);
-    border-color: darken($linkedin-color, 15);
+  &.btn {
+    background-color: $linkedin-color;
+    border-color: $linkedin-color;
+    &:hover,
+    &:active {
+      background-color: darken($linkedin-color, 15);
+      border-color: darken($linkedin-color, 15);
+    }
+  }
+  &.dropdown-item i {
+    color: $linkedin-color;
   }
 }
 
 .btn-whatsapp {
-  background-color: $whatsapp-color;
-  border-color: $whatsapp-color;
-  &:hover,
-  &:active {
-    background-color: darken($whatsapp-color, 15);
-    border-color: darken($whatsapp-color, 15);
+  &.btn {
+    background-color: $whatsapp-color;
+    border-color: $whatsapp-color;
+    &:hover,
+    &:active {
+      background-color: darken($whatsapp-color, 15);
+      border-color: darken($whatsapp-color, 15);
+    }
+  }
+  &.dropdown-item i {
+    color: $whatsapp-color;
   }
 }

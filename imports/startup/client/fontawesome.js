@@ -24,6 +24,8 @@ import {
   faCheck,
   faSpinner,
   faLocationArrow,
+  faEllipsis,
+  faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
 
 import {
@@ -54,6 +56,8 @@ library.add(
   faCheck,
   faSpinner,
   faLocationArrow,
+  faEllipsis,
+  faAngleRight,
   faFacebook,
   faGoogle,
   faTwitter,

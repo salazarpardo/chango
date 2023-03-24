@@ -1,13 +1,5 @@
-.posts {
-  border-radius: $border-radius;
-  overflow: hidden;
-  .wrapper {
-    background: $white;
-  }
-}
-
 .section-title {
-  color: $secondary;
+  color: $dark-teal;
   text-transform: lowercase;
 }
 
@@ -23,33 +15,56 @@
     position: absolute;
     background-color: $primary;
     left: 0;
-    top: rem-calc(14);
-    height: rem-calc(32);
-    width: 2px;
+    top: rem-calc(32);
+    height: rem-calc(16);
+    width: 1px;
+  }
+  .badge {
+    font-weight: 600;
+    font-size: 12px;
+    background-color: $white;
+  }
+  small {
+    font-size: rem-calc(10);
   }
   &.cat-1 {
     &:before {
       background-color: $info;
+    }
+    .badge {
+      color: $info;
     }
   }
   &.cat-2 {
     &:before {
       background-color: $warning;
     }
+    .badge {
+      color: $warning;
+    }
   }
   &.cat-3 {
     &:before {
       background-color: $success;
+    }
+    .badge {
+      color: $success;
     }
   }
   &.cat-4 {
     &:before {
       background-color: $purple;
     }
+    .badge {
+      color: $purple;
+    }
   }
   &.cat-5 {
     &:before {
       background-color: $dark-blue;
+    }
+    .badge {
+      color: $dark-blue;
     }
   }
   &.after {
@@ -78,7 +93,7 @@
     }
   }
   .post-content {
-    h3 {
+    .post-title {
       margin: 0;
       line-height: 1.15;
       font-size: rem-calc(18);
@@ -88,6 +103,9 @@
       @include media-breakpoint-up(lg) {
         font-size: rem-calc(22);
       }
+      .posts & {
+        font-size: rem-calc(16);
+      }
       a {
         display: inline-block;
         margin-right: rem-calc(5);
@@ -96,12 +114,7 @@
           color: $primary;
         }
       }
-      span {
-        font-weight: normal;
-        font-size: rem-calc(14);
-        display: inline-block;
-        color: $gray-500;
-      }
+
       p {
         margin: 0;
       }
@@ -109,9 +122,24 @@
         font-size: rem-calc(12);
       }
     }
-    .btn-group {
+
+    .btn-group:not(.dropup) {
       font-size: rem-calc(12);
+      .btn-sm {
+        padding: rem-calc(4);
+        margin-right: rem-calc(16);
+      }
     }
+  }
+  .dropup .dropdown-toggle {
+    color: $dark-teal;
+    &::after {
+      content: none;
+    }
+  }
+  .dropdown-item {
+    font-size: rem-calc(12);
+    color: $dark-teal;
   }
 }
 
@@ -159,5 +187,11 @@
   .geoloc:hover & {
     display: inline;
     color: $secondary;
+  }
+}
+
+.social-buttons {
+  .btn-sm {
+    color: $white;
   }
 }
