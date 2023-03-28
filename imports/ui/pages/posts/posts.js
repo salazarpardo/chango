@@ -8,7 +8,10 @@ import "./posts.html";
 import "../../components/posts/posts_list.js";
 import "../../components/posts/posts_map.js";
 
-Template.posts.onCreated(function() {
+Template.posts.onCreated(function () {
+  Meteor.startup(function () {
+    GoogleMaps.load({ key: Meteor.settings.public.GoogleMaps });
+  });
   // 1. Initialization
 
   var instance = this;
@@ -25,7 +28,7 @@ Template.posts.onCreated(function() {
 
   // will re-run when the "limit" reactive variables changes
 
-  instance.autorun(function() {
+  instance.autorun(function () {
     var route = FlowRouter.getRouteName();
 
     if (route === "tag") {
@@ -38,7 +41,7 @@ Template.posts.onCreated(function() {
         votes: -1,
         commentsCount: -1,
         submitted: -1,
-        _id: -1
+        _id: -1,
       });
       instance.query.set({});
     } else {
@@ -65,41 +68,39 @@ Template.posts.onCreated(function() {
       console.log("Subscription is not ready yet.");
     }
 
-    instance.posts = function() {
+    instance.posts = function () {
       return Posts.find(instance.query.get(), {
         sort: instance.sortby.get(),
-        limit: instance.loaded.get()
+        limit: instance.loaded.get(),
       });
     };
   });
 });
 
 Template.posts.helpers({
-  map: function() {
+  map: function () {
     return true;
   },
-  routeOption: function(optionName) {
+  routeOption: function (optionName) {
     FlowRouter.watchPathChange();
     return FlowRouter.current().route.options[optionName];
   },
-  tag: function() {
+  tag: function () {
     var query = Template.instance().query.get();
     return query["tags.value"];
   },
-  ready: function() {
+  ready: function () {
     return Template.instance().ready.get();
   },
-  posts: function() {
+  posts: function () {
     return Template.instance().posts();
   },
-  limit: function() {
+  limit: function () {
     return Template.instance().limit;
   },
-  hasMorePosts: function() {
+  hasMorePosts: function () {
     return (
-      Template.instance()
-        .posts()
-        .count() >= Template.instance().limit.get()
+      Template.instance().posts().count() >= Template.instance().limit.get()
     );
-  }
+  },
 });

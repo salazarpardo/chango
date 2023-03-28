@@ -131,10 +131,15 @@
       }
     }
   }
-  .dropup .dropdown-toggle {
-    color: $dark-teal;
-    &::after {
-      content: none;
+  .dropup {
+    .dropdown-menu.show {
+      top: 8px;
+    }
+    .dropdown-toggle {
+      color: $dark-teal;
+      &::after {
+        content: none;
+      }
     }
   }
   .dropdown-item {

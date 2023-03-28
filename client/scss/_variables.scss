@@ -204,9 +204,9 @@ $paragraph-margin-bottom: 1rem !default;
 
 $grid-breakpoints: (
   xs: 0,
-  sm: 576px,
+  sm: 425px,
   md: 768px,
-  lg: 992px,
+  lg: 1024px,
   xl: 1200px,
 ) !default;
 
@@ -277,9 +277,8 @@ $embed-responsive-aspect-ratios: join(
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
-$font-family-sans-serif: "Epilogue", -apple-system, BlinkMacSystemFont,
-  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
-  "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-family-sans-serif: "Epilogue", Verdana, -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial !default;
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
   "Liberation Mono", "Courier New", monospace !default;
 $font-family-script: "Fenway Normal", $font-family-sans-serif;

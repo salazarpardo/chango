@@ -267,7 +267,7 @@ h6,
     background-color: $white;
     margin-bottom: rem-calc(8);
 
-    @include media-breakpoint-up(sm) {
+    @include media-breakpoint-up(md) {
       max-width: 60%;
       display: inline-block;
       margin-bottom: 0;

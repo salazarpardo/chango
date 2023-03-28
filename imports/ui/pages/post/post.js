@@ -46,10 +46,13 @@ Template.post.helpers({
   },
   hasMorePosts() {
     return false;
-  }
+  },
 });
 
-Template.post.onCreated(function() {
+Template.post.onCreated(function () {
+  Meteor.startup(function () {
+    GoogleMaps.load({ key: Meteor.settings.public.GoogleMaps });
+  });
   var self = this;
 
   // 1. Initialization
@@ -71,7 +74,7 @@ Template.post.onCreated(function() {
       self.subscribe("comments", self.postSlug());
     }
 
-    self.post = function() {
+    self.post = function () {
       if (self.postSlug() !== undefined) {
         singlePost = Posts.findOne({ slug: self.postSlug() });
         return singlePost;
@@ -99,10 +102,10 @@ Template.post.onCreated(function() {
 
   // 3. Cursor
 
-  self.posts = function() {
+  self.posts = function () {
     return Posts.find(self.query.get(), {
       sort: self.sortby.get(),
-      limit: self.loaded.get()
+      limit: self.loaded.get(),
     });
   };
 });

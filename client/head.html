@@ -1,66 +1,213 @@
 <head>
   <title>Chango</title>
-  <meta name="description" content="Participa compartiendo tus ideas para hacer que tu comunidad y Bogotá sean más inteligentes.">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, shrink-to-fit=no">
+  <meta
+    name="description"
+    content="Comparte tus ideas para que tu comunidad y Bogotá sean más inteligentes."
+  />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
   <meta name="HandheldFriendly" content="true" />
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Chango">
-  <meta name="theme-color" content="#f788cf">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-title" content="Chango" />
+  <meta name="theme-color" content="#E277BC" />
+  <link rel="manifest" href="/manifest.json" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,400;0,800;1,400&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --blue: #00acbc;
+      --indigo: #6610f2;
+      --purple: #9e88f7;
+      --pink: #e277bc;
+      --red: #dc3545;
+      --orange: #fa0;
+      --yellow: #ffc107;
+      --green: #25a780;
+      --teal: #20c997;
+      --cyan: #00b1c1;
+      --white: #fff;
+      --gray: #77acba;
+      --gray-dark: #343a40;
+      --primary: #e277bc;
+      --secondary: #466c6e;
+      --success: #25a780;
+      --info: #00b1c1;
+      --warning: #fa0;
+      --danger: #d94da7;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --breakpoint-xs: 0;
+      --breakpoint-sm: 576px;
+      --breakpoint-md: 768px;
+      --breakpoint-lg: 992px;
+      --breakpoint-xl: 1200px;
+      --font-family-sans-serif: "Epilogue", -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+    }
+    *,
+    :after,
+    :before {
+      box-sizing: border-box;
+    }
+    html {
+      font-family: sans-serif;
+      line-height: 1.15;
+      -webkit-text-size-adjust: 100%;
+    }
+    body {
+      margin: 0;
+      font-family: Epilogue, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+        Helvetica Neue, Arial, sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #466c6e;
+      text-align: left;
+      background-color: #fff;
+    }
+    ::-webkit-file-upload-button {
+      font: inherit;
+      -webkit-appearance: button;
+    }
+    body {
+      color: #0b1f36;
+    }
+  </style>
   <!-- Favicon -->
   <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
   <!-- iPad retina icon -->
-  <link href="/resources/icons/icon-152x152.png" sizes="152x152" rel="apple-touch-icon-precomposed">
+  <link
+    href="/resources/icons/icon-152x152.png"
+    sizes="152x152"
+    rel="apple-touch-icon-precomposed"
+  />
   <!-- iPad retina icon (iOS < 7) -->
-  <link href="/resources/icons/icon-144x144.png" sizes="144x144" rel="apple-touch-icon-precomposed">
+  <link
+    href="/resources/icons/icon-144x144.png"
+    sizes="144x144"
+    rel="apple-touch-icon-precomposed"
+  />
   <!-- iPad non-retina icon -->
-  <link href="/resources/icons/icon-76x76.png" sizes="76x76" rel="apple-touch-icon-precomposed">
+  <link
+    href="/resources/icons/icon-76x76.png"
+    sizes="76x76"
+    rel="apple-touch-icon-precomposed"
+  />
   <!-- iPad non-retina icon (iOS < 7) -->
-  <link href="/resources/icons/icon-72x72.png" sizes="72x72" rel="apple-touch-icon-precomposed">
+  <link
+    href="/resources/icons/icon-72x72.png"
+    sizes="72x72"
+    rel="apple-touch-icon-precomposed"
+  />
   <!-- iPhone 6 Plus icon -->
-  <link href="/resources/icons/icon-180x180.png" sizes="120x120" rel="apple-touch-icon-precomposed">
+  <link
+    href="/resources/icons/icon-180x180.png"
+    sizes="120x120"
+    rel="apple-touch-icon-precomposed"
+  />
   <!-- iPhone retina icon (iOS < 7) -->
-  <link href="/resources/icons/icon-114x114.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+  <link
+    href="/resources/icons/icon-114x114.png"
+    sizes="114x114"
+    rel="apple-touch-icon-precomposed"
+  />
   <!-- iPhone non-retina icon (iOS < 7) -->
-  <link href="/resources/icons/icon-57x57.png" sizes="57x57" rel="apple-touch-icon-precomposed">
+  <link
+    href="/resources/icons/icon-57x57.png"
+    sizes="57x57"
+    rel="apple-touch-icon-precomposed"
+  />
   <!-- STARTUP IMAGES -->
   <!-- iPad retina portrait startup image -->
-  <link href="/resources/splash/splash-1536x2008.png" media="(device-width: 768px) and (device-height: 1024px)
+  <link
+    href="/resources/splash/splash-1536x2008.png"
+    media="(device-width: 768px) and (device-height: 1024px)
                and (-webkit-device-pixel-ratio: 2)
-               and (orientation: portrait)" rel="apple-touch-startup-image">
+               and (orientation: portrait)"
+    rel="apple-touch-startup-image"
+  />
   <!-- iPad retina landscape startup image -->
-  <link href="/resources/splash/splash-1496x2048.png" media="(device-width: 768px) and (device-height: 1024px)
+  <link
+    href="/resources/splash/splash-1496x2048.png"
+    media="(device-width: 768px) and (device-height: 1024px)
                and (-webkit-device-pixel-ratio: 2)
-               and (orientation: landscape)" rel="apple-touch-startup-image">
+               and (orientation: landscape)"
+    rel="apple-touch-startup-image"
+  />
   <!-- iPad non-retina portrait startup image -->
-  <link href="/resources/splash/splash-768x1004.png" media="(device-width: 768px) and (device-height: 1024px)
+  <link
+    href="/resources/splash/splash-768x1004.png"
+    media="(device-width: 768px) and (device-height: 1024px)
                and (-webkit-device-pixel-ratio: 1)
-               and (orientation: portrait)" rel="apple-touch-startup-image">
+               and (orientation: portrait)"
+    rel="apple-touch-startup-image"
+  />
   <!-- iPad non-retina landscape startup image -->
-  <link href="/resources/splash/splash-748x1024.png" media="(device-width: 768px) and (device-height: 1024px)
+  <link
+    href="/resources/splash/splash-748x1024.png"
+    media="(device-width: 768px) and (device-height: 1024px)
                and (-webkit-device-pixel-ratio: 1)
-               and (orientation: landscape)" rel="apple-touch-startup-image">
+               and (orientation: landscape)"
+    rel="apple-touch-startup-image"
+  />
   <!-- iPhone 6 Plus portrait startup image -->
-  <link href="/resources/splash/splash-1242x2048.png" media="(device-width: 414px) and (device-height: 736px)
+  <link
+    href="/resources/splash/splash-1242x2048.png"
+    media="(device-width: 414px) and (device-height: 736px)
                and (-webkit-device-pixel-ratio: 3)
-               and (orientation: portrait)" rel="apple-touch-startup-image">
+               and (orientation: portrait)"
+    rel="apple-touch-startup-image"
+  />
   <!-- iPhone 6 Plus landscape startup image -->
-  <link href="/resources/splash/splash-1242x2208.png" media="(device-width: 414px) and (device-height: 736px)
+  <link
+    href="/resources/splash/splash-1242x2208.png"
+    media="(device-width: 414px) and (device-height: 736px)
                and (-webkit-device-pixel-ratio: 3)
-               and (orientation: landscape)" rel="apple-touch-startup-image">
+               and (orientation: landscape)"
+    rel="apple-touch-startup-image"
+  />
   <!-- iPhone 6 startup image -->
-  <link href="/resources/splash/splash-750x1294.png" media="(device-width: 375px) and (device-height: 667px)
-               and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+  <link
+    href="/resources/splash/splash-750x1294.png"
+    media="(device-width: 375px) and (device-height: 667px)
+               and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image"
+  />
   <!-- iPhone 5 startup image -->
-  <link href="/resources/splash/splash-640x1096.png" media="(device-width: 320px) and (device-height: 568px)
-               and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+  <link
+    href="/resources/splash/splash-640x1096.png"
+    media="(device-width: 320px) and (device-height: 568px)
+               and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image"
+  />
   <!-- iPhone < 5 retina startup image -->
-  <link href="/resources/splash/splash-640x920.png" media="(device-width: 320px) and (device-height: 480px)
-               and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image">
+  <link
+    href="/resources/splash/splash-640x920.png"
+    media="(device-width: 320px) and (device-height: 480px)
+               and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image"
+  />
   <!-- iPhone < 5 non-retina startup image -->
-  <link href="/resources/splash/splash-320x460.png" media="(device-width: 320px) and (device-height: 480px)
-                 and (-webkit-device-pixel-ratio: 1)" rel="apple-touch-startup-image">
+  <link
+    href="/resources/splash/splash-320x460.png"
+    media="(device-width: 320px) and (device-height: 480px)
+                 and (-webkit-device-pixel-ratio: 1)"
+    rel="apple-touch-startup-image"
+  />
+
+  <link rel="preload" as="image" href="img/city.svg" />
 
   <noscript>
     <style>
@@ -74,5 +221,4 @@
       }
     </style>
   </noscript>
-
 </head>

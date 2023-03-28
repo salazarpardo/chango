@@ -3,38 +3,36 @@
     <section class="landing-area bg-first">
       <div class="container-fluid">
         <div class="row justify-content-sm-center align-items-center">
-          <div class="col-12 col-sm-5 col-lg-4 col-xl-3">
+          <div class="col-12 col-md-6 col-lg-5 col-xl-3">
             <div class="jumbotron">
-              <h3 class="landing-area-title text-success">
+              <h2 class="landing-area-title text-success">
                 Encuentra ideas cerca de ti
-              </h3>
+              </h2>
               <p>
-                Encuentra ideas innovadoras en un mapa interactivo y vota por
-                las propuestas que te gusten. Apoya a personas de tu comunidad
-                que buscan hacer cambios positivos en tu barrio, colegio o
-                universidad.
+                Encuentra ideas innovadoras en un mapa interactivo y apoya las
+                propuestas que te gusten votando por ellas.
               </p>
               <a class="btn btn-outline-success btn-lg" href="{{pathFor 'map'}}"
                 >Descubre ideas en el mapa</a
               >
             </div>
           </div>
-          <div class="col-3 col-sm-5"></div>
+          <div class="col-3 col-md-5 col-lg-6 col-xl-5"></div>
         </div>
       </div>
     </section>
-    <section class="landing-area bg-second text-right">
+    <section class="landing-area bg-second">
       <div class="container-fluid">
         <div class="row justify-content-sm-center align-items-center">
-          <div class="col-12 col-sm-5 col-lg-4 col-xl-3 order-2">
+          <div class="col-12 col-md-6 col-lg-5 col-xl-3 order-2">
             <div class="jumbotron">
-              <h3 class="landing-area-title text-info">
-                Comparte ideas para mejorar tu ciudad
-              </h3>
+              <h2 class="landing-area-title text-info">
+                Comparte ideas para tu ciudad
+              </h2>
               <p>
-                Recibe votos y comentarios de la comunidad. Juntos, podemos
-                convertir las mejores propuestas en proyectos exitosos que hagan
-                la diferencia.
+                Recibe votos y comentarios sobre tu idea. Entre todos,
+                convertiremos las mejores propuestas en proyectos con impacto
+                real.
               </p>
               {{#if currentUser}}
               <a
@@ -53,31 +51,30 @@
               {{/if}}
             </div>
           </div>
-          <div class="col-3 col-sm-5 order-1"></div>
+          <div class="col-3 col-md-5 col-lg-6 col-xl-5 order-1"></div>
         </div>
       </div>
     </section>
     <section class="landing-area bg-third">
       <div class="container-fluid">
         <div class="row justify-content-sm-center align-items-center">
-          <div class="col-12 col-sm-5 col-lg-4 col-xl-3">
+          <div class="col-12 col-md-6 col-lg-5 col-xl-3">
             <div class="jumbotron">
-              <h3 class="landing-area-title text-primary">
-                Convierte tus ideas en realidad
-              </h3>
+              <h2 class="landing-area-title text-primary">
+                Transforma ideas en proyectos
+              </h2>
               <p>
-                Si tienes una idea innovadora que pueda mejorar tu ciudad y
-                cuenta con el respaldo de tus amigos o vecinos, ¡no esperes más
-                y hazla realidad!
+                ¡Compárte ideas innovadoras para obtener el respaldo de tus
+                amigos o vecinos y convertirlas en realidad!
               </p>
               <a
                 class="btn btn-outline-primary btn-lg"
                 href="{{pathFor 'best'}}"
-                >Descubre ideas populares</a
+                >Apoya ideas populares</a
               >
             </div>
           </div>
-          <div class="col-3 col-sm-5"></div>
+          <div class="col-3 col-md-5 col-lg-6 col-xl-5"></div>
         </div>
       </div>
     </section>
@@ -88,7 +85,7 @@
             <header
               class="d-flex align-items-center justify-content-between mb-1 mt-5"
             >
-              <h5 class="section-title text-muted">Ideas recientes</h5>
+              <h3 class="section-title text-muted">Ideas recientes</h3>
               <a
                 class="btn text-primary btn-link btn-sm"
                 href="{{pathFor 'new'}}"

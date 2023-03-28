@@ -48,6 +48,6 @@ force-ssl@1.1.0
 dburles:google-maps
 meteorhacks:subs-manager
 okgrow:analytics
-underscore@1.0.10
+underscore
 meteorhacks:ssr
 email

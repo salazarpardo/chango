@@ -18,9 +18,9 @@
 
         <span class="badge p-0 mb-2">{{category}}</span>
 
-        <h3 class="post-title">
+        <h4 class="post-title">
           <a href="{{pathFor '/idea/:slug' slug=slug}}">{{title}}</a>
-        </h3>
+        </h4>
       </header>
       {{#if address}}
       <p class="mb-0">
@@ -76,6 +76,7 @@
             aria-haspopup="true"
             aria-expanded="false"
             data-boundary="window"
+            title="Dropdown button"
           >
             <i class="fas fa-ellipsis"></i>
           </button>
@@ -84,7 +85,8 @@
             class="dropdown-menu dropdown-menu-right"
             aria-labelledby="dropdownMenuButton"
           >
-            {{#if ownPost}}<a
+            {{#if ownPost}}
+            <a
               class="dropdown-item"
               href="{{pathFor '/idea/:slug/editar' slug=slug}}"
             >
